@@ -2,5 +2,5 @@
 
 Članovi tima:
 
-* ...
-* ...
+* Akoš Kiš
+* Davor Homa
