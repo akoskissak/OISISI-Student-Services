@@ -6,6 +6,8 @@ public class ExamGrade : ISerializable
 {
     public Student Student { get; set; }
     public Subject Subject { get; set; }
+    public int StudentId { get; set; }
+    public int SubjectId { get; set; }
     public int Grade { get; set; }
     public DateTime Date { get; set; }
 
@@ -14,8 +16,10 @@ public class ExamGrade : ISerializable
     {
     }
 
-    public ExamGrade(int grade, DateTime date)
+    public ExamGrade(int studId, int subjectId,int grade, DateTime date)
     {
+        StudentId = studId;
+        SubjectId = subjectId;
         Grade = grade;
         Date = date;
     }

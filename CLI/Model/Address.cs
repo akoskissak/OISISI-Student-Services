@@ -8,15 +8,20 @@ public class Address : ISerializable
     public int Number { get; set; }
     public string City { get; set; }
     public string Country { get; set; }
+    public int ProfessorId { get; set; }
+    public int StudentId { get; set; }
 
     public Address()
     {
-        
+        ProfessorId = -1;
+        StudentId = -1;
     }
 
-    public Address(string street, int num, string city, string country)
+    public Address(string street, int num, string city, string country, int profId = -1, int studId = -1)
     {
         Street = street;
+        ProfessorId = profId;
+        StudentId = studId;
         Number = num;
         City = city;
         Country = country;
@@ -29,7 +34,9 @@ public class Address : ISerializable
             Street,
             Number.ToString(),
             City,
-            Country
+            Country,
+            ProfessorId.ToString(),
+            StudentId.ToString()
         };
         return csvValues;
     }
@@ -40,5 +47,7 @@ public class Address : ISerializable
         Number = int.Parse(values[1]);
         City = values[2];
         Country = values[3];
+        ProfessorId = int.Parse(values[4]);
+        StudentId = int.Parse(values[5]);
     }
 }

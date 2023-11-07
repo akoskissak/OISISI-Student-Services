@@ -10,6 +10,7 @@ public class Subject : ISerializable
     public TipSemestra Semestar { get; set; }
     public int YearOfStudy { get; set; }
     public Professor Professor { get; set; }
+    public int ProfessorId { get; set; }
     public int Espb { get; set; }
     public List<Student> StudentsPassed { get; set; }
     public List<Student> StudentsDidntPass{ get; set; }
@@ -19,10 +20,11 @@ public class Subject : ISerializable
         StudentsPassed = new List<Student>();
         StudentsDidntPass = new List<Student>();
     }
-    public Subject(int subjectCode, string name, TipSemestra semestar, int yearOfStudy, int espb)
+    public Subject(int subjectCode, string name, TipSemestra semestar, int yearOfStudy,int espb,  int professorId)
     {
         SubjectCode = subjectCode;
         Name = name;
+        ProfessorId = professorId;
         Semestar = semestar;
         YearOfStudy = yearOfStudy;
         Espb = espb;
