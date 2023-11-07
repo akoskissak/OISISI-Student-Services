@@ -7,4 +7,11 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="Console\" />
+    <Folder Include="DAO\" />
+    <Folder Include="Data\" />
+    <Folder Include="Model\" />
+  </ItemGroup>
+
 </Project>
