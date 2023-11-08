@@ -22,7 +22,7 @@ public class StudentConsoleView
         System.Console.WriteLine("Enter name: ");
         string name = System.Console.ReadLine() ?? string.Empty;
 
-        System.Console.WriteLine("Enter birth date: ");
+        System.Console.WriteLine("Enter birth date (e.g. mm/dd/yy): ");
         DateTime date = ConsoleViewUtils.SafeInputDateTime();
 
         System.Console.WriteLine("Enter address street: ");

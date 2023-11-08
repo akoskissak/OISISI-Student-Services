@@ -12,6 +12,10 @@ class Program
         SubjectDAO subjDAO = new SubjectDAO();
         AddressDAO addrDAO = new AddressDAO();
         ExamGradeDAO examGrDAO = new ExamGradeDAO();
+
+        ExamGradeConsoleView examGrView = new ExamGradeConsoleView(examGrDAO);
+        examGrView.RunMenu();
+        
         ProfessorConsoleView profView = new ProfessorConsoleView(profDAO);
         profView.RunMenu();
 

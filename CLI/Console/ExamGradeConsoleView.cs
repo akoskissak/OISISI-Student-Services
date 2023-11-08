@@ -19,11 +19,17 @@ public class ExamGradeConsoleView
         
         System.Console.WriteLine("Enter subjectId: ");
         int subjectId = ConsoleViewUtils.SafeInputInt();
-
+        
+        
         System.Console.WriteLine("Enter grade: ");
         int grade = ConsoleViewUtils.SafeInputInt();
+        while (grade < 6 || grade > 10)
+        {
+            System.Console.WriteLine("Not a valid exam grade. Enter a number from 6-10: ");
+            grade = ConsoleViewUtils.SafeInputInt();
+        }
 
-        System.Console.WriteLine("Enter birth date: ");
+        System.Console.WriteLine("Enter date (e.g. mm/dd/yy): ");
         DateTime date = ConsoleViewUtils.SafeInputDateTime();
 
         return new ExamGrade(studId, subjectId, grade, date);
