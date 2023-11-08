@@ -30,16 +30,16 @@ public class Student : ISerializable
         UnsubmittedSubjects = new List<Subject>();
     }
 
-    public Student(string lastname, string name, DateTime date, Address address,
-        string phonenumber, string email, Index index, int year, Status status, double avgGrade)
+    public Student(string lastname, string name, DateTime date, string street, int number, string city, string country,
+        string phonenumber, string email, string programme, int enrollNum, int enrollYear, int year, Status status, double avgGrade)
     {
         Lastname = lastname;
         Name = name;
         DateOfBirth = date;
-        Address = address;
+        Address = new Address(street, number, city, country);
+        Index = new Index(programme, enrollNum, enrollYear);
         PhoneNumber = phonenumber;
         Email = email;
-        Index = index;
         CurrentYearOfStudy = year;
         Status = status;
         AverageGrade = avgGrade;

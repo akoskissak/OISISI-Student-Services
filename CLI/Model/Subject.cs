@@ -2,12 +2,12 @@ using CLI.Storage.Serialization;
 
 namespace CLI.Model;
 
-public enum TipSemestra{Letnji, Zimski}
+public enum SemesterType {Letnji, Zimski}
 public class Subject : ISerializable
 {
     public int SubjectCode { get; set; }
     public string Name { get; set; }
-    public TipSemestra Semestar { get; set; }
+    public SemesterType Semestar { get; set; }
     public int YearOfStudy { get; set; }
     public Professor Professor { get; set; }
     public int ProfessorId { get; set; }
@@ -20,7 +20,7 @@ public class Subject : ISerializable
         StudentsPassed = new List<Student>();
         StudentsDidntPass = new List<Student>();
     }
-    public Subject(int subjectCode, string name, TipSemestra semestar, int yearOfStudy,int espb,  int professorId)
+    public Subject(int subjectCode, string name, SemesterType semestar, int yearOfStudy,int espb,  int professorId)
     {
         SubjectCode = subjectCode;
         Name = name;
@@ -40,7 +40,8 @@ public class Subject : ISerializable
             Name,
             Semestar.ToString(),
             YearOfStudy.ToString(),
-            Espb.ToString()
+            Espb.ToString(),
+            ProfessorId.ToString()
         };
         return csvValues;
     }
@@ -49,8 +50,9 @@ public class Subject : ISerializable
     {
         SubjectCode = int.Parse(values[0]);
         Name = values[1];
-        Semestar = (TipSemestra)Enum.Parse(typeof(TipSemestra), values[2]);
+        Semestar = (SemesterType)Enum.Parse(typeof(SemesterType), values[2]);
         YearOfStudy = int.Parse(values[3]);
         Espb = int.Parse(values[4]);
+        ProfessorId = int.Parse(values[5]);
     }
 }

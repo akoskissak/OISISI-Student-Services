@@ -21,13 +21,13 @@ public class Professor : ISerializable
         Subjects = new List<Subject>();
     }
 
-    public Professor(string lastname, string name, DateTime date, Address add, string phone,
+    public Professor(string lastname, string name, DateTime date, string street, int number, string city, string country, string phone,
                     string mail, int id, string title, int years)
     {
         Lastname = lastname;
         Name = name;
         DateOfBirth = date;
-        Address = add;
+        Address = new Address(street, number, city, country);
         PhoneNumber = phone;
         Email = mail;
         Idnumber = id;
