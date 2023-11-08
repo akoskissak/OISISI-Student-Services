@@ -8,10 +8,13 @@ class Program
     static void Main()
     {
         ProfessorDAO profDAO = new ProfessorDAO();
+        StudentDAO studDAO = new StudentDAO();
+        SubjectDAO subjDAO = new SubjectDAO();
+        AddressDAO addrDAO = new AddressDAO();
+        ExamGradeDAO examGrDAO = new ExamGradeDAO();
         ProfessorConsoleView profView = new ProfessorConsoleView(profDAO);
         profView.RunMenu();
 
-        StudentDAO studDAO = new StudentDAO();
         StudentConsoleView studView = new StudentConsoleView(studDAO);
         studView.RunMenu();
         
@@ -19,7 +22,6 @@ class Program
         DepartmentConsoleView depView = new DepartmentConsoleView(depDAO);
         depView.RunMenu();
 
-        SubjectDAO subjDAO = new SubjectDAO();
         SubjectConsoleView subjView = new SubjectConsoleView(subjDAO);
         subjView.RunMenu();
     }
