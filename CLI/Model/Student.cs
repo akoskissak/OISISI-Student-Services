@@ -49,7 +49,7 @@ public class Student : ISerializable
 
     public override string ToString()
     {
-        return $"ID: {Id} | LASTNAME: {Lastname} | NAME: {Name} | DATEOFBIRTH: {DateOfBirth} | {Address} {Index} PHONENUMBER: {PhoneNumber} | EMAIL: {Email} | CURRENTYEAROFSTUDY: {CurrentYearOfStudy} | STATUS: {Status.ToString()} | AVERAGEGRADE: {AverageGrade} |";
+        return $"Id: {Id, 5} | LastName: {Lastname, 8} | Name: {Name, 8} | DateOfBirth: {DateOfBirth, 15} | Street: {Address.Street, 10} | Number: {Address.Number, 2} | City: {Address.City, 6} | Country: {Address.Country, 6} | StudyProgrammeMark: {Index.StudyProgrammeMark, 3} | EnrollmentNumber: {Index.EnrollmentNumber, 2} | EnrollmentYear: {Index.EnrollmentYear, 4} | PhoneNumber: {PhoneNumber, 12} | Email: {Email, 12} | CurrentYearOfStudy: {CurrentYearOfStudy, 1} | Status: {Status.ToString(), 1} | AverageGrade: {AverageGrade, 4}";
     }
 
 

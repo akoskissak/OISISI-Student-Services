@@ -24,7 +24,7 @@ public class Index : ISerializable
 
     public override string ToString()
     {
-        return $"ID: {Id} | StudyProgrammeMark: {StudyProgrammeMark} | EnrollmentNumber: {EnrollmentNumber} | EnrollmentYear: {EnrollmentYear} |";
+        return $"Id: {Id, 5} | StudyProgrammeMark: {StudyProgrammeMark, 3} | EnrollmentNumber: {EnrollmentNumber, 2} | EnrollmentYear: {EnrollmentYear, 4}";
     }
     
     public string[] ToCSV()

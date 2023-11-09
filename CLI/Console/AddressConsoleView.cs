@@ -104,7 +104,7 @@ public class AddressConsoleView
     private void PrintAddresses(List<Address> addresses)
     {
         System.Console.WriteLine("Addresses: ");
-        string header = $"STREET {""} | NUMBER {""} | CITY {""} | COUNTRY {""} | PROFESSORID {""} | STUDENTID {""}";
+        string header = $"Id {"", 5} | Street {"", 10} | Number {"", 2} | City {"", 6} | Country {"", 6}";
         System.Console.WriteLine(header);
         foreach (Address a in addresses)
         {

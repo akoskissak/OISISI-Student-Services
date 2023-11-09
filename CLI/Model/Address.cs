@@ -31,6 +31,7 @@ public class Address : ISerializable
     {
         string[] csvValues =
         {
+            Id.ToString(),
             Street,
             Number.ToString(),
             City,
@@ -43,16 +44,17 @@ public class Address : ISerializable
 
     public override string ToString()
     {
-        return $"STREET: {Street} | NUMBER: {Number} | CITY: {City} | COUNTRY: {Country} | PROFESSORID: {ProfessorId} | STUDENTID: {StudentId}";
+        return $"Id: {Id} | Street: {Street} | Number: {Number} | City: {City} | Country: {Country}";
     }
 
     public void FromCSV(string[] values)
     {
-        Street = values[0];
-        Number = int.Parse(values[1]);
-        City = values[2];
-        Country = values[3];
-        ProfessorId = int.Parse(values[4]);
-        StudentId = int.Parse(values[5]);
+        Id = int.Parse(values[0]);
+        Street = values[1];
+        Number = int.Parse(values[2]);
+        City = values[3];
+        Country = values[4];
+        ProfessorId = int.Parse(values[5]);
+        StudentId = int.Parse(values[6]);
     }
 }

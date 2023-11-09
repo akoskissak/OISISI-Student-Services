@@ -100,7 +100,7 @@ public class IndexConsoleView
     private void PrintIndexes(List<Index> indexes)
     {
         System.Console.WriteLine("Indexes: ");
-        string header = $"ID {"",2} | StudyProgrammeMark {"",3} | EnrollmentNumber {"",2} | EnrollmentYear {"",2} |";
+        string header = $"Id {"", 5} | StudyProgrammeMark {"", 3} | EnrollmentNumber {"", 2} | EnrollmentYear {"", 4}";
         System.Console.WriteLine(header);
         foreach (Index i in indexes)
             System.Console.WriteLine(i);

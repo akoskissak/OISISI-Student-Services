@@ -164,7 +164,7 @@ public class StudentConsoleView
     private void PrintStudents(List<Student> students)
     {
         System.Console.WriteLine("Students: ");
-        string header = $"ID {""} | LASTNAME {""} | NAME {""} | DATEOFBIRTH {""} | STREET {""} | NUMBER {""} | CITY {""} | COUNTRY {""} PHONENUMBER {""} | EMAIL {""} | CURRENTYEAROFSTUDY {""} | STATUS {""} | AVERAGEGRADE {""} |";
+        string header = $"Id {"", 5} | LastName {"", 8} | Name {"", 8} | DateOfBirth {"", 15} | Street {"", 10} | Number {"", 2} | City {"", 6} | Country {"", 6} | StudyProgrammeMark {"", 3} | EnrollmentNumber {"", 2} | EnrollmentYear {"", 4} | PhoneNumber {"", 12} | Email {"", 12} | CurrentYearOfStudy {"", 1} | Status {"", 1} | AverageGrade {"", 4}";
         System.Console.WriteLine(header);
         foreach (Student s in students)
         {
