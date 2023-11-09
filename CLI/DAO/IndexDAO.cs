@@ -53,6 +53,10 @@ public class IndexDAO
         _indexes.Remove(index);
         _storage.Save(_indexes);
         return index;
+    }
 
+    public List<Index> GetAllIndexes()
+    {
+        return _indexes;
     }
 }

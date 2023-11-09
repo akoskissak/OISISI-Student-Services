@@ -42,8 +42,9 @@ public class AddressConsoleView
     {
         switch (input)
         {
-            // case "1":
-            //     break;
+            case "1":
+                ShowAllAddresses();
+                break;
             case "2":
                 AddAddress();
                 break;
@@ -98,6 +99,22 @@ public class AddressConsoleView
         }
         
         System.Console.WriteLine("Address removed");
+    }
+
+    private void PrintAddresses(List<Address> addresses)
+    {
+        System.Console.WriteLine("Addresses: ");
+        string header = $"STREET {""} | NUMBER {""} | CITY {""} | COUNTRY {""} | PROFESSORID {""} | STUDENTID {""}";
+        System.Console.WriteLine(header);
+        foreach (Address a in addresses)
+        {
+            System.Console.WriteLine(a);
+        }
+    }
+
+    private void ShowAllAddresses()
+    {
+        PrintAddresses(_addressDao.GetAllAddresses());
     }
     
     private void ShowMenu()

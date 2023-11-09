@@ -21,11 +21,17 @@ public class Index : ISerializable
         EnrollmentNumber = enrollNum;
         EnrollmentYear = enrollYear;
     }
+
+    public override string ToString()
+    {
+        return $"ID: {Id} | StudyProgrammeMark: {StudyProgrammeMark} | EnrollmentNumber: {EnrollmentNumber} | EnrollmentYear: {EnrollmentYear} |";
+    }
     
     public string[] ToCSV()
     {
         string[] csvValues =
         {
+            Id.ToString(),
             StudyProgrammeMark,
             EnrollmentNumber.ToString(),
             EnrollmentYear.ToString()
@@ -35,8 +41,9 @@ public class Index : ISerializable
 
     public void FromCSV(string[] values)
     {
-        StudyProgrammeMark = values[0];
-        EnrollmentNumber = int.Parse(values[1]);
-        EnrollmentYear = int.Parse(values[2]);
+        Id = int.Parse(values[0]);
+        StudyProgrammeMark = values[1];
+        EnrollmentNumber = int.Parse(values[2]);
+        EnrollmentYear = int.Parse(values[3]);
     }
 }

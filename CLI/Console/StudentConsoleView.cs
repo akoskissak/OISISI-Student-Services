@@ -144,9 +144,9 @@ public class StudentConsoleView
     {
         switch (input)
         {
-            // case "1":
-            //     ShowAllStudents();
-            //     break;
+            case "1":
+                ShowAllStudents();
+                break;
             case "2":
                 AddStudent(subjectDao);
                 break;
@@ -160,6 +160,20 @@ public class StudentConsoleView
             //     ShowAndSortStudents();
             //     break;
         }
+    }
+    private void PrintStudents(List<Student> students)
+    {
+        System.Console.WriteLine("Students: ");
+        string header = $"ID {""} | LASTNAME {""} | NAME {""} | DATEOFBIRTH {""} | STREET {""} | NUMBER {""} | CITY {""} | COUNTRY {""} PHONENUMBER {""} | EMAIL {""} | CURRENTYEAROFSTUDY {""} | STATUS {""} | AVERAGEGRADE {""} |";
+        System.Console.WriteLine(header);
+        foreach (Student s in students)
+        {
+            System.Console.WriteLine(s);
+        }
+    }
+    private void ShowAllStudents()
+    {
+        PrintStudents(_studentDao.GetAllStudents());
     }
     
     private void ShowMenu()

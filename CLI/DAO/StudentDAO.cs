@@ -72,4 +72,8 @@ public class StudentDAO
     {
         return _students.Find(s => s.Id == id);
     }
+    public List<Student> GetAllStudents()
+    {
+        return _students;
+    }
 }

@@ -30,9 +30,9 @@ public class IndexConsoleView
     {
         switch (input)
         {
-            // case "1":
-            //     ShowAllIndexes();
-            //     break;
+            case "1":
+                ShowAllIndexes();
+                break;
             case "2":
                 AddIndex();
                 break;
@@ -95,6 +95,20 @@ public class IndexConsoleView
         }
         
         System.Console.WriteLine("Index removed");
+    }
+
+    private void PrintIndexes(List<Index> indexes)
+    {
+        System.Console.WriteLine("Indexes: ");
+        string header = $"ID {"",2} | StudyProgrammeMark {"",3} | EnrollmentNumber {"",2} | EnrollmentYear {"",2} |";
+        System.Console.WriteLine(header);
+        foreach (Index i in indexes)
+            System.Console.WriteLine(i);
+    }
+
+    private void ShowAllIndexes()
+    {
+        PrintIndexes(_indexDao.GetAllIndexes());
     }
     private void ShowMenu()
     {

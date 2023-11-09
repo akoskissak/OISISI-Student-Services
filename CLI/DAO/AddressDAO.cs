@@ -60,4 +60,9 @@ public class AddressDAO
     {
         return _addresses.Find(a => a.Id == id);
     }
+
+    public List<Address> GetAllAddresses()
+    {
+        return _addresses;
+    }
 }

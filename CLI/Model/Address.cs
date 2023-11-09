@@ -41,6 +41,11 @@ public class Address : ISerializable
         return csvValues;
     }
 
+    public override string ToString()
+    {
+        return $"STREET: {Street} | NUMBER: {Number} | CITY: {City} | COUNTRY: {Country} | PROFESSORID: {ProfessorId} | STUDENTID: {StudentId}";
+    }
+
     public void FromCSV(string[] values)
     {
         Street = values[0];

@@ -46,12 +46,18 @@ public class Student : ISerializable
         SubmittedSubjects = new List<Subject>();
         UnsubmittedSubjects = new List<Subject>();
     }
-    
-    
+
+    public override string ToString()
+    {
+        return $"ID: {Id} | LASTNAME: {Lastname} | NAME: {Name} | DATEOFBIRTH: {DateOfBirth} | {Address} {Index} PHONENUMBER: {PhoneNumber} | EMAIL: {Email} | CURRENTYEAROFSTUDY: {CurrentYearOfStudy} | STATUS: {Status.ToString()} | AVERAGEGRADE: {AverageGrade} |";
+    }
+
+
     public string[] ToCSV()
     {
         string[] csvValues =
         {
+            Id.ToString(),
             Lastname,
             Name,
             DateOfBirth.ToString(),
@@ -68,14 +74,15 @@ public class Student : ISerializable
 
     public void FromCSV(string[] values)
     {
-        Lastname = values[0];
-        Name = values[1];
-        DateOfBirth = DateTime.Parse(values[2]);
-        PhoneNumber = values[3];
-        Email = values[4];
-        CurrentYearOfStudy = int.Parse(values[5]);
-        Status = (Status)Enum.Parse(typeof(Status), values[6]);
-        AverageGrade = double.Parse(values[7]);
-        Index.Id = int.Parse(values[8]);
+        Id = int.Parse(values[0]);
+        Lastname = values[1];
+        Name = values[2];
+        DateOfBirth = DateTime.Parse(values[3]);
+        PhoneNumber = values[4];
+        Email = values[5];
+        CurrentYearOfStudy = int.Parse(values[6]);
+        Status = (Status)Enum.Parse(typeof(Status), values[7]);
+        AverageGrade = double.Parse(values[8]);
+        Index.Id = int.Parse(values[9]);
     }
 }
