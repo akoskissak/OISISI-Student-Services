@@ -7,8 +7,7 @@ public class SubjectConsoleView
 {
     private readonly SubjectDAO _subjectDao;
     
-
-
+    
     public SubjectConsoleView(SubjectDAO subjectDao)
     {
         _subjectDao = subjectDao;
@@ -16,10 +15,7 @@ public class SubjectConsoleView
 
     private Subject InputSubject()
     {
-        System.Console.WriteLine("SUBJECT\nEnter code: ");
-        int code = ConsoleViewUtils.SafeInputInt();
-        
-        System.Console.WriteLine("Enter name: ");
+        System.Console.WriteLine("SUBJECT\nEnter name: ");
         string name = System.Console.ReadLine() ?? string.Empty;
         
         System.Console.WriteLine("Enter semester type: ");
@@ -34,15 +30,35 @@ public class SubjectConsoleView
         System.Console.WriteLine("Enter professor ID: ");
         int profId = ConsoleViewUtils.SafeInputInt();
 
-        return new Subject(code, name, semester, year, espb, profId);
+        return new Subject(name, semester, year, espb, profId);
     }
-
-    public void AddSubject()
+    
+   private void AddSubject()
     {
         Subject subject = InputSubject();
         _subjectDao.AddSubject(subject);
         System.Console.WriteLine("Subject added");
     }
+
+   private int InputId()
+   {
+       System.Console.WriteLine("Enter subject id: ");
+       return ConsoleViewUtils.SafeInputInt();
+   }
+   private void UpdateSubject()
+   {
+       int id = InputId();
+       Subject subject = InputSubject();
+       subject.SubjectCode = id;
+       Subject? updateSubject = _subjectDao.UpdateSubject(subject);
+       if(updateSubject == null)
+       {
+           System.Console.WriteLine("Subject not found");
+           return;
+       }
+       
+       System.Console.WriteLine("Subject updated");
+   }
     
     public void RunMenu()
     {
@@ -58,17 +74,17 @@ public class SubjectConsoleView
     {
         switch (input)
         {
+            /*case "1":
+                ShowAllSubjects();
+                break;*/
+
             case "2":
                 AddSubject();
                 break;
-            /*case "1":
-                ShowAllSubjects();
-                break;
-
             case "3":
                 UpdateSubject();
                 break;
-            case "4":
+            /*case "4":
                 RemoveSubject();
                 break;
             case "5":

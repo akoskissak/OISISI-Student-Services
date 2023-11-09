@@ -20,9 +20,8 @@ public class Subject : ISerializable
         StudentsPassed = new List<Student>();
         StudentsDidntPass = new List<Student>();
     }
-    public Subject(int subjectCode, string name, SemesterType semestar, int yearOfStudy,int espb,  int professorId)
+    public Subject(string name, SemesterType semestar, int yearOfStudy,int espb,  int professorId)
     {
-        SubjectCode = subjectCode;
         Name = name;
         ProfessorId = professorId;
         Semestar = semestar;
