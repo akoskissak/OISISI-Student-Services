@@ -30,13 +30,14 @@ public class ExamGradeDAO
             return null;
         oldExamGrade.Grade = examGrade.Grade;
         oldExamGrade.Date = examGrade.Date;
-
+        
+        _examGradeStorage.Save(_examGrades);
         return oldExamGrade;
     }
 
     private ExamGrade? GetExamByIds(int studId, int subjId)
     {
-        return _examGrades.Find(exam => (exam.StudentId == studId
-                                         && exam.SubjectId == subjId));
+        return _examGrades.Find(exam => exam.StudentId == studId
+                                         && exam.SubjectId == subjId);
     }
 }

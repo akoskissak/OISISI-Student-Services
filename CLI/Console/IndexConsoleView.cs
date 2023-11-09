@@ -31,30 +31,58 @@ public class IndexConsoleView
         switch (input)
         {
             // case "1":
-            //     ShowAllVehicles();
+            //     ShowAllIndexes();
             //     break;
             case "2":
                 AddIndex();
                 break;
-            // case "3":
-            //     UpdateVehicle();
-            //     break;
+             case "3":
+                 UpdateIndex();
+                 break;
             // case "4":
-            //     RemoveVehicle();
+            //     RemoveIndex();
             //     break;
             // case "5":
-            //     ShowAndSortVehicles();
+            //     ShowAndSortIndexes();
             //     break;
         }
     }
-
+    public void RunMenu()
+    {
+        while (true)
+        {
+            ShowMenu();
+            string userInput = System.Console.ReadLine() ?? "0";
+            if (userInput == "0") break;
+            HandleMenuInput(userInput);
+        }
+    }
     private void AddIndex()
     {
         Index index = InputIndex();
         _indexDao.AddIndex(index);
         System.Console.WriteLine("Index added");
     }
-    
+
+    private int InputId()
+    {
+        System.Console.WriteLine("Enter index id: ");
+        return ConsoleViewUtils.SafeInputInt();
+    }
+    private void UpdateIndex()
+    {
+        int id = InputId();
+        Index index = InputIndex();
+        index.Id = id;
+        Index? updateIndex = _indexDao.UpdateIndex(index);
+        if (updateIndex == null)
+        {
+            System.Console.WriteLine("Index not found");
+            return;
+        }
+        
+        System.Console.WriteLine("Index updated");
+    }
     private void ShowMenu()
     {
         System.Console.WriteLine("\nChoose an option: ");

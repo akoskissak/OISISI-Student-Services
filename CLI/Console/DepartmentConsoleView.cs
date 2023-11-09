@@ -48,7 +48,7 @@ public class DepartmentConsoleView
         switch (input)
         {
             // case "1":
-            //     ShowAllStudents();
+            //     ShowAllDepartments();
             //     break;
             case "2":
                 AddDepartment();
@@ -57,10 +57,10 @@ public class DepartmentConsoleView
                 UpdateDepartment();
                 break;
             // case "4":
-            //     RemoveStudent();
+            //     RemoveDepartment();
             //     break;
             // case "5":
-            //     ShowAndSortStudents();
+            //     ShowAndSortDepartments();
             //     break;
         }
     }

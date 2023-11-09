@@ -26,4 +26,22 @@ public class IndexDAO
         _storage.Save(_indexes);
         return index;
     }
+
+    public Index? UpdateIndex(Index index)
+    {
+        Index? oldIndex = GetIndexById(index.Id);
+        if (oldIndex is null) return null;
+
+        oldIndex.StudyProgrammeMark = index.StudyProgrammeMark;
+        oldIndex.EnrollmentNumber = index.EnrollmentNumber;
+        oldIndex.EnrollmentYear = index.EnrollmentYear;
+
+        _storage.Save(_indexes);
+        return oldIndex;
+    }
+
+    private Index? GetIndexById(int id)
+    {
+        return _indexes.Find(i => i.Id == id);
+    }
 }

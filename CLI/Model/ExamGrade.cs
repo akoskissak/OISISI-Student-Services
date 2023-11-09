@@ -27,6 +27,8 @@ public class ExamGrade : ISerializable
     {
         string[] csvValues =
         {
+            StudentId.ToString(),
+            SubjectId.ToString(),
             Grade.ToString(),
             Date.ToString()
         };
@@ -35,7 +37,9 @@ public class ExamGrade : ISerializable
 
     public void FromCSV(string[] values)
     {
-        Grade = int.Parse(values[0]);
-        Date = DateTime.Parse(values[1]);
+        StudentId = int.Parse(values[0]);
+        SubjectId = int.Parse(values[1]);
+        Grade = int.Parse(values[2]);
+        Date = DateTime.Parse(values[3]);
     }
 }

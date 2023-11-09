@@ -19,11 +19,9 @@ public class Address : ISerializable
         StudentId = -1;
     }
 
-    public Address(string street, int num, string city, string country, int profId = -1, int studId = -1)
+    public Address(string street, int num, string city, string country)
     {
         Street = street;
-        ProfessorId = profId;
-        StudentId = studId;
         Number = num;
         City = city;
         Country = country;

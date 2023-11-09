@@ -36,6 +36,29 @@ public class StudentDAO
         _addressStorage.Save(_addresses);
         return student;
     }
-    
-    
+
+    public Student? UpdateStudent(Student student)
+    {
+        Student? oldStudent = GetStudentById(student.Id);
+        if (oldStudent is null) return null;
+
+        oldStudent.Lastname = student.Lastname;
+        oldStudent.Name = student.Name;
+        oldStudent.DateOfBirth = student.DateOfBirth;
+        oldStudent.Address = student.Address;
+        oldStudent.Index = student.Index;
+        oldStudent.PhoneNumber = student.PhoneNumber;
+        oldStudent.Email = student.Email;
+        oldStudent.CurrentYearOfStudy = student.CurrentYearOfStudy;
+        oldStudent.Status = student.Status;
+        oldStudent.AverageGrade = student.AverageGrade;
+        
+        _studentStorage.Save(_students);
+        return oldStudent;
+    }
+
+    private Student? GetStudentById(int id)
+    {
+        return _students.Find(s => s.Id == id);
+    }
 }

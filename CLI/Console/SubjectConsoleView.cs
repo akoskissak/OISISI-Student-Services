@@ -18,7 +18,7 @@ public class SubjectConsoleView
         System.Console.WriteLine("SUBJECT\nEnter name: ");
         string name = System.Console.ReadLine() ?? string.Empty;
         
-        System.Console.WriteLine("Enter semester type: ");
+        System.Console.WriteLine("Enter semester type(Zimski, Letnji): ");
         SemesterType semester = ConsoleViewUtils.SafeInputSemester();
         
         System.Console.WriteLine("Enter year of study: ");
@@ -42,7 +42,7 @@ public class SubjectConsoleView
 
    private int InputId()
    {
-       System.Console.WriteLine("Enter subject id: ");
+       System.Console.WriteLine("Enter subject code: ");
        return ConsoleViewUtils.SafeInputInt();
    }
    private void UpdateSubject()

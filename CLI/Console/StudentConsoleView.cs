@@ -68,6 +68,26 @@ public class StudentConsoleView
         _studentDao.AddStudent(student);
         System.Console.WriteLine("Student added");
     }
+
+    private int InputId()
+    {
+        System.Console.WriteLine("Enter student id: ");
+        return ConsoleViewUtils.SafeInputInt();
+    }
+    private void UpdateStudent()
+    {
+        int id = InputId();
+        Student student = InputStudent();
+        student.Id = id;
+        Student? updateStudent = _studentDao.UpdateStudent(student);
+        if (updateStudent == null)
+        {
+            System.Console.WriteLine("Student not found");
+            return;
+        }
+        
+        System.Console.WriteLine("Student updated");
+    }
     
     public void RunMenu()
     {
@@ -90,9 +110,9 @@ public class StudentConsoleView
             case "2":
                 AddStudent();
                 break;
-            // case "3":
-            //     UpdateStudent();
-            //     break;
+            case "3": 
+                UpdateStudent();
+                break;
             // case "4":
             //     RemoveStudent();
             //     break;

@@ -28,25 +28,33 @@ public class AddressConsoleView
 
         return new Address(street, number, city, country);
     }
-
+    public void RunMenu()
+    {
+        while (true)
+        {
+            ShowMenu();
+            string userInput = System.Console.ReadLine() ?? "0";
+            if (userInput == "0") break;
+            HandleMenuInput(userInput);
+        }
+    }
     private void HandleMenuInput(string input)
     {
         switch (input)
         {
             // case "1":
-            //     ShowAllVehicles();
             //     break;
             case "2":
                 AddAddress();
                 break;
-            // case "3":
-            //     UpdateVehicle();
-            //     break;
+            case "3":
+                UpdateAddress();
+                break;
             // case "4":
-            //     RemoveVehicle();
+            //     RemoveAddress();
             //     break;
             // case "5":
-            //     ShowAndSortVehicles();
+            //     ShowAndSortAddresses();
             //     break;
         }
     }
@@ -56,6 +64,27 @@ public class AddressConsoleView
         Address address = InputAddress();
         _addressDao.AddAddress(address);
         System.Console.WriteLine("Address added");
+    }
+
+    private int InputId()
+    {
+        System.Console.WriteLine("Enter address id: ");
+        return ConsoleViewUtils.SafeInputInt();
+    }
+
+    private void UpdateAddress()
+    {
+        int id = InputId();
+        Address? address = InputAddress();
+        address.Id = id;
+        Address? updateAddress = _addressDao.UpdateAddress(address);
+        if (updateAddress == null)
+        {
+            System.Console.WriteLine("Address not found");
+            return;
+        }
+        
+        System.Console.WriteLine("Address updated");
     }
     private void ShowMenu()
     {

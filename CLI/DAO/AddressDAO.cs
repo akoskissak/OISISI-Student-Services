@@ -29,4 +29,25 @@ public class AddressDAO
         _addressStorage.Save(_addresses);
         return address;
     }
+
+    public Address? UpdateAddress(Address address)
+    {
+        Address? oldAddress = GetAddressById(address.Id);
+        if (oldAddress is null) return null;
+
+        oldAddress.Street = address.Street;
+        oldAddress.ProfessorId = address.ProfessorId;
+        oldAddress.StudentId = address.StudentId;
+        oldAddress.Number = address.Number;
+        oldAddress.City = address.City;
+        oldAddress.Country = address.Country;
+        
+        _addressStorage.Save(_addresses);
+        return oldAddress;
+    }
+
+    private Address? GetAddressById(int id)
+    {
+        return _addresses.Find(a => a.Id == id);
+    }
 }
