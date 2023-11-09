@@ -122,6 +122,6 @@ public class ProfessorConsoleView
         System.Console.WriteLine("3: Update Professor");
         System.Console.WriteLine("4: Remove Professor");
         System.Console.WriteLine("5: Show and sort professors");
-        System.Console.WriteLine("0: Close");
+        System.Console.WriteLine("0: Back");
     }
 }

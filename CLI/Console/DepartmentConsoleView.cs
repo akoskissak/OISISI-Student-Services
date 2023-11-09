@@ -86,6 +86,6 @@ public class DepartmentConsoleView
         System.Console.WriteLine("3: Update Department");
         System.Console.WriteLine("4: Remove Department");
         System.Console.WriteLine("5: Show and sort Departments");
-        System.Console.WriteLine("0: Close");
+        System.Console.WriteLine("0: Back");
     }
 }

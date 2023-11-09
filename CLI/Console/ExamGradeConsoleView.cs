@@ -95,6 +95,6 @@ public class ExamGradeConsoleView
         System.Console.WriteLine("3: Update ExamGrade");
         System.Console.WriteLine("4: Remove ExamGrade");
         System.Console.WriteLine("5: Show and sort ExamGrades");
-        System.Console.WriteLine("0: Close");
+        System.Console.WriteLine("0: Back");
     }
 }

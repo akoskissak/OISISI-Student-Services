@@ -101,6 +101,6 @@ public class SubjectConsoleView
         System.Console.WriteLine("3: Update subject");
         System.Console.WriteLine("4: Remove subject");
         System.Console.WriteLine("5: Show and sort subjects");
-        System.Console.WriteLine("0: Close");
+        System.Console.WriteLine("0: Back");
     }
 }

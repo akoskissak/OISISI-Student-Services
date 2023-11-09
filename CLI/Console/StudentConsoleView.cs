@@ -130,6 +130,6 @@ public class StudentConsoleView
         System.Console.WriteLine("3: Update Student");
         System.Console.WriteLine("4: Remove Student");
         System.Console.WriteLine("5: Show and sort Students");
-        System.Console.WriteLine("0: Close");
+        System.Console.WriteLine("0: Back");
     }
 }

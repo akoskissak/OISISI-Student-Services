@@ -91,6 +91,6 @@ public class IndexConsoleView
         System.Console.WriteLine("3: Update index");
         System.Console.WriteLine("4: Remove index");
         System.Console.WriteLine("5: Show and sort indexes");
-        System.Console.WriteLine("0: Close");
+        System.Console.WriteLine("0: Back");
     }
 }

@@ -94,6 +94,6 @@ public class AddressConsoleView
         System.Console.WriteLine("3: Update address");
         System.Console.WriteLine("4: Remove address");
         System.Console.WriteLine("5: Show and sort addresses");
-        System.Console.WriteLine("0: Close");
+        System.Console.WriteLine("0: Back");
     }
 }
