@@ -29,7 +29,7 @@ public class ConsoleView
         {
             case "1":
                 StudentConsoleView studView = new StudentConsoleView(studDAO);
-                studView.RunMenu();
+                studView.RunMenu(subjDAO);
                 break;
             case "2":
                 ProfessorConsoleView profView = new ProfessorConsoleView(profDAO);

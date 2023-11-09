@@ -57,6 +57,17 @@ public class StudentDAO
         return oldStudent;
     }
 
+    public Student? RemoveStudent(int id)
+    {
+        Student? student = GetStudentById(id);
+        if (student == null)
+            return null;
+
+        _students.Remove(student);
+        _studentStorage.Save(_students);
+        return student;
+    }
+
     private Student? GetStudentById(int id)
     {
         return _students.Find(s => s.Id == id);

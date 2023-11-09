@@ -7,8 +7,10 @@ public class SubjectDAO
 {
     private readonly List<Subject> _subjects;
     private readonly Storage<Subject> _subjectStorage;
-
-
+    public List<Subject> getSubjects()
+    {
+        return _subjects;
+    }
     public SubjectDAO()
     {
         _subjectStorage = new Storage<Subject>("subjects.txt");
@@ -44,7 +46,18 @@ public class SubjectDAO
         return oldSubject;
     }
 
-    private Subject? GetSubjectById(int id)
+    public Subject? RemoveSubject(int id)
+    {
+        Subject? subject = GetSubjectById(id);
+        if (subject == null)
+            return null;
+
+        _subjects.Remove(subject);
+        _subjectStorage.Save(_subjects);
+        return subject;
+    }
+
+    public Subject? GetSubjectById(int id)
     {
         return _subjects.Find(s => s.SubjectCode == id);
     }

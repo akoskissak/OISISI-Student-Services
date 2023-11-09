@@ -59,8 +59,10 @@ public class Student : ISerializable
             Email,
             CurrentYearOfStudy.ToString(),
             Status.ToString(),
-            AverageGrade.ToString()
+            AverageGrade.ToString(),
+            Index.Id.ToString(),
         };
+        
         return csvValues;
     }
 
@@ -74,5 +76,6 @@ public class Student : ISerializable
         CurrentYearOfStudy = int.Parse(values[5]);
         Status = (Status)Enum.Parse(typeof(Status), values[6]);
         AverageGrade = double.Parse(values[7]);
+        Index.Id = int.Parse(values[8]);
     }
 }

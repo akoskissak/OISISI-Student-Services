@@ -59,6 +59,19 @@ public class SubjectConsoleView
        
        System.Console.WriteLine("Subject updated");
    }
+
+   private void RemoveSubject()
+   {
+       int id = InputId();
+       Subject? removedSubject = _subjectDao.RemoveSubject(id);
+       if (removedSubject == null)
+       {
+           System.Console.WriteLine("Subject not found");
+           return;
+       }
+       
+       System.Console.WriteLine("Subject removed");
+   }
     
     public void RunMenu()
     {
@@ -74,22 +87,21 @@ public class SubjectConsoleView
     {
         switch (input)
         {
-            /*case "1":
-                ShowAllSubjects();
-                break;*/
-
+            // case "1":
+            //     ShowAllSubjects();
+            //     break;
             case "2":
                 AddSubject();
                 break;
             case "3":
                 UpdateSubject();
                 break;
-            /*case "4":
+            case "4":
                 RemoveSubject();
                 break;
-            case "5":
-                ShowAndSortSubjects();
-                break;*/
+            // case "5":
+            //     ShowAndSortSubjects();
+            //     break;
         }
     }
     

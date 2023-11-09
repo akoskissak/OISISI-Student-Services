@@ -10,7 +10,7 @@ public class StudentConsoleView
     {
         _studentDao = studentDao;
     }
-    private Student InputStudent()
+    private Student InputStudent(SubjectDAO subjectDao)
     {
         System.Console.WriteLine("STUDENT\nEnter last name: ");
         string lastname = System.Console.ReadLine() ?? String.Empty;
@@ -56,15 +56,42 @@ public class StudentConsoleView
 
         System.Console.WriteLine("Enter average grade: ");
         double grade = ConsoleViewUtils.SafeInputDouble();
-
-
-        return new Student(lastname, name, date, street, number, city, country, phone,
+        
+        System.Console.WriteLine("Enter unsubmitted subject code: ");
+        int subjCode = ConsoleViewUtils.SafeInputInt();
+        
+        Student student = new Student(lastname, name, date, street, number, city, country, phone,
             mail, programme, enrollNum, enrollYear, year, status, grade);
+
+        Subject? subj = subjectDao.GetSubjectById(subjCode);
+        if (subj != null)
+        {
+            student.UnsubmittedSubjects.Add(subj);
+        }
+        else
+        {
+            System.Console.WriteLine($"Subject with subject code {subjCode} does not exist.");
+        }
+        
+        System.Console.WriteLine("Enter submitted subject code: ");
+        subjCode = ConsoleViewUtils.SafeInputInt();
+        
+        subj = subjectDao.GetSubjectById(subjCode);
+        if (subj != null)
+        {
+            student.UnsubmittedSubjects.Add(subj);
+        }
+        else
+        {
+            System.Console.WriteLine($"Subject with subject code {subjCode} does not exist.");
+        }
+
+        return student;
     }
     
-    private void AddStudent()
+    private void AddStudent(SubjectDAO subjectDao)
     {
-        Student student = InputStudent();
+        Student student = InputStudent(subjectDao);
         _studentDao.AddStudent(student);
         System.Console.WriteLine("Student added");
     }
@@ -74,10 +101,10 @@ public class StudentConsoleView
         System.Console.WriteLine("Enter student id: ");
         return ConsoleViewUtils.SafeInputInt();
     }
-    private void UpdateStudent()
+    private void UpdateStudent(SubjectDAO subjectDao)
     {
         int id = InputId();
-        Student student = InputStudent();
+        Student student = InputStudent(subjectDao);
         student.Id = id;
         Student? updateStudent = _studentDao.UpdateStudent(student);
         if (updateStudent == null)
@@ -88,19 +115,32 @@ public class StudentConsoleView
         
         System.Console.WriteLine("Student updated");
     }
+
+    private void RemoveStudent()
+    {
+        int id = InputId();
+        Student? removedStudent = _studentDao.RemoveStudent(id);
+        if (removedStudent == null)
+        {
+            System.Console.WriteLine("Student not found");
+            return;
+        }
+        
+        System.Console.WriteLine("Student removed");
+    }
     
-    public void RunMenu()
+    public void RunMenu(SubjectDAO subjectDao)
     {
         while (true)
         {
             ShowMenu();
             string userInput = System.Console.ReadLine() ?? "0";
             if (userInput == "0") break;
-            HandleMenuInput(userInput);
+            HandleMenuInput(userInput, subjectDao);
         }
     }
     
-    private void HandleMenuInput(string input)
+    private void HandleMenuInput(string input, SubjectDAO subjectDao)
     {
         switch (input)
         {
@@ -108,14 +148,14 @@ public class StudentConsoleView
             //     ShowAllStudents();
             //     break;
             case "2":
-                AddStudent();
+                AddStudent(subjectDao);
                 break;
             case "3": 
-                UpdateStudent();
+                UpdateStudent(subjectDao);
                 break;
-            // case "4":
-            //     RemoveStudent();
-            //     break;
+            case "4":
+                RemoveStudent();
+                break;
             // case "5":
             //     ShowAndSortStudents();
             //     break;
