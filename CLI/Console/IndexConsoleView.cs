@@ -36,12 +36,12 @@ public class IndexConsoleView
             case "2":
                 AddIndex();
                 break;
-             case "3":
+            case "3":
                  UpdateIndex();
                  break;
-            // case "4":
-            //     RemoveIndex();
-            //     break;
+            case "4":
+                RemoveIndex(); 
+                break;
             // case "5":
             //     ShowAndSortIndexes();
             //     break;
@@ -82,6 +82,19 @@ public class IndexConsoleView
         }
         
         System.Console.WriteLine("Index updated");
+    }
+
+    private void RemoveIndex()
+    {
+        int id = InputId();
+        Index? removedIndex = _indexDao.RemoveIndex(id);
+        if (removedIndex is null)
+        {
+            System.Console.WriteLine("Index not found");
+            return;
+        }
+        
+        System.Console.WriteLine("Index removed");
     }
     private void ShowMenu()
     {

@@ -60,6 +60,39 @@ public class ProfessorConsoleView
         System.Console.WriteLine("Professor added");
     }
     
+    private int InputId()
+    {
+        System.Console.WriteLine("Enter professor id: ");
+        return ConsoleViewUtils.SafeInputInt();
+    }
+    private void UpdateProfessor()
+    {
+        int idNumber = InputId();
+        Professor professor = InputProfessor();
+        professor.Idnumber = idNumber;
+        Professor? updatedProfessor = _professorsDao.UpdateProfessor(professor);
+        if (updatedProfessor == null)
+        {
+            System.Console.WriteLine("Professor not found");
+            return;
+        }
+        
+        System.Console.WriteLine("Professor updated");
+    }
+
+    private void RemoveProfessor()
+    {
+        int id = InputId();
+        Professor? removedProfessor = _professorsDao.RemoveProfessor(id);
+        if (removedProfessor is null)
+        {
+            System.Console.WriteLine("Professor not found");
+            return;
+        }
+        
+        System.Console.WriteLine("Professor removed");
+    }
+    
     public void RunMenu()
     {
         while (true)
@@ -84,35 +117,15 @@ public class ProfessorConsoleView
             case "3":
                 UpdateProfessor();
                 break;
-            // case "4":
-            //     RemoveProfessor();
-            //     break;
+            case "4": 
+                RemoveProfessor(); 
+                break;
             // case "5":
             //     ShowAndSortProfessors();
             //     break;
         }
     }
 
-    private void UpdateProfessor()
-    {
-        int idNumber = InputId();
-        Professor professor = InputProfessor();
-        professor.Idnumber = idNumber;
-        Professor? updatedProfessor = _professorsDao.UpdateProfessor(professor);
-        if (updatedProfessor == null)
-        {
-            System.Console.WriteLine("Professor not found");
-            return;
-        }
-        
-        System.Console.WriteLine("Professor updated");
-    }
-
-    private int InputId()
-    {
-        System.Console.WriteLine("Enter professor id: ");
-        return ConsoleViewUtils.SafeInputInt();
-    }
     
     private void ShowMenu()
     {

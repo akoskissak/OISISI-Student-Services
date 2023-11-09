@@ -52,4 +52,14 @@ public class ProfessorDAO
     {
         return _professors.Find(p => p.Idnumber == id);
     }
+
+    public Professor? RemoveProfessor(int id)
+    {
+        Professor? professor = GetProfessorByIdNumber(id);
+        if (professor == null) return null;
+
+        _professors.Remove(professor);
+        _professorStorage.Save(_professors);
+        return professor;
+    }
 }

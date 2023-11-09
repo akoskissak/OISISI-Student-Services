@@ -42,6 +42,46 @@ public class ExamGradeConsoleView
         System.Console.WriteLine("ExamGrade added");
     }
     
+    private void UpdateExamGrade()
+    {
+        ExamGrade examGrade = InputExamGrade();
+        ExamGrade? updatedExamGrade = _examGradeDao.UpdateExamGrade(examGrade);
+        if (updatedExamGrade == null)
+        {
+            System.Console.WriteLine("ExamGrade not found");
+            return;
+        }
+        
+        System.Console.WriteLine("ExamGrade updated");
+    }
+    private int InputStudId()
+    {
+        System.Console.WriteLine("Enter student id: ");
+        return ConsoleViewUtils.SafeInputInt();
+    }
+
+    private int InputSubjId()
+    {
+        System.Console.WriteLine("Enter subject id: ");
+        return ConsoleViewUtils.SafeInputInt();
+    }
+
+    private void RemoveExamGrade()
+    {
+        int studId = InputStudId();
+        int subjId = InputSubjId();
+        ExamGrade? removeExamGrade = _examGradeDao.RemoveExamGrade(studId, subjId);
+        if (removeExamGrade is null)
+        {
+            System.Console.WriteLine("Exam grade not found");
+            return;
+        }
+        
+        System.Console.WriteLine("Exam grade removed");
+        
+
+    }
+    
     public void RunMenu()
     {
         while (true)
@@ -66,25 +106,13 @@ public class ExamGradeConsoleView
             case "3":
                 UpdateExamGrade();
                 break;
-            // case "4":
-            //     RemoveExamGrade();
-            //     break;
+            case "4":
+                RemoveExamGrade();
+                break;
             // case "5":
             //     ShowAndSortExamGrades();
             //     break;
         }
-    }
-    private void UpdateExamGrade()
-    {
-        ExamGrade examGrade = InputExamGrade();
-        ExamGrade? updatedExamGrade = _examGradeDao.UpdateExamGrade(examGrade);
-        if (updatedExamGrade == null)
-        {
-            System.Console.WriteLine("ExamGrade not found");
-            return;
-        }
-        
-        System.Console.WriteLine("ExamGrade updated");
     }
     
     private void ShowMenu()

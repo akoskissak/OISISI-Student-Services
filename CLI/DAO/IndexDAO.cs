@@ -44,4 +44,15 @@ public class IndexDAO
     {
         return _indexes.Find(i => i.Id == id);
     }
+
+    public Index? RemoveIndex(int id)
+    {
+        Index? index = GetIndexById(id);
+        if (index == null) return null;
+
+        _indexes.Remove(index);
+        _storage.Save(_indexes);
+        return index;
+
+    }
 }

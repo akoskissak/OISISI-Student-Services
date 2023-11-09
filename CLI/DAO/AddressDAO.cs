@@ -46,6 +46,16 @@ public class AddressDAO
         return oldAddress;
     }
 
+    public Address? RemoveAddress(int id)
+    {
+        Address? address = GetAddressById(id);
+        if (address == null) return null;
+
+        _addresses.Remove(address);
+        _addressStorage.Save(_addresses);
+        return address;
+    }
+
     private Address? GetAddressById(int id)
     {
         return _addresses.Find(a => a.Id == id);

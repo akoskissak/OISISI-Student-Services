@@ -40,4 +40,14 @@ public class ExamGradeDAO
         return _examGrades.Find(exam => exam.StudentId == studId
                                          && exam.SubjectId == subjId);
     }
+
+    public ExamGrade? RemoveExamGrade(int studId, int subjId)
+    {
+        ExamGrade? examGrade = GetExamByIds(studId, subjId);
+        if (examGrade == null) return null;
+
+        _examGrades.Remove(examGrade);
+        _examGradeStorage.Save(_examGrades);
+        return examGrade;
+    }
 }

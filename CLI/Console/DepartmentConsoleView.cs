@@ -32,6 +32,38 @@ public class DepartmentConsoleView
         _departmentDao.AddDepartment(department);
         System.Console.WriteLine("Department added");
     }
+    
+    private void UpdateDepartment()
+    {
+        Department department = InputDepartment();
+        Department? updatedDepartment = _departmentDao.UpdateDepartment(department);
+        if (updatedDepartment == null)
+        {
+            System.Console.WriteLine("Department not found");
+            return;
+        }
+        
+        System.Console.WriteLine("Department updated");
+    }
+
+    private int InputId()
+    {
+        System.Console.WriteLine("Enter department id: ");
+        return ConsoleViewUtils.SafeInputInt();
+    }
+    private void RemoveDepartment()
+    {
+        int id = InputId();
+        Department? removedDepartment = _departmentDao.RemoveDepartment(id);
+        if (removedDepartment is null)
+        {
+            System.Console.WriteLine("Department not found");
+            return;
+        }
+        
+        System.Console.WriteLine("Department removed");
+    }
+    
     public void RunMenu()
     {
         while (true)
@@ -56,28 +88,15 @@ public class DepartmentConsoleView
             case "3":
                 UpdateDepartment();
                 break;
-            // case "4":
-            //     RemoveDepartment();
-            //     break;
+            case "4":
+                RemoveDepartment();
+                break;
             // case "5":
             //     ShowAndSortDepartments();
             //     break;
         }
     }
 
-    private void UpdateDepartment()
-    {
-        Department department = InputDepartment();
-        Department? updatedDepartment = _departmentDao.UpdateDepartment(department);
-        if (updatedDepartment == null)
-        {
-            System.Console.WriteLine("Department not found");
-            return;
-        }
-        
-        System.Console.WriteLine("Department updated");
-    }
-    
     private void ShowMenu()
     {
         System.Console.WriteLine("\nChoose an option: ");

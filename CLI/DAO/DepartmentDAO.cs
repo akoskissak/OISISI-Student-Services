@@ -38,4 +38,14 @@ public class DepartmentDAO
     {
         return _departments.Find(d => d.DepCode == code);
     }
+
+    public Department? RemoveDepartment(int id)
+    {
+        Department? department = GetDepartmentByCode(id);
+        if (department == null) return null;
+
+        _departments.Remove(department);
+        _departmentStorage.Save(_departments);
+        return department;
+    }
 }

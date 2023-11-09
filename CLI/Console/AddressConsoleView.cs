@@ -50,9 +50,9 @@ public class AddressConsoleView
             case "3":
                 UpdateAddress();
                 break;
-            // case "4":
-            //     RemoveAddress();
-            //     break;
+            case "4":
+                RemoveAddress();
+                break;
             // case "5":
             //     ShowAndSortAddresses();
             //     break;
@@ -86,6 +86,20 @@ public class AddressConsoleView
         
         System.Console.WriteLine("Address updated");
     }
+
+    private void RemoveAddress()
+    {
+        int id = InputId();
+        Address? removedAddress = _addressDao.RemoveAddress(id);
+        if (removedAddress is null)
+        {
+            System.Console.WriteLine("Address not found");
+            return;
+        }
+        
+        System.Console.WriteLine("Address removed");
+    }
+    
     private void ShowMenu()
     {
         System.Console.WriteLine("\nChoose an option: ");
