@@ -11,8 +11,4 @@
     <Folder Include="Data\" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Compile Remove="Console\IndexConsoleView.cs" />
-  </ItemGroup>
-
 </Project>

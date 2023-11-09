@@ -63,9 +63,9 @@ public class ExamGradeConsoleView
             case "2":
                 AddExamGrade();
                 break;
-            // case "3":
-            //     UpdateExamGrade();
-            //     break;
+            case "3":
+                UpdateExamGrade();
+                break;
             // case "4":
             //     RemoveExamGrade();
             //     break;
@@ -73,6 +73,18 @@ public class ExamGradeConsoleView
             //     ShowAndSortExamGrades();
             //     break;
         }
+    }
+    private void UpdateExamGrade()
+    {
+        ExamGrade examGrade = InputExamGrade();
+        ExamGrade? updatedExamGrade = _examGradeDao.UpdateExamGrade(examGrade);
+        if (updatedExamGrade == null)
+        {
+            System.Console.WriteLine("ExamGrade not found");
+            return;
+        }
+        
+        System.Console.WriteLine("ExamGrade updated");
     }
     
     private void ShowMenu()

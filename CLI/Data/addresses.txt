@@ -1,0 +1,2 @@
+Ulica|1|ns|srb|-1|0
+Ulica|1|ns|srb|-1|1

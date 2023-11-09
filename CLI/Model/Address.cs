@@ -10,6 +10,8 @@ public class Address : ISerializable
     public string Country { get; set; }
     public int ProfessorId { get; set; }
     public int StudentId { get; set; }
+    
+    public int Id { get; set; }
 
     public Address()
     {

@@ -81,9 +81,9 @@ public class ProfessorConsoleView
             case "2":
                 AddProfessor();
                 break;
-            // case "3":
-            //     UpdateProfessor();
-            //     break;
+            case "3":
+                UpdateProfessor();
+                break;
             // case "4":
             //     RemoveProfessor();
             //     break;
@@ -91,6 +91,27 @@ public class ProfessorConsoleView
             //     ShowAndSortProfessors();
             //     break;
         }
+    }
+
+    private void UpdateProfessor()
+    {
+        int idNumber = InputId();
+        Professor professor = InputProfessor();
+        professor.Idnumber = idNumber;
+        Professor? updatedProfessor = _professorsDao.UpdateProfessor(professor);
+        if (updatedProfessor == null)
+        {
+            System.Console.WriteLine("Professor not found");
+            return;
+        }
+        
+        System.Console.WriteLine("Professor updated");
+    }
+
+    private int InputId()
+    {
+        System.Console.WriteLine("Enter professor id: ");
+        return ConsoleViewUtils.SafeInputInt();
     }
     
     private void ShowMenu()

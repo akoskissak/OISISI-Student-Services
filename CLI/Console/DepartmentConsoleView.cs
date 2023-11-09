@@ -53,9 +53,9 @@ public class DepartmentConsoleView
             case "2":
                 AddDepartment();
                 break;
-            // case "3":
-            //     UpdateStudent();
-            //     break;
+            case "3":
+                UpdateDepartment();
+                break;
             // case "4":
             //     RemoveStudent();
             //     break;
@@ -63,6 +63,19 @@ public class DepartmentConsoleView
             //     ShowAndSortStudents();
             //     break;
         }
+    }
+
+    private void UpdateDepartment()
+    {
+        Department department = InputDepartment();
+        Department? updatedDepartment = _departmentDao.UpdateDepartment(department);
+        if (updatedDepartment == null)
+        {
+            System.Console.WriteLine("Department not found");
+            return;
+        }
+        
+        System.Console.WriteLine("Department updated");
     }
     
     private void ShowMenu()

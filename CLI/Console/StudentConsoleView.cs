@@ -6,14 +6,10 @@ namespace CLI.Console;
 public class StudentConsoleView
 {
     private readonly StudentDAO _studentDao;
-
-
-
     public StudentConsoleView(StudentDAO studentDao)
     {
         _studentDao = studentDao;
     }
-
     private Student InputStudent()
     {
         System.Console.WriteLine("STUDENT\nEnter last name: ");
@@ -50,7 +46,7 @@ public class StudentConsoleView
         int enrollNum = ConsoleViewUtils.SafeInputInt();
 
         System.Console.WriteLine("Enter enrollment year: ");
-        int enrollyear = ConsoleViewUtils.SafeInputInt();
+        int enrollYear = ConsoleViewUtils.SafeInputInt();
 
         System.Console.WriteLine("Enter current year of study: ");
         int year = ConsoleViewUtils.SafeInputInt();
@@ -63,7 +59,7 @@ public class StudentConsoleView
 
 
         return new Student(lastname, name, date, street, number, city, country, phone,
-            mail, programme, enrollNum, enrollyear, year, status, grade);
+            mail, programme, enrollNum, enrollYear, year, status, grade);
     }
     
     private void AddStudent()

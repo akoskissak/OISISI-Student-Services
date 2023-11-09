@@ -15,8 +15,16 @@ public class AddressDAO
         _addresses = _addressStorage.Load();
     }
 
+    private int GenerateId()
+    {
+        if (_addresses.Count == 0)
+            return 0;
+        return _addresses[^1].Id + 1;
+    }
+
     public Address AddAddress(Address address)
     {
+        address.Id = GenerateId();
         _addresses.Add(address);
         _addressStorage.Save(_addresses);
         return address;

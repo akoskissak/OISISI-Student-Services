@@ -7,6 +7,8 @@ public class Index : ISerializable
     public string StudyProgrammeMark { get; set; }
     public int EnrollmentNumber { get; set; }
     public int EnrollmentYear { get; set; }
+    
+    public int Id { get; set; }
 
     public Index()
     {

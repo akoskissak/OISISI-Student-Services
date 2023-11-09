@@ -27,4 +27,29 @@ public class ProfessorDAO
         _addressStorage.Save(_addresses);
         return professor;
     }
+
+    public Professor? UpdateProfessor(Professor professor)
+    {
+        Professor? oldProfessor = GetProfessorByIdNumber(professor.Idnumber);
+        if (oldProfessor is null)
+            return null;
+
+        oldProfessor.Lastname = professor.Lastname;
+        oldProfessor.Name = professor.Name;
+        oldProfessor.DateOfBirth = professor.DateOfBirth;
+        oldProfessor.Address = professor.Address;
+        oldProfessor.PhoneNumber = professor.PhoneNumber;
+        oldProfessor.Email = professor.Email;
+        oldProfessor.Idnumber = professor.Idnumber;
+        oldProfessor.Title = professor.Title;
+        oldProfessor.YearsOfService = professor.YearsOfService;
+        
+        _professorStorage.Save(_professors);
+        return oldProfessor;
+    }
+
+    private Professor? GetProfessorByIdNumber(int id)
+    {
+        return _professors.Find(p => p.Idnumber == id);
+    }
 }
