@@ -38,4 +38,9 @@ public class Department : ISerializable
         Name = values[1];
         Chief = values[2];
     }
+
+    public override string ToString()
+    {
+        return $"DepCode: {DepCode,2} | Name: {Name,2} | Chief: {Chief,2}";
+    }
 }

@@ -72,6 +72,21 @@ public class SubjectConsoleView
        
        System.Console.WriteLine("Subject removed");
    }
+
+   private void ShowAllSubjects()
+   {
+       PrintSubjects(_subjectDao.GetAllSubjects());
+   }
+
+   private void PrintSubjects(List<Subject> subjects)
+   {
+       System.Console.WriteLine("Subjects: ");
+       string header =
+           $"SubjectCode {"",3} | Name {"",5} | Semester {"",5} | YearOfStudy {"",3} | ESPB {"",5} | ProfessorId {"",3}";
+       System.Console.WriteLine(header);
+       foreach (Subject s in subjects)
+            System.Console.WriteLine(s);
+   }
     
     public void RunMenu()
     {
@@ -87,9 +102,9 @@ public class SubjectConsoleView
     {
         switch (input)
         {
-            // case "1":
-            //     ShowAllSubjects();
-            //     break;
+            case "1":
+                ShowAllSubjects();
+                break;
             case "2":
                 AddSubject();
                 break;

@@ -92,14 +92,27 @@ public class ExamGradeConsoleView
             HandleMenuInput(userInput);
         }
     }
-    
+
+    private void ShowAllExamGrades()
+    {
+        PrintExamGrades(_examGradeDao.GetAllExamGrades());
+    }
+
+    private void PrintExamGrades(List<ExamGrade> examGrades)
+    {
+        System.Console.WriteLine("ExamGrades: ");
+        string header = $"StudentId {"",3} | SubjectId {"",3} | Grade {"",3} | Date {"",3}";
+        System.Console.WriteLine(header);
+        foreach (ExamGrade e in examGrades)
+            System.Console.WriteLine(e);
+    }
     private void HandleMenuInput(string input)
     {
         switch (input)
         {
-            // case "1":
-            //     ShowAllExamGrades();
-            //     break;
+            case "1":
+                ShowAllExamGrades();
+                break;
             case "2":
                 AddExamGrade();
                 break;

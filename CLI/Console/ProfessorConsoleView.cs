@@ -92,7 +92,20 @@ public class ProfessorConsoleView
         
         System.Console.WriteLine("Professor removed");
     }
-    
+
+    private void ShowAllProfessors()
+    {
+        PrintProfessors(_professorsDao.GetAllProfessors());
+    }
+
+    private void PrintProfessors(List<Professor> professors)
+    {
+        System.Console.WriteLine("Professors: ");
+        string header = $"LastName {"", 7} | Name {"", 8} | DateOfBirth {"", 20} | PhoneNumber {"", 10} | Email {"", 10} | IdNumber {"", 5} | Title {"", 8} | YearsOfService {"", 4}";
+        System.Console.WriteLine(header);
+        foreach (Professor p in professors)
+            System.Console.WriteLine(p);
+    }
     public void RunMenu()
     {
         while (true)
@@ -108,9 +121,9 @@ public class ProfessorConsoleView
     {
         switch (input)
         {
-            // case "1":
-            //     ShowAllProfessors();
-            //     break;
+            case "1":
+                ShowAllProfessors();
+                break;
             case "2":
                 AddProfessor();
                 break;

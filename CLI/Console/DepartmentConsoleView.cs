@@ -63,7 +63,20 @@ public class DepartmentConsoleView
         
         System.Console.WriteLine("Department removed");
     }
-    
+
+    private void ShowAllDepartments()
+    {
+        PrintDepartments(_departmentDao.GetAllDepartments());
+    }
+
+    private void PrintDepartments(List<Department> departments)
+    {
+        System.Console.WriteLine("Departments: ");
+        string header = $"DepCode {"",3} | Name {"",3} | Chief {"",2}";
+        System.Console.WriteLine(header);
+        foreach (Department d in departments)
+            System.Console.WriteLine(d);
+    }
     public void RunMenu()
     {
         while (true)
@@ -79,9 +92,9 @@ public class DepartmentConsoleView
     {
         switch (input)
         {
-            // case "1":
-            //     ShowAllDepartments();
-            //     break;
+            case "1":
+                ShowAllDepartments();
+                break;
             case "2":
                 AddDepartment();
                 break;

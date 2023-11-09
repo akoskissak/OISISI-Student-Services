@@ -48,4 +48,9 @@ public class DepartmentDAO
         _departmentStorage.Save(_departments);
         return department;
     }
+
+    public List<Department> GetAllDepartments()
+    {
+        return _departments;
+    }
 }

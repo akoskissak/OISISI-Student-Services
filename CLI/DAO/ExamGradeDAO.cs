@@ -50,4 +50,9 @@ public class ExamGradeDAO
         _examGradeStorage.Save(_examGrades);
         return examGrade;
     }
+
+    public List<ExamGrade> GetAllExamGrades()
+    {
+        return _examGrades;
+    }
 }

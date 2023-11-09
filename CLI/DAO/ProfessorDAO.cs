@@ -62,4 +62,9 @@ public class ProfessorDAO
         _professorStorage.Save(_professors);
         return professor;
     }
+
+    public List<Professor> GetAllProfessors()
+    {
+        return _professors;
+    }
 }

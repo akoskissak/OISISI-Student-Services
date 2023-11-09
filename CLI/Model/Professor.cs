@@ -64,4 +64,9 @@ public class Professor : ISerializable
         Title = values[6];
         YearsOfService = int.Parse(values[7]);
     }
+
+    public override string ToString()
+    {
+        return $"LastName: {Lastname, 2} | Name: {Name, 2} | DateOfBirth: {DateOfBirth, 2} | PhoneNumber: {PhoneNumber, 2} | Email: {Email, 2} | IdNumber: {Idnumber, 2} | Title: {Title, 2} | YearsOfService: {YearsOfService, 2}";
+    }
 }

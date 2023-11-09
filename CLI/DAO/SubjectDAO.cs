@@ -61,4 +61,9 @@ public class SubjectDAO
     {
         return _subjects.Find(s => s.SubjectCode == id);
     }
+
+    public List<Subject> GetAllSubjects()
+    {
+        return _subjects;
+    }
 }

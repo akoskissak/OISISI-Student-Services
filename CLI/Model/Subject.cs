@@ -1,3 +1,4 @@
+using CLI.Console;
 using CLI.Storage.Serialization;
 
 namespace CLI.Model;
@@ -53,5 +54,10 @@ public class Subject : ISerializable
         YearOfStudy = int.Parse(values[3]);
         Espb = int.Parse(values[4]);
         ProfessorId = int.Parse(values[5]);
+    }
+
+    public override string ToString()
+    {
+        return $"SubjectCode: {SubjectCode,2} | Name: {Name,3} | Semester: {Semestar, 3} | YearOfStudy {YearOfStudy, 3} | ESPB: {Espb, 3} | ProfessorId: {ProfessorId, 3}";
     }
 }

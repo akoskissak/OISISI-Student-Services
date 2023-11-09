@@ -42,4 +42,9 @@ public class ExamGrade : ISerializable
         Grade = int.Parse(values[2]);
         Date = DateTime.Parse(values[3]);
     }
+
+    public override string ToString()
+    {
+        return $"StudentId: {StudentId,2} | SubjectId: {SubjectId,2} | Grade: {Grade,2} | Date {Date,5}";
+    }
 }
