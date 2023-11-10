@@ -47,14 +47,6 @@ public class ConsoleView
                 ExamGradeConsoleView examGrView = new ExamGradeConsoleView(examGrDAO);
                 examGrView.RunMenu();
                 break;
-            case "6":
-                IndexConsoleView indView = new IndexConsoleView(indDAO);
-                indView.RunMenu();
-                break;
-            case "7":
-                AddressConsoleView addrView = new AddressConsoleView(addrDAO);
-                addrView.RunMenu();
-                break;
         }
     }
     private void ShowMenu()
@@ -65,8 +57,6 @@ public class ConsoleView
         System.Console.WriteLine("3: Subjects");
         System.Console.WriteLine("4: Departments");
         System.Console.WriteLine("5: ExamGrades");
-        System.Console.WriteLine("6: Indexes");
-        System.Console.WriteLine("7: Addresses");
         System.Console.WriteLine("0: Close");
     }
 }

@@ -2,7 +2,7 @@
 using Index = CLI.Model.Index;
 
 namespace CLI.Console;
-
+/*
 public class IndexConsoleView
 {
     private readonly IndexDAO _indexDao;
@@ -120,4 +120,4 @@ public class IndexConsoleView
         System.Console.WriteLine("5: Show and sort indexes");
         System.Console.WriteLine("0: Back");
     }
-}
+}*/

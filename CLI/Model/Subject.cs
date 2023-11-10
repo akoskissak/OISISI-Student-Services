@@ -16,6 +16,9 @@ public class Subject : ISerializable
     public List<Student> StudentsPassed { get; set; }
     public List<Student> StudentsDidntPass{ get; set; }
 
+    private StudentSubject studentSubject { get; set; }
+    private int studentSubjectId { get; set; } 
+    public int Id { get; set; }
     public Subject()
     {
         StudentsPassed = new List<Student>();
@@ -36,6 +39,7 @@ public class Subject : ISerializable
     {
         string[] csvValues =
         {
+            Id.ToString(),
             SubjectCode.ToString(),
             Name,
             Semestar.ToString(),
@@ -48,12 +52,13 @@ public class Subject : ISerializable
 
     public void FromCSV(string[] values)
     {
-        SubjectCode = int.Parse(values[0]);
-        Name = values[1];
-        Semestar = (SemesterType)Enum.Parse(typeof(SemesterType), values[2]);
-        YearOfStudy = int.Parse(values[3]);
-        Espb = int.Parse(values[4]);
-        ProfessorId = int.Parse(values[5]);
+        Id = int.Parse(values[0]);
+        SubjectCode = int.Parse(values[1]);
+        Name = values[2];
+        Semestar = (SemesterType)Enum.Parse(typeof(SemesterType), values[3]);
+        YearOfStudy = int.Parse(values[4]);
+        Espb = int.Parse(values[5]);
+        ProfessorId = int.Parse(values[6]);
     }
 
     public override string ToString()

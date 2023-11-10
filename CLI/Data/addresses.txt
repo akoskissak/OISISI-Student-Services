@@ -1,1 +1,2 @@
 lic|5|ns|srb|0|0
+ko|5|ns|srb|45|0

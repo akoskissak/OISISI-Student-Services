@@ -4,17 +4,18 @@ namespace CLI.Model;
 
 public class Department : ISerializable
 {
-    public int DepCode { get; set; }
+    public string DepCode { get; set; }
     public string Name { get; set; }
     public string Chief { get; set; }
     public List<Professor> Professors { get; set; }
 
+    public int Id { get; set; }
     public Department()
     {
         Professors = new List<Professor>();
     }
 
-    public Department(int code, string name, string chief)
+    public Department(string code, string name, string chief)
     {
         DepCode = code;
         Name = name;
@@ -34,7 +35,7 @@ public class Department : ISerializable
 
     public void FromCSV(string[] values)
     {
-        DepCode = int.Parse(values[0]);
+        DepCode = values[0];
         Name = values[1];
         Chief = values[2];
     }

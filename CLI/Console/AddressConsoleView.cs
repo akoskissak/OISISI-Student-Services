@@ -2,7 +2,7 @@
 using CLI.Model;
 
 namespace CLI.Console;
-
+/*
 public class AddressConsoleView
 {
     private readonly AddressDAO _addressDao;
@@ -127,4 +127,4 @@ public class AddressConsoleView
         System.Console.WriteLine("5: Show and sort addresses");
         System.Console.WriteLine("0: Back");
     }
-}
+}*/

@@ -13,7 +13,7 @@ public class Student : ISerializable
     public string Lastname { get; set; }
     public string Name { get; set; }
     public int Id { get; set; }
-    public DateTime DateOfBirth { get; set; }
+    public DateOnly DateOfBirth { get; set; }
     public Address Address { get; set; }
     public string PhoneNumber { get; set; }
     public string Email { get; set; }
@@ -30,7 +30,7 @@ public class Student : ISerializable
         UnsubmittedSubjects = new List<Subject>();
     }
 
-    public Student(string lastname, string name, DateTime date, string street, int number, string city, string country,
+    public Student(string lastname, string name, DateOnly date, string street, int number, string city, string country,
         string phonenumber, string email, string programme, int enrollNum, int enrollYear, int year, Status status, double avgGrade)
     {
         Lastname = lastname;
@@ -77,7 +77,7 @@ public class Student : ISerializable
         Id = int.Parse(values[0]);
         Lastname = values[1];
         Name = values[2];
-        DateOfBirth = DateTime.Parse(values[3]);
+        DateOfBirth = DateOnly.Parse(values[3]);
         PhoneNumber = values[4];
         Email = values[5];
         CurrentYearOfStudy = int.Parse(values[6]);

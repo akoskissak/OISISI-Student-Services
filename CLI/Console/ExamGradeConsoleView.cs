@@ -30,7 +30,7 @@ public class ExamGradeConsoleView
         }
 
         System.Console.WriteLine("Enter date (e.g. mm/dd/yy): ");
-        DateTime date = ConsoleViewUtils.SafeInputDateTime();
+        DateOnly date = ConsoleViewUtils.SafeInputDateOnly();
 
         return new ExamGrade(studId, subjectId, grade, date);
     }

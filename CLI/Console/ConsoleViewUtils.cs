@@ -21,13 +21,13 @@ public class ConsoleViewUtils
         return input;
     }
 
-    public static DateTime SafeInputDateTime()
+    public static DateOnly SafeInputDateOnly()
     {
-        DateTime input;
+        DateOnly input;
 
         string rawInput = System.Console.ReadLine() ?? string.Empty;
 
-        while (!DateTime.TryParse(rawInput, out input))
+        while (!DateOnly.TryParse(rawInput, out input))
         {
             System.Console.WriteLine("Not a valid date, try again: ");
 

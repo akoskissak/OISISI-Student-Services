@@ -20,11 +20,11 @@ public class SubjectDAO
     {
         if (_subjects.Count == 0) 
             return 0;
-        return _subjects[^1].SubjectCode + 1;
+        return _subjects[^1].Id + 1;
     }
     public Subject AddSubject(Subject subject)
     {
-        subject.SubjectCode = GenerateSubjectId();
+        subject.Id = GenerateSubjectId();
         _subjects.Add(subject);
         _subjectStorage.Save(_subjects);
         return subject;

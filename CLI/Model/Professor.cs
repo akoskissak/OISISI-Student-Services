@@ -7,7 +7,7 @@ public class Professor : ISerializable
 {
     public string Lastname { get; set; }
     public string Name { get; set; }
-    public DateTime DateOfBirth { get; set; }
+    public DateOnly DateOfBirth { get; set; }
     public Address Address { get; set; }
     public string PhoneNumber { get; set; }
     public string Email { get; set; }
@@ -21,7 +21,7 @@ public class Professor : ISerializable
         Subjects = new List<Subject>();
     }
 
-    public Professor(string lastname, string name, DateTime date, string street, int number, string city, string country, string phone,
+    public Professor(string lastname, string name, DateOnly date, string street, int number, string city, string country, string phone,
                     string mail, int id, string title, int years)
     {
         Lastname = lastname;
@@ -57,7 +57,7 @@ public class Professor : ISerializable
     {
         Lastname = values[0];
         Name = values[1];
-        DateOfBirth = DateTime.Parse(values[2]);
+        DateOfBirth = DateOnly.Parse(values[2]);
         PhoneNumber = values[3];
         Email = values[4];
         Idnumber = int.Parse(values[5]);

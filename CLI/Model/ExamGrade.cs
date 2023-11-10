@@ -9,14 +9,14 @@ public class ExamGrade : ISerializable
     public int StudentId { get; set; }
     public int SubjectId { get; set; }
     public int Grade { get; set; }
-    public DateTime Date { get; set; }
+    public DateOnly Date { get; set; }
 
 
     public ExamGrade()
     {
     }
 
-    public ExamGrade(int studId, int subjectId,int grade, DateTime date)
+    public ExamGrade(int studId, int subjectId,int grade, DateOnly date)
     {
         StudentId = studId;
         SubjectId = subjectId;
@@ -40,7 +40,7 @@ public class ExamGrade : ISerializable
         StudentId = int.Parse(values[0]);
         SubjectId = int.Parse(values[1]);
         Grade = int.Parse(values[2]);
-        Date = DateTime.Parse(values[3]);
+        Date = DateOnly.Parse(values[3]);
     }
 
     public override string ToString()

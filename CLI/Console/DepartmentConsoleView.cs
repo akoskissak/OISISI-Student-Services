@@ -15,7 +15,7 @@ public class DepartmentConsoleView
     private Department InputDepartment()
     {
         System.Console.WriteLine("DEPARTMENT\nEnter code: ");
-        int code = ConsoleViewUtils.SafeInputInt();
+        string code = System.Console.ReadLine() ?? string.Empty;
 
         System.Console.WriteLine("Enter name: ");
         string name = System.Console.ReadLine() ?? string.Empty;

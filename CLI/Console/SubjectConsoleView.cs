@@ -42,14 +42,14 @@ public class SubjectConsoleView
 
    private int InputId()
    {
-       System.Console.WriteLine("Enter subject code: ");
+       System.Console.WriteLine("Enter subject id: ");
        return ConsoleViewUtils.SafeInputInt();
    }
    private void UpdateSubject()
    {
        int id = InputId();
        Subject subject = InputSubject();
-       subject.SubjectCode = id;
+       subject.Id = id;
        Subject? updateSubject = _subjectDao.UpdateSubject(subject);
        if(updateSubject == null)
        {
