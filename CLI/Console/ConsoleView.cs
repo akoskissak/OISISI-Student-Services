@@ -36,15 +36,15 @@ public class ConsoleView
                 profView.RunMenu();
                 break;
             case "3":
-                SubjectConsoleView subjView = new SubjectConsoleView(subjDAO);
+                SubjectConsoleView subjView = new SubjectConsoleView(subjDAO, profDAO);
                 subjView.RunMenu();
                 break;
             case "4":
                 DepartmentConsoleView depView = new DepartmentConsoleView(depDAO);
-                depView.RunMenu();
+                depView.RunMenu(profDAO);
                 break;
             case "5":
-                ExamGradeConsoleView examGrView = new ExamGradeConsoleView(examGrDAO);
+                ExamGradeConsoleView examGrView = new ExamGradeConsoleView(examGrDAO, studDAO, subjDAO);
                 examGrView.RunMenu();
                 break;
         }

@@ -8,15 +8,15 @@ public class Address : ISerializable
     public int Number { get; set; }
     public string City { get; set; }
     public string Country { get; set; }
-    public int ProfessorId { get; set; }
-    public int StudentId { get; set; }
+    // public int ProfessorId { get; set; }
+    // public int StudentId { get; set; }
     
     public int Id { get; set; }
 
     public Address()
     {
-        ProfessorId = -1;
-        StudentId = -1;
+        // ProfessorId = -1;
+        // StudentId = -1;
     }
 
     public Address(string street, int num, string city, string country)
@@ -31,30 +31,28 @@ public class Address : ISerializable
     {
         string[] csvValues =
         {
-            Id.ToString(),
             Street,
             Number.ToString(),
             City,
-            Country,
-            ProfessorId.ToString(),
-            StudentId.ToString()
+            Country
+            // ProfessorId.ToString(),
+            // StudentId.ToString()
         };
         return csvValues;
     }
 
     public override string ToString()
     {
-        return $"Id: {Id} | Street: {Street} | Number: {Number} | City: {City} | Country: {Country}";
+        return $"Street: {Street, 10} | Number: {Number, 2} | City: {City, 6} | Country: {Country, 6}";
     }
 
     public void FromCSV(string[] values)
     {
-        Id = int.Parse(values[0]);
-        Street = values[1];
-        Number = int.Parse(values[2]);
-        City = values[3];
-        Country = values[4];
-        ProfessorId = int.Parse(values[5]);
-        StudentId = int.Parse(values[6]);
+        Street = values[0];
+        Number = int.Parse(values[1]);
+        City = values[2];
+        Country = values[3];
+        // ProfessorId = int.Parse(values[5]);
+        // StudentId = int.Parse(values[6]);
     }
 }

@@ -21,17 +21,23 @@ public class Student : ISerializable
     public int CurrentYearOfStudy { get; set; }
     public Status Status { get; set; }
     public double AverageGrade { get; set; }
-    public List<Subject> SubmittedSubjects { get; set; }
-    public List<Subject> UnsubmittedSubjects { get; set; }
+    
+    // OCENE:
+    // public List<Subject> SubmittedSubjects { get; set; }
+    public List<ExamGrade> Grades { get; set; }
+    public List<Subject> UnsubmittedSubjects { get; set; } // StudentSubject predmeti
 
     public Student()
     {
-        SubmittedSubjects = new List<Subject>();
+        // SubmittedSubjects = new List<Subject>();
+        Grades = new List<ExamGrade>();
         UnsubmittedSubjects = new List<Subject>();
+        Address = new Address();
+        Index = new Index();
     }
 
     public Student(string lastname, string name, DateOnly date, string street, int number, string city, string country,
-        string phonenumber, string email, string programme, int enrollNum, int enrollYear, int year, Status status, double avgGrade)
+        string phonenumber, string email, string programme, int enrollNum, int enrollYear, int year, Status status)
     {
         Lastname = lastname;
         Name = name;
@@ -42,14 +48,25 @@ public class Student : ISerializable
         Email = email;
         CurrentYearOfStudy = year;
         Status = status;
-        AverageGrade = avgGrade;
-        SubmittedSubjects = new List<Subject>();
+        // SubmittedSubjects = new List<Subject>();
+        Grades = new List<ExamGrade>();
         UnsubmittedSubjects = new List<Subject>();
+    }
+
+    public void SetAverageGrade()
+    {
+        AverageGrade = 0;
+        foreach (ExamGrade examGrade in Grades)
+        {
+            AverageGrade += examGrade.Grade;
+        }
+
+        AverageGrade /= Grades.Count;
     }
 
     public override string ToString()
     {
-        return $"Id: {Id, 5} | LastName: {Lastname, 8} | Name: {Name, 8} | DateOfBirth: {DateOfBirth, 15} | Street: {Address.Street, 10} | Number: {Address.Number, 2} | City: {Address.City, 6} | Country: {Address.Country, 6} | StudyProgrammeMark: {Index.StudyProgrammeMark, 3} | EnrollmentNumber: {Index.EnrollmentNumber, 2} | EnrollmentYear: {Index.EnrollmentYear, 4} | PhoneNumber: {PhoneNumber, 12} | Email: {Email, 12} | CurrentYearOfStudy: {CurrentYearOfStudy, 1} | Status: {Status.ToString(), 1} | AverageGrade: {AverageGrade, 4}";
+        return $"Id: {Id, 5} | LastName: {Lastname, 8} | Name: {Name, 8} | DateOfBirth: {DateOfBirth, 15} | PhoneNumber: {PhoneNumber, 12} | Email: {Email, 12} | CurrentYearOfStudy: {CurrentYearOfStudy, 1} | Status: {Status.ToString(), 1} | AverageGrade: {String.Format("{0:0.00}", AverageGrade), 4} | {Address} | {Index} ";
     }
 
 
@@ -66,7 +83,13 @@ public class Student : ISerializable
             CurrentYearOfStudy.ToString(),
             Status.ToString(),
             AverageGrade.ToString(),
-            Index.Id.ToString(),
+            Address.Street,
+            Address.Number.ToString(),
+            Address.City,
+            Address.Country,
+            Index.StudyProgrammeMark,
+            Index.EnrollmentNumber.ToString(),
+            Index.EnrollmentYear.ToString()
         };
         
         return csvValues;
@@ -83,6 +106,12 @@ public class Student : ISerializable
         CurrentYearOfStudy = int.Parse(values[6]);
         Status = (Status)Enum.Parse(typeof(Status), values[7]);
         AverageGrade = double.Parse(values[8]);
-        Index.Id = int.Parse(values[9]);
+        Address.Street = values[9];
+        Address.Number = int.Parse(values[10]);
+        Address.City = values[11];
+        Address.Country = values[12];
+        Index.StudyProgrammeMark = values[13];
+        Index.EnrollmentNumber = int.Parse(values[14]);
+        Index.EnrollmentYear = int.Parse(values[15]);
     }
 }

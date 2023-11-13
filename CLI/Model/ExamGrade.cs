@@ -10,6 +10,7 @@ public class ExamGrade : ISerializable
     public int SubjectId { get; set; }
     public int Grade { get; set; }
     public DateOnly Date { get; set; }
+    public int Id { get; set; }
 
 
     public ExamGrade()
@@ -27,6 +28,7 @@ public class ExamGrade : ISerializable
     {
         string[] csvValues =
         {
+            Id.ToString(),
             StudentId.ToString(),
             SubjectId.ToString(),
             Grade.ToString(),
@@ -37,14 +39,15 @@ public class ExamGrade : ISerializable
 
     public void FromCSV(string[] values)
     {
-        StudentId = int.Parse(values[0]);
-        SubjectId = int.Parse(values[1]);
-        Grade = int.Parse(values[2]);
-        Date = DateOnly.Parse(values[3]);
+        Id = int.Parse(values[0]);
+        StudentId = int.Parse(values[1]);
+        SubjectId = int.Parse(values[2]);
+        Grade = int.Parse(values[3]);
+        Date = DateOnly.Parse(values[4]);
     }
 
     public override string ToString()
     {
-        return $"StudentId: {StudentId,2} | SubjectId: {SubjectId,2} | Grade: {Grade,2} | Date {Date,5}";
+        return $"Id: {Id,5} | StudentId: {StudentId,2} | SubjectId: {SubjectId,2} | Grade: {Grade,2} | Date {Date,5}";
     }
 }

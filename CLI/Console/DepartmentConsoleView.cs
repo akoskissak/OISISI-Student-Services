@@ -12,30 +12,57 @@ public class DepartmentConsoleView
         _departmentDao = departmentDao;
     }
 
-    private Department InputDepartment()
+    private Department InputDepartment(ProfessorDAO professorDao)
     {
-        System.Console.WriteLine("DEPARTMENT\nEnter code: ");
-        string code = System.Console.ReadLine() ?? string.Empty;
+        System.Console.WriteLine("DEPARTMENT\nEnter department code: ");
+        string code = ConsoleViewUtils.SafeInputString("department code");
 
         System.Console.WriteLine("Enter name: ");
-        string name = System.Console.ReadLine() ?? string.Empty;
+        string name = ConsoleViewUtils.SafeInputString("name");
 
-        System.Console.WriteLine("Enter chief: ");
-        string chief = System.Console.ReadLine() ?? string.Empty;
-
-        return new Department(code, name, chief);
+        System.Console.Write("Enter chief id (-1 = noChief or ");
+        List<int> ids = new List<int>();
+        foreach (Professor p in professorDao.GetAllProfessors())
+        {
+            if (p.IdOfChiefDepartment == -1)
+            {
+                System.Console.Write($"{p.Id} ");
+                ids.Add(p.Id);
+            }
+        }
+        System.Console.Write("): ");
+        int chiefId = ConsoleViewUtils.SafeInputInt();
+        if (chiefId != -1)
+        {
+            while (professorDao.GetAllProfessors().Find(p => p.Id == chiefId) == null || ids.Contains(chiefId) == false)
+            {
+                System.Console.WriteLine("Not a valid chief id. Try again: ");
+                chiefId = ConsoleViewUtils.SafeInputInt();
+                if (chiefId == -1)
+                    return new Department(code, name, chiefId);
+            }
+            
+            Professor prof = professorDao.GetAllProfessors().Find(p => p.Id == chiefId)!;
+            Department dep = new Department(code, name, chiefId);
+            prof.IdOfChiefDepartment = dep.Id;
+            dep.Chief = prof;
+            return dep;
+        }
+        return new Department(code, name, chiefId);
     }
 
-    private void AddDepartment()
+    private void AddDepartment(ProfessorDAO professorDao)
     {
-        Department department = InputDepartment();
+        Department department = InputDepartment(professorDao);
         _departmentDao.AddDepartment(department);
         System.Console.WriteLine("Department added");
     }
     
-    private void UpdateDepartment()
+    private void UpdateDepartment(ProfessorDAO professorDao)
     {
-        Department department = InputDepartment();
+        int id = InputId();
+        Department department = InputDepartment(professorDao);
+        department.Id = id;
         Department? updatedDepartment = _departmentDao.UpdateDepartment(department);
         if (updatedDepartment == null)
         {
@@ -77,18 +104,18 @@ public class DepartmentConsoleView
         foreach (Department d in departments)
             System.Console.WriteLine(d);
     }
-    public void RunMenu()
+    public void RunMenu(ProfessorDAO professorDao)
     {
         while (true)
         {
             ShowMenu();
             string userInput = System.Console.ReadLine() ?? "0";
             if (userInput == "0") break;
-            HandleMenuInput(userInput);
+            HandleMenuInput(userInput, professorDao);
         }
     }
     
-    private void HandleMenuInput(string input)
+    private void HandleMenuInput(string input, ProfessorDAO professorDao)
     {
         switch (input)
         {
@@ -96,17 +123,36 @@ public class DepartmentConsoleView
                 ShowAllDepartments();
                 break;
             case "2":
-                AddDepartment();
+                AddDepartment(professorDao);
                 break;
             case "3":
-                UpdateDepartment();
+                UpdateDepartment(professorDao);
                 break;
             case "4":
                 RemoveDepartment();
                 break;
-            // case "5":
+            case "5":
+                ShowProfessorsOnDep();
+                break;
+            // case "6":
             //     ShowAndSortDepartments();
             //     break;
+        }
+    }
+
+    private void ShowProfessorsOnDep()
+    {
+        System.Console.WriteLine("Departments: ");
+        string header = $"Id {"",5} | Name {"",2} | Professors";
+        System.Console.WriteLine(header);
+        foreach (Department department in _departmentDao.GetAllDepartments())
+        {
+            System.Console.Write($"Id: {department.Id,5} | Name: {department.Name,2}");
+            foreach (Professor professor in department.Professors)
+            {
+                System.Console.Write($" | {professor.Id} | {professor.Name}");
+            }
+            System.Console.WriteLine();
         }
     }
 
@@ -117,7 +163,7 @@ public class DepartmentConsoleView
         System.Console.WriteLine("2: Add Department");
         System.Console.WriteLine("3: Update Department");
         System.Console.WriteLine("4: Remove Department");
-        System.Console.WriteLine("5: Show and sort Departments");
+        System.Console.WriteLine("5: Show All Department Professors");
         System.Console.WriteLine("0: Back");
     }
 }

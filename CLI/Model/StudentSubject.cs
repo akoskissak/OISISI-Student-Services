@@ -6,13 +6,9 @@ public class StudentSubject : ISerializable
 {
     public int StudentId { get; set; }
     public int SubjectId { get; set; }
-
-    // public int Id { get; set; }
-    public StudentSubject()
-    {
-        
-    }
-
+    public int Id { get; set; }
+    
+    public StudentSubject() {}
     public StudentSubject(int studentId, int subjectId)
     {
         StudentId = studentId;
@@ -22,6 +18,7 @@ public string[] ToCSV()
 {
     string[] csvValues =
     {
+        Id.ToString(),
         StudentId.ToString(),
         SubjectId.ToString()
     };
@@ -31,7 +28,8 @@ public string[] ToCSV()
 
     public void FromCSV(string[] values)
     {
-        StudentId = int.Parse(values[0]);
-        SubjectId = int.Parse(values[1]);
+        Id = int.Parse(values[0]);
+        StudentId = int.Parse(values[1]);
+        SubjectId = int.Parse(values[2]);
     }
 }

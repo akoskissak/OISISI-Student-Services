@@ -9,17 +9,55 @@ public class ExamGradeDAO
     private readonly List<ExamGrade> _examGrades;
     private readonly Storage<ExamGrade> _examGradeStorage;
 
+    private StudentDAO _studentDao;
+    private SubjectDAO _subjectDao;
 
-    public ExamGradeDAO()
+    public ExamGradeDAO(StudentDAO studentDao, SubjectDAO subjectDao)
     {
         _examGradeStorage = new Storage<ExamGrade>("examGrades.txt");
         _examGrades = _examGradeStorage.Load();
+
+        _studentDao = studentDao;
+        _subjectDao = subjectDao;
+
+        foreach (Student student in _studentDao.GetAllStudents())
+        {
+            foreach (Subject subject in _subjectDao.GetAllSubjects())
+            {
+                foreach (ExamGrade eg in _examGrades)
+                {
+                    if (subject.Id == eg.SubjectId && student.Id == eg.StudentId)
+                    {
+                        student.UnsubmittedSubjects.Remove(subject);
+                        student.Grades.Add(eg);
+                        student.SetAverageGrade();
+                        subject.StudentsPassed.Add(student);
+                        eg.Student = student;
+                        eg.Subject = subject;
+                        break;
+                    }
+                }
+            }
+        }
+    }
+
+    private int GenerateId()
+    {
+        if (_examGrades.Count == 0)
+            return 0;
+        return _examGrades[^1].Id + 1;
     }
 
     public ExamGrade AddExamGrade(ExamGrade examGrade)
     {
+        examGrade.Id = GenerateId();
+        examGrade.Student = _studentDao.GetStudentById(examGrade.StudentId)!;
+        examGrade.Subject = _subjectDao.GetSubjectById(examGrade.SubjectId)!;
         _examGrades.Add(examGrade);
         _examGradeStorage.Save(_examGrades);
+        
+        _studentDao.AddExamGradeForStudent(examGrade);
+        _subjectDao.AddStudentPassedForSubject(examGrade);
         return examGrade;
     }
 

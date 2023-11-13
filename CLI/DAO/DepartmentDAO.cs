@@ -35,8 +35,11 @@ public class DepartmentDAO
         Department? oldDepartment = GetDepartmentById(department.Id);
         if (oldDepartment is null)
             return null;
+        oldDepartment.DepCode = department.DepCode;
         oldDepartment.Name = department.Name;
-        oldDepartment.Chief = department.Chief;
+        oldDepartment.ChiefId = department.ChiefId;
+        if (department.Chief != null)
+            oldDepartment.Chief = department.Chief;
         
         _departmentStorage.Save(_departments);
         return oldDepartment;
@@ -52,9 +55,21 @@ public class DepartmentDAO
         Department? department = GetDepartmentById(id);
         if (department == null) return null;
 
+        if (department.Professors.Count != 0 || department.ChiefId != -1)
+        {
+            System.Console.WriteLine("Cannot remove department that has professor/s or chief!");
+            return null;
+        }
+
         _departments.Remove(department);
         _departmentStorage.Save(_departments);
         return department;
+    }
+
+    public void AddProfessorsForDep(List<Professor> professors, int Id)
+    {
+        _departments.Find(department => department.Id == Id)!.Professors = professors;
+        _departmentStorage.Save(_departments);
     }
 
     public List<Department> GetAllDepartments()

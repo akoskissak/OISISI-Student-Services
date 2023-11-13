@@ -1,4 +1,5 @@
 using CLI.Console;
+using CLI.DAO;
 using CLI.Storage.Serialization;
 
 namespace CLI.Model;
@@ -14,25 +15,27 @@ public class Subject : ISerializable
     public int ProfessorId { get; set; }
     public int Espb { get; set; }
     public List<Student> StudentsPassed { get; set; }
-    public List<Student> StudentsDidntPass{ get; set; }
+    public List<Student> StudentsDidNotPass{ get; set; }
 
-    private StudentSubject studentSubject { get; set; }
-    private int studentSubjectId { get; set; } 
+    // private StudentSubject studentSubject { get; set; }
+    // private int studentSubjectId { get; set; } 
     public int Id { get; set; }
     public Subject()
     {
+        ProfessorId = -1;
         StudentsPassed = new List<Student>();
-        StudentsDidntPass = new List<Student>();
+        StudentsDidNotPass = new List<Student>();
     }
-    public Subject(string name, SemesterType semestar, int yearOfStudy,int espb,  int professorId)
+    public Subject(int subjectCode, string name, SemesterType semestar, int yearOfStudy,int espb,  int professorId)
     {
+        SubjectCode = subjectCode;
         Name = name;
         ProfessorId = professorId;
         Semestar = semestar;
         YearOfStudy = yearOfStudy;
         Espb = espb;
         StudentsPassed = new List<Student>();
-        StudentsDidntPass = new List<Student>();
+        StudentsDidNotPass = new List<Student>();
     }
 
     public string[] ToCSV()
@@ -63,6 +66,8 @@ public class Subject : ISerializable
 
     public override string ToString()
     {
-        return $"SubjectCode: {SubjectCode,2} | Name: {Name,3} | Semester: {Semestar, 3} | YearOfStudy {YearOfStudy, 3} | ESPB: {Espb, 3} | ProfessorId: {ProfessorId, 3}";
+        if (ProfessorId != -1)
+            return $"Id: {Id,5} | SubjectCode: {SubjectCode,2} | Name: {Name,3} | Semester: {Semestar, 3} | YearOfStudy {YearOfStudy, 3} | ESPB: {Espb, 3} | ProfessorId: {Professor.Id, 3} | LastName: {Professor.Lastname} | Name: {Professor.Name}";
+        return $"Id: {Id,5} | SubjectCode: {SubjectCode,2} | Name: {Name,3} | Semester: {Semestar,3} | YearOfStudy {YearOfStudy,3} | ESPB: {Espb,3} | No Professor";
     }
 }

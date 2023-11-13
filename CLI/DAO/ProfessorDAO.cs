@@ -17,9 +17,16 @@ public class ProfessorDAO
         _addressStorage = new Storage<Address>("addresses.txt");
         _addresses = _addressStorage.Load();
     }
+
+    private int GenerateProfessorId()
+    {
+        if (_professors.Count == 0)
+            return 0;
+        return _professors[^1].Id + 1;
+    }
     public Professor AddProfessor(Professor professor)
     {
-        professor.Address.ProfessorId = professor.Idnumber;
+        professor.Id = GenerateProfessorId();
         _professors.Add(professor);
         _professorStorage.Save(_professors);
         
@@ -50,7 +57,7 @@ public class ProfessorDAO
 
     private Professor? GetProfessorByIdNumber(int id)
     {
-        return _professors.Find(p => p.Idnumber == id);
+        return _professors.Find(p => p.Id == id);
     }
 
     public Professor? RemoveProfessor(int id)
@@ -58,9 +65,21 @@ public class ProfessorDAO
         Professor? professor = GetProfessorByIdNumber(id);
         if (professor == null) return null;
 
+        if (professor.Subjects.Count != 0 || professor.IdOfChiefDepartment != -1)
+        {
+            System.Console.WriteLine("Cannot remove professor that has subject/s or is chief!");
+            return null;
+        }
+
         _professors.Remove(professor);
         _professorStorage.Save(_professors);
         return professor;
+    }
+
+    public void AddSubjectsForProfessor(List<Subject> subjects, int Id)
+    {
+        _professors.Find(professor => professor.Id == Id)!.Subjects = subjects;
+        _professorStorage.Save(_professors);
     }
 
     public List<Professor> GetAllProfessors()

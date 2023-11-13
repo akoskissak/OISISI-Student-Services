@@ -7,15 +7,15 @@ public class SubjectDAO
 {
     private readonly List<Subject> _subjects;
     private readonly Storage<Subject> _subjectStorage;
-    public List<Subject> getSubjects()
-    {
-        return _subjects;
-    }
     public SubjectDAO()
     {
         _subjectStorage = new Storage<Subject>("subjects.txt");
         _subjects = _subjectStorage.Load();
     }
+    // public List<Subject> GetSubjects()
+    // {
+    //     return _subjects;
+    // }
     private int GenerateSubjectId()
     {
         if (_subjects.Count == 0) 
@@ -28,6 +28,19 @@ public class SubjectDAO
         _subjects.Add(subject);
         _subjectStorage.Save(_subjects);
         return subject;
+    }
+
+    public void AddStudentPassedForSubject(ExamGrade examGrade)
+    {
+        Subject subject = _subjects.Find(s => s.Id == examGrade.SubjectId)!;
+        subject.StudentsPassed.Add(examGrade.Student);
+        subject.StudentsDidNotPass.Remove(examGrade.Student);
+        _subjectStorage.Save(_subjects);
+    }
+
+    public Subject GetFirstSubject()
+    {
+        return _subjects.First();
     }
 
     public Subject? UpdateSubject(Subject subject)
@@ -52,14 +65,26 @@ public class SubjectDAO
         if (subject == null)
             return null;
 
+        if (subject.StudentsDidNotPass.Count != 0 || subject.StudentsPassed.Count != 0)
+        {
+            System.Console.WriteLine("Cannot remove subject that has students!\nRemove them first and then you can remove subject.");
+            return null;
+        }
+
         _subjects.Remove(subject);
         _subjectStorage.Save(_subjects);
         return subject;
     }
 
+    public void AddStudentsForSubject(List<Student> students, int id)
+    {
+        _subjects.Find(subject => subject.Id == id)!.StudentsDidNotPass = students;
+        _subjectStorage.Save(_subjects);
+    }
+
     public Subject? GetSubjectById(int id)
     {
-        return _subjects.Find(s => s.SubjectCode == id);
+        return _subjects.Find(s => s.Id == id);
     }
 
     public List<Subject> GetAllSubjects()

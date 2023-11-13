@@ -15,37 +15,37 @@ public class ProfessorConsoleView
     private Professor InputProfessor()
     {
         System.Console.WriteLine("PROFESSOR\nEnter last name: ");
-        string lastname = System.Console.ReadLine() ?? string.Empty;
+        string lastname = ConsoleViewUtils.SafeInputString("last name");
         
         System.Console.WriteLine("Enter name: ");
-        string name = System.Console.ReadLine() ?? string.Empty;
+        string name = ConsoleViewUtils.SafeInputString("name");
         
         System.Console.WriteLine("Enter birth date (e.g. mm/dd/yy): ");
         DateOnly date = ConsoleViewUtils.SafeInputDateOnly();
         
         System.Console.WriteLine("Enter address street: ");
-        string street = System.Console.ReadLine() ?? string.Empty;
+        string street = ConsoleViewUtils.SafeInputString("street");
         
         System.Console.WriteLine("Enter address number: ");
         int number = ConsoleViewUtils.SafeInputInt();
         
         System.Console.WriteLine("Enter address city: ");
-        string city = System.Console.ReadLine() ?? string.Empty;
+        string city = ConsoleViewUtils.SafeInputString("city");
         
         System.Console.WriteLine("Enter address country: ");
-        string country = System.Console.ReadLine() ?? string.Empty;
+        string country = ConsoleViewUtils.SafeInputString("country");
         
         System.Console.WriteLine("Enter phone number: ");
-        string phoneNumber = System.Console.ReadLine() ?? string.Empty;
+        string phoneNumber = ConsoleViewUtils.SafeInputString("phone number");
         
-        System.Console.WriteLine("Enter email: ");
-        string mail = System.Console.ReadLine() ?? string.Empty;
+        System.Console.WriteLine("Enter e-mail: ");
+        string mail = ConsoleViewUtils.SafeInputString("e-mail");
         
         System.Console.WriteLine("Enter id number: ");
         int id = ConsoleViewUtils.SafeInputInt();
         
         System.Console.WriteLine("Enter title: ");
-        string title = System.Console.ReadLine() ?? string.Empty;
+        string title = ConsoleViewUtils.SafeInputString("title");
         
         System.Console.WriteLine("Enter years of service: ");
         int years = ConsoleViewUtils.SafeInputInt();
@@ -133,9 +133,28 @@ public class ProfessorConsoleView
             case "4": 
                 RemoveProfessor(); 
                 break;
-            // case "5":
+            case "5":
+                ShowProfessorSubjects();
+                break;
+            // case "6":
             //     ShowAndSortProfessors();
             //     break;
+        }
+    }
+
+    private void ShowProfessorSubjects()
+    {
+        System.Console.WriteLine("Professors: ");
+        string header = $"Id {"",5} | LastName {"",8} | Name {"",8} | Subjects";
+        System.Console.WriteLine(header);
+        foreach (Professor professor in _professorsDao.GetAllProfessors())
+        {
+            System.Console.Write($"Id: {professor.Id,5} | LastName: {professor.Lastname,8} | Name: {professor.Name,8}");
+            foreach (Subject subject in professor.Subjects)
+            {
+                System.Console.Write($" | {subject.Id} | {subject.Name}");
+            }
+            System.Console.WriteLine();
         }
     }
 
@@ -147,7 +166,7 @@ public class ProfessorConsoleView
         System.Console.WriteLine("2: Add Professor");
         System.Console.WriteLine("3: Update Professor");
         System.Console.WriteLine("4: Remove Professor");
-        System.Console.WriteLine("5: Show and sort professors");
+        System.Console.WriteLine("5: Show professor subjects");
         System.Console.WriteLine("0: Back");
     }
 }

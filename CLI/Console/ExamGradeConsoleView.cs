@@ -1,5 +1,6 @@
 ﻿using CLI.DAO;
 using CLI.Model;
+using Microsoft.VisualBasic.CompilerServices;
 
 namespace CLI.Console;
 
@@ -7,19 +8,62 @@ public class ExamGradeConsoleView
 {
     private readonly ExamGradeDAO _examGradeDao;
 
-    public ExamGradeConsoleView(ExamGradeDAO examGradeDao)
+    private readonly StudentDAO _studentDao;
+    private readonly SubjectDAO _subjectDao;
+
+    public ExamGradeConsoleView(ExamGradeDAO examGradeDao, StudentDAO studentDao, SubjectDAO subjectDao)
     {
         _examGradeDao = examGradeDao;
+
+        _studentDao = studentDao;
+        _subjectDao = subjectDao;
     }
 
-    private ExamGrade InputExamGrade()
+    private ExamGrade? InputExamGrade()
     {
-        System.Console.WriteLine("EXAM GRADE\nEnter studentId: ");
+        int num = 0;
+        int studentId = -1;
+        foreach (Student student in _studentDao.GetAllStudents())
+        {
+            num += student.UnsubmittedSubjects.Count;
+            studentId++;
+        }
+        if (num == 0)
+        {
+            System.Console.WriteLine("No student has unsumbitted subjects.");
+            return null;
+        }
+
+        System.Console.Write("EXAM GRADE\nEnter studentId (");
+        for (int i = 0; i < studentId; i++)
+        {
+            System.Console.Write($"{i} ");
+        }
+        System.Console.WriteLine(studentId + "): ");
         int studId = ConsoleViewUtils.SafeInputInt();
-        
-        System.Console.WriteLine("Enter subjectId: ");
+        while (studId < 0 || studId > studentId)
+        {
+            System.Console.WriteLine("Wrong student id. Try again: ");
+            studId = ConsoleViewUtils.SafeInputInt();
+        }
+
+        List<int> correctIds = new List<int>();
+        System.Console.Write("Enter subjectId (");
+        foreach (Subject subject in _subjectDao.GetAllSubjects())
+        {
+            if (subject.StudentsDidNotPass.Exists(s => s.Id == studId))
+            {
+                System.Console.Write(subject.Id + " ");
+                correctIds.Add(subject.Id);
+            }
+        }
+        System.Console.WriteLine(")");
         int subjectId = ConsoleViewUtils.SafeInputInt();
-        
+        while (!correctIds.Contains(subjectId))
+        {
+            System.Console.WriteLine("Wrong subject id. Try again: ");
+            subjectId = ConsoleViewUtils.SafeInputInt();
+        }
         
         System.Console.WriteLine("Enter grade: ");
         int grade = ConsoleViewUtils.SafeInputInt();
@@ -37,7 +81,12 @@ public class ExamGradeConsoleView
 
     private void AddExamGrade()
     {
-        ExamGrade examGrade = InputExamGrade();
+        ExamGrade? examGrade = InputExamGrade();
+        if (examGrade == null)
+        {
+            System.Console.WriteLine("Failed to add examGrade");
+            return;
+        }
         _examGradeDao.AddExamGrade(examGrade);
         System.Console.WriteLine("ExamGrade added");
     }
@@ -135,7 +184,7 @@ public class ExamGradeConsoleView
         System.Console.WriteLine("2: Add ExamGrade");
         System.Console.WriteLine("3: Update ExamGrade");
         System.Console.WriteLine("4: Remove ExamGrade");
-        System.Console.WriteLine("5: Show and sort ExamGrades");
+        // System.Console.WriteLine("5: Show and sort ExamGrades");
         System.Console.WriteLine("0: Back");
     }
 }

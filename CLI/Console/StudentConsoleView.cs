@@ -10,37 +10,46 @@ public class StudentConsoleView
     {
         _studentDao = studentDao;
     }
-    private Student InputStudent(SubjectDAO subjectDao)
+
+    // private bool IsUpdateString(string s, bool update, string word)
+    // {
+    //     if (update == true || s != string.Empty)
+    //         return true;
+    //     System.Console.WriteLine($"Not a valid {word}. Try again: ");
+    //     return false;
+    // }
+
+    private Student? InputStudent(SubjectDAO subjectDao, bool update = false)
     {
         System.Console.WriteLine("STUDENT\nEnter last name: ");
-        string lastname = System.Console.ReadLine() ?? String.Empty;
+        string lastname = ConsoleViewUtils.SafeInputString("last name");
 
         System.Console.WriteLine("Enter name: ");
-        string name = System.Console.ReadLine() ?? string.Empty;
-
+        string name = ConsoleViewUtils.SafeInputString("name");
+        
         System.Console.WriteLine("Enter birth date (e.g. mm/dd/yy): ");
         DateOnly date = ConsoleViewUtils.SafeInputDateOnly();
 
         System.Console.WriteLine("Enter address street: ");
-        string street = System.Console.ReadLine() ?? string.Empty;
+        string street = ConsoleViewUtils.SafeInputString("street");
 
         System.Console.WriteLine("Enter address number: ");
         int number = ConsoleViewUtils.SafeInputInt();
 
         System.Console.WriteLine("Enter address city: ");
-        string city = System.Console.ReadLine() ?? string.Empty;
+        string city = ConsoleViewUtils.SafeInputString("city");
 
         System.Console.WriteLine("Enter address country: ");
-        string country = System.Console.ReadLine() ?? string.Empty;
+        string country = ConsoleViewUtils.SafeInputString("country");
 
         System.Console.WriteLine("Enter phone number: ");
-        string phone = System.Console.ReadLine();
+        string phone = ConsoleViewUtils.SafeInputString("phone number");
 
         System.Console.WriteLine("Enter e-mail: ");
-        string mail = System.Console.ReadLine();
+        string mail = ConsoleViewUtils.SafeInputString("e-mail");
 
         System.Console.WriteLine("Enter study programme mark: ");
-        string programme = System.Console.ReadLine();
+        string programme = ConsoleViewUtils.SafeInputString("study programme mark");
 
         System.Console.WriteLine("Enter enrollment number: ");
         int enrollNum = ConsoleViewUtils.SafeInputInt();
@@ -54,44 +63,20 @@ public class StudentConsoleView
         System.Console.WriteLine("Enter status(B or S): ");
         Status status = ConsoleViewUtils.SafeInputStatus();
 
-        System.Console.WriteLine("Enter average grade: ");
-        double grade = ConsoleViewUtils.SafeInputDouble();
-        
-        System.Console.WriteLine("Enter unsubmitted subject code: ");
-        int subjCode = ConsoleViewUtils.SafeInputInt();
-        
-        Student student = new Student(lastname, name, date, street, number, city, country, phone,
-            mail, programme, enrollNum, enrollYear, year, status, grade);
-
-        Subject? subj = subjectDao.GetSubjectById(subjCode);
-        if (subj != null)
-        {
-            student.UnsubmittedSubjects.Add(subj);
-        }
-        else
-        {
-            System.Console.WriteLine($"Subject with subject code {subjCode} does not exist.");
-        }
-        
-        System.Console.WriteLine("Enter submitted subject code: ");
-        subjCode = ConsoleViewUtils.SafeInputInt();
-        
-        subj = subjectDao.GetSubjectById(subjCode);
-        if (subj != null)
-        {
-            student.UnsubmittedSubjects.Add(subj);
-        }
-        else
-        {
-            System.Console.WriteLine($"Subject with subject code {subjCode} does not exist.");
-        }
-
-        return student;
+        return new Student(lastname, name, date, street, number, city, country, phone,
+            mail, programme, enrollNum, enrollYear, year, status);
     }
     
     private void AddStudent(SubjectDAO subjectDao)
     {
-        Student student = InputStudent(subjectDao);
+        if (subjectDao.GetAllSubjects().Count == 0)
+        {
+            System.Console.WriteLine("Student cannot be added! There are no subjects.");
+            return;
+        }
+        Student? student = InputStudent(subjectDao);
+        Subject subject = subjectDao.GetFirstSubject();
+        student!.UnsubmittedSubjects.Add(subject);
         _studentDao.AddStudent(student);
         System.Console.WriteLine("Student added");
     }
@@ -156,7 +141,13 @@ public class StudentConsoleView
             case "4":
                 RemoveStudent();
                 break;
-            // case "5":
+            case "5":
+                ShowStudentUnsubmittedSubjects();
+                break;
+            case "6":
+                ShowStudentGrades();
+                break;
+            // case "7":
             //     ShowAndSortStudents();
             //     break;
         }
@@ -175,6 +166,38 @@ public class StudentConsoleView
     {
         PrintStudents(_studentDao.GetAllStudents());
     }
+
+    private void ShowStudentUnsubmittedSubjects()
+    {
+        System.Console.WriteLine("Students: ");
+        string header = $"Id {"",5} | LastName {"",8} | Name {"",8} | Subjects";
+        System.Console.WriteLine(header);
+        foreach (Student student in _studentDao.GetAllStudents())
+        {
+            System.Console.Write($"Id: {student.Id,5} | LastName: {student.Lastname, 8} | Name: {student.Name,8}");
+            foreach (Subject subject in student.UnsubmittedSubjects)
+            {
+                System.Console.Write($" | {subject.Id} | {subject.Name}");
+            }
+            System.Console.WriteLine();
+        }
+    }
+
+    private void ShowStudentGrades()
+    {
+        System.Console.WriteLine("Students: ");
+        string header = $"Id {"",5} | LastName {"",8} | Name {"",8} | Grades";
+        System.Console.WriteLine(header);
+        foreach (Student student in _studentDao.GetAllStudents())
+        {
+            System.Console.Write($"Id: {student.Id,5} | LastName: {student.Lastname,8} | Name: {student.Name,8}");
+            foreach (ExamGrade examGrade in student.Grades)
+            {
+                System.Console.Write($" | SubjectId: {examGrade.SubjectId} | SubjectName: {examGrade.Subject.Name} | Grade: {examGrade.Grade}");
+            }
+            System.Console.WriteLine();
+        }
+    }
     
     private void ShowMenu()
     {
@@ -183,7 +206,8 @@ public class StudentConsoleView
         System.Console.WriteLine("2: Add Student");
         System.Console.WriteLine("3: Update Student");
         System.Console.WriteLine("4: Remove Student");
-        System.Console.WriteLine("5: Show and sort Students");
+        System.Console.WriteLine("5: Show Students' Unsubmitted Subjects: ");
+        System.Console.WriteLine("6: Show Students' Grades: ");
         System.Console.WriteLine("0: Back");
     }
 }

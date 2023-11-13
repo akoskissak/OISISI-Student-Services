@@ -84,4 +84,18 @@ public class ConsoleViewUtils
 
         return input;
     }
+
+    public static string SafeInputString(string inputName)
+    {
+        string rawInput = System.Console.ReadLine() ?? string.Empty;
+        // string rawInput = System.Console.ReadLine() ?? string.Empty;
+
+        while (rawInput == string.Empty)
+        {
+            System.Console.WriteLine($"Not a valid {inputName}. Try again: ");
+            rawInput = System.Console.ReadLine() ?? string.Empty;
+        }
+
+        return rawInput;
+    }
 }
