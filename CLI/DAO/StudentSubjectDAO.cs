@@ -69,52 +69,25 @@ public class StudentSubjectDAO
         return _studentSubject[^1].Id + 1;
     }
 
-    public StudentSubject AddStudentSubject(StudentSubject studentSubject)
+    // public StudentSubject AddStudentSubject(StudentSubject studentSubject)
+    // {
+    //     studentSubject.Id = GenerateId();
+    //     _studentSubject.Add(studentSubject);
+    //     _studentSubjectStorage.Save(_studentSubject);
+    //     return studentSubject;
+    // }
+
+    public void AddStudentSubject(StudentSubject studentSubject)
     {
         studentSubject.Id = GenerateId();
         _studentSubject.Add(studentSubject);
         _studentSubjectStorage.Save(_studentSubject);
-        return studentSubject;
     }
 
-    // public List<int>? GetAllStudentIds()
-    // {
-    //     List<int> studentIds = new List<int>();
-    //     foreach (StudentSubject ss in _studentSubject)
-    //     {
-    //         studentIds.Add(ss.StudentId);
-    //     }
-    //     if (studentIds.Count == 0)
-    //         return null;
-    //
-    //     return studentIds;
-    // }
-    //
-    // public List<int>? GetAllSubjectsForStudent(Student student)
-    // {
-    //     List<Subject> subjects = new List<Subject>();
-    //     foreach (StudentSubject ss in _studentSubject)
-    //     {
-    //         if (ss.StudentId == student.Id)
-    //             subjects.Add(ss.);
-    //     }
-    //
-    //     if (subjectIds.Count == 0)
-    //         return null;
-    //     return subjectIds;
-    // }
-    //
-    // public List<int>? GetAllSubjectIds()
-    // {
-    //     List<int> subjectIds = new List<int>();
-    //     foreach (StudentSubject ss in _studentSubject)
-    //     {
-    //         subjectIds.Add(ss.SubjectId);
-    //     }
-    //
-    //     if (subjectIds.Count == 0)
-    //         return null;
-    //     
-    //     return subjectIds;
-    // }
+    public void RemoveStudentSubject(int studentId, int subjectId)
+    {
+        StudentSubject studentSubject = _studentSubject.Find(ss => ss.StudentId == studentId && ss.SubjectId == subjectId)!;
+        _studentSubject.Remove(studentSubject);
+        _studentSubjectStorage.Save(_studentSubject);
+    }
 }

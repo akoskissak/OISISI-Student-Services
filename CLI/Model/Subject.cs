@@ -16,9 +16,6 @@ public class Subject : ISerializable
     public int Espb { get; set; }
     public List<Student> StudentsPassed { get; set; }
     public List<Student> StudentsDidNotPass{ get; set; }
-
-    // private StudentSubject studentSubject { get; set; }
-    // private int studentSubjectId { get; set; } 
     public int Id { get; set; }
     public Subject()
     {

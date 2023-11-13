@@ -12,10 +12,6 @@ public class SubjectDAO
         _subjectStorage = new Storage<Subject>("subjects.txt");
         _subjects = _subjectStorage.Load();
     }
-    // public List<Subject> GetSubjects()
-    // {
-    //     return _subjects;
-    // }
     private int GenerateSubjectId()
     {
         if (_subjects.Count == 0) 
@@ -38,9 +34,27 @@ public class SubjectDAO
         _subjectStorage.Save(_subjects);
     }
 
-    public Subject GetFirstSubject()
+    public void RemoveStudentPassedForSubject(ExamGrade examGrade)
     {
-        return _subjects.First();
+        Subject subject = _subjects.Find(s => s.Id == examGrade.SubjectId)!;
+        subject.StudentsPassed.Remove(examGrade.Student);
+        subject.StudentsDidNotPass.Add(examGrade.Student);
+        _subjectStorage.Save(_subjects);
+    }
+
+    public void RemoveStudentDidNotPass(Student student, int subjectId)
+    {
+        Subject subject = _subjects.Find(s => s.Id == subjectId)!;
+        subject.StudentsDidNotPass.Remove(student);
+        _subjectStorage.Save(_subjects);
+    }
+
+    public Subject GetSubjectAddStudent(Student student)
+    {
+        Subject subject = _subjects.First();
+        subject.StudentsDidNotPass.Add(student);
+        _subjectStorage.Save(_subjects);
+        return subject;
     }
 
     public Subject? UpdateSubject(Subject subject)
@@ -68,7 +82,9 @@ public class SubjectDAO
         if (subject.StudentsDidNotPass.Count != 0 || subject.StudentsPassed.Count != 0)
         {
             System.Console.WriteLine("Cannot remove subject that has students!\nRemove them first and then you can remove subject.");
-            return null;
+            Subject subj = new Subject();
+            subj.Id = -1;
+            return subj;
         }
 
         _subjects.Remove(subject);
@@ -79,6 +95,11 @@ public class SubjectDAO
     public void AddStudentsForSubject(List<Student> students, int id)
     {
         _subjects.Find(subject => subject.Id == id)!.StudentsDidNotPass = students;
+        _subjectStorage.Save(_subjects);
+    }
+
+    public void SaveSubjects()
+    {
         _subjectStorage.Save(_subjects);
     }
 

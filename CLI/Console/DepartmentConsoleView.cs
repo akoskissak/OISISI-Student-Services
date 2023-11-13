@@ -20,17 +20,24 @@ public class DepartmentConsoleView
         System.Console.WriteLine("Enter name: ");
         string name = ConsoleViewUtils.SafeInputString("name");
 
-        System.Console.Write("Enter chief id (-1 = noChief or ");
+        System.Console.Write("Enter chief id (-1 = noChief");
         List<int> ids = new List<int>();
         foreach (Professor p in professorDao.GetAllProfessors())
         {
             if (p.IdOfChiefDepartment == -1)
             {
-                System.Console.Write($"{p.Id} ");
                 ids.Add(p.Id);
             }
         }
-        System.Console.Write("): ");
+        
+        if (ids.Count > 0)
+            System.Console.Write(" or ");
+        for (int i = 0; i < ids.Count - 1; i++)
+        {
+            System.Console.Write($"{ids[i]}, ");
+        }
+        System.Console.Write($"{ids[^1]}): ");
+        
         int chiefId = ConsoleViewUtils.SafeInputInt();
         if (chiefId != -1)
         {
@@ -82,6 +89,8 @@ public class DepartmentConsoleView
     {
         int id = InputId();
         Department? removedDepartment = _departmentDao.RemoveDepartment(id);
+        if (removedDepartment != null && removedDepartment.Id == -1)
+            return;
         if (removedDepartment is null)
         {
             System.Console.WriteLine("Department not found");

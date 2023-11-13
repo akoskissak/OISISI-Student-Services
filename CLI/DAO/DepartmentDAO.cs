@@ -58,7 +58,9 @@ public class DepartmentDAO
         if (department.Professors.Count != 0 || department.ChiefId != -1)
         {
             System.Console.WriteLine("Cannot remove department that has professor/s or chief!");
-            return null;
+            Department dep = new Department();
+            dep.Id = -1;
+            return dep;
         }
 
         _departments.Remove(department);

@@ -6,8 +6,6 @@ public class Department : ISerializable
 {
     public string DepCode { get; set; }
     public string Name { get; set; }
-    
-    // public string Chief { get; set; }
     public int ChiefId { get; set; }
     public Professor? Chief { get; set; }
     public List<Professor> Professors { get; set; }
@@ -23,7 +21,6 @@ public class Department : ISerializable
         DepCode = code;
         Name = name;
         ChiefId = chiefId;
-        // Chief = chief;
         Professors = new List<Professor>();
     }
     public string[] ToCSV()
@@ -34,7 +31,6 @@ public class Department : ISerializable
             DepCode.ToString(),
             Name,
             ChiefId.ToString()
-            // Chief
         };
         return csvValues;
     }
@@ -45,7 +41,6 @@ public class Department : ISerializable
         DepCode = values[1];
         Name = values[2];
         ChiefId = int.Parse(values[3]);
-        // Chief = values[3];
     }
 
     public override string ToString()

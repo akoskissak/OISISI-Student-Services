@@ -6,20 +6,14 @@ namespace CLI.Console;
 public class StudentConsoleView
 {
     private readonly StudentDAO _studentDao;
-    public StudentConsoleView(StudentDAO studentDao)
+    private readonly StudentSubjectDAO _studentSubjectDao;
+    public StudentConsoleView(StudentDAO studentDao, StudentSubjectDAO studentSubjectDao)
     {
         _studentDao = studentDao;
+        _studentSubjectDao = studentSubjectDao;
     }
 
-    // private bool IsUpdateString(string s, bool update, string word)
-    // {
-    //     if (update == true || s != string.Empty)
-    //         return true;
-    //     System.Console.WriteLine($"Not a valid {word}. Try again: ");
-    //     return false;
-    // }
-
-    private Student? InputStudent(SubjectDAO subjectDao, bool update = false)
+    private Student InputStudent(SubjectDAO subjectDao)
     {
         System.Console.WriteLine("STUDENT\nEnter last name: ");
         string lastname = ConsoleViewUtils.SafeInputString("last name");
@@ -74,10 +68,12 @@ public class StudentConsoleView
             System.Console.WriteLine("Student cannot be added! There are no subjects.");
             return;
         }
-        Student? student = InputStudent(subjectDao);
-        Subject subject = subjectDao.GetFirstSubject();
-        student!.UnsubmittedSubjects.Add(subject);
+        Student student = InputStudent(subjectDao);
+        Subject subject = subjectDao.GetSubjectAddStudent(student);
+        student.UnsubmittedSubjects.Add(subject);
         _studentDao.AddStudent(student);
+        StudentSubject studentSubject = new StudentSubject(student.Id, subject.Id);
+        _studentSubjectDao.AddStudentSubject(studentSubject);
         System.Console.WriteLine("Student added");
     }
 
@@ -89,7 +85,7 @@ public class StudentConsoleView
     private void UpdateStudent(SubjectDAO subjectDao)
     {
         int id = InputId();
-        Student student = InputStudent(subjectDao);
+        Student student = InputStudent(subjectDao)!;
         student.Id = id;
         Student? updateStudent = _studentDao.UpdateStudent(student);
         if (updateStudent == null)
@@ -105,6 +101,8 @@ public class StudentConsoleView
     {
         int id = InputId();
         Student? removedStudent = _studentDao.RemoveStudent(id);
+        if (removedStudent != null && removedStudent.Id == -1)
+            return;
         if (removedStudent == null)
         {
             System.Console.WriteLine("Student not found");
@@ -112,6 +110,27 @@ public class StudentConsoleView
         }
         
         System.Console.WriteLine("Student removed");
+    }
+
+    private void RemoveSubjectForStudent(SubjectDAO subjectDao, StudentSubjectDAO studentSubjectDao)
+    {
+        int studentId = InputId();
+        Student? student = _studentDao.GetStudentById(studentId);
+        if (student == null)
+        {
+            System.Console.WriteLine("Student does not exists.");
+            return;
+        }
+        System.Console.WriteLine("Enter subject id you want to remove: ");
+        int subjectId = ConsoleViewUtils.SafeInputInt();
+        Subject? removedStudentSubject = _studentDao.RemoveSubjectForStudent(studentId, subjectId, studentSubjectDao);
+        if (removedStudentSubject == null)
+            System.Console.WriteLine("Could not find requested subject");
+        else
+        {
+            subjectDao.RemoveStudentDidNotPass(student, subjectId);
+            System.Console.WriteLine("Student's subject removed.");
+        }
     }
     
     public void RunMenu(SubjectDAO subjectDao)
@@ -146,6 +165,9 @@ public class StudentConsoleView
                 break;
             case "6":
                 ShowStudentGrades();
+                break;
+            case "7":
+                RemoveSubjectForStudent(subjectDao, _studentSubjectDao);
                 break;
             // case "7":
             //     ShowAndSortStudents();
@@ -206,8 +228,9 @@ public class StudentConsoleView
         System.Console.WriteLine("2: Add Student");
         System.Console.WriteLine("3: Update Student");
         System.Console.WriteLine("4: Remove Student");
-        System.Console.WriteLine("5: Show Students' Unsubmitted Subjects: ");
-        System.Console.WriteLine("6: Show Students' Grades: ");
+        System.Console.WriteLine("5: Show Students' Unsubmitted Subjects");
+        System.Console.WriteLine("6: Show Students' Grades");
+        System.Console.WriteLine("7: Remove Student's subject");
         System.Console.WriteLine("0: Back");
     }
 }

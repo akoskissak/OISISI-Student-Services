@@ -22,14 +22,11 @@ public class Student : ISerializable
     public Status Status { get; set; }
     public double AverageGrade { get; set; }
     
-    // OCENE:
-    // public List<Subject> SubmittedSubjects { get; set; }
     public List<ExamGrade> Grades { get; set; }
-    public List<Subject> UnsubmittedSubjects { get; set; } // StudentSubject predmeti
+    public List<Subject> UnsubmittedSubjects { get; set; }
 
     public Student()
     {
-        // SubmittedSubjects = new List<Subject>();
         Grades = new List<ExamGrade>();
         UnsubmittedSubjects = new List<Subject>();
         Address = new Address();
@@ -48,7 +45,6 @@ public class Student : ISerializable
         Email = email;
         CurrentYearOfStudy = year;
         Status = status;
-        // SubmittedSubjects = new List<Subject>();
         Grades = new List<ExamGrade>();
         UnsubmittedSubjects = new List<Subject>();
     }
@@ -82,7 +78,7 @@ public class Student : ISerializable
             Email,
             CurrentYearOfStudy.ToString(),
             Status.ToString(),
-            AverageGrade.ToString(),
+            String.Format("{0:0.00}", AverageGrade),
             Address.Street,
             Address.Number.ToString(),
             Address.City,

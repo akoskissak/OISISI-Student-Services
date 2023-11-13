@@ -21,27 +21,25 @@ public class ExamGradeConsoleView
 
     private ExamGrade? InputExamGrade()
     {
-        int num = 0;
-        int studentId = -1;
+        List<int> studentIds = new List<int>();
         foreach (Student student in _studentDao.GetAllStudents())
         {
-            num += student.UnsubmittedSubjects.Count;
-            studentId++;
+            if (student.UnsubmittedSubjects.Count > 0)
+                studentIds.Add(student.Id);
         }
-        if (num == 0)
+        if (studentIds.Count == 0)
         {
             System.Console.WriteLine("No student has unsumbitted subjects.");
             return null;
         }
 
         System.Console.Write("EXAM GRADE\nEnter studentId (");
-        for (int i = 0; i < studentId; i++)
-        {
-            System.Console.Write($"{i} ");
-        }
-        System.Console.WriteLine(studentId + "): ");
+        for (int i = 0; i < studentIds.Count-1; i++)
+            System.Console.Write($"{studentIds[i]}, ");
+        System.Console.WriteLine($"{studentIds[^1]}): ");
+        
         int studId = ConsoleViewUtils.SafeInputInt();
-        while (studId < 0 || studId > studentId)
+        while (!studentIds.Contains(studId))
         {
             System.Console.WriteLine("Wrong student id. Try again: ");
             studId = ConsoleViewUtils.SafeInputInt();
@@ -52,12 +50,13 @@ public class ExamGradeConsoleView
         foreach (Subject subject in _subjectDao.GetAllSubjects())
         {
             if (subject.StudentsDidNotPass.Exists(s => s.Id == studId))
-            {
-                System.Console.Write(subject.Id + " ");
                 correctIds.Add(subject.Id);
-            }
         }
-        System.Console.WriteLine(")");
+
+        for (int i = 0; i < correctIds.Count - 1; i++)
+            System.Console.Write($"{correctIds[i]}, ");
+        System.Console.WriteLine($"{correctIds[^1]}): ");
+        
         int subjectId = ConsoleViewUtils.SafeInputInt();
         while (!correctIds.Contains(subjectId))
         {

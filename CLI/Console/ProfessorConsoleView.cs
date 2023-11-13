@@ -84,6 +84,8 @@ public class ProfessorConsoleView
     {
         int id = InputId();
         Professor? removedProfessor = _professorsDao.RemoveProfessor(id);
+        if (removedProfessor != null && removedProfessor.Id == -1)
+            return;
         if (removedProfessor is null)
         {
             System.Console.WriteLine("Professor not found");

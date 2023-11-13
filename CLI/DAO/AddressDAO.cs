@@ -36,8 +36,6 @@ public class AddressDAO
         if (oldAddress is null) return null;
 
         oldAddress.Street = address.Street;
-        // oldAddress.ProfessorId = address.ProfessorId;
-        // oldAddress.StudentId = address.StudentId;
         oldAddress.Number = address.Number;
         oldAddress.City = address.City;
         oldAddress.Country = address.Country;

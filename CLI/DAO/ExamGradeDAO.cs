@@ -34,6 +34,8 @@ public class ExamGradeDAO
                         subject.StudentsPassed.Add(student);
                         eg.Student = student;
                         eg.Subject = subject;
+                        _studentDao.SaveStudents();
+                        _subjectDao.SaveSubjects();
                         break;
                     }
                 }
@@ -86,6 +88,10 @@ public class ExamGradeDAO
 
         _examGrades.Remove(examGrade);
         _examGradeStorage.Save(_examGrades);
+
+        _studentDao.RemoveExamGradeForStudent(examGrade);
+        _subjectDao.RemoveStudentPassedForSubject(examGrade);
+        
         return examGrade;
     }
 

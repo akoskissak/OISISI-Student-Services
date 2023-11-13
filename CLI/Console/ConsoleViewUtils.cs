@@ -4,7 +4,6 @@ namespace CLI.Console;
 
 public class ConsoleViewUtils
 {
-    /* Sledeca metoda je kopirana iz projekta CRUDExample sa vezbi */
     public static int SafeInputInt()
     {
         int input;
@@ -88,7 +87,6 @@ public class ConsoleViewUtils
     public static string SafeInputString(string inputName)
     {
         string rawInput = System.Console.ReadLine() ?? string.Empty;
-        // string rawInput = System.Console.ReadLine() ?? string.Empty;
 
         while (rawInput == string.Empty)
         {

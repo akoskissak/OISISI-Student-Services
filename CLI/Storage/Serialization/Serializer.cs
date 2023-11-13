@@ -1,8 +1,6 @@
 ﻿using System.Text;
 namespace CLI.Storage.Serialization;
-/*
- * Ovaj kod smo uzeli sa trećih vežbi iz CRUDEexample
- */
+
 public class Serializer<T> where T : ISerializable, new()
 {
     private const char Delimiter = '|';

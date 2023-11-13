@@ -68,7 +68,9 @@ public class ProfessorDAO
         if (professor.Subjects.Count != 0 || professor.IdOfChiefDepartment != -1)
         {
             System.Console.WriteLine("Cannot remove professor that has subject/s or is chief!");
-            return null;
+            Professor prof = new Professor();
+            prof.Id = -1;
+            return prof;
         }
 
         _professors.Remove(professor);

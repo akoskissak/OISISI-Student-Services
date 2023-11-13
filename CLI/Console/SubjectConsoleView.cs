@@ -90,6 +90,8 @@ public class SubjectConsoleView
    {
        int id = InputId();
        Subject? removedSubject = _subjectDao.RemoveSubject(id);
+       if (removedSubject != null && removedSubject.Id == -1)
+           return;
        if (removedSubject == null)
        {
            System.Console.WriteLine("Subject not found");
