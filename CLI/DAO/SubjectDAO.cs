@@ -59,7 +59,7 @@ public class SubjectDAO
 
     public Subject? UpdateSubject(Subject subject)
     {
-        Subject? oldSubject = GetSubjectById(subject.SubjectCode);
+        Subject? oldSubject = GetSubjectById(subject.Id);
         if (oldSubject is null) return null;
 
         oldSubject.SubjectCode = subject.SubjectCode;
