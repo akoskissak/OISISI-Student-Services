@@ -10,15 +10,15 @@ public class StudentDAO
     private readonly Storage<Student> _studentStorage;
 
     //private AddressDAO _addressDao;
-    private IndexDAO _indexDao;
+    //private IndexDAO _indexDao;
 
-    public StudentDAO(/*AddressDAO addrDAO, */IndexDAO idxDAO)
+    public StudentDAO(/*AddressDAO addrDAO, IndexDAO idxDAO*/)
     {
         _studentStorage = new Storage<Student>("students.txt");
         _students = _studentStorage.Load();
         
        // _addressDao = addrDAO;
-        _indexDao = idxDAO;
+       // _indexDao = idxDAO;
     }
 
     private int GenerateStudentId()
@@ -35,7 +35,7 @@ public class StudentDAO
         _studentStorage.Save(_students);
 
         //_addressDao.AddAddress(student.Address);
-        _indexDao.AddIndex(student.Index);
+        //_indexDao.AddIndex(student.Index);
         return student;
     }
 
@@ -77,7 +77,7 @@ public class StudentDAO
         
         _studentStorage.Save(_students);
         //_addressDao.UpdateAddress(student.Address);
-        _indexDao.UpdateIndex(student.Index);
+        //_indexDao.UpdateIndex(student.Index);
         return oldStudent;
     }
 
@@ -97,7 +97,7 @@ public class StudentDAO
         
         _students.Remove(student);
         //_addressDao.RemoveAddress(student.Address.Id);
-        _indexDao.RemoveIndex(student.Index.Id);
+        //_indexDao.RemoveIndex(student.Index.Id);
         _studentStorage.Save(_students);
         return student;
     }

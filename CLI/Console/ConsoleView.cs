@@ -5,7 +5,7 @@ namespace CLI.Console;
 public class ConsoleView
 {
     //private readonly AddressDAO _addressDao;
-    private readonly IndexDAO _indexDao;
+    //private readonly IndexDAO _indexDao;
     private readonly StudentDAO _studentDao;
 
     private readonly ProfessorDAO _professorDao;
@@ -20,8 +20,8 @@ public class ConsoleView
     public ConsoleView()
     {
         //_addressDao = new AddressDAO();
-        _indexDao = new IndexDAO();
-        _studentDao = new StudentDAO(/*_addressDao, */_indexDao);
+        //_indexDao = new IndexDAO();
+        _studentDao = new StudentDAO(/*_addressDao, _indexDao*/);
         
         _professorDao = new ProfessorDAO();
         _subjectDao = new SubjectDAO();

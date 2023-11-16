@@ -1,9 +1,9 @@
-using CLI.Model;
+/*using CLI.Model;
 using CLI.Storage;
 
 namespace CLI.DAO;
 
-/*public class AddressDAO
+public class AddressDAO
 {
     private readonly List<Address> _addresses;
     private readonly Storage<Address> _addressStorage;
