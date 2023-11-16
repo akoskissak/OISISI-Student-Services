@@ -69,14 +69,6 @@ public class StudentSubjectDAO
         return _studentSubject[^1].Id + 1;
     }
 
-    // public StudentSubject AddStudentSubject(StudentSubject studentSubject)
-    // {
-    //     studentSubject.Id = GenerateId();
-    //     _studentSubject.Add(studentSubject);
-    //     _studentSubjectStorage.Save(_studentSubject);
-    //     return studentSubject;
-    // }
-
     public void AddStudentSubject(StudentSubject studentSubject)
     {
         studentSubject.Id = GenerateId();
