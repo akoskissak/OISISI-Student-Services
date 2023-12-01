@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GUI.View;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,30 @@ namespace GUI
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void MenuItem_MouseEnter(object sender, MouseEventArgs e)
+        {
+
+        }
+
+        private void MouseEnterAdd(object sender, MouseEventArgs e)
+        {
+
+        }
+        private void ClickAddProfessor(object sender, RoutedEventArgs e)
+        {
+            AddProfessor addProfessorWindow = new AddProfessor();
+            addProfessorWindow.Show();
+        }
+        private void MenuItem_Click_1(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

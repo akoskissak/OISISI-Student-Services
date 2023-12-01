@@ -5,8 +5,45 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GUI"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
+        Title="Studentska služba" Height="450" Width="800">
+    <DockPanel>
+        <Menu DockPanel.Dock ="Top">
+            <MenuItem Header="File" Click="MenuItem_Click_1" >
+                <MenuItem Header="Add" MouseEnter="MouseEnterAdd">
+                    <MenuItem Header="Student"></MenuItem>
+                    <MenuItem Header="Professor" Click="ClickAddProfessor"></MenuItem>
+                    <MenuItem Header="Department"></MenuItem>
+                    <MenuItem Header="Subject"></MenuItem>
+                </MenuItem>
+                
+            </MenuItem>
+            <MenuItem Header="Edit"></MenuItem>
+            <MenuItem Header="Help"></MenuItem>
 
-    </Grid>
+        </Menu>
+        <ToolBar DockPanel.Dock="Top" Width="800">
+            <StackPanel Orientation="Horizontal" Width="570">
+                <Button Height="20">
+                    <Image Source="https://cdn-icons-png.flaticon.com/512/32/32339.png" Height="10"/>
+                </Button>
+                <Button Height="20">
+                    <Image Source="https://logowik.com/content/uploads/images/888_edit.jpg"/>
+                </Button>
+                <Button Height="20">
+                    <Image Source="https://cdn-icons-png.flaticon.com/512/3405/3405244.png"/>
+                </Button>
+            </StackPanel>
+            
+            <StackPanel Orientation="Horizontal" Width="200">
+                <TextBox Width="150" HorizontalAlignment="Right"/>
+                <Button Height="20" HorizontalAlignment="Right">
+                    <Image Source="https://icons.veryicon.com/png/o/commerce-shopping/small-icons-with-highlights/search-260.png"/>
+                </Button>
+            </StackPanel>
+        </ToolBar>
+        <StatusBar DockPanel.Dock="Bottom">
+            <TextBlock Text="Studentska služba" HorizontalAlignment="Left"></TextBlock>
+        </StatusBar>
+        <Grid></Grid>
+    </DockPanel>
 </Window>
