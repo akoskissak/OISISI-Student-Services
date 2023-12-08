@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GUI"
+        xmlns:ToolBar="http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit"
         mc:Ignorable="d"
         Title="Studentska služba" Height="450" Width="800">
     <DockPanel>
@@ -15,35 +16,46 @@
                     <MenuItem Header="Department"></MenuItem>
                     <MenuItem Header="Subject"></MenuItem>
                 </MenuItem>
-                
+
             </MenuItem>
             <MenuItem Header="Edit"></MenuItem>
             <MenuItem Header="Help"></MenuItem>
-
         </Menu>
-        <ToolBar DockPanel.Dock="Top" Width="800">
-            <StackPanel Orientation="Horizontal" Width="570">
-                <Button Height="20">
-                    <Image Source="https://cdn-icons-png.flaticon.com/512/32/32339.png" Height="10"/>
-                </Button>
-                <Button Height="20">
-                    <Image Source="https://logowik.com/content/uploads/images/888_edit.jpg"/>
-                </Button>
-                <Button Height="20">
-                    <Image Source="https://cdn-icons-png.flaticon.com/512/3405/3405244.png"/>
-                </Button>
-            </StackPanel>
-            
-            <StackPanel Orientation="Horizontal" Width="200">
-                <TextBox Width="150" HorizontalAlignment="Right"/>
-                <Button Height="20" HorizontalAlignment="Right">
-                    <Image Source="https://icons.veryicon.com/png/o/commerce-shopping/small-icons-with-highlights/search-260.png"/>
-                </Button>
-            </StackPanel>
-        </ToolBar>
+
+        
+        <DockPanel DockPanel.Dock="Top">
+            <Button Height="20" HorizontalAlignment="Left" Margin="5,0,5,0">
+                <Image Source="https://cdn-icons-png.flaticon.com/512/32/32339.png" Height="10"/>
+            </Button>
+            <Button Height="20" HorizontalAlignment="Left" Margin="0,0,5,0">
+                <Image Source="https://logowik.com/content/uploads/images/888_edit.jpg"/>
+            </Button>
+            <Button Height="20" HorizontalAlignment="Left" Margin="0,0,5,0">
+                <Image Source="https://cdn-icons-png.flaticon.com/512/3405/3405244.png"/>
+            </Button>
+
+            <Button Height="20" DockPanel.Dock="Right" HorizontalAlignment="Right" Margin="0,0,5,0">
+                <Image Source="https://icons.veryicon.com/png/o/commerce-shopping/small-icons-with-highlights/search-260.png"/>
+            </Button>
+            <TextBox Width="150" DockPanel.Dock="Right" HorizontalAlignment="Right" Margin="0,0,5,0"/>
+        </DockPanel>
+
         <StatusBar DockPanel.Dock="Bottom">
             <TextBlock Text="Studentska služba" HorizontalAlignment="Left"></TextBlock>
         </StatusBar>
-        <Grid></Grid>
+
+        <Grid>
+            <TabControl>
+                <TabItem Header="Students">
+                
+                </TabItem>
+                <TabItem Header="Professors">
+                    
+                </TabItem>
+                <TabItem Header="Subjects">
+                    
+                </TabItem>
+            </TabControl>
+        </Grid>
     </DockPanel>
 </Window>
