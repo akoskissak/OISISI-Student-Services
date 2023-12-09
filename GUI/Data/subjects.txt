@@ -1,0 +1,3 @@
+0|7777|oisisi|Zimski|3|6|0
+1|7887|lprs|Zimski|2|4|0
+2|7|miss|Letnji|1|12|2
