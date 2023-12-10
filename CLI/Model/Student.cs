@@ -33,7 +33,7 @@ public class Student : ISerializable
         Index = new Index();
     }
 
-    public Student(string lastname, string name, DateOnly date, string street, int number, string city, string country,
+    public Student(string lastname, string name, DateOnly date, string street, string number, string city, string country,
         string phonenumber, string email, string programme, int enrollNum, int enrollYear, int year, Status status)
     {
         Lastname = lastname;
@@ -103,7 +103,7 @@ public class Student : ISerializable
         Status = (Status)Enum.Parse(typeof(Status), values[7]);
         AverageGrade = double.Parse(values[8]);
         Address.Street = values[9];
-        Address.Number = int.Parse(values[10]);
+        Address.Number = values[10];
         Address.City = values[11];
         Address.Country = values[12];
         Index.StudyProgrammeMark = values[13];

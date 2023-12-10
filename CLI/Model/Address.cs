@@ -5,7 +5,7 @@ namespace CLI.Model;
 public class Address : ISerializable
 {
     public string Street { get; set; }
-    public int Number { get; set; }
+    public string Number { get; set; }
     public string City { get; set; }
     public string Country { get; set; }
     
@@ -13,7 +13,7 @@ public class Address : ISerializable
 
     public Address() {}
 
-    public Address(string street, int num, string city, string country)
+    public Address(string street, string num, string city, string country)
     {
         Street = street;
         Number = num;
@@ -41,7 +41,7 @@ public class Address : ISerializable
     public void FromCSV(string[] values)
     {
         Street = values[0];
-        Number = int.Parse(values[1]);
+        Number = values[1];
         City = values[2];
         Country = values[3];
     }

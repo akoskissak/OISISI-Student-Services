@@ -1,4 +1,5 @@
 using CLI.Model;
+using CLI.Observer;
 using CLI.Storage;
 
 namespace CLI.DAO;
@@ -8,10 +9,13 @@ public class ProfessorDAO
     private readonly List<Professor> _professors;
     private readonly Storage<Professor> _professorStorage;
 
+    public Observable ProfessorObservable;
+
     public ProfessorDAO()
     {
         _professorStorage = new Storage<Professor>("professors.txt");
         _professors = _professorStorage.Load();
+        ProfessorObservable = new Observable();
     }
 
     private int GenerateProfessorId()
@@ -25,6 +29,7 @@ public class ProfessorDAO
         professor.Id = GenerateProfessorId();
         _professors.Add(professor);
         _professorStorage.Save(_professors);
+        ProfessorObservable.NotifyObservers();
         
         return professor;
     }
@@ -46,6 +51,7 @@ public class ProfessorDAO
         oldProfessor.YearsOfService = professor.YearsOfService;
         
         _professorStorage.Save(_professors);
+        ProfessorObservable.NotifyObservers();
         return oldProfessor;
     }
 
@@ -69,6 +75,7 @@ public class ProfessorDAO
 
         _professors.Remove(professor);
         _professorStorage.Save(_professors);
+        ProfessorObservable.NotifyObservers();
         return professor;
     }
 
