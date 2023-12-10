@@ -28,7 +28,7 @@ public class StudentConsoleView
         string street = ConsoleViewUtils.SafeInputString("street");
 
         System.Console.WriteLine("Enter address number: ");
-        int number = ConsoleViewUtils.SafeInputInt();
+        string number = ConsoleViewUtils.SafeInputString("number");
 
         System.Console.WriteLine("Enter address city: ");
         string city = ConsoleViewUtils.SafeInputString("city");

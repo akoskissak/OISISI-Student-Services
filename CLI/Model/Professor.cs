@@ -26,7 +26,7 @@ public class Professor : ISerializable
         Address = new Address();
     }
 
-    public Professor(string lastname, string name, DateOnly date, string street, int number, string city, string country, string phone,
+    public Professor(string lastname, string name, DateOnly date, string street, string number, string city, string country, string phone,
                     string mail, int id, string title, int years)
     {
         IdOfChiefDepartment = -1;
@@ -76,7 +76,7 @@ public class Professor : ISerializable
         Title = values[7];
         YearsOfService = int.Parse(values[8]);
         Address.Street = values[9];
-        Address.Number = int.Parse(values[10]);
+        Address.Number = values[10];
         Address.City = values[11];
         Address.Country = values[12];
     }
