@@ -61,8 +61,22 @@
                         </DataGrid.Columns>
                     </DataGrid>
                 </TabItem>
-                <TabItem Header="Subjects">
-                    
+                <TabItem Name="SubjectsTab" Header="Subjects">
+                    <DataGrid Height="350"
+                              AutoGenerateColumns="False"
+                              x:Name="SubjectsDataGrid"
+                              ItemsSource="{Binding SubjectDtos, UpdateSourceTrigger=PropertyChanged}"
+                              SelectedItem="{Binding SelectedSubject, UpdateSourceTrigger=PropertyChanged}"
+                              SelectionMode="Single" IsReadOnly="True"
+                              SelectionChanged="SubjectDataGrid_SelectionChanged">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="SubjectCode" Binding="{Binding SubjectCode}" />
+                            <DataGridTextColumn Header="Name" Binding="{Binding Name}" />
+                            <DataGridTextColumn Header="Epsb" Binding="{Binding Espb}" />
+                            <DataGridTextColumn Header="YearOfStudy" Binding="{Binding YearOfStudy}" />
+                            <DataGridTextColumn Header="Semester" Binding="{Binding Semester}" />
+                        </DataGrid.Columns>
+                    </DataGrid>
                 </TabItem>
             </TabControl>
         </Grid>

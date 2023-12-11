@@ -28,8 +28,11 @@ namespace GUI
     public partial class MainWindow : Window, IObserver
     {
         public ObservableCollection<ProfessorDTO> ProfessorDtos { get; set; }
+        public ObservableCollection<SubjectDTO> SubjectDtos { get; set; }
         public ProfessorDTO SelectedProfessor { get; set; }
-        private ProfessorDAO _professorDao { get; set; }
+        public SubjectDTO SelectedSubject { get; set; }
+        private ProfessorDAO _professorDao;
+        private SubjectDAO _subjectDao;
         public MainWindow()
         {
             InitializeComponent();
@@ -37,6 +40,11 @@ namespace GUI
             ProfessorDtos = new ObservableCollection<ProfessorDTO>();
             _professorDao = new ProfessorDAO();
             _professorDao.ProfessorObservable.Subscribe(this);
+
+            SubjectDtos = new ObservableCollection<SubjectDTO>();
+            _subjectDao = new SubjectDAO();
+            _subjectDao.SubjectObservable.Subscribe(this);
+
             Update();
         }
 
@@ -76,6 +84,10 @@ namespace GUI
             ProfessorDtos.Clear();
             foreach (Professor professor in _professorDao.GetAllProfessors())
                 ProfessorDtos.Add(new ProfessorDTO(professor));
+
+            SubjectDtos.Clear();
+            foreach (Subject subject in _subjectDao.GetAllSubjects())
+                SubjectDtos.Add(new SubjectDTO(subject));
         }
 
         private void Delete_Click(object sender, RoutedEventArgs e)
@@ -88,16 +100,23 @@ namespace GUI
                 else
                     _professorDao.RemoveProfessor(SelectedProfessor.Id);
             }
+            else if (ti != null && ti.Name != null && ti.Name == "SubjectsTab")
+            {
+                if (SelectedSubject == null)
+                    MessageBox.Show("Please choose a subject to delete!");
+                else
+                    _subjectDao.RemoveSubject(SelectedSubject.Id);
+            }
         }
 
         private void ProfessorsDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             SelectedProfessor = ProfessorsDataGrid.SelectedItem as ProfessorDTO;
+        }
 
-            //if (SelectedProfessor != null)
-            //{
-            //    MessageBox.Show($"Selected Professor: {SelectedProfessor.Name}");
-            //}
+        private void SubjectDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            SelectedSubject = SubjectsDataGrid.SelectedItem as SubjectDTO;
         }
     }
 }
