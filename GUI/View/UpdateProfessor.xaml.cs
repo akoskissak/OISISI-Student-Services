@@ -1,4 +1,5 @@
 ﻿using CLI.DAO;
+using CLI.Model;
 using GUI.DTO;
 using System;
 using System.Collections.Generic;
@@ -13,27 +14,27 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
 namespace GUI.View
 {
     /// <summary>
-    /// Interaction logic for AddProfessor.xaml
+    /// Interaction logic for UpdateProfessor.xaml
     /// </summary>
-    public partial class AddProfessor : Window, INotifyPropertyChanged
+    public partial class UpdateProfessor : Window
     {
         public ProfessorDTO ProfessorDto { get; set; }
 
         private ProfessorDAO _professorDao;
 
         public event PropertyChangedEventHandler? PropertyChanged;
-        public AddProfessor(ProfessorDAO professorDao)
+
+        public UpdateProfessor(ProfessorDAO professorDao, ProfessorDTO professorDto)
         {
             InitializeComponent();
             DataContext = this;
-            ProfessorDto = new ProfessorDTO();
+            ProfessorDto = professorDto;
             this._professorDao = professorDao;
         }
 
@@ -43,9 +44,11 @@ namespace GUI.View
 
         }
 
-        private void Add_Button_Click(object sender, RoutedEventArgs e)
+        private void Update_Button_Click(object sender, RoutedEventArgs e)
         {
-            _professorDao.AddProfessor(ProfessorDto.ToProfessor());
+            Professor professor = ProfessorDto.ToProfessor();
+            professor.Id = ProfessorDto.Id;
+            _professorDao.UpdateProfessor(professor);
             Close();
         }
 
