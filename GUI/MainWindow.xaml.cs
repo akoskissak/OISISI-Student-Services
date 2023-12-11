@@ -30,6 +30,10 @@ namespace GUI
         public ObservableCollection<ProfessorDTO> ProfessorDtos { get; set; }
         public ProfessorDTO SelectedProfessor { get; set; }
         private ProfessorDAO _professorDao { get; set; }
+
+        public ObservableCollection<StudentDTO> StudentDtos { get; set; }
+        public StudentDTO SelectedStudent { get; set; }
+        private StudentDAO _studentDao { get; set; }
         public MainWindow()
         {
             InitializeComponent();
@@ -37,6 +41,11 @@ namespace GUI
             ProfessorDtos = new ObservableCollection<ProfessorDTO>();
             _professorDao = new ProfessorDAO();
             _professorDao.ProfessorObservable.Subscribe(this);
+
+            StudentDtos = new ObservableCollection<StudentDTO>();
+            _studentDao = new StudentDAO();
+            _studentDao.StudentObservable.Subscribe(this);
+
             Update();
         }
 
@@ -47,6 +56,12 @@ namespace GUI
             {
                 AddProfessor addProfessor = new AddProfessor(_professorDao);
                 addProfessor.Show();
+            }
+
+            if(ti != null && ti.Name != null && ti.Name == "StudentsTab")
+            {
+                AddStudent addStudent = new AddStudent(_studentDao);
+                addStudent.Show();
             }
         }
 
@@ -66,6 +81,10 @@ namespace GUI
             ProfessorDtos.Clear();
             foreach (Professor professor in _professorDao.GetAllProfessors())
                 ProfessorDtos.Add(new ProfessorDTO(professor));
+
+            StudentDtos.Clear();
+            foreach(Student student in _studentDao.GetAllStudents())
+                StudentDtos.Add(new StudentDTO(student));
         }
 
         private void Delete_Click(object sender, RoutedEventArgs e)
@@ -77,6 +96,14 @@ namespace GUI
                     MessageBox.Show("Please choose a professor to delete!");
                 else
                     _professorDao.RemoveProfessor(SelectedProfessor.Id);
+            }
+
+            if(ti != null && ti.Name != null && ti.Name == "StudentsTab")
+            {
+                if (SelectedStudent == null)
+                    MessageBox.Show("Please choose a student to delete!");
+                else
+                    _studentDao.RemoveStudent(SelectedStudent.Id);
             }
         }
     }

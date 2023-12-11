@@ -24,7 +24,12 @@ public class Index : ISerializable
     {
         return $"StudyProgrammeMark: {StudyProgrammeMark, 3} | EnrollmentNumber: {EnrollmentNumber, 2} | EnrollmentYear: {EnrollmentYear, 4}";
     }
-    
+
+    public string GUIToString()
+    {
+        return $"{StudyProgrammeMark}-{EnrollmentNumber}-{EnrollmentYear}";
+    }
+
     public string[] ToCSV()
     {
         string[] csvValues =

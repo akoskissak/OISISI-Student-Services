@@ -1,4 +1,5 @@
 using CLI.Model;
+using CLI.Observer;
 using CLI.Storage;
 using Index = CLI.Model.Index;
 
@@ -9,12 +10,12 @@ public class StudentDAO
     private readonly List<Student> _students;
     private readonly Storage<Student> _studentStorage;
 
-
+    public Observable StudentObservable;
     public StudentDAO()
     {
         _studentStorage = new Storage<Student>("students.txt");
         _students = _studentStorage.Load();
-        
+        StudentObservable = new Observable();
     }
 
     private int GenerateStudentId()
@@ -29,7 +30,7 @@ public class StudentDAO
         student.Id = GenerateStudentId();
         _students.Add(student);
         _studentStorage.Save(_students);
-
+        StudentObservable.NotifyObservers();
         return student;
     }
 
@@ -70,8 +71,7 @@ public class StudentDAO
         oldStudent.AverageGrade = student.AverageGrade;
         
         _studentStorage.Save(_students);
-        //_addressDao.UpdateAddress(student.Address);
-        //_indexDao.UpdateIndex(student.Index);
+        StudentObservable.NotifyObservers();
         return oldStudent;
     }
 
@@ -91,6 +91,7 @@ public class StudentDAO
         
         _students.Remove(student);
         _studentStorage.Save(_students);
+        StudentObservable.NotifyObservers();
         return student;
     }
 
