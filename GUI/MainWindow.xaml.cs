@@ -45,20 +45,30 @@ namespace GUI
             TabItem ti = Tabs.SelectedItem as TabItem;
             if (ti != null && ti.Name != null && ti.Name == "ProfessorsTab")
             {
-                AddProfessor addProfessor = new AddProfessor(_professorDao);
-                addProfessor.Show();
+                AddProfessor addProfessorWindow = new AddProfessor(_professorDao);
+                addProfessorWindow.Show();
             }
         }
 
         
-        private void ClickAddProfessor(object sender, RoutedEventArgs e)
+        //private void ClickAddProfessor(object sender, RoutedEventArgs e)
+        //{
+        //    AddProfessor addProfessorWindow = new AddProfessor(_professorDao);
+        //    addProfessorWindow.Show();
+        //}
+        private void Update_Click(object sender, RoutedEventArgs e)
         {
-            AddProfessor addProfessorWindow = new AddProfessor(_professorDao);
-            addProfessorWindow.Show();
-        }
-        private void MenuItem_Click_1(object sender, RoutedEventArgs e)
-        {
-
+            TabItem ti = Tabs.SelectedItem as TabItem;
+            if (ti != null && ti.Name != null && ti.Name == "ProfessorsTab")
+            {
+                if (SelectedProfessor != null)
+                {
+                    UpdateProfessor updateProfessorWindow = new UpdateProfessor(_professorDao, SelectedProfessor);
+                    updateProfessorWindow.Show();
+                }
+                else
+                    MessageBox.Show("Please choose a professor to update!");
+            }
         }
 
         public void Update()
@@ -78,6 +88,16 @@ namespace GUI
                 else
                     _professorDao.RemoveProfessor(SelectedProfessor.Id);
             }
+        }
+
+        private void ProfessorsDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            SelectedProfessor = ProfessorsDataGrid.SelectedItem as ProfessorDTO;
+
+            //if (SelectedProfessor != null)
+            //{
+            //    MessageBox.Show($"Selected Professor: {SelectedProfessor.Name}");
+            //}
         }
     }
 }

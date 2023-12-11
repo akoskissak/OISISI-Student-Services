@@ -6,7 +6,8 @@
         xmlns:local="clr-namespace:GUI"
         xmlns:ToolBar="http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit"
         mc:Ignorable="d"
-        Title="Studentska služba" Height="450" Width="800">
+        Title="Studentska služba" Height="auto" Width="auto"
+        WindowStartupLocation="CenterScreen">
     <DockPanel>
         <Menu DockPanel.Dock ="Top">
             <MenuItem Header="File">
@@ -19,13 +20,13 @@
 
         
         <DockPanel DockPanel.Dock="Top">
-            <Button Height="20" HorizontalAlignment="Left" Margin="5,0,5,0">
+            <Button Name="AddEntityButton" Click="Add_Click" Height="20" HorizontalAlignment="Left" Margin="5,0,5,0">
                 <Image Source="https://cdn-icons-png.flaticon.com/512/32/32339.png" Height="10"/>
             </Button>
-            <Button Height="20" HorizontalAlignment="Left" Margin="0,0,5,0">
+            <Button Name="UpdateEntityButton" Click="Update_Click" Height="20" HorizontalAlignment="Left" Margin="0,0,5,0">
                 <Image Source="https://logowik.com/content/uploads/images/888_edit.jpg"/>
             </Button>
-            <Button Height="20" HorizontalAlignment="Left" Margin="0,0,5,0">
+            <Button Name="DeleteEntityButton" Click="Delete_Click" Height="20" HorizontalAlignment="Left" Margin="0,0,5,0">
                 <Image Source="https://cdn-icons-png.flaticon.com/512/3405/3405244.png"/>
             </Button>
 
@@ -50,7 +51,8 @@
                               x:Name="ProfessorsDataGrid"
                               ItemsSource="{Binding ProfessorDtos, UpdateSourceTrigger=PropertyChanged}"
                               SelectedItem="{Binding SelectedProfessor, UpdateSourceTrigger=PropertyChanged}"
-                              SelectionMode="Single" IsReadOnly="True">
+                              SelectionMode="Single" IsReadOnly="True"
+                              SelectionChanged="ProfessorsDataGrid_SelectionChanged">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Name" Binding="{Binding Name}" />
                             <DataGridTextColumn Header="Lastname" Binding="{Binding Lastname}" />

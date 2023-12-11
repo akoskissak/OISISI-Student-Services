@@ -36,7 +36,7 @@ public class ProfessorDAO
 
     public Professor? UpdateProfessor(Professor professor)
     {
-        Professor? oldProfessor = GetProfessorByIdNumber(professor.Idnumber);
+        Professor? oldProfessor = GetProfessorById(professor.Id);
         if (oldProfessor is null)
             return null;
 
@@ -55,14 +55,14 @@ public class ProfessorDAO
         return oldProfessor;
     }
 
-    private Professor? GetProfessorByIdNumber(int id)
+    private Professor? GetProfessorById(int id)
     {
         return _professors.Find(p => p.Id == id);
     }
 
     public Professor? RemoveProfessor(int id)
     {
-        Professor? professor = GetProfessorByIdNumber(id);
+        Professor? professor = GetProfessorById(id);
         if (professor == null) return null;
 
         if (professor.Subjects.Count != 0 || professor.IdOfChiefDepartment != -1)
