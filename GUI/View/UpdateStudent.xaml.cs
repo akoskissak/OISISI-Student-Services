@@ -1,4 +1,5 @@
 ﻿using CLI.DAO;
+using CLI.Model;
 using GUI.DTO;
 using System;
 using System.Collections.Generic;
@@ -19,19 +20,20 @@ using System.Windows.Shapes;
 namespace GUI.View
 {
     /// <summary>
-    /// Interaction logic for AddStudent.xaml
+    /// Interaction logic for UpdateStudent.xaml
     /// </summary>
-    public partial class AddStudent : Window, INotifyPropertyChanged
+    public partial class UpdateStudent : Window
     {
         public StudentDTO StudentDto { get; set; }
 
         private StudentDAO _studentDao;
+
         public event PropertyChangedEventHandler? PropertyChanged;
-        public AddStudent(StudentDAO studentDao)
+        public UpdateStudent(StudentDAO studentDao, StudentDTO studentDto)
         {
             InitializeComponent();
             DataContext = this;
-            StudentDto = new StudentDTO();
+            StudentDto = studentDto;
             this._studentDao = studentDao;
         }
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
@@ -39,11 +41,15 @@ namespace GUI.View
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
 
         }
-        private void Add_Button_Click(object sender, RoutedEventArgs e)
+
+        private void Update_Button_Click(object sender, RoutedEventArgs e)
         {
-            _studentDao.AddStudent(StudentDto.ToStudent());
+            Student student = StudentDto.ToStudent();
+            student.Id = StudentDto.Id;
+            _studentDao.UpdateStudent(student);
             Close();
         }
+
         private void Cancel_Button_Click(object sender, RoutedEventArgs e)
         {
             Close();

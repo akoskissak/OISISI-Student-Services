@@ -36,14 +36,14 @@ namespace GUI.DTO
             }
             set
             {
-                if(_enrollmentNumber != null && _enrollmentYear != null && _studyProgrammeMark != null)
+                if(_enrollmentNumber != 0 && _enrollmentYear != 0 && _studyProgrammeMark != null)
                 {
                     _index = new CLI.Model.Index(_studyProgrammeMark, _enrollmentNumber, _enrollmentYear);
                     OnPropertyChanged("Index");
                 }
             }
         }
-        public string Lastname
+        public string LastName
         {
             get
             {
@@ -54,7 +54,7 @@ namespace GUI.DTO
                 if (value != _lastName)
                 {
                     _lastName = value;
-                    OnPropertyChanged("Lastname");
+                    OnPropertyChanged("LastName");
                 }
             }
         }
@@ -298,7 +298,8 @@ namespace GUI.DTO
         public StudentDTO() {}
         public StudentDTO(Student student)
         {
-            Lastname = student.Lastname;
+            Id = student.Id;
+            LastName = student.Lastname;
             Name = student.Name;
             DateOfBirth = student.DateOfBirth.ToString();
             Street = student.Address.Street;
@@ -311,7 +312,7 @@ namespace GUI.DTO
             AverageGrade = student.AverageGrade;
             CurrentYearOfStudy = student.CurrentYearOfStudy;
             Index = student.Index.StudyProgrammeMark + "-" + student.Index.EnrollmentNumber + "-" + student.Index.EnrollmentYear;
-            _index = new CLI.Model.Index();
+            _index = new CLI.Model.Index(_studyProgrammeMark, _enrollmentNumber, _enrollmentYear);
         }
 
         public event PropertyChangedEventHandler? PropertyChanged;
