@@ -57,7 +57,7 @@ public class Professor : ISerializable
             Title,
             YearsOfService.ToString(),
             Address.Street,
-            Address.Number.ToString(),
+            Address.Number,
             Address.City,
             Address.Country
         };

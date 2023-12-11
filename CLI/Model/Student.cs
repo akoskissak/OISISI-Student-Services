@@ -80,7 +80,7 @@ public class Student : ISerializable
             Status.ToString(),
             String.Format("{0:0.00}", AverageGrade),
             Address.Street,
-            Address.Number.ToString(),
+            Address.Number,
             Address.City,
             Address.Country,
             Index.StudyProgrammeMark,

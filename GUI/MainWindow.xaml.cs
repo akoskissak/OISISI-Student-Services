@@ -11,6 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Ribbon.Primitives;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
@@ -39,20 +40,17 @@ namespace GUI
             Update();
         }
 
-        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        private void Add_Click(object sender, RoutedEventArgs e)
         {
-
+            TabItem ti = Tabs.SelectedItem as TabItem;
+            if (ti != null && ti.Name != null && ti.Name == "ProfessorsTab")
+            {
+                AddProfessor addProfessor = new AddProfessor(_professorDao);
+                addProfessor.Show();
+            }
         }
 
-        private void MenuItem_MouseEnter(object sender, MouseEventArgs e)
-        {
-
-        }
-
-        private void MouseEnterAdd(object sender, MouseEventArgs e)
-        {
-
-        }
+        
         private void ClickAddProfessor(object sender, RoutedEventArgs e)
         {
             AddProfessor addProfessorWindow = new AddProfessor(_professorDao);
@@ -68,6 +66,18 @@ namespace GUI
             ProfessorDtos.Clear();
             foreach (Professor professor in _professorDao.GetAllProfessors())
                 ProfessorDtos.Add(new ProfessorDTO(professor));
+        }
+
+        private void Delete_Click(object sender, RoutedEventArgs e)
+        {
+            TabItem ti = Tabs.SelectedItem as TabItem;
+            if (ti != null && ti.Name != null && ti.Name == "ProfessorsTab")
+            {
+                if (SelectedProfessor == null)
+                    MessageBox.Show("Please choose a professor to delete!");
+                else
+                    _professorDao.RemoveProfessor(SelectedProfessor.Id);
+            }
         }
     }
 }
