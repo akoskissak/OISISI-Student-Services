@@ -9,14 +9,9 @@
         Title="Studentska služba" Height="450" Width="800">
     <DockPanel>
         <Menu DockPanel.Dock ="Top">
-            <MenuItem Header="File" Click="MenuItem_Click_1" >
-                <MenuItem Header="Add" MouseEnter="MouseEnterAdd">
-                    <MenuItem Header="Student"></MenuItem>
-                    <MenuItem Header="Professor" Click="ClickAddProfessor"></MenuItem>
-                    <MenuItem Header="Department"></MenuItem>
-                    <MenuItem Header="Subject"></MenuItem>
-                </MenuItem>
-
+            <MenuItem Header="File">
+                <MenuItem Header="Add" Click="Add_Click" />
+                <MenuItem Header="Delete" Click="Delete_Click" />
             </MenuItem>
             <MenuItem Header="Edit"></MenuItem>
             <MenuItem Header="Help"></MenuItem>
@@ -45,11 +40,11 @@
         </StatusBar>
 
         <Grid>
-            <TabControl>
+            <TabControl Name="Tabs">
                 <TabItem Header="Students">
                 
                 </TabItem>
-                <TabItem Header="Professors">
+                <TabItem Name="ProfessorsTab" Header="Professors">
                     <DataGrid Height="350"
                               AutoGenerateColumns="False"
                               x:Name="ProfessorsDataGrid"

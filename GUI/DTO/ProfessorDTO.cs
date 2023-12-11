@@ -10,12 +10,13 @@ using CLI.DAO;
 using System.Diagnostics.Metrics;
 using System.IO;
 using System.Xml.Linq;
+using System.Windows.Controls;
 
 namespace GUI.DTO
 {
     public class ProfessorDTO : INotifyPropertyChanged
     {
-        private readonly ProfessorDAO _professorDao;
+        public int Id { get; set; } 
         private string _lastname;
         private string _name;
         private DateOnly _dateOfBirth;
@@ -248,6 +249,7 @@ namespace GUI.DTO
             IdNumber = professor.Idnumber;
             Title = professor.Title;
             YearsOfService = professor.YearsOfService;
+            Id = professor.Id;
         }
 
         public event PropertyChangedEventHandler? PropertyChanged;
