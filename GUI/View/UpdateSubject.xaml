@@ -1,0 +1,43 @@
+﻿<Window x:Class="GUI.View.UpdateSubject"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:GUI.View"
+        mc:Ignorable="d"
+        Title="UpdateSubject" Height="450" Width="800">
+    <Grid>
+        <Grid Margin="20, 20, 20, 20">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="27"/>
+                <RowDefinition Height="27"/>
+                <RowDefinition Height="27"/>
+                <RowDefinition Height="27"/>
+                <RowDefinition Height="27"/>
+                <RowDefinition Height="27"/>
+                <RowDefinition Height="27"/>
+            </Grid.RowDefinitions>
+
+            <Label HorizontalAlignment="Center" Content="SubjectCode" Grid.Column="0" Grid.Row="0"/>
+            <Label HorizontalAlignment="Center" Content="Name" Grid.Column="0" Grid.Row="1"/>
+            <Label HorizontalAlignment="Center" Content="Semester" Grid.Column="0" Grid.Row="2"/>
+            <Label HorizontalAlignment="Center" Content="YearOfStudy" Grid.Column="0" Grid.Row="3"/>
+            <Label HorizontalAlignment="Center" Content="ProfessorId" Grid.Column="0" Grid.Row="4"/>
+            <Label HorizontalAlignment="Center" Content="Espb" Grid.Column="0" Grid.Row="5"/>
+
+            <TextBox BorderBrush="Black" BorderThickness="2" Margin="0,0,0,5" Width="200" Height="22" Grid.Column="1" Grid.Row="0" Text="{Binding Path=SubjectDto.SubjectCode, UpdateSourceTrigger=PropertyChanged}" />
+            <TextBox BorderBrush="Black" BorderThickness="2" Margin="0,0,0,5" Width="200" Height="22" Grid.Column="1" Grid.Row="1" Text="{Binding Path=SubjectDto.Name, UpdateSourceTrigger=PropertyChanged}" />
+            <TextBox BorderBrush="Black" BorderThickness="2" Margin="0,0,0,5" Width="200" Height="22" Grid.Column="1" Grid.Row="2" Text="{Binding Path=SubjectDto.Semester, UpdateSourceTrigger=PropertyChanged}" />
+            <TextBox BorderBrush="Black" BorderThickness="2" Margin="0,0,0,5" Width="200" Height="22" Grid.Column="1" Grid.Row="3" Text="{Binding Path=SubjectDto.YearOfStudy, UpdateSourceTrigger=PropertyChanged}" />
+            <TextBox BorderBrush="Black" BorderThickness="2" Margin="0,0,0,5" Width="200" Height="22" Grid.Column="1" Grid.Row="4" Text="{Binding Path=StubjectDto.ProfessorId, UpdateSourceTrigger=PropertyChanged}" />
+            <TextBox BorderBrush="Black" BorderThickness="2" Margin="0,0,0,5" Width="200" Height="22" Grid.Column="1" Grid.Row="5" Text="{Binding Path=SubjectDto.Espb, UpdateSourceTrigger=PropertyChanged}" />
+            <Button Content="Update" BorderThickness="1" Grid.Column="0" Grid.Row="12" Width="60" Height="20" VerticalContentAlignment="Center" HorizontalAlignment="Right" Margin="0,0,10,0" Click="Update_Button_Click" />
+            <Button Content="Cancel" BorderThickness="1" Grid.Column="1" Grid.Row="12" Width="60" Height="20" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="60,0,0,0" Click="Cancel_Button_Click" />
+        </Grid>
+    </Grid>
+</Window>

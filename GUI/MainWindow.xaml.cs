@@ -76,12 +76,17 @@ namespace GUI
                 AddProfessor addProfessorWindow = new AddProfessor(_professorDao);
                 addProfessorWindow.Show();
             }
-
-            if(ti != null && ti.Name != null && ti.Name == "StudentsTab")
+            else if(ti != null && ti.Name != null && ti.Name == "StudentsTab")
             {
                 AddStudent addStudent = new AddStudent(_studentDao);
                 addStudent.Show();
             }
+            else if(ti != null && ti.Name != null && ti.Name == "SubjectsTab")
+            {
+                AddSubject addSubject = new AddSubject(_subjectDao);
+                addSubject.Show();
+            }
+            
         }
 
         
@@ -112,6 +117,16 @@ namespace GUI
                 }
                 else
                     MessageBox.Show("Please choose a student to update!");
+            }
+            else if(ti != null && ti.Name != null && ti.Name == "SubjectsTab")
+            {
+                if (SelectedSubject != null)
+                {
+                    UpdateSubject updateSubjectWindow = new UpdateSubject(_subjectDao, SelectedSubject);
+                    updateSubjectWindow.Show();
+                }
+                else
+                    MessageBox.Show("Please choose a subject to update!");
             }
         }
 

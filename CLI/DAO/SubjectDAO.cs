@@ -110,6 +110,7 @@ public class SubjectDAO
     public void SaveSubjects()
     {
         _subjectStorage.Save(_subjects);
+        SubjectObservable.NotifyObservers();
     }
 
     public Subject? GetSubjectById(int id)
