@@ -3,6 +3,7 @@ using CLI.Model;
 using CLI.Observer;
 using GUI.DTO;
 using GUI.View;
+using System.Windows.Threading;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -56,6 +57,13 @@ namespace GUI
             SubjectDtos = new ObservableCollection<SubjectDTO>();
             _subjectDao = new SubjectDAO();
             _subjectDao.SubjectObservable.Subscribe(this);
+
+            ////
+            DispatcherTimer timer = new DispatcherTimer();
+            timer.Tick += new EventHandler(UpdateTimer_Tick);
+            timer.Interval = new TimeSpan(0, 0, 1);
+            timer.Start();
+            ////
 
             Update();
         }
@@ -147,5 +155,15 @@ namespace GUI
         {
             SelectedSubject = SubjectsDataGrid.SelectedItem as SubjectDTO;
         }
+        private void StudentsDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            SelectedStudent = StudentsDataGrid.SelectedItem as StudentDTO;
+        }
+
+        private void UpdateTimer_Tick(object sender, EventArgs e)
+        {
+            DisplayDateTextBlock.Text = DateTime.Now.ToString();
+        }
+
     }
 }

@@ -203,33 +203,33 @@ namespace GUI.DTO
             }
         }
 
-        public int EnrollmentNumber
+        public string EnrollmentNumber
         {
             get
             {
-                return _enrollmentNumber;
+                return _enrollmentNumber.ToString();
             }
             set
             {
-                if(value != _enrollmentNumber)
+                if(value != _enrollmentNumber.ToString())
                 {
-                    _enrollmentNumber = value;
+                    _enrollmentNumber = int.Parse(value);
                     OnPropertyChanged("EnrollmentNumber");
                 }
             }
         }
 
-        public int EnrollmentYear
+        public string EnrollmentYear
         {
             get
             {
-                return _enrollmentYear;
+                return _enrollmentYear.ToString();
             }
             set
             {
-                if(value != _enrollmentYear)
+                if(value != _enrollmentYear.ToString())
                 {
-                    _enrollmentYear = value;
+                    _enrollmentYear = int.Parse(value);
                     OnPropertyChanged("EnrollmentYear");
                 }
             }
@@ -267,17 +267,17 @@ namespace GUI.DTO
             }
         }
 
-        public double AverageGrade
+        public string AverageGrade
         {
             get
             {
-                return _averageGrade;
+                return _averageGrade.ToString();
             }
             set
             {
-                if(value != _averageGrade)
+                if(value != _averageGrade.ToString())
                 {
-                    _averageGrade = value;
+                    _averageGrade = double.Parse(value);
                     OnPropertyChanged("AverageGrade");
                 }
             }
@@ -309,8 +309,11 @@ namespace GUI.DTO
             PhoneNumber = student.PhoneNumber;
             Email = student.Email;
             Status = student.Status;
-            AverageGrade = student.AverageGrade;
+            AverageGrade = student.AverageGrade.ToString();
             CurrentYearOfStudy = student.CurrentYearOfStudy;
+            EnrollmentNumber = student.Index.EnrollmentNumber.ToString();
+            EnrollmentYear = student.Index.EnrollmentYear.ToString();
+            StudyProgrammeMark = student.Index.StudyProgrammeMark;
             Index = student.Index.StudyProgrammeMark + "-" + student.Index.EnrollmentNumber + "-" + student.Index.EnrollmentYear;
             _index = new CLI.Model.Index(_studyProgrammeMark, _enrollmentNumber, _enrollmentYear);
         }

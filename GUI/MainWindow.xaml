@@ -11,11 +11,46 @@
     <DockPanel>
         <Menu DockPanel.Dock ="Top">
             <MenuItem Header="File">
-                <MenuItem Header="Add" Click="Add_Click" />
-                <MenuItem Header="Delete" Click="Delete_Click" />
+                <MenuItem Header="New" Click="Add_Click" >
+                    <MenuItem.Icon>
+                        <Image Source="https://cdn2.iconfinder.com/data/icons/ios-7-icons/50/plus-512.png"/>
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="Save">
+                    <MenuItem.Icon>
+                        <Image Source="https://static.vecteezy.com/system/resources/previews/020/936/457/original/save-icon-for-your-website-design-logo-app-ui-free-vector.jpg"/>
+                    </MenuItem.Icon>
+                 </MenuItem>
+                <MenuItem Header="Open">
+                    <MenuItem.Icon>
+                        <Image Source="https://icons.veryicon.com/png/o/object/material-design-icons-1/open-in-app.png"/>
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="Close">
+                    <MenuItem.Icon>
+                        <Image Source="https://static.thenounproject.com/png/53235-200.png"/>
+                    </MenuItem.Icon>
+                </MenuItem>
             </MenuItem>
-            <MenuItem Header="Edit"></MenuItem>
-            <MenuItem Header="Help"></MenuItem>
+            <MenuItem Header="Edit">
+                <MenuItem Header="Edit" Click="Update_Click">
+                    <MenuItem.Icon>
+                        <Image Source="https://cdn-icons-png.flaticon.com/512/7398/7398464.png"/>
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="Delete" Click="Delete_Click">
+                    <MenuItem.Icon>
+                        <Image Source="https://cdn.iconscout.com/icon/free/png-256/free-delete-736-470378.png"/>
+                    </MenuItem.Icon>
+                </MenuItem>
+            </MenuItem>
+            <MenuItem Header="Help">
+                <MenuItem Header="About">
+                    <MenuItem.Icon>
+                        <Image Source="https://icons.veryicon.com/png/o/miscellaneous/administration/account-25.png"/>
+                    </MenuItem.Icon>
+                </MenuItem>
+            </MenuItem>
         </Menu>
 
         
@@ -35,12 +70,15 @@
             </Button>
             <TextBox Width="150" DockPanel.Dock="Right" HorizontalAlignment="Right" Margin="0,0,5,0"/>
         </DockPanel>
+        
 
-        <StatusBar DockPanel.Dock="Bottom">
-            <TextBlock Text="Studentska služba" HorizontalAlignment="Left"></TextBlock>
-        </StatusBar>
+        <DockPanel DockPanel.Dock="Bottom">
+                <TextBlock Text="Studentska služba"></TextBlock>
+                <TextBlock x:Name="DisplayDateTextBlock" Text="" HorizontalAlignment="Right"></TextBlock>
+        </DockPanel>
 
-        <Grid>
+
+        <Grid DockPanel.Dock="Top">
             <TabControl Name="Tabs">
                 <TabItem Name="StudentsTab" Header="Students">
                     <DataGrid Height="350"
@@ -48,7 +86,8 @@
                               x:Name="StudentsDataGrid"
                               ItemsSource="{Binding StudentDtos, UpdateSourceTrigger=PropertyChanged}"
                               SelectedItem="{Binding SelectedStudent, UpdateSourceTrigger=PropertyChanged}"
-                              SelectionMode="Single" IsReadOnly="True">
+                              SelectionMode="Single" IsReadOnly="True"
+                              SelectionChanged="StudentsDataGrid_SelectionChanged">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Index" Binding="{Binding Index}"/>
                             <DataGridTextColumn Header="Ime" Binding="{Binding Name}"/>
