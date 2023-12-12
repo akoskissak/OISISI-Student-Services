@@ -103,6 +103,16 @@ namespace GUI
                 else
                     MessageBox.Show("Please choose a professor to update!");
             }
+            else if(ti != null && ti.Name != null && ti.Name == "StudentsTab")
+            {
+                if (SelectedStudent != null)
+                {
+                    UpdateStudent updateStudentWindow = new UpdateStudent(_studentDao, SelectedStudent);
+                    updateStudentWindow.Show();
+                }
+                else
+                    MessageBox.Show("Please choose a student to update!");
+            }
         }
 
         public void Update()
