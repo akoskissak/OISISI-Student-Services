@@ -29,10 +29,18 @@ namespace GUI
     {
         public ObservableCollection<ProfessorDTO> ProfessorDtos { get; set; }
         public ObservableCollection<SubjectDTO> SubjectDtos { get; set; }
+        public ObservableCollection<StudentDTO> StudentDtos { get; set; }
+        
         public ProfessorDTO SelectedProfessor { get; set; }
+
         public SubjectDTO SelectedSubject { get; set; }
+        
+        public StudentDTO SelectedStudent { get; set; }
+        
         private ProfessorDAO _professorDao;
         private SubjectDAO _subjectDao;
+        private StudentDAO _studentDao;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -40,6 +48,10 @@ namespace GUI
             ProfessorDtos = new ObservableCollection<ProfessorDTO>();
             _professorDao = new ProfessorDAO();
             _professorDao.ProfessorObservable.Subscribe(this);
+
+            StudentDtos = new ObservableCollection<StudentDTO>();
+            _studentDao = new StudentDAO();
+            _studentDao.StudentObservable.Subscribe(this);
 
             SubjectDtos = new ObservableCollection<SubjectDTO>();
             _subjectDao = new SubjectDAO();
@@ -55,6 +67,12 @@ namespace GUI
             {
                 AddProfessor addProfessorWindow = new AddProfessor(_professorDao);
                 addProfessorWindow.Show();
+            }
+
+            if(ti != null && ti.Name != null && ti.Name == "StudentsTab")
+            {
+                AddStudent addStudent = new AddStudent(_studentDao);
+                addStudent.Show();
             }
         }
 
@@ -85,6 +103,10 @@ namespace GUI
             foreach (Professor professor in _professorDao.GetAllProfessors())
                 ProfessorDtos.Add(new ProfessorDTO(professor));
 
+            StudentDtos.Clear();
+            foreach(Student student in _studentDao.GetAllStudents())
+                StudentDtos.Add(new StudentDTO(student));
+
             SubjectDtos.Clear();
             foreach (Subject subject in _subjectDao.GetAllSubjects())
                 SubjectDtos.Add(new SubjectDTO(subject));
@@ -99,6 +121,13 @@ namespace GUI
                     MessageBox.Show("Please choose a professor to delete!");
                 else
                     _professorDao.RemoveProfessor(SelectedProfessor.Id);
+            }
+            else if(ti != null && ti.Name != null && ti.Name == "StudentsTab")
+            {
+                if (SelectedStudent == null)
+                    MessageBox.Show("Please choose a student to delete!");
+                else
+                    _studentDao.RemoveStudent(SelectedStudent.Id);
             }
             else if (ti != null && ti.Name != null && ti.Name == "SubjectsTab")
             {

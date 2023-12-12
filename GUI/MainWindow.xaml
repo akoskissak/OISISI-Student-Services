@@ -42,8 +42,22 @@
 
         <Grid>
             <TabControl Name="Tabs">
-                <TabItem Header="Students">
-                
+                <TabItem Name="StudentsTab" Header="Students">
+                    <DataGrid Height="350"
+                              AutoGenerateColumns="False"
+                              x:Name="StudentsDataGrid"
+                              ItemsSource="{Binding StudentDtos, UpdateSourceTrigger=PropertyChanged}"
+                              SelectedItem="{Binding SelectedStudent, UpdateSourceTrigger=PropertyChanged}"
+                              SelectionMode="Single" IsReadOnly="True">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Index" Binding="{Binding Index}"/>
+                            <DataGridTextColumn Header="Ime" Binding="{Binding Name}"/>
+                            <DataGridTextColumn Header="Prezime" Binding="{Binding LastName}"/>
+                            <DataGridTextColumn Header="Godina Studija" Binding="{Binding CurrentYearOfStudy}"/>
+                            <DataGridTextColumn Header="Status" Binding="{Binding Status}"/>
+                            <DataGridTextColumn Header="Prosek" Binding="{Binding AverageGrade}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
                 </TabItem>
                 <TabItem Name="ProfessorsTab" Header="Professors">
                     <DataGrid Height="350"

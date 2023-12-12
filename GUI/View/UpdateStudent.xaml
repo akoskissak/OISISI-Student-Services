@@ -1,0 +1,70 @@
+﻿<Window x:Class="GUI.View.UpdateStudent"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:GUI.View"
+        mc:Ignorable="d"
+        Title="UpdateStudent" Height="auto" Width="auto">
+    <Grid>
+        <Grid Margin="20, 20, 20, 20">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="27"/>
+                <RowDefinition Height="27"/>
+                <RowDefinition Height="27"/>
+                <RowDefinition Height="27"/>
+                <RowDefinition Height="27"/>
+                <RowDefinition Height="27"/>
+                <RowDefinition Height="27"/>
+                <RowDefinition Height="27"/>
+                <RowDefinition Height="27"/>
+                <RowDefinition Height="27"/>
+                <RowDefinition Height="27"/>
+                <RowDefinition Height="27"/>
+                <RowDefinition Height="27"/>
+                <RowDefinition Height="27"/>
+                <RowDefinition Height="27"/>
+                <RowDefinition Height="27"/>
+            </Grid.RowDefinitions>
+
+            <Label HorizontalAlignment="Center" Content="Lastname" Grid.Column="0" Grid.Row="0"/>
+            <Label HorizontalAlignment="Center" Content="Name" Grid.Column="0" Grid.Row="1"/>
+            <Label HorizontalAlignment="Center" Content="DateOfBirth" Grid.Column="0" Grid.Row="2"/>
+            <Label HorizontalAlignment="Center" Content="Street" Grid.Column="0" Grid.Row="3"/>
+            <Label HorizontalAlignment="Center" Content="Number" Grid.Column="0" Grid.Row="4"/>
+            <Label HorizontalAlignment="Center" Content="City" Grid.Column="0" Grid.Row="5"/>
+            <Label HorizontalAlignment="Center" Content="Country" Grid.Column="0" Grid.Row="6"/>
+            <Label HorizontalAlignment="Center" Content="PhoneNumber" Grid.Column="0" Grid.Row="7"/>
+            <Label HorizontalAlignment="Center" Content="Email" Grid.Column="0" Grid.Row="8"/>
+            <Label HorizontalAlignment="Center" Content="StudyProgrammeMark" Grid.Column="0" Grid.Row="9"/>
+            <Label HorizontalAlignment="Center" Content="EnrollmentNumber" Grid.Column="0" Grid.Row="10"/>
+            <Label HorizontalAlignment="Center" Content="EnrollmentYear" Grid.Column="0" Grid.Row="11"/>
+            <Label HorizontalAlignment="Center" Content="CurrentYearOfStudy" Grid.Column="0" Grid.Row="12"/>
+            <Label HorizontalAlignment="Center" Content="Status" Grid.Column="0" Grid.Row="13"/>
+            <Label HorizontalAlignment="Center" Content="AverageGrade" Grid.Column="0" Grid.Row="14"/>
+
+            <TextBox BorderBrush="Black" BorderThickness="2" Margin="0,0,0,5" Width="200" Height="22" Grid.Column="1" Grid.Row="0" Text="{Binding Path=StudentDto.Lastname, UpdateSourceTrigger=PropertyChanged}" />
+            <TextBox BorderBrush="Black" BorderThickness="2" Margin="0,0,0,5" Width="200" Height="22" Grid.Column="1" Grid.Row="1" Text="{Binding Path=StudentDto.Name, UpdateSourceTrigger=PropertyChanged}" />
+            <TextBox BorderBrush="Black" BorderThickness="2" Margin="0,0,0,5" Width="200" Height="22" Grid.Column="1" Grid.Row="2" Text="{Binding Path=StudentDto.DateOfBirth, UpdateSourceTrigger=PropertyChanged}" />
+            <TextBox BorderBrush="Black" BorderThickness="2" Margin="0,0,0,5" Width="200" Height="22" Grid.Column="1" Grid.Row="3" Text="{Binding Path=StudentDto.Street, UpdateSourceTrigger=PropertyChanged}" />
+            <TextBox BorderBrush="Black" BorderThickness="2" Margin="0,0,0,5" Width="200" Height="22" Grid.Column="1" Grid.Row="4" Text="{Binding Path=StudentDto.Number, UpdateSourceTrigger=PropertyChanged}" />
+            <TextBox BorderBrush="Black" BorderThickness="2" Margin="0,0,0,5" Width="200" Height="22" Grid.Column="1" Grid.Row="5" Text="{Binding Path=StudentDto.City, UpdateSourceTrigger=PropertyChanged}" />
+            <TextBox BorderBrush="Black" BorderThickness="2" Margin="0,0,0,5" Width="200" Height="22" Grid.Column="1" Grid.Row="6" Text="{Binding Path=StudentDto.Country, UpdateSourceTrigger=PropertyChanged}" />
+            <TextBox BorderBrush="Black" BorderThickness="2" Margin="0,0,0,5" Width="200" Height="22" Grid.Column="1" Grid.Row="7" Text="{Binding Path=StudentDto.PhoneNumber, UpdateSourceTrigger=PropertyChanged}" />
+            <TextBox BorderBrush="Black" BorderThickness="2" Margin="0,0,0,5" Width="200" Height="22" Grid.Column="1" Grid.Row="8" Text="{Binding Path=StudentDto.Email, UpdateSourceTrigger=PropertyChanged}" />
+            <TextBox BorderBrush="Black" BorderThickness="2" Margin="0,0,0,5" Width="200" Height="22" Grid.Column="1" Grid.Row="9" Text="{Binding Path=StudentDto.StudyProgrammeMark, UpdateSourceTrigger=PropertyChanged}" />
+            <TextBox BorderBrush="Black" BorderThickness="2" Margin="0,0,0,5" Width="200" Height="22" Grid.Column="1" Grid.Row="10" Text="{Binding Path=StudentDto.EnrollmentNumber, UpdateSourceTrigger=PropertyChanged}" />
+            <TextBox BorderBrush="Black" BorderThickness="2" Margin="0,0,0,5" Width="200" Height="22" Grid.Column="1" Grid.Row="11" Text="{Binding Path=StudentDto.EnrollmentYear, UpdateSourceTrigger=PropertyChanged}" />
+            <TextBox BorderBrush="Black" BorderThickness="2" Margin="0,0,0,5" Width="200" Height="22" Grid.Column="1" Grid.Row="12" Text="{Binding Path=StudentDto.CurrentYearOfStudy, UpdateSourceTrigger=PropertyChanged}" />
+            <TextBox BorderBrush="Black" BorderThickness="2" Margin="0,0,0,5" Width="200" Height="22" Grid.Column="1" Grid.Row="13" Text="{Binding Path=StudentDto.Status, UpdateSourceTrigger=PropertyChanged}" />
+            <TextBox BorderBrush="Black" BorderThickness="2" Margin="0,0,0,5" Width="200" Height="22" Grid.Column="1" Grid.Row="14" Text="{Binding Path=StudentDto.AverageGrade, UpdateSourceTrigger=PropertyChanged}" />
+            <Button Content="Update" BorderThickness="1" Grid.Column="0" Grid.Row="15" Width="60" Height="20" VerticalContentAlignment="Center" HorizontalAlignment="Right" Margin="0,0,50,0" Click="Update_Button_Click" />
+            <Button Content="Cancel" BorderThickness="1" Grid.Column="1" Grid.Row="15" Width="60" Height="20" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="50,0,0,0" Click="Cancel_Button_Click" />
+        </Grid>
+    </Grid>
+</Window>
