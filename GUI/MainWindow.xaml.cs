@@ -28,12 +28,19 @@ namespace GUI
     public partial class MainWindow : Window, IObserver
     {
         public ObservableCollection<ProfessorDTO> ProfessorDtos { get; set; }
-        public ProfessorDTO SelectedProfessor { get; set; }
-        private ProfessorDAO _professorDao { get; set; }
-
+        public ObservableCollection<SubjectDTO> SubjectDtos { get; set; }
         public ObservableCollection<StudentDTO> StudentDtos { get; set; }
+        
+        public ProfessorDTO SelectedProfessor { get; set; }
+
+        public SubjectDTO SelectedSubject { get; set; }
+        
         public StudentDTO SelectedStudent { get; set; }
-        private StudentDAO _studentDao { get; set; }
+        
+        private ProfessorDAO _professorDao;
+        private SubjectDAO _subjectDao;
+        private StudentDAO _studentDao;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -46,6 +53,10 @@ namespace GUI
             _studentDao = new StudentDAO();
             _studentDao.StudentObservable.Subscribe(this);
 
+            SubjectDtos = new ObservableCollection<SubjectDTO>();
+            _subjectDao = new SubjectDAO();
+            _subjectDao.SubjectObservable.Subscribe(this);
+
             Update();
         }
 
@@ -54,8 +65,8 @@ namespace GUI
             TabItem ti = Tabs.SelectedItem as TabItem;
             if (ti != null && ti.Name != null && ti.Name == "ProfessorsTab")
             {
-                AddProfessor addProfessor = new AddProfessor(_professorDao);
-                addProfessor.Show();
+                AddProfessor addProfessorWindow = new AddProfessor(_professorDao);
+                addProfessorWindow.Show();
             }
 
             if(ti != null && ti.Name != null && ti.Name == "StudentsTab")
@@ -66,14 +77,24 @@ namespace GUI
         }
 
         
-        private void ClickAddProfessor(object sender, RoutedEventArgs e)
+        //private void ClickAddProfessor(object sender, RoutedEventArgs e)
+        //{
+        //    AddProfessor addProfessorWindow = new AddProfessor(_professorDao);
+        //    addProfessorWindow.Show();
+        //}
+        private void Update_Click(object sender, RoutedEventArgs e)
         {
-            AddProfessor addProfessorWindow = new AddProfessor(_professorDao);
-            addProfessorWindow.Show();
-        }
-        private void MenuItem_Click_1(object sender, RoutedEventArgs e)
-        {
-
+            TabItem ti = Tabs.SelectedItem as TabItem;
+            if (ti != null && ti.Name != null && ti.Name == "ProfessorsTab")
+            {
+                if (SelectedProfessor != null)
+                {
+                    UpdateProfessor updateProfessorWindow = new UpdateProfessor(_professorDao, SelectedProfessor);
+                    updateProfessorWindow.Show();
+                }
+                else
+                    MessageBox.Show("Please choose a professor to update!");
+            }
         }
 
         public void Update()
@@ -85,6 +106,10 @@ namespace GUI
             StudentDtos.Clear();
             foreach(Student student in _studentDao.GetAllStudents())
                 StudentDtos.Add(new StudentDTO(student));
+
+            SubjectDtos.Clear();
+            foreach (Subject subject in _subjectDao.GetAllSubjects())
+                SubjectDtos.Add(new SubjectDTO(subject));
         }
 
         private void Delete_Click(object sender, RoutedEventArgs e)
@@ -97,14 +122,30 @@ namespace GUI
                 else
                     _professorDao.RemoveProfessor(SelectedProfessor.Id);
             }
-
-            if(ti != null && ti.Name != null && ti.Name == "StudentsTab")
+            else if(ti != null && ti.Name != null && ti.Name == "StudentsTab")
             {
                 if (SelectedStudent == null)
                     MessageBox.Show("Please choose a student to delete!");
                 else
                     _studentDao.RemoveStudent(SelectedStudent.Id);
             }
+            else if (ti != null && ti.Name != null && ti.Name == "SubjectsTab")
+            {
+                if (SelectedSubject == null)
+                    MessageBox.Show("Please choose a subject to delete!");
+                else
+                    _subjectDao.RemoveSubject(SelectedSubject.Id);
+            }
+        }
+
+        private void ProfessorsDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            SelectedProfessor = ProfessorsDataGrid.SelectedItem as ProfessorDTO;
+        }
+
+        private void SubjectDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            SelectedSubject = SubjectsDataGrid.SelectedItem as SubjectDTO;
         }
     }
 }

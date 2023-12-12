@@ -1,4 +1,5 @@
 using CLI.Model;
+using CLI.Observer;
 using CLI.Storage;
 
 namespace CLI.DAO;
@@ -7,10 +8,14 @@ public class SubjectDAO
 {
     private readonly List<Subject> _subjects;
     private readonly Storage<Subject> _subjectStorage;
+
+    public Observable SubjectObservable;
+
     public SubjectDAO()
     {
         _subjectStorage = new Storage<Subject>("subjects.txt");
         _subjects = _subjectStorage.Load();
+        SubjectObservable = new Observable();
     }
     private int GenerateSubjectId()
     {
@@ -23,6 +28,8 @@ public class SubjectDAO
         subject.Id = GenerateSubjectId();
         _subjects.Add(subject);
         _subjectStorage.Save(_subjects);
+        SubjectObservable.NotifyObservers();
+
         return subject;
     }
 
@@ -65,11 +72,12 @@ public class SubjectDAO
         oldSubject.SubjectCode = subject.SubjectCode;
         oldSubject.Name = subject.Name;
         oldSubject.ProfessorId = subject.ProfessorId;
-        oldSubject.Semestar = subject.Semestar;
+        oldSubject.Semester = subject.Semester;
         oldSubject.YearOfStudy = subject.YearOfStudy;
         oldSubject.Espb = subject.Espb;
         
         _subjectStorage.Save(_subjects);
+        SubjectObservable.NotifyObservers();
         return oldSubject;
     }
 
@@ -89,6 +97,7 @@ public class SubjectDAO
 
         _subjects.Remove(subject);
         _subjectStorage.Save(_subjects);
+        SubjectObservable.NotifyObservers();
         return subject;
     }
 

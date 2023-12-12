@@ -16,7 +16,7 @@ namespace GUI.DTO
 {
     public class ProfessorDTO : INotifyPropertyChanged
     {
-        public int Id { get; set; } 
+        private int _id;
         private string _lastname;
         private string _name;
         private DateOnly _dateOfBirth;
@@ -30,6 +30,21 @@ namespace GUI.DTO
         private string _title;
         private int _yearsOfService;
 
+        public int Id
+        {
+            get
+            {
+                return _id;
+            }
+            set
+            {
+                if (value != _id)
+                {
+                    _id = value;
+                    OnPropertyChanged("Id");
+                }
+            }
+        }
         public string Lastname
         {
             get
@@ -174,17 +189,17 @@ namespace GUI.DTO
             }
         }
 
-        public int IdNumber
+        public string IdNumber
         {
             get
             {
-                return _idNumber;
+                return _idNumber.ToString();
             }
             set
             {
-                if (value != _idNumber)
+                if (value != _idNumber.ToString())
                 {
-                    _idNumber = value;
+                    _idNumber = int.Parse(value);
                     OnPropertyChanged("Id");
                 }
             }
@@ -206,17 +221,17 @@ namespace GUI.DTO
             }
         }
 
-        public int YearsOfService
+        public string YearsOfService
         {
             get
             {
-                return _yearsOfService;
+                return _yearsOfService.ToString();
             }
             set
             {
-                if (value != _yearsOfService)
+                if (value != _yearsOfService.ToString())
                 {
-                    _yearsOfService = value;
+                    _yearsOfService = int.Parse(value);
                     OnPropertyChanged("Years");
                 }
             }
@@ -246,9 +261,9 @@ namespace GUI.DTO
             Country = professor.Address.Country;
             PhoneNumber = professor.PhoneNumber;
             Email = professor.Email;
-            IdNumber = professor.Idnumber;
+            IdNumber = professor.Idnumber.ToString();
             Title = professor.Title;
-            YearsOfService = professor.YearsOfService;
+            YearsOfService = professor.YearsOfService.ToString();
             Id = professor.Id;
         }
 
