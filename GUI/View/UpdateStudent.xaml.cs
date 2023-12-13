@@ -35,6 +35,9 @@ namespace GUI.View
             DataContext = this;
             StudentDto = studentDto;
             this._studentDao = studentDao;
+
+            statusComboBox.Items.Clear();
+            statusComboBox.ItemsSource = Enum.GetValues(typeof(Status));
         }
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {

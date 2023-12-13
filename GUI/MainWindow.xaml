@@ -77,8 +77,7 @@
                 <TextBlock x:Name="DisplayDateTextBlock" Text="" HorizontalAlignment="Right"></TextBlock>
         </DockPanel>
 
-
-        <Grid DockPanel.Dock="Top">
+        <DockPanel DockPanel.Dock="Top">
             <TabControl Name="Tabs">
                 <TabItem Name="StudentsTab" Header="Students">
                     <DataGrid Height="350"
@@ -132,6 +131,7 @@
                     </DataGrid>
                 </TabItem>
             </TabControl>
-        </Grid>
+        </DockPanel>
+
     </DockPanel>
 </Window>

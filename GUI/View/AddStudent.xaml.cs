@@ -1,9 +1,12 @@
 ﻿using CLI.DAO;
+using CLI.Model;
 using GUI.DTO;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
@@ -33,6 +36,9 @@ namespace GUI.View
             DataContext = this;
             StudentDto = new StudentDTO();
             this._studentDao = studentDao;
+
+            statusComboBox.Items.Clear();
+            statusComboBox.ItemsSource = Enum.GetValues(typeof(Status));
         }
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
@@ -48,5 +54,6 @@ namespace GUI.View
         {
             Close();
         }
+
     }
 }

@@ -1,4 +1,5 @@
 using CLI.Model;
+using CLI.Observer;
 using CLI.Storage;
 
 namespace CLI.DAO;
@@ -8,7 +9,7 @@ public class DepartmentDAO
     private readonly List<Department> _departments;
     private readonly Storage<Department> _departmentStorage;
 
-
+    public Observable DepartmentObservable;
     public DepartmentDAO()
     {
         _departmentStorage = new Storage<Department>("departments.txt");
@@ -27,6 +28,7 @@ public class DepartmentDAO
         department.Id = GenerateDepartmentId();
         _departments.Add(department);
         _departmentStorage.Save(_departments);
+        DepartmentObservable.NotifyObservers();
         return department;
     }
 
@@ -42,6 +44,7 @@ public class DepartmentDAO
             oldDepartment.Chief = department.Chief;
         
         _departmentStorage.Save(_departments);
+        DepartmentObservable.NotifyObservers();
         return oldDepartment;
     }
 
@@ -65,6 +68,7 @@ public class DepartmentDAO
 
         _departments.Remove(department);
         _departmentStorage.Save(_departments);
+        DepartmentObservable.NotifyObservers();
         return department;
     }
 

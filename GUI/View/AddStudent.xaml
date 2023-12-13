@@ -29,7 +29,6 @@
                 <RowDefinition Height="27"/>
                 <RowDefinition Height="27"/>
                 <RowDefinition Height="27"/>
-                <RowDefinition Height="27"/>
             </Grid.RowDefinitions>
 
             <Label HorizontalAlignment="Center" Content="Lastname" Grid.Column="0" Grid.Row="0"/>
@@ -46,7 +45,6 @@
             <Label HorizontalAlignment="Center" Content="EnrollmentYear" Grid.Column="0" Grid.Row="11"/>
             <Label HorizontalAlignment="Center" Content="CurrentYearOfStudy" Grid.Column="0" Grid.Row="12"/>
             <Label HorizontalAlignment="Center" Content="Status" Grid.Column="0" Grid.Row="13"/>
-            <Label HorizontalAlignment="Center" Content="AverageGrade" Grid.Column="0" Grid.Row="14"/>
 
 
             <TextBox BorderBrush="Black" BorderThickness="2" Margin="0,0,0,5" Width="200" Height="22" Grid.Column="1" Grid.Row="0" Text="{Binding Path=StudentDto.LastName, UpdateSourceTrigger=PropertyChanged}" />
@@ -62,11 +60,10 @@
             <TextBox BorderBrush="Black" BorderThickness="2" Margin="0,0,0,5" Width="200" Height="22" Grid.Column="1" Grid.Row="10" Text="{Binding Path=StudentDto.EnrollmentNumber, UpdateSourceTrigger=PropertyChanged}" />
             <TextBox BorderBrush="Black" BorderThickness="2" Margin="0,0,0,5" Width="200" Height="22" Grid.Column="1" Grid.Row="11" Text="{Binding Path=StudentDto.EnrollmentYear, UpdateSourceTrigger=PropertyChanged}" />
             <TextBox BorderBrush="Black" BorderThickness="2" Margin="0,0,0,5" Width="200" Height="22" Grid.Column="1" Grid.Row="12" Text="{Binding Path=StudentDto.CurrentYearOfStudy, UpdateSourceTrigger=PropertyChanged}" />
-            <TextBox BorderBrush="Black" BorderThickness="2" Margin="0,0,0,5" Width="200" Height="22" Grid.Column="1" Grid.Row="13" Text="{Binding Path=StudentDto.Status, UpdateSourceTrigger=PropertyChanged}" />
-            <TextBox BorderBrush="Black" BorderThickness="2" Margin="0,0,0,5" Width="200" Height="22" Grid.Column="1" Grid.Row="14" Text="{Binding Path=StudentDto.AverageGrade, UpdateSourceTrigger=PropertyChanged}" />
-            
-            <Button Content="Add" BorderThickness="1" Grid.Column="0" Grid.Row="15" Width="60" Height="20" VerticalContentAlignment="Center" HorizontalAlignment="Right" Margin="0,0,50,0" Click="Add_Button_Click" />
-            <Button Content="Cancel" BorderThickness="1" Grid.Column="1" Grid.Row="15" Width="60" Height="20" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="50,0,0,0" Click="Cancel_Button_Click" />
+            <ComboBox Name="statusComboBox" Width="200" Height="22" Grid.Column="1" Grid.Row="13" SelectedItem="{Binding StudentDto.Status, UpdateSourceTrigger=PropertyChanged}"/>
+
+            <Button Content="Add" BorderThickness="1" Grid.Column="0" Grid.Row="14" Width="60" Height="20" VerticalContentAlignment="Center" HorizontalAlignment="Right" Margin="0,0,50,0" Click="Add_Button_Click" />
+            <Button Content="Cancel" BorderThickness="1" Grid.Column="1" Grid.Row="14" Width="60" Height="20" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="50,0,0,0" Click="Cancel_Button_Click" />
         </Grid>
     </Grid>
 </Window>
