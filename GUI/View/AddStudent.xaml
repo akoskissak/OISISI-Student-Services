@@ -1,9 +1,10 @@
-﻿<Window x:Class="GUI.View.AddStudent"
+﻿<Window
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GUI.View"
+        xmlns:VisualBasic="clr-namespace:Microsoft.VisualBasic;assembly=Microsoft.VisualBasic.Core" x:Class="GUI.View.AddStudent"
         mc:Ignorable="d"
         Title="AddStudent" Height="auto" Width="auto">
     <Grid>
@@ -47,20 +48,22 @@
             <Label HorizontalAlignment="Center" Content="Status" Grid.Column="0" Grid.Row="13"/>
 
 
-            <TextBox BorderBrush="Black" BorderThickness="2" Margin="0,0,0,5" Width="200" Height="22" Grid.Column="1" Grid.Row="0" Text="{Binding Path=StudentDto.LastName, UpdateSourceTrigger=PropertyChanged}" />
-            <TextBox BorderBrush="Black" BorderThickness="2" Margin="0,0,0,5" Width="200" Height="22" Grid.Column="1" Grid.Row="1" Text="{Binding Path=StudentDto.Name, UpdateSourceTrigger=PropertyChanged}" />
-            <TextBox BorderBrush="Black" BorderThickness="2" Margin="0,0,0,5" Width="200" Height="22" Grid.Column="1" Grid.Row="2" Text="{Binding Path=StudentDto.DateOfBirth, UpdateSourceTrigger=PropertyChanged}" />
-            <TextBox BorderBrush="Black" BorderThickness="2" Margin="0,0,0,5" Width="200" Height="22" Grid.Column="1" Grid.Row="3" Text="{Binding Path=StudentDto.Street, UpdateSourceTrigger=PropertyChanged}" />
-            <TextBox BorderBrush="Black" BorderThickness="2" Margin="0,0,0,5" Width="200" Height="22" Grid.Column="1" Grid.Row="4" Text="{Binding Path=StudentDto.Number, UpdateSourceTrigger=PropertyChanged}" />
-            <TextBox BorderBrush="Black" BorderThickness="2" Margin="0,0,0,5" Width="200" Height="22" Grid.Column="1" Grid.Row="5" Text="{Binding Path=StudentDto.City, UpdateSourceTrigger=PropertyChanged}" />
-            <TextBox BorderBrush="Black" BorderThickness="2" Margin="0,0,0,5" Width="200" Height="22" Grid.Column="1" Grid.Row="6" Text="{Binding Path=StudentDto.Country, UpdateSourceTrigger=PropertyChanged}" />
-            <TextBox BorderBrush="Black" BorderThickness="2" Margin="0,0,0,5" Width="200" Height="22" Grid.Column="1" Grid.Row="7" Text="{Binding Path=StudentDto.PhoneNumber, UpdateSourceTrigger=PropertyChanged}" />
-            <TextBox BorderBrush="Black" BorderThickness="2" Margin="0,0,0,5" Width="200" Height="22" Grid.Column="1" Grid.Row="8" Text="{Binding Path=StudentDto.Email, UpdateSourceTrigger=PropertyChanged}" />
-            <TextBox BorderBrush="Black" BorderThickness="2" Margin="0,0,0,5" Width="200" Height="22" Grid.Column="1" Grid.Row="9" Text="{Binding Path=StudentDto.StudyProgrammeMark, UpdateSourceTrigger=PropertyChanged}" />
-            <TextBox BorderBrush="Black" BorderThickness="2" Margin="0,0,0,5" Width="200" Height="22" Grid.Column="1" Grid.Row="10" Text="{Binding Path=StudentDto.EnrollmentNumber, UpdateSourceTrigger=PropertyChanged}" />
-            <TextBox BorderBrush="Black" BorderThickness="2" Margin="0,0,0,5" Width="200" Height="22" Grid.Column="1" Grid.Row="11" Text="{Binding Path=StudentDto.EnrollmentYear, UpdateSourceTrigger=PropertyChanged}" />
-            <TextBox BorderBrush="Black" BorderThickness="2" Margin="0,0,0,5" Width="200" Height="22" Grid.Column="1" Grid.Row="12" Text="{Binding Path=StudentDto.CurrentYearOfStudy, UpdateSourceTrigger=PropertyChanged}" />
-            <ComboBox Name="statusComboBox" Width="200" Height="22" Grid.Column="1" Grid.Row="13" SelectedItem="{Binding StudentDto.Status, UpdateSourceTrigger=PropertyChanged}"/>
+            <TextBox BorderBrush="Black" BorderThickness="2" Margin="0,0,0,5" Width="200" Height="22" Grid.Column="1" Grid.Row="0" Text="{Binding StudentDto.LastName, UpdateSourceTrigger=PropertyChanged}" />
+            <TextBox BorderBrush="Black" BorderThickness="2" Margin="0,0,0,5" Width="200" Height="22" Grid.Column="1" Grid.Row="1" Text="{Binding StudentDto.Name, UpdateSourceTrigger=PropertyChanged}" />
+            <TextBox BorderBrush="Black" BorderThickness="2" Margin="0,0,0,5" Width="200" Height="22" Grid.Column="1" Grid.Row="2" Text="{Binding StudentDto.DateOfBirth, UpdateSourceTrigger=PropertyChanged}" />
+            <TextBox BorderBrush="Black" BorderThickness="2" Margin="0,0,0,5" Width="200" Height="22" Grid.Column="1" Grid.Row="3" Text="{Binding StudentDto.Street, UpdateSourceTrigger=PropertyChanged}" />
+            <TextBox BorderBrush="Black" BorderThickness="2" Margin="0,0,0,5" Width="200" Height="22" Grid.Column="1" Grid.Row="4" Text="{Binding StudentDto.Number, UpdateSourceTrigger=PropertyChanged}" />
+            <TextBox BorderBrush="Black" BorderThickness="2" Margin="0,0,0,5" Width="200" Height="22" Grid.Column="1" Grid.Row="5" Text="{Binding StudentDto.City, UpdateSourceTrigger=PropertyChanged}" />
+            <TextBox BorderBrush="Black" BorderThickness="2" Margin="0,0,0,5" Width="200" Height="22" Grid.Column="1" Grid.Row="6" Text="{Binding StudentDto.Country, UpdateSourceTrigger=PropertyChanged}" />
+            <TextBox BorderBrush="Black" BorderThickness="2" Margin="0,0,0,5" Width="200" Height="22" Grid.Column="1" Grid.Row="7" Text="{Binding StudentDto.PhoneNumber, UpdateSourceTrigger=PropertyChanged}" />
+            <TextBox BorderBrush="Black" BorderThickness="2" Margin="0,0,0,5" Width="200" Height="22" Grid.Column="1" Grid.Row="8" Text="{Binding StudentDto.Email, UpdateSourceTrigger=PropertyChanged}" />
+            <TextBox BorderBrush="Black" BorderThickness="2" Margin="0,0,0,5" Width="200" Height="22" Grid.Column="1" Grid.Row="9" Text="{Binding StudentDto.StudyProgrammeMark, UpdateSourceTrigger=PropertyChanged}" />
+            <TextBox BorderBrush="Black" BorderThickness="2" Margin="0,0,0,5" Width="200" Height="22" Grid.Column="1" Grid.Row="10" Text="{Binding StudentDto.EnrollmentNumber, UpdateSourceTrigger=PropertyChanged}" />
+            <TextBox BorderBrush="Black" BorderThickness="2" Margin="0,0,0,5" Width="200" Height="22" Grid.Column="1" Grid.Row="11" Text="{Binding StudentDto.EnrollmentYear, UpdateSourceTrigger=PropertyChanged}" />
+            <TextBox BorderBrush="Black" BorderThickness="2" Margin="0,0,0,5" Width="200" Height="22" Grid.Column="1" Grid.Row="12" Text="{Binding StudentDto.CurrentYearOfStudy, UpdateSourceTrigger=PropertyChanged}" />
+            <ComboBox x:Name="statusComboBox" Width="200" Height="22" Grid.Column="1" Grid.Row="13" SelectedItem="{Binding StudentDto.Status, UpdateSourceTrigger=PropertyChanged}" IsDropDownOpen="True">
+
+            </ComboBox>
 
             <Button Content="Add" BorderThickness="1" Grid.Column="0" Grid.Row="14" Width="60" Height="20" VerticalContentAlignment="Center" HorizontalAlignment="Right" Margin="0,0,50,0" Click="Add_Button_Click" />
             <Button Content="Cancel" BorderThickness="1" Grid.Column="1" Grid.Row="14" Width="60" Height="20" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="50,0,0,0" Click="Cancel_Button_Click" />

@@ -1,4 +1,5 @@
-﻿using CLI.DAO;
+﻿using CLI.Controller;
+using CLI.DAO;
 using CLI.Model;
 using GUI.DTO;
 using System;
@@ -26,30 +27,24 @@ namespace GUI.View
     {
         public StudentDTO StudentDto { get; set; }
 
-        private StudentDAO _studentDao;
+        private StudentController studentController;
 
-        public event PropertyChangedEventHandler? PropertyChanged;
-        public UpdateStudent(StudentDAO studentDao, StudentDTO studentDto)
+        public UpdateStudent(StudentController studentController, StudentDTO studentDto)
         {
             InitializeComponent();
             DataContext = this;
             StudentDto = studentDto;
-            this._studentDao = studentDao;
+            this.studentController = studentController;
 
             statusComboBox.Items.Clear();
             statusComboBox.ItemsSource = Enum.GetValues(typeof(Status));
-        }
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-
         }
 
         private void Update_Button_Click(object sender, RoutedEventArgs e)
         {
             Student student = StudentDto.ToStudent();
             student.Id = StudentDto.Id;
-            _studentDao.UpdateStudent(student);
+            studentController.Update(student);
             Close();
         }
 

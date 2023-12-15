@@ -77,61 +77,59 @@
                 <TextBlock x:Name="DisplayDateTextBlock" Text="" HorizontalAlignment="Right"></TextBlock>
         </DockPanel>
 
-        <DockPanel DockPanel.Dock="Top">
-            <TabControl Name="Tabs">
-                <TabItem Name="StudentsTab" Header="Students">
-                    <DataGrid Height="350"
+        <TabControl Name="Tabs" DockPanel.Dock="Top">
+            <TabItem Name="StudentsTab" Header="Students">
+                <DataGrid Height="350"
                               AutoGenerateColumns="False"
                               x:Name="StudentsDataGrid"
                               ItemsSource="{Binding StudentDtos, UpdateSourceTrigger=PropertyChanged}"
                               SelectedItem="{Binding SelectedStudent, UpdateSourceTrigger=PropertyChanged}"
                               SelectionMode="Single" IsReadOnly="True"
                               SelectionChanged="StudentsDataGrid_SelectionChanged">
-                        <DataGrid.Columns>
-                            <DataGridTextColumn Header="Index" Binding="{Binding Index}"/>
-                            <DataGridTextColumn Header="Ime" Binding="{Binding Name}"/>
-                            <DataGridTextColumn Header="Prezime" Binding="{Binding LastName}"/>
-                            <DataGridTextColumn Header="Godina Studija" Binding="{Binding CurrentYearOfStudy}"/>
-                            <DataGridTextColumn Header="Status" Binding="{Binding Status}"/>
-                            <DataGridTextColumn Header="Prosek" Binding="{Binding AverageGrade}"/>
-                        </DataGrid.Columns>
-                    </DataGrid>
-                </TabItem>
-                <TabItem Name="ProfessorsTab" Header="Professors">
-                    <DataGrid Height="350"
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Index" Binding="{Binding Index}"/>
+                        <DataGridTextColumn Header="Ime" Binding="{Binding Name}"/>
+                        <DataGridTextColumn Header="Prezime" Binding="{Binding LastName}"/>
+                        <DataGridTextColumn Header="Godina Studija" Binding="{Binding CurrentYearOfStudy}"/>
+                        <DataGridTextColumn Header="Status" Binding="{Binding Status}"/>
+                        <DataGridTextColumn Header="Prosek" Binding="{Binding AverageGrade}"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </TabItem>
+            <TabItem Name="ProfessorsTab" Header="Professors">
+                <DataGrid Height="350"
                               AutoGenerateColumns="False"
                               x:Name="ProfessorsDataGrid"
                               ItemsSource="{Binding ProfessorDtos, UpdateSourceTrigger=PropertyChanged}"
                               SelectedItem="{Binding SelectedProfessor, UpdateSourceTrigger=PropertyChanged}"
                               SelectionMode="Single" IsReadOnly="True"
                               SelectionChanged="ProfessorsDataGrid_SelectionChanged">
-                        <DataGrid.Columns>
-                            <DataGridTextColumn Header="Name" Binding="{Binding Name}" />
-                            <DataGridTextColumn Header="Lastname" Binding="{Binding Lastname}" />
-                            <DataGridTextColumn Header="Title" Binding="{Binding Title}" />
-                            <DataGridTextColumn Header="E-mail" Binding="{Binding Email}" />
-                        </DataGrid.Columns>
-                    </DataGrid>
-                </TabItem>
-                <TabItem Name="SubjectsTab" Header="Subjects">
-                    <DataGrid Height="350"
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Name" Binding="{Binding Name}" />
+                        <DataGridTextColumn Header="Lastname" Binding="{Binding Lastname}" />
+                        <DataGridTextColumn Header="Title" Binding="{Binding Title}" />
+                        <DataGridTextColumn Header="E-mail" Binding="{Binding Email}" />
+                    </DataGrid.Columns>
+                </DataGrid>
+            </TabItem>
+            <TabItem Name="SubjectsTab" Header="Subjects">
+                <DataGrid Height="350"
                               AutoGenerateColumns="False"
                               x:Name="SubjectsDataGrid"
                               ItemsSource="{Binding SubjectDtos, UpdateSourceTrigger=PropertyChanged}"
                               SelectedItem="{Binding SelectedSubject, UpdateSourceTrigger=PropertyChanged}"
                               SelectionMode="Single" IsReadOnly="True"
                               SelectionChanged="SubjectDataGrid_SelectionChanged">
-                        <DataGrid.Columns>
-                            <DataGridTextColumn Header="SubjectCode" Binding="{Binding SubjectCode}" />
-                            <DataGridTextColumn Header="Name" Binding="{Binding Name}" />
-                            <DataGridTextColumn Header="Epsb" Binding="{Binding Espb}" />
-                            <DataGridTextColumn Header="YearOfStudy" Binding="{Binding YearOfStudy}" />
-                            <DataGridTextColumn Header="Semester" Binding="{Binding Semester}" />
-                        </DataGrid.Columns>
-                    </DataGrid>
-                </TabItem>
-            </TabControl>
-        </DockPanel>
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="SubjectCode" Binding="{Binding SubjectCode}" />
+                        <DataGridTextColumn Header="Name" Binding="{Binding Name}" />
+                        <DataGridTextColumn Header="Epsb" Binding="{Binding Espb}" />
+                        <DataGridTextColumn Header="YearOfStudy" Binding="{Binding YearOfStudy}" />
+                        <DataGridTextColumn Header="Semester" Binding="{Binding Semester}" />
+                    </DataGrid.Columns>
+                </DataGrid>
+            </TabItem>
+        </TabControl>
 
     </DockPanel>
 </Window>

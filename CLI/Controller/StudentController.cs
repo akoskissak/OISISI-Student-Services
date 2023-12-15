@@ -1,0 +1,35 @@
+﻿using CLI.DAO;
+using CLI.Model;
+using CLI.Observer;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace CLI.Controller
+{
+    public class StudentController
+    {
+        private readonly StudentDAO _studentDao;
+
+        public StudentController()
+        {
+            _studentDao = new StudentDAO();
+        }
+
+        public void Add(Student student)
+        {
+            _studentDao.AddStudent(student);
+        }
+
+        public void Update(Student student)
+        {
+            _studentDao.UpdateStudent(student);
+        }
+        public void Subscribe(IObserver observer)
+        {
+            _studentDao.StudentObservable.Subscribe(observer);
+        }
+    }
+}
