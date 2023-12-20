@@ -20,6 +20,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using CLI.Controller;
 
 namespace GUI
 {
@@ -38,26 +39,29 @@ namespace GUI
         
         public StudentDTO SelectedStudent { get; set; }
         
-        private ProfessorDAO _professorDao;
-        private SubjectDAO _subjectDao;
-        private StudentDAO _studentDao;
+
+        private ProfessorDAO _professorDao;     //ovo treba brisati
+        private SubjectDAO _subjectDao;         // i ovo i staviti private controller
+        private StudentController studentController { get; set; }         
 
         public MainWindow()
         {
             InitializeComponent();
             DataContext = this;
             ProfessorDtos = new ObservableCollection<ProfessorDTO>();
+            //i ovo treba izmeniti
             _professorDao = new ProfessorDAO();
             _professorDao.ProfessorObservable.Subscribe(this);
-
+            //
             StudentDtos = new ObservableCollection<StudentDTO>();
-            _studentDao = new StudentDAO();
-            _studentDao.StudentObservable.Subscribe(this);
+            studentController = new StudentController();
+            studentController.Subscribe(this);
 
             SubjectDtos = new ObservableCollection<SubjectDTO>();
+            // i ovo
             _subjectDao = new SubjectDAO();
             _subjectDao.SubjectObservable.Subscribe(this);
-
+            ///
             ////
             DispatcherTimer timer = new DispatcherTimer();
             timer.Tick += new EventHandler(UpdateTimer_Tick);
@@ -73,17 +77,17 @@ namespace GUI
             TabItem ti = Tabs.SelectedItem as TabItem;
             if (ti != null && ti.Name != null && ti.Name == "ProfessorsTab")
             {
-                AddProfessor addProfessorWindow = new AddProfessor(_professorDao);
+                AddProfessor addProfessorWindow = new AddProfessor(_professorDao);  //i ovo treba izmeniti
                 addProfessorWindow.Show();
             }
             else if(ti != null && ti.Name != null && ti.Name == "StudentsTab")
             {
-                AddStudent addStudent = new AddStudent(_studentDao);
+                AddStudent addStudent = new AddStudent(studentController);
                 addStudent.Show();
             }
             else if(ti != null && ti.Name != null && ti.Name == "SubjectsTab")
             {
-                AddSubject addSubject = new AddSubject(_subjectDao);
+                AddSubject addSubject = new AddSubject(_subjectDao);        // i ovo treba izmeniti
                 addSubject.Show();
             }
             
@@ -112,7 +116,7 @@ namespace GUI
             {
                 if (SelectedStudent != null)
                 {
-                    UpdateStudent updateStudentWindow = new UpdateStudent(_studentDao, SelectedStudent);
+                    UpdateStudent updateStudentWindow = new UpdateStudent(studentController, SelectedStudent);
                     updateStudentWindow.Show();
                 }
                 else
@@ -137,7 +141,7 @@ namespace GUI
                 ProfessorDtos.Add(new ProfessorDTO(professor));
 
             StudentDtos.Clear();
-            foreach(Student student in _studentDao.GetAllStudents())
+            foreach(Student student in studentController.GetAllStudents())
                 StudentDtos.Add(new StudentDTO(student));
 
             SubjectDtos.Clear();
@@ -160,7 +164,7 @@ namespace GUI
                 if (SelectedStudent == null)
                     MessageBox.Show("Please choose a student to delete!");
                 else
-                    _studentDao.RemoveStudent(SelectedStudent.Id);
+                    studentController.RemoveStudent(SelectedStudent.Id);
             }
             else if (ti != null && ti.Name != null && ti.Name == "SubjectsTab")
             {
