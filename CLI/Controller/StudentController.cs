@@ -27,6 +27,15 @@ namespace CLI.Controller
         {
             _studentDao.UpdateStudent(student);
         }
+
+        public List<Student> GetAllStudents()
+        {
+            return _studentDao.GetAllStudents();
+        }
+        public void RemoveStudent(int studentId)
+        {
+            _studentDao.RemoveStudent(studentId);
+        }
         public void Subscribe(IObserver observer)
         {
             _studentDao.StudentObservable.Subscribe(observer);

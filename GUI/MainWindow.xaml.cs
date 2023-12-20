@@ -116,7 +116,7 @@ namespace GUI
             {
                 if (SelectedStudent != null)
                 {
-                    UpdateStudent updateStudentWindow = new UpdateStudent(_studentDao, SelectedStudent);
+                    UpdateStudent updateStudentWindow = new UpdateStudent(studentController, SelectedStudent);
                     updateStudentWindow.Show();
                 }
                 else
@@ -141,7 +141,7 @@ namespace GUI
                 ProfessorDtos.Add(new ProfessorDTO(professor));
 
             StudentDtos.Clear();
-            foreach(Student student in _studentDao.GetAllStudents())
+            foreach(Student student in studentController.GetAllStudents())
                 StudentDtos.Add(new StudentDTO(student));
 
             SubjectDtos.Clear();
@@ -164,7 +164,7 @@ namespace GUI
                 if (SelectedStudent == null)
                     MessageBox.Show("Please choose a student to delete!");
                 else
-                    _studentDao.RemoveStudent(SelectedStudent.Id);
+                    studentController.RemoveStudent(SelectedStudent.Id);
             }
             else if (ti != null && ti.Name != null && ti.Name == "SubjectsTab")
             {

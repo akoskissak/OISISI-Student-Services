@@ -5,8 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GUI"
         xmlns:ToolBar="http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit"
+        Icon="https://static.vecteezy.com/system/resources/thumbnails/000/511/962/small/57_Student.jpg"
         mc:Ignorable="d"
-        Title="Studentska služba" Height="auto" Width="auto"
+    Title="Studentska služba" Height="auto" Width="auto"
         WindowStartupLocation="CenterScreen">
     <DockPanel>
         <Menu DockPanel.Dock ="Top">

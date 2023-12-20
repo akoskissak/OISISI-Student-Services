@@ -1,9 +1,11 @@
 ﻿using CLI.Controller;
 using CLI.DAO;
 using CLI.Model;
+using CLI.Observer;
 using GUI.DTO;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -25,6 +27,7 @@ namespace GUI.View
     /// </summary>
     public partial class UpdateStudent : Window
     {
+        
         public StudentDTO StudentDto { get; set; }
 
         private StudentController studentController;
@@ -38,6 +41,8 @@ namespace GUI.View
 
             statusComboBox.Items.Clear();
             statusComboBox.ItemsSource = Enum.GetValues(typeof(Status));
+
+
         }
 
         private void Update_Button_Click(object sender, RoutedEventArgs e)
@@ -50,6 +55,7 @@ namespace GUI.View
 
         private void Cancel_Button_Click(object sender, RoutedEventArgs e)
         {
+
             Close();
         }
     }

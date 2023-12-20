@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:GUI.View"
         xmlns:VisualBasic="clr-namespace:Microsoft.VisualBasic;assembly=Microsoft.VisualBasic.Core" x:Class="GUI.View.AddStudent"
         mc:Ignorable="d"
-        Title="AddStudent" Height="auto" Width="auto">
+        Title="AddStudent" Height="680" Width="600">
     <Grid>
         <Grid Margin="20, 20, 20, 20">
             <Grid.ColumnDefinitions>
@@ -15,58 +15,92 @@
             </Grid.ColumnDefinitions>
 
             <Grid.RowDefinitions>
-                <RowDefinition Height="27"/>
-                <RowDefinition Height="27"/>
-                <RowDefinition Height="27"/>
-                <RowDefinition Height="27"/>
-                <RowDefinition Height="27"/>
-                <RowDefinition Height="27"/>
-                <RowDefinition Height="27"/>
-                <RowDefinition Height="27"/>
-                <RowDefinition Height="27"/>
-                <RowDefinition Height="27"/>
-                <RowDefinition Height="27"/>
-                <RowDefinition Height="27"/>
-                <RowDefinition Height="27"/>
-                <RowDefinition Height="27"/>
-                <RowDefinition Height="27"/>
+                <!-- Used Auto for variable height based on content -->
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
 
-            <Label HorizontalAlignment="Center" Content="Lastname" Grid.Column="0" Grid.Row="0"/>
-            <Label HorizontalAlignment="Center" Content="Name" Grid.Column="0" Grid.Row="1"/>
-            <Label HorizontalAlignment="Center" Content="DateOfBirth" Grid.Column="0" Grid.Row="2"/>
-            <Label HorizontalAlignment="Center" Content="Street" Grid.Column="0" Grid.Row="3"/>
-            <Label HorizontalAlignment="Center" Content="Number" Grid.Column="0" Grid.Row="4"/>
-            <Label HorizontalAlignment="Center" Content="City" Grid.Column="0" Grid.Row="5"/>
-            <Label HorizontalAlignment="Center" Content="Country" Grid.Column="0" Grid.Row="6"/>
-            <Label HorizontalAlignment="Center" Content="PhoneNumber" Grid.Column="0" Grid.Row="7"/>
-            <Label HorizontalAlignment="Center" Content="Email" Grid.Column="0" Grid.Row="8"/>
-            <Label HorizontalAlignment="Center" Content="StudyProgrammeMark" Grid.Column="0" Grid.Row="9"/>
-            <Label HorizontalAlignment="Center" Content="EnrollmentNumber" Grid.Column="0" Grid.Row="10"/>
-            <Label HorizontalAlignment="Center" Content="EnrollmentYear" Grid.Column="0" Grid.Row="11"/>
-            <Label HorizontalAlignment="Center" Content="CurrentYearOfStudy" Grid.Column="0" Grid.Row="12"/>
-            <Label HorizontalAlignment="Center" Content="Status" Grid.Column="0" Grid.Row="13"/>
+            <!-- Labels are now centered vertically and horizontally with padding -->
+            <Label HorizontalAlignment="Center" VerticalAlignment="Center" Content="Lastname" Grid.Column="0" Grid.Row="0" Margin="5"/>
+            <TextBox BorderBrush="Black" BorderThickness="1" Margin="0,0,0,5" Width="200" Height="22" Grid.Column="1" Grid.Row="0" Text="{Binding StudentDto.LastName, UpdateSourceTrigger=PropertyChanged}" />
 
+            <Label HorizontalAlignment="Center" VerticalAlignment="Center" Content="Name" Grid.Column="0" Grid.Row="1" Margin="5"/>
+            <TextBox BorderBrush="Black" BorderThickness="1" Margin="0,0,0,5" Width="200" Height="22" Grid.Column="1" Grid.Row="1" Text="{Binding StudentDto.Name, UpdateSourceTrigger=PropertyChanged}" />
 
-            <TextBox BorderBrush="Black" BorderThickness="2" Margin="0,0,0,5" Width="200" Height="22" Grid.Column="1" Grid.Row="0" Text="{Binding StudentDto.LastName, UpdateSourceTrigger=PropertyChanged}" />
-            <TextBox BorderBrush="Black" BorderThickness="2" Margin="0,0,0,5" Width="200" Height="22" Grid.Column="1" Grid.Row="1" Text="{Binding StudentDto.Name, UpdateSourceTrigger=PropertyChanged}" />
-            <TextBox BorderBrush="Black" BorderThickness="2" Margin="0,0,0,5" Width="200" Height="22" Grid.Column="1" Grid.Row="2" Text="{Binding StudentDto.DateOfBirth, UpdateSourceTrigger=PropertyChanged}" />
-            <TextBox BorderBrush="Black" BorderThickness="2" Margin="0,0,0,5" Width="200" Height="22" Grid.Column="1" Grid.Row="3" Text="{Binding StudentDto.Street, UpdateSourceTrigger=PropertyChanged}" />
-            <TextBox BorderBrush="Black" BorderThickness="2" Margin="0,0,0,5" Width="200" Height="22" Grid.Column="1" Grid.Row="4" Text="{Binding StudentDto.Number, UpdateSourceTrigger=PropertyChanged}" />
-            <TextBox BorderBrush="Black" BorderThickness="2" Margin="0,0,0,5" Width="200" Height="22" Grid.Column="1" Grid.Row="5" Text="{Binding StudentDto.City, UpdateSourceTrigger=PropertyChanged}" />
-            <TextBox BorderBrush="Black" BorderThickness="2" Margin="0,0,0,5" Width="200" Height="22" Grid.Column="1" Grid.Row="6" Text="{Binding StudentDto.Country, UpdateSourceTrigger=PropertyChanged}" />
-            <TextBox BorderBrush="Black" BorderThickness="2" Margin="0,0,0,5" Width="200" Height="22" Grid.Column="1" Grid.Row="7" Text="{Binding StudentDto.PhoneNumber, UpdateSourceTrigger=PropertyChanged}" />
-            <TextBox BorderBrush="Black" BorderThickness="2" Margin="0,0,0,5" Width="200" Height="22" Grid.Column="1" Grid.Row="8" Text="{Binding StudentDto.Email, UpdateSourceTrigger=PropertyChanged}" />
-            <TextBox BorderBrush="Black" BorderThickness="2" Margin="0,0,0,5" Width="200" Height="22" Grid.Column="1" Grid.Row="9" Text="{Binding StudentDto.StudyProgrammeMark, UpdateSourceTrigger=PropertyChanged}" />
-            <TextBox BorderBrush="Black" BorderThickness="2" Margin="0,0,0,5" Width="200" Height="22" Grid.Column="1" Grid.Row="10" Text="{Binding StudentDto.EnrollmentNumber, UpdateSourceTrigger=PropertyChanged}" />
-            <TextBox BorderBrush="Black" BorderThickness="2" Margin="0,0,0,5" Width="200" Height="22" Grid.Column="1" Grid.Row="11" Text="{Binding StudentDto.EnrollmentYear, UpdateSourceTrigger=PropertyChanged}" />
-            <TextBox BorderBrush="Black" BorderThickness="2" Margin="0,0,0,5" Width="200" Height="22" Grid.Column="1" Grid.Row="12" Text="{Binding StudentDto.CurrentYearOfStudy, UpdateSourceTrigger=PropertyChanged}" />
-            <ComboBox x:Name="statusComboBox" Width="200" Height="22" Grid.Column="1" Grid.Row="13" SelectedItem="{Binding StudentDto.Status, UpdateSourceTrigger=PropertyChanged}" IsDropDownOpen="True">
+            <Label HorizontalAlignment="Center" VerticalAlignment="Center" Content="DateOfBirth" Grid.Column="0" Grid.Row="2" Margin="5"/>
+            <!-- Add DatePicker for DateOfBirth -->
+            <!-- Add DatePicker for DateOfBirth -->
+            <!-- Add DatePicker for DateOfBirth -->
+            <!-- Add DatePicker for DateOfBirth -->
+            <!-- Add DatePicker for DateOfBirth -->
+            <!-- Add DatePicker for DateOfBirth -->
+            <Label HorizontalAlignment="Center" VerticalAlignment="Center" Content="PhoneNumber" Grid.Column="0" Grid.Row="3" Margin="5"/>
+            <TextBox BorderBrush="Black" BorderThickness="1" Margin="0,0,0,5" Width="200" Height="22" Grid.Column="1" Grid.Row="3" Text="{Binding StudentDto.PhoneNumber, UpdateSourceTrigger=PropertyChanged}" />
 
+            <Label HorizontalAlignment="Center" VerticalAlignment="Center" Content="Email" Grid.Column="0" Grid.Row="4" Margin="5"/>
+            <TextBox BorderBrush="Black" BorderThickness="1" Margin="0,0,0,5" Width="200" Height="22" Grid.Column="1" Grid.Row="4" Text="{Binding StudentDto.Email, UpdateSourceTrigger=PropertyChanged}" />
+
+            <!-- New section for Index -->
+            <Label HorizontalAlignment="Center" VerticalAlignment="Center" Content="Index" Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="2" FontWeight="Bold" Margin="5"/>
+
+            <Label HorizontalAlignment="Left" VerticalAlignment="Center" Content="StudyProgrammeMark" Grid.Column="0" Grid.Row="6" Margin="5"/>
+            <TextBox BorderBrush="Black" BorderThickness="1" Margin="0,0,0,5" Width="200" Height="22" Grid.Column="1" Grid.Row="6" Text="{Binding StudentDto.StudyProgrammeMark, UpdateSourceTrigger=PropertyChanged}" />
+
+            <Label HorizontalAlignment="Left" VerticalAlignment="Center" Content="EnrollmentNumber" Grid.Column="0" Grid.Row="7" Margin="5"/>
+            <TextBox BorderBrush="Black" BorderThickness="1" Margin="0,0,0,5" Width="200" Height="22" Grid.Column="1" Grid.Row="7" Text="{Binding StudentDto.EnrollmentNumber, UpdateSourceTrigger=PropertyChanged}" />
+
+            <Label HorizontalAlignment="Left" VerticalAlignment="Center" Content="EnrollmentYear" Grid.Column="0" Grid.Row="8" Margin="5"/>
+            <TextBox BorderBrush="Black" BorderThickness="1" Margin="0,0,0,5" Width="200" Height="22" Grid.Column="1" Grid.Row="8" Text="{Binding StudentDto.EnrollmentYear, UpdateSourceTrigger=PropertyChanged}" />
+
+            <!-- New section for Address -->
+            <Label HorizontalAlignment="Center" VerticalAlignment="Center" Content="Address" Grid.Column="0" Grid.Row="9" Grid.ColumnSpan="2" FontWeight="Bold" Margin="5"/>
+
+            <Label HorizontalAlignment="Left" VerticalAlignment="Center" Content="Street" Grid.Column="0" Grid.Row="10" Margin="5"/>
+            <TextBox BorderBrush="Black" BorderThickness="1" Margin="0,0,0,5" Width="200" Height="22" Grid.Column="1" Grid.Row="10" Text="{Binding StudentDto.Street, UpdateSourceTrigger=PropertyChanged}" />
+
+            <Label HorizontalAlignment="Left" VerticalAlignment="Center" Content="Number" Grid.Column="0" Grid.Row="11" Margin="5"/>
+            <TextBox BorderBrush="Black" BorderThickness="1" Margin="0,0,0,5" Width="200" Height="22" Grid.Column="1" Grid.Row="11" Text="{Binding StudentDto.Number, UpdateSourceTrigger=PropertyChanged}" />
+
+            <Label HorizontalAlignment="Left" VerticalAlignment="Center" Content="City" Grid.Column="0" Grid.Row="12" Margin="5"/>
+            <TextBox BorderBrush="Black" BorderThickness="1" Margin="0,0,0,5" Width="200" Height="22" Grid.Column="1" Grid.Row="12" Text="{Binding StudentDto.City, UpdateSourceTrigger=PropertyChanged}" />
+
+            <Label HorizontalAlignment="Left" VerticalAlignment="Center" Content="Country" Grid.Column="0" Grid.Row="13" Margin="5"/>
+            <TextBox BorderBrush="Black" BorderThickness="1" Margin="0,0,0,5" Width="200" Height="22" Grid.Column="1" Grid.Row="13" Text="{Binding StudentDto.Country, UpdateSourceTrigger=PropertyChanged}" />
+
+            <!-- Remaining TextBox controls for CurrentYearOfStudy and Status -->
+            <Label HorizontalAlignment="Center" VerticalAlignment="Center" Content="CurrentYearOfStudy" Grid.Column="0" Grid.Row="14" Margin="5"/>
+            <TextBox BorderBrush="Black" BorderThickness="1" Margin="0,0,0,5" Width="200" Height="22" Grid.Column="1" Grid.Row="14" Text="{Binding StudentDto.CurrentYearOfStudy, UpdateSourceTrigger=PropertyChanged}" />
+
+            <Label HorizontalAlignment="Center" VerticalAlignment="Center" Content="Status" Grid.Column="0" Grid.Row="15" Margin="5"/>
+
+            <ComboBox x:Name="statusComboBox" Width="200" Height="22" Grid.Column="1" Grid.Row="15" SelectedItem="{Binding StudentDto.Status, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,5">
+                <!-- Add ComboBoxItems as needed -->
             </ComboBox>
 
-            <Button Content="Add" BorderThickness="1" Grid.Column="0" Grid.Row="14" Width="60" Height="20" VerticalContentAlignment="Center" HorizontalAlignment="Right" Margin="0,0,50,0" Click="Add_Button_Click" />
-            <Button Content="Cancel" BorderThickness="1" Grid.Column="1" Grid.Row="14" Width="60" Height="20" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="50,0,0,0" Click="Cancel_Button_Click" />
+            <!-- Adjusted Button properties for consistent styling -->
+            <Button Content="Add" BorderThickness="1" Grid.Column="0" Grid.Row="17" Width="60" Height="20" VerticalContentAlignment="Center" HorizontalAlignment="Right" Margin="0,0,50,0" Click="Add_Button_Click" />
+            <Button Content="Cancel" BorderThickness="1" Grid.Column="1" Grid.Row="17" Width="60" Height="20" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="50,0,0,0" Click="Cancel_Button_Click" />
         </Grid>
+
+
+
     </Grid>
 </Window>
