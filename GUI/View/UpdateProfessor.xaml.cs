@@ -1,4 +1,5 @@
-﻿using CLI.DAO;
+﻿using CLI.Controller;
+using CLI.DAO;
 using CLI.Model;
 using GUI.DTO;
 using System;
@@ -26,16 +27,16 @@ namespace GUI.View
     {
         public ProfessorDTO ProfessorDto { get; set; }
 
-        private ProfessorDAO _professorDao;
+        private ProfessorController _professorController;
 
         public event PropertyChangedEventHandler? PropertyChanged;
 
-        public UpdateProfessor(ProfessorDAO professorDao, ProfessorDTO professorDto)
+        public UpdateProfessor(ProfessorController professorController, ProfessorDTO professorDto)
         {
             InitializeComponent();
             DataContext = this;
             ProfessorDto = professorDto;
-            this._professorDao = professorDao;
+            this._professorController = professorController;
         }
 
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
@@ -48,7 +49,7 @@ namespace GUI.View
         {
             Professor professor = ProfessorDto.ToProfessor();
             professor.Id = ProfessorDto.Id;
-            _professorDao.UpdateProfessor(professor);
+            _professorController.UpdateProfessor(professor);
             Close();
         }
 
