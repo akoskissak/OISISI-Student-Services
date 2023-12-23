@@ -40,5 +40,9 @@ namespace CLI.Controller
         {
             _studentDao.StudentObservable.Subscribe(observer);
         }
+        public void NotifyObservers()
+        {
+            _studentDao.NotifyObservers();
+        }
     }
 }

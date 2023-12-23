@@ -26,11 +26,19 @@ namespace GUI.View
 
             statusComboBox.Items.Clear();
             statusComboBox.ItemsSource = Enum.GetValues(typeof(Status));
+
         }
         private void Add_Button_Click(object sender, RoutedEventArgs e)
         {
-            studentController.Add(StudentDto.ToStudent());
-            Close();
+            if (StudentDto.IsValid)
+            {
+                studentController.Add(StudentDto.ToStudent());
+                Close();
+            }
+            else
+            {
+                MessageBox.Show("Student can not be created. Not all fields are valid.");
+            }
         }
         private void Cancel_Button_Click(object sender, RoutedEventArgs e)
         {

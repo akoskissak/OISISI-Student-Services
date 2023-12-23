@@ -4,11 +4,12 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using System.Text.RegularExpressions;
+using System.Windows.Controls;
 
 namespace GUI.DTO
 {
-    public class StudentDTO : INotifyPropertyChanged
+    public class StudentDTO : INotifyPropertyChanged, IDataErrorInfo
     {
         public int Id { get; set; }
         private string _name;
@@ -75,18 +76,22 @@ namespace GUI.DTO
             }
         }
 
-        public string DateOfBirth
+        public DateTime DateOfBirth
         {
             get
             {
-                return _dateOfBirth.ToString();
+                if(_dateOfBirth == DateOnly.MinValue)
+                {
+                    return DateTime.Now;
+                }
+                return _dateOfBirth.ToDateTime(TimeOnly.MinValue);
             }
             set
             {
-                if (value != _dateOfBirth.ToString())
+                if (value != _dateOfBirth.ToDateTime(TimeOnly.MinValue))
                 {
-                    _dateOfBirth = DateOnly.Parse(value);
-                    OnPropertyChanged("Date");
+                    _dateOfBirth = DateOnly.FromDateTime(value);
+                    OnPropertyChanged("DateOfBirth");
                 }
             }
         }
@@ -213,7 +218,21 @@ namespace GUI.DTO
             {
                 if(value != _enrollmentNumber.ToString())
                 {
-                    _enrollmentNumber = int.Parse(value);
+                    if (value == "")
+                    {
+                        _enrollmentNumber = 0;
+                    }
+                    else
+                    {
+                        try
+                        {
+                            _enrollmentNumber = int.Parse(value);
+                        }catch(Exception e)
+                        {
+                            _enrollmentNumber = 0;
+                        }
+
+                    }
                     OnPropertyChanged("EnrollmentNumber");
                 }
             }
@@ -229,7 +248,20 @@ namespace GUI.DTO
             {
                 if(value != _enrollmentYear.ToString())
                 {
-                    _enrollmentYear = int.Parse(value);
+                    if (value == "")
+                    {
+                        _enrollmentYear = 0;
+                    }
+                    else
+                    {
+                        try
+                        {
+                            _enrollmentYear = int.Parse(value);
+                        }catch(Exception e)
+                        {
+                            _enrollmentYear = 0;
+                        }
+                    }
                     OnPropertyChanged("EnrollmentYear");
                 }
             }
@@ -277,11 +309,157 @@ namespace GUI.DTO
             {
                 if(value != _averageGrade.ToString())
                 {
-                    _averageGrade = double.Parse(value);
+                    if (value == "")
+                    {
+                        _averageGrade = 0;
+                    }
+                    else
+                    {
+                        try
+                        {
+                            _averageGrade = double.Parse(value);
+                        }catch(Exception e)
+                        {
+                            _averageGrade = 0;
+                        }
+                    }
                     OnPropertyChanged("AverageGrade");
                 }
             }
         }
+        public string Error => null;
+
+        private Regex _NameRegex = new Regex("[A-Za-z0-9-]+");
+        private Regex _LastNameRegex = new Regex("[A-Za-z0-9-]+");
+        private Regex _PhoneNumberRegex = new Regex("\\+?[0-9]+[0-9- ]*");
+        private Regex _EmailRegex = new Regex("[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}");
+        private Regex _StudyProgrammeMarkRegex = new Regex("[A-Za-z0-9]+");
+        private Regex _EnrollmentNumberkRegex = new Regex("[0-9]+");
+        private Regex _EnrollmentYearRegex = new Regex("[12]{1}[0-9]{3,3}");
+        private Regex _CurrentYearOfStudyRegex = new Regex("[1-9]{1,2}");
+        public string this[string columnName]
+        {
+            get
+            {
+                if (columnName == "LastName")
+                {
+                    if (string.IsNullOrEmpty(LastName))
+                        return "LastName is required";
+
+                    Match match = _LastNameRegex.Match(LastName);
+                    if (!match.Success)
+                        return "Format not good. Try again.";
+
+                }
+                else if (columnName == "Name")
+                {
+                    if (string.IsNullOrEmpty(Name))
+                        return "Name is required";
+
+                    Match match = _NameRegex.Match(Name);
+                    if (!match.Success)
+                        return "Format not good. Try again.";
+
+                }
+                else if (columnName == "Street")
+                {
+                    if (string.IsNullOrEmpty(Street))
+                        return "Street is required";
+
+                }
+                else if (columnName == "Number")
+                {
+                    if (string.IsNullOrEmpty(Number))
+                        return "Number is required";
+
+                }
+                else if (columnName == "City")
+                {
+                    if (string.IsNullOrEmpty(City))
+                        return "City is required";
+
+                }
+                else if (columnName == "Country")
+                {
+                    if (string.IsNullOrEmpty(Country))
+                        return "Country is required";
+
+                }
+                else if (columnName == "PhoneNumber")
+                {
+                    if (string.IsNullOrEmpty(PhoneNumber))
+                        return "PhoneNumber is required";
+
+                    Match match = _PhoneNumberRegex.Match(PhoneNumber);
+                    if (!match.Success)
+                        return "Format not good. Try again.";
+                }
+                else if (columnName == "Email")
+                {
+                    if (string.IsNullOrEmpty(Email))
+                        return "Email is required";
+
+                    Match match = _EmailRegex.Match(Email);
+                    if (!match.Success)
+                        return "Format not good. Try again.";
+                }
+                else if (columnName == "StudyProgrammeMark")
+                {
+                    if (string.IsNullOrEmpty(StudyProgrammeMark))
+                        return "StudyProgrammeMark is required";
+
+                    Match match = _StudyProgrammeMarkRegex.Match(StudyProgrammeMark);
+                    if (!match.Success)
+                        return "Format not good. Try again.";
+                }
+                else if (columnName == "EnrollmentNumber")
+                {
+                    if (string.IsNullOrEmpty(EnrollmentNumber))
+                        return "EnrollmentNumber is required";
+
+                    Match match = _EnrollmentNumberkRegex.Match(EnrollmentNumber);
+                    if (!match.Success)
+                        return "Format not good. Try again.";
+                }
+                else if (columnName == "EnrollmentYear")
+                {
+                    if (string.IsNullOrEmpty(EnrollmentYear))
+                        return "EnrollmentYear is required";
+
+                    Match match = _EnrollmentYearRegex.Match(EnrollmentYear);
+                    if (!match.Success)
+                        return "Format not good. Try again.";
+                }
+                else if (columnName == "CurrentYearOfStudy")
+                {
+                    if (CurrentYearOfStudy <= 0)
+                        return "CurrentYearOfStudy is required";
+
+                    Match match = _CurrentYearOfStudyRegex.Match(CurrentYearOfStudy.ToString());
+                    if (!match.Success)
+                        return "Format not good. Try again.";
+                }
+                return null;
+            }
+        }
+
+        private readonly string[] _validatedProperties = { "LastName", "Name", "Street", "Number", "City", "Country", "PhoneNumber", "Email", "StudyProgrammeMark",
+            "EnrollmentNumber", "EnrollmentYear", "CurrentYearOfStudy"};
+        public bool IsValid
+        {
+            get
+            {
+                foreach (var property in _validatedProperties)
+                {
+                    if (this[property] != null)
+                        return false;
+                }
+
+                return true;
+            }
+        }
+
+
         protected virtual void OnPropertyChanged(string v)
         {
             if (PropertyChanged != null)
@@ -301,7 +479,7 @@ namespace GUI.DTO
             Id = student.Id;
             LastName = student.Lastname;
             Name = student.Name;
-            DateOfBirth = student.DateOfBirth.ToString();
+            DateOfBirth = student.DateOfBirth.ToDateTime(TimeOnly.MinValue);
             Street = student.Address.Street;
             Number = student.Address.Number;
             City = student.Address.City;

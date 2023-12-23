@@ -20,11 +20,11 @@ public class StudentDAO
 
     private int GenerateStudentId()
     {
-        if (_students.Count == 0) 
+        if (_students.Count == 0)
             return 0;
         return _students[^1].Id + 1;
     }
-    
+
     public Student AddStudent(Student student)
     {
         student.Id = GenerateStudentId();
@@ -40,17 +40,17 @@ public class StudentDAO
         s.Grades.Add(examGrade);
         s.UnsubmittedSubjects.Remove(examGrade.Subject);
         s.SetAverageGrade();
-        
+
         _studentStorage.Save(_students);
     }
-    
+
     public void RemoveExamGradeForStudent(ExamGrade examGrade)
     {
         Student s = _students.Find(student => student.Id == examGrade.StudentId)!;
         s.Grades.Remove(examGrade);
         s.UnsubmittedSubjects.Add(examGrade.Subject);
         s.SetAverageGrade();
-        
+
         _studentStorage.Save(_students);
     }
 
@@ -69,7 +69,7 @@ public class StudentDAO
         oldStudent.CurrentYearOfStudy = student.CurrentYearOfStudy;
         oldStudent.Status = student.Status;
         oldStudent.AverageGrade = student.AverageGrade;
-        
+
         _studentStorage.Save(_students);
         StudentObservable.NotifyObservers();
         return oldStudent;
@@ -80,7 +80,7 @@ public class StudentDAO
         Student? student = GetStudentById(id);
         if (student == null)
             return null;
-        
+
         if (student.UnsubmittedSubjects.Count != 0 || student.Grades.Count != 0)
         {
             System.Console.WriteLine("Cannot remove student that has subject/s or grade/s!\nRemove them first and then you can remove student.");
@@ -88,7 +88,7 @@ public class StudentDAO
             stud.Id = -1;
             return stud;
         }
-        
+
         _students.Remove(student);
         _studentStorage.Save(_students);
         StudentObservable.NotifyObservers();
@@ -105,7 +105,7 @@ public class StudentDAO
             return null;
         student.UnsubmittedSubjects.Remove(subject);
         _studentStorage.Save(_students);
-        
+
         studentSubjectDao.RemoveStudentSubject(studentId, subjectId);
         return subject;
     }
@@ -128,5 +128,9 @@ public class StudentDAO
     public List<Student> GetAllStudents()
     {
         return _students;
+    }
+    public void NotifyObservers()
+    {
+        StudentObservable.NotifyObservers();
     }
 }
