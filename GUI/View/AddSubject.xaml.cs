@@ -1,4 +1,5 @@
-﻿using CLI.DAO;
+﻿using CLI.Controller;
+using CLI.DAO;
 using GUI.DTO;
 using System;
 using System.Collections.Generic;
@@ -25,16 +26,28 @@ namespace GUI.View
     {
         public SubjectDTO SubjectDto { get; set; }
 
-        private SubjectDAO _subjectDao;
+        private SubjectController _subjectController;
 
         public event PropertyChangedEventHandler? PropertyChanged;
-        public AddSubject(SubjectDAO subjectDao)
+        public AddSubject(SubjectController subjectController, double left, double top, double width, double height)
         {
             InitializeComponent();
             DataContext = this;
             SubjectDto = new SubjectDTO();
-            this._subjectDao = subjectDao;
+            this._subjectController = subjectController;
+
+            SetInitialWindowSize(left, top, width, height);
+
         }
+
+        private void SetInitialWindowSize(double left, double top, double width, double height)
+        {
+            Left = left;
+            Top = top;
+            Width = width;
+            Height = height;
+        }
+
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
@@ -42,7 +55,7 @@ namespace GUI.View
         }
         private void Add_Button_Click(object sender, RoutedEventArgs e)
         {
-            _subjectDao.AddSubject(SubjectDto.ToSubject());
+            _subjectController.AddSubject(SubjectDto.ToSubject());
             Close();
         }
 

@@ -1,4 +1,5 @@
-﻿using CLI.DAO;
+﻿using CLI.Controller;
+using CLI.DAO;
 using CLI.Model;
 using GUI.DTO;
 using System;
@@ -25,16 +26,16 @@ namespace GUI.View
     public partial class UpdateSubject : Window
     {
         public SubjectDTO SubjectDto { get; set; }
-        private SubjectDAO _subjectDao;
+        private SubjectController _subjectController;
 
         public event PropertyChangedEventHandler? PropertyChanged;
 
-        public UpdateSubject(SubjectDAO subjectDao, SubjectDTO subjectDto)
+        public UpdateSubject(SubjectController subjectController, SubjectDTO subjectDto)
         {
             InitializeComponent();
             DataContext = this;
             SubjectDto = subjectDto;
-            this._subjectDao = subjectDao;
+            this._subjectController = subjectController;
 
         }
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
@@ -46,7 +47,7 @@ namespace GUI.View
         {
             Subject subject = SubjectDto.ToSubject();
             subject.Id = SubjectDto.Id;
-            _subjectDao.UpdateSubject(subject);
+            _subjectController.UpdateSubject(subject);
             Close();
         }
 
