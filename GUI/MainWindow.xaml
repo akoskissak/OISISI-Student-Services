@@ -57,7 +57,7 @@
                 </MenuItem>
             </MenuItem>
             <MenuItem Header="_Help" InputGestureText="Ctrl + H">
-                <MenuItem Header="_About" InputGestureText="Ctrl + A">
+                <MenuItem Header="_About" Click="About_Click" InputGestureText="Ctrl + B">
                     <MenuItem.Icon>
                         <Image Source="https://icons.veryicon.com/png/o/miscellaneous/administration/account-25.png"/>
                     </MenuItem.Icon>

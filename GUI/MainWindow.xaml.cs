@@ -154,7 +154,7 @@ namespace GUI
                     string messageBoxText = "Are you sure you want to delete professor?";
                     string caption = "Delete professor";
                     MessageBoxButton button = MessageBoxButton.YesNo;
-                    MessageBoxResult result = MessageBox.Show(messageBoxText, caption, button);
+                    MessageBoxResult result = MessageBox.Show(messageBoxText, caption, button, MessageBoxImage.Question);
                     if (result == MessageBoxResult.Yes)
                     {
                         professorController.RemoveProfessor(SelectedProfessor.Id);
@@ -173,10 +173,10 @@ namespace GUI
                     string messageBoxText = "Are you sure you want to delete student?";
                     string caption = "Delete student";
                     MessageBoxButton button = MessageBoxButton.YesNo;
-                    MessageBoxResult result = MessageBox.Show(messageBoxText, caption, button);
+                    MessageBoxResult result = MessageBox.Show(messageBoxText, caption, button, MessageBoxImage.Question);
                     if (result == MessageBoxResult.Yes)
                     {
-                        studentController.RemoveStudent(SelectedStudent.Id);
+                        _studentController.RemoveStudent(SelectedStudent.Id);
                         StudentDtos.Remove(SelectedStudent);
                         MessageBox.Show("Student deleted successfully.", "Deletion Successful", MessageBoxButton.OK);
                     }
@@ -194,7 +194,7 @@ namespace GUI
                     string messageBoxText = "Are you sure you want to delete subject?";
                     string caption = "Delete subject";
                     MessageBoxButton button = MessageBoxButton.YesNo;
-                    MessageBoxResult result = MessageBox.Show(messageBoxText, caption, button);
+                    MessageBoxResult result = MessageBox.Show(messageBoxText, caption, button, MessageBoxImage.Question);
                     if(result == MessageBoxResult.Yes)
                     {
                         subjectController.RemoveSubject(SelectedSubject.Id);
@@ -254,9 +254,8 @@ namespace GUI
                 Delete_Click(sender, e);
             else if (Keyboard.IsKeyDown(Key.LeftCtrl) && Keyboard.IsKeyDown(Key.X))
                 CLose_Click(sender, e);
-            else if (Keyboard.IsKeyDown(Key.LeftCtrl) && Keyboard.IsKeyDown(Key.A))
-            { }
-                //CLose_Click(sender, e);
+            else if (Keyboard.IsKeyDown(Key.LeftCtrl) && Keyboard.IsKeyDown(Key.B))
+                About_Click(sender, e);
             else if (Keyboard.IsKeyDown(Key.LeftCtrl) && Keyboard.IsKeyDown(Key.A))
                 Add_Click(sender, e);
             else if (Keyboard.IsKeyDown(Key.LeftCtrl) && Keyboard.IsKeyDown(Key.U))
@@ -269,6 +268,10 @@ namespace GUI
         {
 
         }
-
+        private void About_Click(object sender, RoutedEventArgs e)
+        {
+            About about = new About();
+            about.ShowDialog();
+        }
     }
 }
