@@ -210,6 +210,7 @@ namespace GUI.DTO
                     }
                     catch (Exception e)
                     {
+                        //_idNumber = 0;
                     }
                     OnPropertyChanged("IdNumber");
                 }

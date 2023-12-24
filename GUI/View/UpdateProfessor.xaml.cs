@@ -57,10 +57,17 @@ namespace GUI.View
 
         private void Update_Button_Click(object sender, RoutedEventArgs e)
         {
-            Professor professor = ProfessorDto.ToProfessor();
-            professor.Id = ProfessorDto.Id;
-            _professorController.UpdateProfessor(professor);
-            Close();
+            if (ProfessorDto.isValid)
+            {
+                Professor professor = ProfessorDto.ToProfessor();
+                professor.Id = ProfessorDto.Id;
+                _professorController.UpdateProfessor(professor);
+                Close();
+            }
+            else
+            {
+                MessageBox.Show("Professor cannot be updated. Not all fields are valid.");
+            }
         }
 
         private void Cancel_Button_Click(object sender, RoutedEventArgs e)
