@@ -1,5 +1,6 @@
 ﻿using CLI.Controller;
 using CLI.DAO;
+using CLI.Model;
 using GUI.DTO;
 using System;
 using System.Collections.Generic;
@@ -22,13 +23,12 @@ namespace GUI.View
     /// <summary>
     /// Interaction logic for AddSubject.xaml
     /// </summary>
-    public partial class AddSubject : Window, INotifyPropertyChanged
+    public partial class AddSubject : Window
     {
         public SubjectDTO SubjectDto { get; set; }
 
         private SubjectController _subjectController;
 
-        public event PropertyChangedEventHandler? PropertyChanged;
         public AddSubject(SubjectController subjectController, double left, double top, double width, double height)
         {
             InitializeComponent();
@@ -37,6 +37,10 @@ namespace GUI.View
             this._subjectController = subjectController;
 
             SetInitialWindowSize(left, top, width, height);
+
+            semesterComboBox.Items.Clear();
+            semesterComboBox.SelectedIndex = 0;
+            semesterComboBox.ItemsSource = Enum.GetValues(typeof(SemesterType));
 
         }
 
@@ -47,16 +51,17 @@ namespace GUI.View
             Width = width;
             Height = height;
         }
-
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-
-        }
         private void Add_Button_Click(object sender, RoutedEventArgs e)
         {
-            _subjectController.AddSubject(SubjectDto.ToSubject());
-            Close();
+            if (SubjectDto.IsValid)
+            {
+                _subjectController.AddSubject(SubjectDto.ToSubject());
+                Close();
+            }
+            else
+            {
+                MessageBox.Show("Subject can not be created. Not all fields are valid.");
+            }
         }
 
         private void Cancel_Button_Click(object sender, RoutedEventArgs e)

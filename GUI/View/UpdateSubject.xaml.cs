@@ -37,6 +37,10 @@ namespace GUI.View
             SubjectDto = subjectDto;
             this._subjectController = subjectController;
 
+            semesterComboBox.Items.Clear();
+            semesterComboBox.SelectedIndex = 0;
+            semesterComboBox.ItemsSource = Enum.GetValues(typeof(SemesterType));
+
         }
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
@@ -45,15 +49,27 @@ namespace GUI.View
         }
         private void Update_Button_Click(object sender, RoutedEventArgs e)
         {
-            Subject subject = SubjectDto.ToSubject();
-            subject.Id = SubjectDto.Id;
-            _subjectController.UpdateSubject(subject);
-            Close();
+            if (SubjectDto.IsValid)
+            {
+                Subject subject = SubjectDto.ToSubject();
+                subject.Id = SubjectDto.Id;
+                _subjectController.UpdateSubject(subject);
+                Close();
+            }
+            else
+            {
+                MessageBox.Show("Subject can not be updated. Not all fields are valid.");
+            }
         }
 
         private void Cancel_Button_Click(object sender, RoutedEventArgs e)
         {
             Close();
+        }
+
+        private void Window_Closing(object sender, CancelEventArgs e)
+        {
+            _subjectController.NotifyObservers();
         }
     }
 }

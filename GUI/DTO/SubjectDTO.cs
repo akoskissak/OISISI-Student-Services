@@ -2,14 +2,17 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics.Metrics;
+using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 
 namespace GUI.DTO
 {
-    public class SubjectDTO : INotifyPropertyChanged
+    public class SubjectDTO : INotifyPropertyChanged, IDataErrorInfo
     {
         private int _id;
         private int _subjectCode;
@@ -47,8 +50,15 @@ namespace GUI.DTO
             {
                 if (value != _subjectCode.ToString())
                 {
-                    _subjectCode = int.Parse(value);
+                    try
+                    {
+                        _subjectCode = int.Parse(value);
+                    }catch(Exception e)
+                    {
+                        _subjectCode = 0;
+                    }
                     OnPropertyChanged("SubjectCode");
+
                 }
             }
         }
@@ -69,71 +79,134 @@ namespace GUI.DTO
             }
         }
 
-        public string Semester
+        public SemesterType Semester
         {
             get
             {
-                return _semester.ToString();
+                return _semester;
             }
             set
             {
-                if (value != _semester.ToString())
+                if (value != _semester)
                 {
-                    _semester = (SemesterType)Enum.Parse(typeof(SemesterType), value);
-                    //_semester = Enum.Parse<SemesterType>(value);
+                    _semester = value;
                     OnPropertyChanged("Semester");
                 }
             }
         }
         
-        public string YearOfStudy
+        public int YearOfStudy
         {
             get
             {
-                return _yearOfStudy.ToString();
+                return _yearOfStudy;
             }
             set
             {
-                if (value != _yearOfStudy.ToString())
+                if (value != _yearOfStudy)
                 {
-                    _yearOfStudy = int.Parse(value);
+                    _yearOfStudy = value;
                     OnPropertyChanged("YearOfStudy");
                 }
             }
         }
         
-        public string ProfessorId
+        public int ProfessorId
         {
             get
             {
-                return _professorId.ToString();
+                return _professorId;
             }
             set
             {
-                if (value != _professorId.ToString())
+                if (value != _professorId)
                 {
-                    _professorId = int.Parse(value);
+                    try
+                    {
+                        _professorId = value;
+
+                    } catch(Exception e) 
+                    {
+                        _professorId = 0;
+                    }
                     OnPropertyChanged("ProfessorId");
                 }
             }
         }
         
-        public string Espb
+        public int Espb
         {
             get
             {
-                return _espb.ToString();
+                return _espb;
             }
             set
             {
-                if (value != _espb.ToString())
+                if (value != _espb)
                 {
-                    _espb = int.Parse(value);
+                    _espb = value;
                     OnPropertyChanged("Espb");
                 }
             }
         }
 
+        public string Error => null;
+
+        private Regex _SubjectCodeRegex = new Regex("[0-9]+");
+
+        public string this[string columnName]
+        {
+            get
+            {
+                if (columnName == "SubjectCode")
+                {
+                    if (string.IsNullOrEmpty(SubjectCode))
+                        return "SubjectCode is required";
+
+                    Match match = _SubjectCodeRegex.Match(SubjectCode);
+                    if (!match.Success)
+                        return "Format not good. Try again.";
+                }
+                else if (columnName == "Name")
+                {
+                    if (string.IsNullOrEmpty(Name))
+                        return "Name is required";
+
+                }
+                else if (columnName == "YearOfStudy")
+                {
+                    if (YearOfStudy <= 0)
+                        return "YearOfStudy is required";
+                }
+                else if (columnName == "ProfessorId")
+                {
+                    if (string.IsNullOrEmpty(ProfessorId.ToString()))
+                        return "ProfessorId is required";
+                }
+                else if (columnName == "Espb")
+                {
+                    if (Espb <= 0)
+                        return "Espb is required";
+                }
+                return null;
+            }
+        }
+
+        private readonly string[] _validatedProperties = { "SubjectCode", "Name", "YearOfStudy", "ProfessorId", "Espb" };
+
+        public bool IsValid
+        {
+            get
+            {
+                foreach (var property in _validatedProperties)
+                {
+                    if (this[property] != null)
+                        return false;
+                }
+
+                return true;
+            }
+        }
         private void OnPropertyChanged(string v)
         {
             if (PropertyChanged != null)
@@ -152,10 +225,10 @@ namespace GUI.DTO
         {
             SubjectCode = subject.SubjectCode.ToString();
             Name = subject.Name;
-            Semester = subject.Semester.ToString();
-            YearOfStudy = subject.YearOfStudy.ToString();
-            ProfessorId = subject.ProfessorId.ToString();
-            Espb = subject.Espb.ToString();
+            Semester = subject.Semester;
+            YearOfStudy = subject.YearOfStudy;
+            ProfessorId = subject.ProfessorId;
+            Espb = subject.Espb;
             Id = subject.Id;
             
         }

@@ -16,13 +16,13 @@ namespace GUI.View
     {
         public StudentDTO StudentDto { get; set; }
 
-        private StudentController studentController;
+        private StudentController _studentController;
         public AddStudent(StudentController studentController)
         {
             InitializeComponent();
             DataContext = this;
             StudentDto = new StudentDTO();
-            this.studentController = studentController;
+            this._studentController = studentController;
 
             statusComboBox.Items.Clear();
             statusComboBox.ItemsSource = Enum.GetValues(typeof(Status));
@@ -32,7 +32,7 @@ namespace GUI.View
         {
             if (StudentDto.IsValid)
             {
-                studentController.Add(StudentDto.ToStudent());
+                _studentController.Add(StudentDto.ToStudent());
                 Close();
             }
             else
