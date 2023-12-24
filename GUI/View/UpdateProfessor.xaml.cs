@@ -31,12 +31,22 @@ namespace GUI.View
 
         public event PropertyChangedEventHandler? PropertyChanged;
 
-        public UpdateProfessor(ProfessorController professorController, ProfessorDTO professorDto)
+        public UpdateProfessor(ProfessorController professorController, ProfessorDTO professorDto, double left, double top, double width, double height)
         {
             InitializeComponent();
             DataContext = this;
             ProfessorDto = professorDto;
             this._professorController = professorController;
+
+            SetInitialWindowSize(left, top, width, height);
+        }
+
+        private void SetInitialWindowSize(double left, double top, double width, double height)
+        {
+            Left = left;
+            Top = top;
+            Width = width;
+            Height = height;
         }
 
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)

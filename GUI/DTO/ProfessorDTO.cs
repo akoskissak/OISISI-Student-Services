@@ -256,11 +256,11 @@ namespace GUI.DTO
 
         public string Error => null;
         private Regex _lettersAndNumbersRegex = new Regex("^[a-zA-Z0-9]+([\\s][a-zA-Z0-9]+)*$");
-            //"^[A-Za-z0-9]+$");
         private Regex _letters = new Regex("^[A-Za-z]+$");
         private Regex _cityCountryRegex = new Regex("^[a-zA-Z0-9]+([\\s][a-zA-Z0-9]+)*$");
         private Regex _phoneNumberRegex = new Regex("^\\+?(0-9)+$");
         private Regex _numbersRegex = new Regex("^[1-9]\\d*$");
+        private Regex _titleRegex = new Regex("^[a-zA-Z][a-zA-Z0-9]*([\\s][a-zA-Z0-9]+)*");
 
         public string this[string columnName]
         {
@@ -352,7 +352,7 @@ namespace GUI.DTO
                     if (string.IsNullOrEmpty(Title))
                         return "Title is required.";
 
-                    Match match = _lettersAndNumbersRegex.Match(Title);
+                    Match match = _titleRegex.Match(Title);
                     if (!match.Success)
                         return "Format not good. Try again.";
                 }

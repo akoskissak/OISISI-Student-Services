@@ -59,8 +59,6 @@
                      Validation.ErrorTemplate="{StaticResource ValidationTemplate}" />
             <DatePicker Name="DatePicker" Grid.Column="1" Grid.Row="2"  Margin="0,0,0,20" Width="200" SelectedDate="{Binding ProfessorDto.DateOfBirth, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, ValidatesOnDataErrors=True}"
                      Validation.ErrorTemplate ="{StaticResource ValidationTemplate}" />
-            <!--<TextBox BorderBrush="Black" BorderThickness="2" Margin="0,0,0,20" Width="200" Height="22" Grid.Column="1" Grid.Row="2" Text="{Binding Path=ProfessorDto.DateOfBirth, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"-->
-                     <!--Validation.ErrorTemplate="{StaticResource ValidationTemplate}" />-->
             <TextBox BorderBrush="Black" BorderThickness="2" Margin="0,0,0,20" Width="200" Height="22" Grid.Column="1" Grid.Row="3" Text="{Binding Path=ProfessorDto.Street, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
                      Validation.ErrorTemplate="{StaticResource ValidationTemplate}" />
             <TextBox BorderBrush="Black" BorderThickness="2" Margin="0,0,0,20" Width="200" Height="22" Grid.Column="1" Grid.Row="4" Text="{Binding Path=ProfessorDto.Number, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"

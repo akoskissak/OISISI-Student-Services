@@ -112,7 +112,7 @@ namespace GUI
             {
                 if (SelectedProfessor != null)
                 {
-                    UpdateProfessor updateProfessorWindow = new UpdateProfessor(professorController, SelectedProfessor);
+                    UpdateProfessor updateProfessorWindow = new UpdateProfessor(professorController, SelectedProfessor, Left, Top, Width, Height);
                     updateProfessorWindow.ShowDialog();
                 }
                 else
