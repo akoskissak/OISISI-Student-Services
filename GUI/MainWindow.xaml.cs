@@ -5,21 +5,11 @@ using GUI.DTO;
 using GUI.View;
 using System.Windows.Threading;
 using System;
+using System.Windows.Input;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Controls.Ribbon.Primitives;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using CLI.Controller;
 
 namespace GUI
@@ -38,7 +28,7 @@ namespace GUI
         public StudentDTO SelectedStudent { get; set; }
 
         private ProfessorController professorController {  get; set; }
-        private StudentController studentController { get; set; }    
+        private StudentController _studentController { get; set; }    
         private SubjectController subjectController { get; set; }
 
         public static RoutedCommand OpenAddEntityCommand = new RoutedCommand();
@@ -53,17 +43,14 @@ namespace GUI
 
             SetInitialWindowSize();
 
-            studentController = new StudentController();
+            _studentController = new StudentController();
             professorController = new ProfessorController();
             subjectController = new SubjectController();
 
-            studentController.Subscribe(this);
+            _studentController.Subscribe(this);
             professorController.Subscribe(this);
             subjectController.Subscribe(this);
 
-            // i ovo
-            ///
-            ////
             DispatcherTimer timer = new DispatcherTimer();
             timer.Tick += new EventHandler(UpdateTimer_Tick);
             timer.Interval = new TimeSpan(0, 0, 1);
@@ -94,7 +81,7 @@ namespace GUI
             }
             else if(ti != null && ti.Name != null && ti.Name == "StudentsTab")
             {
-                AddStudent addStudent = new AddStudent(studentController);
+                AddStudent addStudent = new AddStudent(_studentController);
                 addStudent.ShowDialog();
             }
             else if(ti != null && ti.Name != null && ti.Name == "SubjectsTab")
@@ -122,7 +109,7 @@ namespace GUI
             {
                 if (SelectedStudent != null)
                 {
-                    UpdateStudent updateStudentWindow = new UpdateStudent(studentController, SelectedStudent);
+                    UpdateStudent updateStudentWindow = new UpdateStudent(_studentController, SelectedStudent);
                     updateStudentWindow.ShowDialog();
                 }
                 else
@@ -147,7 +134,7 @@ namespace GUI
                 ProfessorDtos.Add(new ProfessorDTO(professor));
 
             StudentDtos.Clear();
-            foreach(Student student in studentController.GetAllStudents())
+            foreach(Student student in _studentController.GetAllStudents())
                 StudentDtos.Add(new StudentDTO(student));
 
             SubjectDtos.Clear();
@@ -194,6 +181,7 @@ namespace GUI
                         MessageBox.Show("Student deleted successfully.", "Deletion Successful", MessageBoxButton.OK);
                     }
                 }
+
             }
             else if (ti != null && ti.Name != null && ti.Name == "SubjectsTab")
             {
@@ -236,9 +224,40 @@ namespace GUI
             DisplayDateTextBlock.Text = DateTime.Now.ToString();
         }
 
+        private void NavigateToStudents(object sender, RoutedEventArgs e)
+        {
+            Tabs.SelectedItem = StudentsTab;
+        }
+
+        private void NavigateToProfessors(object sender, RoutedEventArgs e)
+        {
+            Tabs.SelectedItem = ProfessorsTab;
+        }
+
+        private void NavigateToSubjects(object sender, RoutedEventArgs e)
+        {
+            Tabs.SelectedItem = SubjectsTab;
+        }
+
+        private void CLose_Click(object sender, RoutedEventArgs e)
+        {
+            App.Current.Shutdown();
+        }
+
         private void Window_KeyDown(object sender, KeyEventArgs e)
         {
-            if (Keyboard.IsKeyDown(Key.LeftCtrl) && Keyboard.IsKeyDown(Key.A))
+            if (Keyboard.IsKeyDown(Key.LeftCtrl) && Keyboard.IsKeyDown(Key.N))
+                Add_Click(sender, e);
+            else if (Keyboard.IsKeyDown(Key.LeftCtrl) && Keyboard.IsKeyDown(Key.E))
+                Update_Click(sender, e);
+            else if (Keyboard.IsKeyDown(Key.LeftCtrl) && Keyboard.IsKeyDown(Key.D))
+                Delete_Click(sender, e);
+            else if (Keyboard.IsKeyDown(Key.LeftCtrl) && Keyboard.IsKeyDown(Key.X))
+                CLose_Click(sender, e);
+            else if (Keyboard.IsKeyDown(Key.LeftCtrl) && Keyboard.IsKeyDown(Key.A))
+            { }
+                //CLose_Click(sender, e);
+            else if (Keyboard.IsKeyDown(Key.LeftCtrl) && Keyboard.IsKeyDown(Key.A))
                 Add_Click(sender, e);
             else if (Keyboard.IsKeyDown(Key.LeftCtrl) && Keyboard.IsKeyDown(Key.U))
                 Update_Click(sender, e);
@@ -246,6 +265,10 @@ namespace GUI
                 Delete_Click(sender, e);
         }
 
-        
+        private void Save_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
     }
 }
