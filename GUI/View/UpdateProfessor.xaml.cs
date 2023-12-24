@@ -1,4 +1,5 @@
-﻿using CLI.DAO;
+﻿using CLI.Controller;
+using CLI.DAO;
 using CLI.Model;
 using GUI.DTO;
 using System;
@@ -26,16 +27,26 @@ namespace GUI.View
     {
         public ProfessorDTO ProfessorDto { get; set; }
 
-        private ProfessorDAO _professorDao;
+        private ProfessorController _professorController;
 
         public event PropertyChangedEventHandler? PropertyChanged;
 
-        public UpdateProfessor(ProfessorDAO professorDao, ProfessorDTO professorDto)
+        public UpdateProfessor(ProfessorController professorController, ProfessorDTO professorDto, double left, double top, double width, double height)
         {
             InitializeComponent();
             DataContext = this;
             ProfessorDto = professorDto;
-            this._professorDao = professorDao;
+            this._professorController = professorController;
+
+            SetInitialWindowSize(left, top, width, height);
+        }
+
+        private void SetInitialWindowSize(double left, double top, double width, double height)
+        {
+            Left = left;
+            Top = top;
+            Width = width;
+            Height = height;
         }
 
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
@@ -46,10 +57,17 @@ namespace GUI.View
 
         private void Update_Button_Click(object sender, RoutedEventArgs e)
         {
-            Professor professor = ProfessorDto.ToProfessor();
-            professor.Id = ProfessorDto.Id;
-            _professorDao.UpdateProfessor(professor);
-            Close();
+            if (ProfessorDto.isValid)
+            {
+                Professor professor = ProfessorDto.ToProfessor();
+                professor.Id = ProfessorDto.Id;
+                _professorController.UpdateProfessor(professor);
+                Close();
+            }
+            else
+            {
+                MessageBox.Show("Professor cannot be updated. Not all fields are valid.");
+            }
         }
 
         private void Cancel_Button_Click(object sender, RoutedEventArgs e)

@@ -1,4 +1,5 @@
-﻿using CLI.DAO;
+﻿using CLI.Controller;
+using CLI.DAO;
 using GUI.DTO;
 using System;
 using System.Collections.Generic;
@@ -26,27 +27,43 @@ namespace GUI.View
     {
         public ProfessorDTO ProfessorDto { get; set; }
 
-        private ProfessorDAO _professorDao;
+        private ProfessorController _professorController;
 
         public event PropertyChangedEventHandler? PropertyChanged;
-        public AddProfessor(ProfessorDAO professorDao)
+        public AddProfessor(ProfessorController professorController, double left, double top, double width, double height)
         {
             InitializeComponent();
             DataContext = this;
             ProfessorDto = new ProfessorDTO();
-            this._professorDao = professorDao;
+            this._professorController = professorController;
+
+            SetInitialWindowSize(left, top, width, height);
+        }
+
+        private void SetInitialWindowSize(double left, double top, double width, double height)
+        {
+            Left = left;
+            Top = top; 
+            Width = width; 
+            Height = height;
         }
 
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-
         }
 
         private void Add_Button_Click(object sender, RoutedEventArgs e)
         {
-            _professorDao.AddProfessor(ProfessorDto.ToProfessor());
-            Close();
+            if (ProfessorDto.isValid)
+            {
+                _professorController.AddProfessor(ProfessorDto.ToProfessor());
+                Close();
+            }
+            else
+            {
+                MessageBox.Show("Professor cannot be created. Not all fields are valid.");
+            }
         }
 
         private void Cancel_Button_Click(object sender, RoutedEventArgs e)

@@ -7,8 +7,16 @@
         xmlns:ToolBar="http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit"
         Icon="https://static.vecteezy.com/system/resources/thumbnails/000/511/962/small/57_Student.jpg"
         mc:Ignorable="d"
-        Title="Studentska služba" Height="auto" Width="auto" WindowStartupLocation="CenterScreen"
+        Title="Studentska služba"
+        WindowStartupLocation="CenterScreen"
         KeyDown="Window_KeyDown">
+
+    <Window.InputBindings>
+        <KeyBinding Key="A" Modifiers="Control" />
+        <KeyBinding Key="U" Modifiers="Control" />
+        <KeyBinding Key="D" Modifiers="Control" />
+    </Window.InputBindings>
+
     <DockPanel>
         <Menu DockPanel.Dock ="Top">
             <MenuItem Header="_File" >
@@ -59,8 +67,8 @@
 
         
         <DockPanel DockPanel.Dock="Top">
-            <Button Name="AddEntityButton" Click="Add_Click" Height="20" HorizontalAlignment="Left" Margin="5,0,5,0">
-                <Image Source="https://cdn-icons-png.flaticon.com/512/32/32339.png" Height="10"/>
+            <Button Name="AddEntityButton" Click="Add_Click" Height="20" HorizontalAlignment="Left" Margin="5,0,5,0" >
+                <Image Source="https://cdn-icons-png.flaticon.com/512/32/32339.png" Height="10" />
             </Button>
             <Button Name="UpdateEntityButton" Click="Update_Click" Height="20" HorizontalAlignment="Left" Margin="0,0,5,0">
                 <Image Source="https://logowik.com/content/uploads/images/888_edit.jpg"/>
