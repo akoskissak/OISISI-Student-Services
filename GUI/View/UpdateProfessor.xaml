@@ -6,6 +6,16 @@
         xmlns:local="clr-namespace:GUI.View"
         mc:Ignorable="d"
         Title="UpdateProfessor" Height="auto" Width="auto">
+    <Window.Resources>
+        <ControlTemplate x:Key="ValidationTemplate">
+            <StackPanel>
+                <AdornedElementPlaceholder x:Name="textBox" />
+                <TextBlock Text="{Binding [0].ErrorContent}" Foreground="Red" />
+            </StackPanel>
+
+        </ControlTemplate>
+    </Window.Resources>
+
     <Grid>
         <TabControl Name="ProfessorTabs">
             <TabItem Name="Info" Header="Info">
@@ -16,19 +26,19 @@
                     </Grid.ColumnDefinitions>
 
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="27"/>
-                        <RowDefinition Height="27"/>
-                        <RowDefinition Height="27"/>
-                        <RowDefinition Height="27"/>
-                        <RowDefinition Height="27"/>
-                        <RowDefinition Height="27"/>
-                        <RowDefinition Height="27"/>
-                        <RowDefinition Height="27"/>
-                        <RowDefinition Height="27"/>
-                        <RowDefinition Height="27"/>
-                        <RowDefinition Height="27"/>
-                        <RowDefinition Height="27"/>
-                        <RowDefinition Height="27"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
 
                     <Label HorizontalAlignment="Center" Content="Lastname" Grid.Column="0" Grid.Row="0"/>
@@ -44,18 +54,18 @@
                     <Label HorizontalAlignment="Center" Content="Title" Grid.Column="0" Grid.Row="10"/>
                     <Label HorizontalAlignment="Center" Content="YearsOfService" Grid.Column="0" Grid.Row="11"/>
 
-                    <TextBox BorderBrush="Black" BorderThickness="2" Margin="0,0,0,5" Width="200" Height="22" Grid.Column="1" Grid.Row="0" Text="{Binding Path=ProfessorDto.Lastname, UpdateSourceTrigger=PropertyChanged}" />
-                    <TextBox BorderBrush="Black" BorderThickness="2" Margin="0,0,0,5" Width="200" Height="22" Grid.Column="1" Grid.Row="1" Text="{Binding Path=ProfessorDto.Name, UpdateSourceTrigger=PropertyChanged}" />
-                    <TextBox BorderBrush="Black" BorderThickness="2" Margin="0,0,0,5" Width="200" Height="22" Grid.Column="1" Grid.Row="2" Text="{Binding Path=ProfessorDto.DateOfBirth, UpdateSourceTrigger=PropertyChanged}" />
-                    <TextBox BorderBrush="Black" BorderThickness="2" Margin="0,0,0,5" Width="200" Height="22" Grid.Column="1" Grid.Row="3" Text="{Binding Path=ProfessorDto.Street, UpdateSourceTrigger=PropertyChanged}" />
-                    <TextBox BorderBrush="Black" BorderThickness="2" Margin="0,0,0,5" Width="200" Height="22" Grid.Column="1" Grid.Row="4" Text="{Binding Path=ProfessorDto.Number, UpdateSourceTrigger=PropertyChanged}" />
-                    <TextBox BorderBrush="Black" BorderThickness="2" Margin="0,0,0,5" Width="200" Height="22" Grid.Column="1" Grid.Row="5" Text="{Binding Path=ProfessorDto.City, UpdateSourceTrigger=PropertyChanged}" />
-                    <TextBox BorderBrush="Black" BorderThickness="2" Margin="0,0,0,5" Width="200" Height="22" Grid.Column="1" Grid.Row="6" Text="{Binding Path=ProfessorDto.Country, UpdateSourceTrigger=PropertyChanged}" />
-                    <TextBox BorderBrush="Black" BorderThickness="2" Margin="0,0,0,5" Width="200" Height="22" Grid.Column="1" Grid.Row="7" Text="{Binding Path=ProfessorDto.PhoneNumber, UpdateSourceTrigger=PropertyChanged}" />
-                    <TextBox BorderBrush="Black" BorderThickness="2" Margin="0,0,0,5" Width="200" Height="22" Grid.Column="1" Grid.Row="8" Text="{Binding Path=ProfessorDto.Email, UpdateSourceTrigger=PropertyChanged}" />
-                    <TextBox BorderBrush="Black" BorderThickness="2" Margin="0,0,0,5" Width="200" Height="22" Grid.Column="1" Grid.Row="9" Text="{Binding Path=ProfessorDto.Id, UpdateSourceTrigger=PropertyChanged}" />
-                    <TextBox BorderBrush="Black" BorderThickness="2" Margin="0,0,0,5" Width="200" Height="22" Grid.Column="1" Grid.Row="10" Text="{Binding Path=ProfessorDto.Title, UpdateSourceTrigger=PropertyChanged}" />
-                    <TextBox BorderBrush="Black" BorderThickness="2" Margin="0,0,0,5" Width="200" Height="22" Grid.Column="1" Grid.Row="11" Text="{Binding Path=ProfessorDto.YearsOfService, UpdateSourceTrigger=PropertyChanged}" />
+                    <TextBox BorderBrush="Black" BorderThickness="2" Margin="0,0,0,20" Width="200" Height="22" Grid.Column="1" Grid.Row="0" Text="{Binding Path=ProfessorDto.Lastname, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Validation.ErrorTemplate="{StaticResource ValidationTemplate}" />
+                    <TextBox BorderBrush="Black" BorderThickness="2" Margin="0,0,0,20" Width="200" Height="22" Grid.Column="1" Grid.Row="1" Text="{Binding Path=ProfessorDto.Name, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Validation.ErrorTemplate="{StaticResource ValidationTemplate}" />
+                    <TextBox BorderBrush="Black" BorderThickness="2" Margin="0,0,0,20" Width="200" Height="22" Grid.Column="1" Grid.Row="2" Text="{Binding Path=ProfessorDto.DateOfBirth, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Validation.ErrorTemplate="{StaticResource ValidationTemplate}" />
+                    <TextBox BorderBrush="Black" BorderThickness="2" Margin="0,0,0,20" Width="200" Height="22" Grid.Column="1" Grid.Row="3" Text="{Binding Path=ProfessorDto.Street, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Validation.ErrorTemplate="{StaticResource ValidationTemplate}" />
+                    <TextBox BorderBrush="Black" BorderThickness="2" Margin="0,0,0,20" Width="200" Height="22" Grid.Column="1" Grid.Row="4" Text="{Binding Path=ProfessorDto.Number, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Validation.ErrorTemplate="{StaticResource ValidationTemplate}" />
+                    <TextBox BorderBrush="Black" BorderThickness="2" Margin="0,0,0,20" Width="200" Height="22" Grid.Column="1" Grid.Row="5" Text="{Binding Path=ProfessorDto.City, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Validation.ErrorTemplate="{StaticResource ValidationTemplate}" />
+                    <TextBox BorderBrush="Black" BorderThickness="2" Margin="0,0,0,20" Width="200" Height="22" Grid.Column="1" Grid.Row="6" Text="{Binding Path=ProfessorDto.Country, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Validation.ErrorTemplate="{StaticResource ValidationTemplate}" />
+                    <TextBox BorderBrush="Black" BorderThickness="2" Margin="0,0,0,20" Width="200" Height="22" Grid.Column="1" Grid.Row="7" Text="{Binding Path=ProfessorDto.PhoneNumber, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Validation.ErrorTemplate="{StaticResource ValidationTemplate}" />
+                    <TextBox BorderBrush="Black" BorderThickness="2" Margin="0,0,0,20" Width="200" Height="22" Grid.Column="1" Grid.Row="8" Text="{Binding Path=ProfessorDto.Email, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Validation.ErrorTemplate="{StaticResource ValidationTemplate}" />
+                    <TextBox BorderBrush="Black" BorderThickness="2" Margin="0,0,0,20" Width="200" Height="22" Grid.Column="1" Grid.Row="9" Text="{Binding Path=ProfessorDto.IdNumber, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Validation.ErrorTemplate="{StaticResource ValidationTemplate}" />
+                    <TextBox BorderBrush="Black" BorderThickness="2" Margin="0,0,0,20" Width="200" Height="22" Grid.Column="1" Grid.Row="10" Text="{Binding Path=ProfessorDto.Title, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Validation.ErrorTemplate="{StaticResource ValidationTemplate}" />
+                    <TextBox BorderBrush="Black" BorderThickness="2" Margin="0,0,0,20" Width="200" Height="22" Grid.Column="1" Grid.Row="11" Text="{Binding Path=ProfessorDto.YearsOfService, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Validation.ErrorTemplate="{StaticResource ValidationTemplate}" />
                     <Button Content="Update" BorderThickness="1" Grid.Column="0" Grid.Row="12" Width="60" Height="20" VerticalContentAlignment="Center" HorizontalAlignment="Right" Margin="0,0,50,0" Click="Update_Button_Click" />
                     <Button Content="Cancel" BorderThickness="1" Grid.Column="1" Grid.Row="12" Width="60" Height="20" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="50,0,0,0" Click="Cancel_Button_Click" />
                 </Grid>
@@ -63,7 +73,9 @@
             </TabItem>
 
             <TabItem Name="SubjectsForProfessor" Header="Subjects">
-                
+                <Grid Margin="20,20,20,20">
+                </Grid>
+
             </TabItem>
             
         </TabControl>
