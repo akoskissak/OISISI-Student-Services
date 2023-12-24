@@ -51,13 +51,19 @@ namespace GUI.View
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-
         }
 
         private void Add_Button_Click(object sender, RoutedEventArgs e)
         {
-            _professorController.AddProfessor(ProfessorDto.ToProfessor());
-            Close();
+            if (ProfessorDto.isValid)
+            {
+                _professorController.AddProfessor(ProfessorDto.ToProfessor());
+                Close();
+            }
+            else
+            {
+                MessageBox.Show("Professor cannot be created. Not all fields are valid.");
+            }
         }
 
         private void Cancel_Button_Click(object sender, RoutedEventArgs e)
