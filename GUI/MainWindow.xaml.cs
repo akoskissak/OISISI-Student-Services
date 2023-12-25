@@ -224,7 +224,7 @@ namespace GUI
                         }
                         else
                         {
-                            MessageBox.Show("Subject cannot be deleted.", "Deletion failed", MessageBoxButton.OK);
+                            MessageBox.Show("Subject cannot be deleted.", "Deletion failed", MessageBoxButton.OK, MessageBoxImage.Error);
                         }
                     }
                 }

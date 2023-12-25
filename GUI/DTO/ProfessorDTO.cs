@@ -262,6 +262,7 @@ namespace GUI.DTO
         private Regex _cityCountryRegex = new Regex("^[a-zA-Z0-9]+([\\s][a-zA-Z0-9]+)*$");
         private Regex _phoneNumberRegex = new Regex("^\\+?(0-9)+$");
         private Regex _numbersRegex = new Regex("^[1-9]\\d*$");
+        private Regex _idNumberRegex = new Regex("^\\d*$");
         private Regex _titleRegex = new Regex("^[a-zA-Z][a-zA-Z0-9]*([\\s][a-zA-Z0-9]+)*");
 
         public string this[string columnName]
@@ -345,7 +346,7 @@ namespace GUI.DTO
                     if (string.IsNullOrEmpty(IdNumber))
                         return "IdNumber is required.";
 
-                    Match match = _numbersRegex.Match(IdNumber);
+                    Match match = _idNumberRegex.Match(IdNumber);
                     if (!match.Success)
                         return "Not a valid number. Try again.";
                 }

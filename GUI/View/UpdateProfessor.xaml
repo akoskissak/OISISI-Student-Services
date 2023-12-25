@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GUI.View"
         mc:Ignorable="d"
-        Title="UpdateProfessor" Height="auto" Width="auto">
+        Title="UpdateProfessor" Height="auto" Width="auto"
+        Closing="Window_Closing">
     <Window.Resources>
         <ControlTemplate x:Key="ValidationTemplate">
             <StackPanel>

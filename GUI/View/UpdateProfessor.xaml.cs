@@ -74,5 +74,10 @@ namespace GUI.View
         {
             Close();
         }
+
+        private void Window_Closing(object sender, CancelEventArgs e)
+        {
+            _professorController.NotifyObservers();
+        }
     }
 }

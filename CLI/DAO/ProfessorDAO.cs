@@ -94,4 +94,9 @@ public class ProfessorDAO
         _professorStorage.Save(_professors);
         ProfessorObservable.NotifyObservers();
     }
+
+    public void NotifyObservers()
+    {
+        ProfessorObservable.NotifyObservers();
+    }
 }

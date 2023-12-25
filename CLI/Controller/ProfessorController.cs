@@ -46,5 +46,10 @@ namespace CLI.Controller
         {
             _professorDao.SaveProfessors();
         }
+        
+        public void NotifyObservers()
+        {
+            _professorDao.NotifyObservers();
+        }
     }
 }
