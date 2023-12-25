@@ -16,9 +16,9 @@ namespace GUI.DTO
         private string _name;
         private SemesterType _semester;
         private int _yearOfStudy;
-        private Professor _professor;
         private int _professorId;
         private int _espb;
+        public Professor Professor { get; set; }
 
         public int Id
         {
@@ -157,6 +157,7 @@ namespace GUI.DTO
             ProfessorId = subject.ProfessorId.ToString();
             Espb = subject.Espb.ToString();
             Id = subject.Id;
+            Professor = subject.Professor;
             
         }
 

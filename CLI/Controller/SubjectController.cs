@@ -34,9 +34,9 @@ namespace CLI.Controller
             return _subjectDao.GetAllSubjects();
         }
 
-        public void RemoveSubject(int subjectId)
+        public bool RemoveSubject(int subjectId)
         {
-            _subjectDao.RemoveSubject(subjectId);
+            return _subjectDao.RemoveSubject(subjectId).Id != -1;
         }
 
         public void Subscribe(IObserver observer)

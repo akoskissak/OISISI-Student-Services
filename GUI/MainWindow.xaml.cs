@@ -43,6 +43,7 @@ namespace GUI
         private StudentController studentController { get; set; }    
         private SubjectController subjectController { get; set; }
         private ProfessorSubjectController professorSubjectController { get; set; }
+        private StudentSubjectController studentSubjectController { get; set; }
 
         public static RoutedCommand OpenAddEntityCommand = new RoutedCommand();
 
@@ -62,6 +63,7 @@ namespace GUI
             professorController = new ProfessorController();
             subjectController = new SubjectController();
             professorSubjectController = new ProfessorSubjectController();
+            studentSubjectController = new StudentSubjectController();
 
 
             studentController.Subscribe(this);
@@ -222,9 +224,15 @@ namespace GUI
                     MessageBoxResult result = MessageBox.Show(messageBoxText, caption, button);
                     if(result == MessageBoxResult.Yes)
                     {
-                        subjectController.RemoveSubject(SelectedSubject.Id);
-                        SubjectDtos.Remove(SelectedSubject);
-                        MessageBox.Show("Subject deleted successfully.", "Deletion Successful", MessageBoxButton.OK);
+                        if (subjectController.RemoveSubject(SelectedSubject.Id))
+                        {
+                            SubjectDtos.Remove(SelectedSubject);
+                            MessageBox.Show("Subject deleted successfully.", "Deletion Successful", MessageBoxButton.OK);
+                        }
+                        else
+                        {
+                            MessageBox.Show("Subject cannot be deleted.", "Deletion failed", MessageBoxButton.OK);
+                        }
                     }
                 }
             }
