@@ -12,11 +12,11 @@ namespace CLI.Controller
 
     public class SubjectController
     {
-        private readonly SubjectDAO _subjectDao;
+        public static readonly SubjectDAO _subjectDao = new SubjectDAO();
         
         public SubjectController()
         {
-           _subjectDao = new SubjectDAO();
+           //_subjectDao = new SubjectDAO();
         }
 
         public void AddSubject(Subject subject)
@@ -34,9 +34,9 @@ namespace CLI.Controller
             return _subjectDao.GetAllSubjects();
         }
 
-        public void RemoveSubject(int subjectId)
+        public bool RemoveSubject(int subjectId)
         {
-            _subjectDao.RemoveSubject(subjectId);
+            return _subjectDao.RemoveSubject(subjectId).Id != -1;
         }
 
         public void Subscribe(IObserver observer)

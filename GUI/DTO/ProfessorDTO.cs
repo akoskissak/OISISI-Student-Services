@@ -30,6 +30,7 @@ namespace GUI.DTO
         private int _idNumber;
         private string _title;
         private int _yearsOfService;
+        public List<Subject> Subjects { get; set; }
 
         public int Id
         {
@@ -413,6 +414,7 @@ namespace GUI.DTO
             Title = professor.Title;
             YearsOfService = professor.YearsOfService.ToString();
             Id = professor.Id;
+            Subjects = professor.Subjects;
         }
 
         public event PropertyChangedEventHandler? PropertyChanged;

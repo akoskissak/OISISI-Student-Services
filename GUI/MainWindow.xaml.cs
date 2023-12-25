@@ -24,16 +24,20 @@ namespace GUI
         public ObservableCollection<ProfessorDTO> ProfessorDtos { get; set; }
         public ObservableCollection<SubjectDTO> SubjectDtos { get; set; }
         public ObservableCollection<StudentDTO> StudentDtos { get; set; }
+        //public ObservableCollection<ProfessorSubjectDTO> ProfessorSubjectDtos { get; set; }
         
         public ProfessorDTO SelectedProfessor { get; set; }
         public SubjectDTO SelectedSubject { get; set; }
         public StudentDTO SelectedStudent { get; set; }
+        //public ProfessorSubjectDTO ProfessorSubjectDto { get; set; }
 
+
+       
+        private ProfessorSubjectController _professorSubjectController { get; set; }
+        private StudentSubjectController _studentSubjectController { get; set; }
         private ProfessorController _professorController {  get; set; }
         private StudentController _studentController { get; set; }    
         private SubjectController _subjectController { get; set; }
-
-        public static RoutedCommand OpenAddEntityCommand = new RoutedCommand();
 
         public MainWindow()
         {
@@ -42,8 +46,14 @@ namespace GUI
             ProfessorDtos = new ObservableCollection<ProfessorDTO>();
             StudentDtos = new ObservableCollection<StudentDTO>();
             SubjectDtos = new ObservableCollection<SubjectDTO>();
+            //ProfessorSubjectDtos = new ObservableCollection<ProfessorSubjectDTO>();
+            
 
             SetInitialWindowSize();
+
+            
+            _professorSubjectController = new ProfessorSubjectController();
+            _studentSubjectController = new StudentSubjectController();
 
             _studentController = new StudentController();
             _professorController = new ProfessorController();
@@ -161,9 +171,15 @@ namespace GUI
                     MessageBoxResult result = MessageBox.Show(messageBoxText, caption, button, MessageBoxImage.Question);
                     if (result == MessageBoxResult.Yes)
                     {
-                        _professorController.RemoveProfessor(SelectedProfessor.Id);
-                        ProfessorDtos.Remove(SelectedProfessor);
-                        MessageBox.Show("Professor deleted successfully.", "Deletion Successful", MessageBoxButton.OK, MessageBoxImage.Information);
+                        if (_professorController.RemoveProfessor(SelectedProfessor.Id))
+                        {
+                            ProfessorDtos.Remove(SelectedProfessor);
+                            MessageBox.Show("Professor deleted successfully.", "Deletion Successful", MessageBoxButton.OK);
+                        }
+                        else
+                        {
+                            MessageBox.Show("Professor cannot be deleted.", "Deletion failed", MessageBoxButton.OK);
+                        }
                     }
 
                 }
@@ -201,9 +217,15 @@ namespace GUI
                     MessageBoxResult result = MessageBox.Show(messageBoxText, caption, button, MessageBoxImage.Question);
                     if(result == MessageBoxResult.Yes)
                     {
-                        _subjectController.RemoveSubject(SelectedSubject.Id);
-                        SubjectDtos.Remove(SelectedSubject);
-                        MessageBox.Show("Subject deleted successfully.", "Deletion Successful", MessageBoxButton.OK, MessageBoxImage.Information);
+                        if (_subjectController.RemoveSubject(SelectedSubject.Id))
+                        {
+                            SubjectDtos.Remove(SelectedSubject);
+                            MessageBox.Show("Subject deleted successfully.", "Deletion Successful", MessageBoxButton.OK);
+                        }
+                        else
+                        {
+                            MessageBox.Show("Subject cannot be deleted.", "Deletion failed", MessageBoxButton.OK);
+                        }
                     }
                 }
             }

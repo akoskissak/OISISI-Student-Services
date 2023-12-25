@@ -11,11 +11,11 @@ namespace CLI.Controller
 {
     public class ProfessorController
     {
-        private readonly ProfessorDAO _professorDao;
+        public static readonly ProfessorDAO _professorDao = new ProfessorDAO();
 
         public ProfessorController()
         {
-            _professorDao = new ProfessorDAO();
+            //_professorDao = new ProfessorDAO();
         }
 
         public void AddProfessor(Professor professor)
@@ -33,9 +33,9 @@ namespace CLI.Controller
             return _professorDao.GetAllProfessors();
         }
 
-        public void RemoveProfessor(int professorId)
+        public bool RemoveProfessor(int professorId)
         {
-            _professorDao.RemoveProfessor(professorId);
+            return _professorDao.RemoveProfessor(professorId).Id != -1;
         }
 
         public void Subscribe(IObserver observer)

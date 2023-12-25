@@ -11,11 +11,11 @@ namespace CLI.Controller
 {
     public class StudentController
     {
-        private readonly StudentDAO _studentDao;
+        public static readonly StudentDAO _studentDao = new StudentDAO();
 
         public StudentController()
         {
-            _studentDao = new StudentDAO();
+            //_studentDao = new StudentDAO();
         }
 
         public void Add(Student student)
