@@ -122,4 +122,8 @@ public class SubjectDAO
     {
         return _subjects;
     }
+    public void NotifyObservers()
+    {
+        SubjectObservable.NotifyObservers();
+    }
 }

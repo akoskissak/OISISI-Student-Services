@@ -5,22 +5,14 @@ using GUI.DTO;
 using GUI.View;
 using System.Windows.Threading;
 using System;
+using System.Windows.Input;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Controls.Ribbon.Primitives;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using CLI.Controller;
+using System.Linq;
+using System.Windows.Controls.Ribbon;
 
 namespace GUI
 {
@@ -39,13 +31,13 @@ namespace GUI
         public StudentDTO SelectedStudent { get; set; }
         //public ProfessorSubjectDTO ProfessorSubjectDto { get; set; }
 
-        private ProfessorController professorController {  get; set; }
-        private StudentController studentController { get; set; }    
-        private SubjectController subjectController { get; set; }
-        private ProfessorSubjectController professorSubjectController { get; set; }
-        private StudentSubjectController studentSubjectController { get; set; }
 
-        public static RoutedCommand OpenAddEntityCommand = new RoutedCommand();
+       
+        private ProfessorSubjectController _professorSubjectController { get; set; }
+        private StudentSubjectController _studentSubjectController { get; set; }
+        private ProfessorController _professorController {  get; set; }
+        private StudentController _studentController { get; set; }    
+        private SubjectController _subjectController { get; set; }
 
         public MainWindow()
         {
@@ -59,20 +51,20 @@ namespace GUI
 
             SetInitialWindowSize();
 
-            studentController = new StudentController();
-            professorController = new ProfessorController();
-            subjectController = new SubjectController();
-            professorSubjectController = new ProfessorSubjectController();
-            studentSubjectController = new StudentSubjectController();
+            
+            _professorSubjectController = new ProfessorSubjectController();
+            _studentSubjectController = new StudentSubjectController();
 
+            _studentController = new StudentController();
+            _professorController = new ProfessorController();
+            _subjectController = new SubjectController();
+            
 
-            studentController.Subscribe(this);
-            professorController.Subscribe(this);
-            subjectController.Subscribe(this);
+            _studentController.Subscribe(this);
+            _professorController.Subscribe(this);
+            _subjectController.Subscribe(this);
+            
 
-            // i ovo
-            ///
-            ////
             DispatcherTimer timer = new DispatcherTimer();
             timer.Tick += new EventHandler(UpdateTimer_Tick);
             timer.Interval = new TimeSpan(0, 0, 1);
@@ -98,17 +90,17 @@ namespace GUI
             TabItem ti = Tabs.SelectedItem as TabItem;
             if (ti != null && ti.Name != null && ti.Name == "ProfessorsTab")
             {
-                AddProfessor addProfessorWindow = new AddProfessor(professorController, Left, Top, Width, Height);  //i ovo treba izmeniti
+                AddProfessor addProfessorWindow = new AddProfessor(_professorController, Left, Top, Width, Height);
                 addProfessorWindow.ShowDialog();
             }
             else if(ti != null && ti.Name != null && ti.Name == "StudentsTab")
             {
-                AddStudent addStudent = new AddStudent(studentController);
+                AddStudent addStudent = new AddStudent(_studentController, Left, Top, Width, Height);
                 addStudent.ShowDialog();
             }
             else if(ti != null && ti.Name != null && ti.Name == "SubjectsTab")
             {
-                AddSubject addSubject = new AddSubject(subjectController, Left, Top, Width, Height);        // i ovo treba izmeniti
+                AddSubject addSubject = new AddSubject(_subjectController, Left, Top, Width, Height);
                 addSubject.ShowDialog();
             }
             
@@ -121,7 +113,7 @@ namespace GUI
             {
                 if (SelectedProfessor != null)
                 {
-                    UpdateProfessor updateProfessorWindow = new UpdateProfessor(professorController, SelectedProfessor, Left, Top, Width, Height);
+                    UpdateProfessor updateProfessorWindow = new UpdateProfessor(_professorController, SelectedProfessor, Left, Top, Width, Height);
                     updateProfessorWindow.ShowDialog();
                 }
                 else
@@ -131,7 +123,7 @@ namespace GUI
             {
                 if (SelectedStudent != null)
                 {
-                    UpdateStudent updateStudentWindow = new UpdateStudent(studentController, SelectedStudent);
+                    UpdateStudent updateStudentWindow = new UpdateStudent(_studentController, SelectedStudent, Left, Top, Width, Height);
                     updateStudentWindow.ShowDialog();
                 }
                 else
@@ -141,7 +133,7 @@ namespace GUI
             {
                 if (SelectedSubject != null)
                 {
-                    UpdateSubject updateSubjectWindow = new UpdateSubject(subjectController, SelectedSubject);
+                    UpdateSubject updateSubjectWindow = new UpdateSubject(_subjectController, SelectedSubject, Left, Top, Width, Height);
                     updateSubjectWindow.ShowDialog();
                 }
                 else
@@ -152,15 +144,15 @@ namespace GUI
         public void Update()
         {
             ProfessorDtos.Clear();
-            foreach (Professor professor in professorController.GetAllProfessors())
+            foreach (Professor professor in _professorController.GetAllProfessors())
                 ProfessorDtos.Add(new ProfessorDTO(professor));
 
             StudentDtos.Clear();
-            foreach(Student student in studentController.GetAllStudents())
+            foreach(Student student in _studentController.GetAllStudents())
                 StudentDtos.Add(new StudentDTO(student));
 
             SubjectDtos.Clear();
-            foreach (Subject subject in subjectController.GetAllSubjects())
+            foreach (Subject subject in _subjectController.GetAllSubjects())
                 SubjectDtos.Add(new SubjectDTO(subject));
         }
 
@@ -176,10 +168,10 @@ namespace GUI
                     string messageBoxText = "Are you sure you want to delete professor?";
                     string caption = "Delete professor";
                     MessageBoxButton button = MessageBoxButton.YesNo;
-                    MessageBoxResult result = MessageBox.Show(messageBoxText, caption, button);
+                    MessageBoxResult result = MessageBox.Show(messageBoxText, caption, button, MessageBoxImage.Question);
                     if (result == MessageBoxResult.Yes)
                     {
-                        if (professorController.RemoveProfessor(SelectedProfessor.Id))
+                        if (_professorController.RemoveProfessor(SelectedProfessor.Id))
                         {
                             ProfessorDtos.Remove(SelectedProfessor);
                             MessageBox.Show("Professor deleted successfully.", "Deletion Successful", MessageBoxButton.OK);
@@ -201,14 +193,15 @@ namespace GUI
                     string messageBoxText = "Are you sure you want to delete student?";
                     string caption = "Delete student";
                     MessageBoxButton button = MessageBoxButton.YesNo;
-                    MessageBoxResult result = MessageBox.Show(messageBoxText, caption, button);
+                    MessageBoxResult result = MessageBox.Show(messageBoxText, caption, button, MessageBoxImage.Question);
                     if (result == MessageBoxResult.Yes)
                     {
-                        studentController.RemoveStudent(SelectedStudent.Id);
+                        _studentController.RemoveStudent(SelectedStudent.Id);
                         StudentDtos.Remove(SelectedStudent);
-                        MessageBox.Show("Student deleted successfully.", "Deletion Successful", MessageBoxButton.OK);
+                        MessageBox.Show("Student deleted successfully.", "Deletion Successful", MessageBoxButton.OK, MessageBoxImage.Information);
                     }
                 }
+
             }
             else if (ti != null && ti.Name != null && ti.Name == "SubjectsTab")
             {
@@ -221,10 +214,10 @@ namespace GUI
                     string messageBoxText = "Are you sure you want to delete subject?";
                     string caption = "Delete subject";
                     MessageBoxButton button = MessageBoxButton.YesNo;
-                    MessageBoxResult result = MessageBox.Show(messageBoxText, caption, button);
+                    MessageBoxResult result = MessageBox.Show(messageBoxText, caption, button, MessageBoxImage.Question);
                     if(result == MessageBoxResult.Yes)
                     {
-                        if (subjectController.RemoveSubject(SelectedSubject.Id))
+                        if (_subjectController.RemoveSubject(SelectedSubject.Id))
                         {
                             SubjectDtos.Remove(SelectedSubject);
                             MessageBox.Show("Subject deleted successfully.", "Deletion Successful", MessageBoxButton.OK);
@@ -257,16 +250,75 @@ namespace GUI
             DisplayDateTextBlock.Text = DateTime.Now.ToString();
         }
 
+        private void NavigateToStudents(object sender, RoutedEventArgs e)
+        {
+            Tabs.SelectedItem = StudentsTab;
+        }
+
+        private void NavigateToProfessors(object sender, RoutedEventArgs e)
+        {
+            Tabs.SelectedItem = ProfessorsTab;
+        }
+
+        private void NavigateToSubjects(object sender, RoutedEventArgs e)
+        {
+            Tabs.SelectedItem = SubjectsTab;
+        }
+
+        private void CLose_Click(object sender, RoutedEventArgs e)
+        {
+            App.Current.Shutdown();
+        }
+
         private void Window_KeyDown(object sender, KeyEventArgs e)
         {
-            if (Keyboard.IsKeyDown(Key.LeftCtrl) && Keyboard.IsKeyDown(Key.A))
+            if (Keyboard.IsKeyDown(Key.LeftCtrl) && Keyboard.IsKeyDown(Key.N))
+                Add_Click(sender, e);
+            else if (Keyboard.IsKeyDown(Key.LeftCtrl) && Keyboard.IsKeyDown(Key.E))
+                Update_Click(sender, e);
+            else if (Keyboard.IsKeyDown(Key.LeftCtrl) && Keyboard.IsKeyDown(Key.D))
+                Delete_Click(sender, e);
+            else if (Keyboard.IsKeyDown(Key.LeftCtrl) && Keyboard.IsKeyDown(Key.X))
+                CLose_Click(sender, e);
+            else if (Keyboard.IsKeyDown(Key.LeftCtrl) && Keyboard.IsKeyDown(Key.B))
+                About_Click(sender, e);
+            else if (Keyboard.IsKeyDown(Key.LeftCtrl) && Keyboard.IsKeyDown(Key.A))
                 Add_Click(sender, e);
             else if (Keyboard.IsKeyDown(Key.LeftCtrl) && Keyboard.IsKeyDown(Key.U))
                 Update_Click(sender, e);
             else if (Keyboard.IsKeyDown(Key.LeftCtrl) && Keyboard.IsKeyDown(Key.D))
                 Delete_Click(sender, e);
+            else if (Keyboard.IsKeyDown(Key.LeftCtrl) && Keyboard.IsKeyDown(Key.O))
+                Open_Click(sender, e);
+            else if (Keyboard.IsKeyDown(Key.LeftCtrl) && Keyboard.IsKeyDown(Key.S))
+                Save_Click(sender, e);
         }
 
-        
+        private void Save_Click(object sender, RoutedEventArgs e)
+        {
+            _subjectController.Save();
+            _professorController.Save();
+            _studentController.Save();
+            MessageBox.Show("Successfully saved.", "Saving Successful", MessageBoxButton.OK, MessageBoxImage.Information);
+        }
+        private void About_Click(object sender, RoutedEventArgs e)
+        {
+            About about = new About();
+            about.ShowDialog();
+        }
+
+        private void Department_Click(object sender, RoutedEventArgs e)
+        {
+            DepartmentView department = new DepartmentView(Left, Top, Width, Height);
+            department.ShowDialog();
+        }
+
+        private void Open_Click(object sender, RoutedEventArgs e)
+        {
+            filemenu.IsSubmenuOpen = true;
+            openMenuItem.IsSubmenuOpen = true;
+
+            e.Handled = true;
+        }
     }
 }

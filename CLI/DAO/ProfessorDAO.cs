@@ -89,4 +89,9 @@ public class ProfessorDAO
     {
         return _professors;
     }
+    public void SaveProfessors()
+    {
+        _professorStorage.Save(_professors);
+        ProfessorObservable.NotifyObservers();
+    }
 }

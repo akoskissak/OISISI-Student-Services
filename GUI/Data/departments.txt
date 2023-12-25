@@ -2,3 +2,4 @@
 1|7777|Telekomunikacije|1
 2|8787|Istorija|-1
 3|7423|Fizika|2
+4|88|Perica|8

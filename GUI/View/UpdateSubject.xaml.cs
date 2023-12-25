@@ -30,13 +30,25 @@ namespace GUI.View
 
         public event PropertyChangedEventHandler? PropertyChanged;
 
-        public UpdateSubject(SubjectController subjectController, SubjectDTO subjectDto)
+        public UpdateSubject(SubjectController subjectController, SubjectDTO subjectDto, double left, double top, double width, double height)
         {
             InitializeComponent();
             DataContext = this;
             SubjectDto = subjectDto;
             this._subjectController = subjectController;
 
+            semesterComboBox.Items.Clear();
+            semesterComboBox.SelectedIndex = 0;
+            semesterComboBox.ItemsSource = Enum.GetValues(typeof(SemesterType));
+
+            SetInitialWindowSize(left, top, width, height);
+        }
+        private void SetInitialWindowSize(double left, double top, double width, double height)
+        {
+            Left = left;
+            Top = top;
+            Width = width;
+            Height = height;
         }
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
@@ -45,15 +57,27 @@ namespace GUI.View
         }
         private void Update_Button_Click(object sender, RoutedEventArgs e)
         {
-            Subject subject = SubjectDto.ToSubject();
-            subject.Id = SubjectDto.Id;
-            _subjectController.UpdateSubject(subject);
-            Close();
+            if (SubjectDto.IsValid)
+            {
+                Subject subject = SubjectDto.ToSubject();
+                subject.Id = SubjectDto.Id;
+                _subjectController.UpdateSubject(subject);
+                Close();
+            }
+            else
+            {
+                MessageBox.Show("Subject can not be updated. Not all fields are valid.");
+            }
         }
 
         private void Cancel_Button_Click(object sender, RoutedEventArgs e)
         {
             Close();
+        }
+
+        private void Window_Closing(object sender, CancelEventArgs e)
+        {
+            _subjectController.NotifyObservers();
         }
     }
 }
