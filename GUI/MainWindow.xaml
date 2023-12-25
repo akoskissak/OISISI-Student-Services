@@ -19,7 +19,7 @@
 
     <DockPanel>
         <Menu DockPanel.Dock ="Top">
-            <MenuItem Header="_File" >
+            <MenuItem Header="_File" Name="filemenu" >
                 <MenuItem Header="_New" Click="Add_Click" InputGestureText="Ctrl + N" >
                     <MenuItem.Icon>
                         <Image Source="https://cdn2.iconfinder.com/data/icons/ios-7-icons/50/plus-512.png"/>
@@ -30,13 +30,14 @@
                         <Image Source="https://static.vecteezy.com/system/resources/previews/020/936/457/original/save-icon-for-your-website-design-logo-app-ui-free-vector.jpg"/>
                     </MenuItem.Icon>
                 </MenuItem>
-                <MenuItem Header="_Open" InputGestureText="Ctrl + O">
+                <MenuItem Header="_Open" Name="openMenuItem" Click="Open_Click" InputGestureText="Ctrl + O">
                     <MenuItem.Icon>
                         <Image Source="https://icons.veryicon.com/png/o/object/material-design-icons-1/open-in-app.png"/>
                     </MenuItem.Icon>
                     <MenuItem Header="_Students" Click="NavigateToStudents"/>
                     <MenuItem Header="_Professors" Click="NavigateToProfessors"/>
                     <MenuItem Header="_Subjects" Click="NavigateToSubjects"/>
+                    <MenuItem Header="_Departments" Click="Department_Click"/>
                 </MenuItem>
                 <MenuItem Header="_Close" Click="CLose_Click" InputGestureText="Ctrl + X">
                     <MenuItem.Icon>

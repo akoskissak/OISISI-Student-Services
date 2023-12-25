@@ -119,6 +119,7 @@ public class StudentDAO
     public void SaveStudents()
     {
         _studentStorage.Save(_students);
+        StudentObservable.NotifyObservers();
     }
 
     public Student? GetStudentById(int id)

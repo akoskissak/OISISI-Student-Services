@@ -11,6 +11,8 @@ using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Controls;
 using CLI.Controller;
+using System.Linq;
+using System.Windows.Controls.Ribbon;
 
 namespace GUI
 {
@@ -27,9 +29,9 @@ namespace GUI
         public SubjectDTO SelectedSubject { get; set; }
         public StudentDTO SelectedStudent { get; set; }
 
-        private ProfessorController professorController {  get; set; }
+        private ProfessorController _professorController {  get; set; }
         private StudentController _studentController { get; set; }    
-        private SubjectController subjectController { get; set; }
+        private SubjectController _subjectController { get; set; }
 
         public static RoutedCommand OpenAddEntityCommand = new RoutedCommand();
 
@@ -44,12 +46,14 @@ namespace GUI
             SetInitialWindowSize();
 
             _studentController = new StudentController();
-            professorController = new ProfessorController();
-            subjectController = new SubjectController();
+            _professorController = new ProfessorController();
+            _subjectController = new SubjectController();
+            
 
             _studentController.Subscribe(this);
-            professorController.Subscribe(this);
-            subjectController.Subscribe(this);
+            _professorController.Subscribe(this);
+            _subjectController.Subscribe(this);
+            
 
             DispatcherTimer timer = new DispatcherTimer();
             timer.Tick += new EventHandler(UpdateTimer_Tick);
@@ -76,17 +80,17 @@ namespace GUI
             TabItem ti = Tabs.SelectedItem as TabItem;
             if (ti != null && ti.Name != null && ti.Name == "ProfessorsTab")
             {
-                AddProfessor addProfessorWindow = new AddProfessor(professorController, Left, Top, Width, Height);  //i ovo treba izmeniti
+                AddProfessor addProfessorWindow = new AddProfessor(_professorController, Left, Top, Width, Height);
                 addProfessorWindow.ShowDialog();
             }
             else if(ti != null && ti.Name != null && ti.Name == "StudentsTab")
             {
-                AddStudent addStudent = new AddStudent(_studentController);
+                AddStudent addStudent = new AddStudent(_studentController, Left, Top, Width, Height);
                 addStudent.ShowDialog();
             }
             else if(ti != null && ti.Name != null && ti.Name == "SubjectsTab")
             {
-                AddSubject addSubject = new AddSubject(subjectController, Left, Top, Width, Height);        // i ovo treba izmeniti
+                AddSubject addSubject = new AddSubject(_subjectController, Left, Top, Width, Height);
                 addSubject.ShowDialog();
             }
             
@@ -99,7 +103,7 @@ namespace GUI
             {
                 if (SelectedProfessor != null)
                 {
-                    UpdateProfessor updateProfessorWindow = new UpdateProfessor(professorController, SelectedProfessor, Left, Top, Width, Height);
+                    UpdateProfessor updateProfessorWindow = new UpdateProfessor(_professorController, SelectedProfessor, Left, Top, Width, Height);
                     updateProfessorWindow.ShowDialog();
                 }
                 else
@@ -109,7 +113,7 @@ namespace GUI
             {
                 if (SelectedStudent != null)
                 {
-                    UpdateStudent updateStudentWindow = new UpdateStudent(_studentController, SelectedStudent);
+                    UpdateStudent updateStudentWindow = new UpdateStudent(_studentController, SelectedStudent, Left, Top, Width, Height);
                     updateStudentWindow.ShowDialog();
                 }
                 else
@@ -119,7 +123,7 @@ namespace GUI
             {
                 if (SelectedSubject != null)
                 {
-                    UpdateSubject updateSubjectWindow = new UpdateSubject(subjectController, SelectedSubject);
+                    UpdateSubject updateSubjectWindow = new UpdateSubject(_subjectController, SelectedSubject, Left, Top, Width, Height);
                     updateSubjectWindow.ShowDialog();
                 }
                 else
@@ -130,7 +134,7 @@ namespace GUI
         public void Update()
         {
             ProfessorDtos.Clear();
-            foreach (Professor professor in professorController.GetAllProfessors())
+            foreach (Professor professor in _professorController.GetAllProfessors())
                 ProfessorDtos.Add(new ProfessorDTO(professor));
 
             StudentDtos.Clear();
@@ -138,7 +142,7 @@ namespace GUI
                 StudentDtos.Add(new StudentDTO(student));
 
             SubjectDtos.Clear();
-            foreach (Subject subject in subjectController.GetAllSubjects())
+            foreach (Subject subject in _subjectController.GetAllSubjects())
                 SubjectDtos.Add(new SubjectDTO(subject));
         }
 
@@ -157,9 +161,9 @@ namespace GUI
                     MessageBoxResult result = MessageBox.Show(messageBoxText, caption, button, MessageBoxImage.Question);
                     if (result == MessageBoxResult.Yes)
                     {
-                        professorController.RemoveProfessor(SelectedProfessor.Id);
+                        _professorController.RemoveProfessor(SelectedProfessor.Id);
                         ProfessorDtos.Remove(SelectedProfessor);
-                        MessageBox.Show("Professor deleted successfully.", "Deletion Successful", MessageBoxButton.OK);
+                        MessageBox.Show("Professor deleted successfully.", "Deletion Successful", MessageBoxButton.OK, MessageBoxImage.Information);
                     }
 
                 }
@@ -178,7 +182,7 @@ namespace GUI
                     {
                         _studentController.RemoveStudent(SelectedStudent.Id);
                         StudentDtos.Remove(SelectedStudent);
-                        MessageBox.Show("Student deleted successfully.", "Deletion Successful", MessageBoxButton.OK);
+                        MessageBox.Show("Student deleted successfully.", "Deletion Successful", MessageBoxButton.OK, MessageBoxImage.Information);
                     }
                 }
 
@@ -197,9 +201,9 @@ namespace GUI
                     MessageBoxResult result = MessageBox.Show(messageBoxText, caption, button, MessageBoxImage.Question);
                     if(result == MessageBoxResult.Yes)
                     {
-                        subjectController.RemoveSubject(SelectedSubject.Id);
+                        _subjectController.RemoveSubject(SelectedSubject.Id);
                         SubjectDtos.Remove(SelectedSubject);
-                        MessageBox.Show("Subject deleted successfully.", "Deletion Successful", MessageBoxButton.OK);
+                        MessageBox.Show("Subject deleted successfully.", "Deletion Successful", MessageBoxButton.OK, MessageBoxImage.Information);
                     }
                 }
             }
@@ -262,16 +266,37 @@ namespace GUI
                 Update_Click(sender, e);
             else if (Keyboard.IsKeyDown(Key.LeftCtrl) && Keyboard.IsKeyDown(Key.D))
                 Delete_Click(sender, e);
+            else if (Keyboard.IsKeyDown(Key.LeftCtrl) && Keyboard.IsKeyDown(Key.O))
+                Open_Click(sender, e);
+            else if (Keyboard.IsKeyDown(Key.LeftCtrl) && Keyboard.IsKeyDown(Key.S))
+                Save_Click(sender, e);
         }
 
         private void Save_Click(object sender, RoutedEventArgs e)
         {
-
+            _subjectController.Save();
+            _professorController.Save();
+            _studentController.Save();
+            MessageBox.Show("Successfully saved.", "Saving Successful", MessageBoxButton.OK, MessageBoxImage.Information);
         }
         private void About_Click(object sender, RoutedEventArgs e)
         {
             About about = new About();
             about.ShowDialog();
+        }
+
+        private void Department_Click(object sender, RoutedEventArgs e)
+        {
+            DepartmentView department = new DepartmentView(Left, Top, Width, Height);
+            department.ShowDialog();
+        }
+
+        private void Open_Click(object sender, RoutedEventArgs e)
+        {
+            filemenu.IsSubmenuOpen = true;
+            openMenuItem.IsSubmenuOpen = true;
+
+            e.Handled = true;
         }
     }
 }

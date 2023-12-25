@@ -47,5 +47,9 @@ namespace CLI.Controller
         {
             _subjectDao.NotifyObservers();
         }
+        public void Save()
+        {
+            _subjectDao.SaveSubjects();
+        }
     }
 }

@@ -1,10 +1,7 @@
 ﻿using CLI.Controller;
-using CLI.DAO;
 using CLI.Model;
 using GUI.DTO;
 using System;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
 using System.Windows;
 
 namespace GUI.View
@@ -17,7 +14,7 @@ namespace GUI.View
         public StudentDTO StudentDto { get; set; }
 
         private StudentController _studentController;
-        public AddStudent(StudentController studentController)
+        public AddStudent(StudentController studentController, double left,  double top,  double width, double height)
         {
             InitializeComponent();
             DataContext = this;
@@ -27,6 +24,14 @@ namespace GUI.View
             statusComboBox.Items.Clear();
             statusComboBox.ItemsSource = Enum.GetValues(typeof(Status));
 
+            SetInitialWindowSize(left, top, width, height);
+        }
+        private void SetInitialWindowSize(double left, double top, double width, double height)
+        {
+            Left = left;
+            Top = top;
+            Width = width;
+            Height = height;
         }
         private void Add_Button_Click(object sender, RoutedEventArgs e)
         {

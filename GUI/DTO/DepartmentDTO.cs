@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace GUI.DTO
 {
-    internal class DepartmentDTO : INotifyPropertyChanged
+    public class DepartmentDTO : INotifyPropertyChanged
     {
         private int _id;
         private string _depCode;

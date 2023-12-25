@@ -44,5 +44,9 @@ namespace CLI.Controller
         {
             _studentDao.NotifyObservers();
         }
+        public void Save()
+        {
+            _studentDao.SaveStudents();
+        }
     }
 }

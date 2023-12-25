@@ -14,6 +14,7 @@ public class DepartmentDAO
     {
         _departmentStorage = new Storage<Department>("departments.txt");
         _departments = _departmentStorage.Load();
+        DepartmentObservable = new Observable();
     }
 
     private int GenerateDepartmentId()

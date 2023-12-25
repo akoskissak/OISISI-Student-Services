@@ -30,7 +30,7 @@ namespace GUI.View
 
         public event PropertyChangedEventHandler? PropertyChanged;
 
-        public UpdateSubject(SubjectController subjectController, SubjectDTO subjectDto)
+        public UpdateSubject(SubjectController subjectController, SubjectDTO subjectDto, double left, double top, double width, double height)
         {
             InitializeComponent();
             DataContext = this;
@@ -41,6 +41,14 @@ namespace GUI.View
             semesterComboBox.SelectedIndex = 0;
             semesterComboBox.ItemsSource = Enum.GetValues(typeof(SemesterType));
 
+            SetInitialWindowSize(left, top, width, height);
+        }
+        private void SetInitialWindowSize(double left, double top, double width, double height)
+        {
+            Left = left;
+            Top = top;
+            Width = width;
+            Height = height;
         }
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
