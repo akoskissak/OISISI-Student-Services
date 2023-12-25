@@ -12,11 +12,11 @@ namespace CLI.Controller
 
     public class SubjectController
     {
-        private readonly SubjectDAO _subjectDao;
+        public static readonly SubjectDAO _subjectDao = new SubjectDAO();
         
         public SubjectController()
         {
-           _subjectDao = new SubjectDAO();
+           //_subjectDao = new SubjectDAO();
         }
 
         public void AddSubject(Subject subject)

@@ -32,14 +32,17 @@ namespace GUI
         public ObservableCollection<ProfessorDTO> ProfessorDtos { get; set; }
         public ObservableCollection<SubjectDTO> SubjectDtos { get; set; }
         public ObservableCollection<StudentDTO> StudentDtos { get; set; }
+        //public ObservableCollection<ProfessorSubjectDTO> ProfessorSubjectDtos { get; set; }
         
         public ProfessorDTO SelectedProfessor { get; set; }
         public SubjectDTO SelectedSubject { get; set; }
         public StudentDTO SelectedStudent { get; set; }
+        //public ProfessorSubjectDTO ProfessorSubjectDto { get; set; }
 
         private ProfessorController professorController {  get; set; }
         private StudentController studentController { get; set; }    
         private SubjectController subjectController { get; set; }
+        private ProfessorSubjectController professorSubjectController { get; set; }
 
         public static RoutedCommand OpenAddEntityCommand = new RoutedCommand();
 
@@ -50,12 +53,16 @@ namespace GUI
             ProfessorDtos = new ObservableCollection<ProfessorDTO>();
             StudentDtos = new ObservableCollection<StudentDTO>();
             SubjectDtos = new ObservableCollection<SubjectDTO>();
+            //ProfessorSubjectDtos = new ObservableCollection<ProfessorSubjectDTO>();
+            
 
             SetInitialWindowSize();
 
             studentController = new StudentController();
             professorController = new ProfessorController();
             subjectController = new SubjectController();
+            professorSubjectController = new ProfessorSubjectController();
+
 
             studentController.Subscribe(this);
             professorController.Subscribe(this);
@@ -170,9 +177,15 @@ namespace GUI
                     MessageBoxResult result = MessageBox.Show(messageBoxText, caption, button);
                     if (result == MessageBoxResult.Yes)
                     {
-                        professorController.RemoveProfessor(SelectedProfessor.Id);
-                        ProfessorDtos.Remove(SelectedProfessor);
-                        MessageBox.Show("Professor deleted successfully.", "Deletion Successful", MessageBoxButton.OK);
+                        if (professorController.RemoveProfessor(SelectedProfessor.Id))
+                        {
+                            ProfessorDtos.Remove(SelectedProfessor);
+                            MessageBox.Show("Professor deleted successfully.", "Deletion Successful", MessageBoxButton.OK);
+                        }
+                        else
+                        {
+                            MessageBox.Show("Professor cannot be deleted.", "Deletion failed", MessageBoxButton.OK);
+                        }
                     }
 
                 }
