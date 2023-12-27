@@ -18,7 +18,7 @@
     </Window.Resources>
     <Grid>
         <TabControl Name="StudentTabs">
-            <TabItem Name="Informacije" Header="Informacije">
+            <TabItem Name="Informations" Header="Informations">
                 <Grid Margin="20, 20, 20, 20">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
@@ -26,21 +26,21 @@
                     </Grid.ColumnDefinitions>
 
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="27"/>
-                        <RowDefinition Height="27"/>
-                        <RowDefinition Height="27"/>
-                        <RowDefinition Height="27"/>
-                        <RowDefinition Height="27"/>
-                        <RowDefinition Height="27"/>
-                        <RowDefinition Height="27"/>
-                        <RowDefinition Height="27"/>
-                        <RowDefinition Height="27"/>
-                        <RowDefinition Height="27"/>
-                        <RowDefinition Height="27"/>
-                        <RowDefinition Height="27"/>
-                        <RowDefinition Height="27"/>
-                        <RowDefinition Height="27"/>
-                        <RowDefinition Height="27"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
                     </Grid.RowDefinitions>
 
                     <Label HorizontalAlignment="Center" Content="Lastname" Grid.Column="0" Grid.Row="0"/>
@@ -61,7 +61,7 @@
                     <TextBox BorderBrush="Black" BorderThickness="2" Margin="0,0,0,5" Width="200" Height="22" Grid.Column="1" Grid.Row="0" Text="{Binding Path=StudentDto.LastName, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Validation.ErrorTemplate="{StaticResource ValidationTemplate}" />
                     <TextBox BorderBrush="Black" BorderThickness="2" Margin="0,0,0,5" Width="200" Height="22" Grid.Column="1" Grid.Row="1" Text="{Binding Path=StudentDto.Name, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Validation.ErrorTemplate="{StaticResource ValidationTemplate}" />
                     <DatePicker Name="DatePicker" Grid.Column="1" HorizontalAlignment="Center" Grid.Row="2" VerticalAlignment="Center" Width="200" SelectedDate="{Binding StudentDto.DateOfBirth, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, ValidatesOnDataErrors=True}" Validation.ErrorTemplate="{StaticResource ValidationTemplate}"/>
-                    
+
                     <TextBox BorderBrush="Black" BorderThickness="2" Margin="0,0,0,5" Width="200" Height="22" Grid.Column="1" Grid.Row="3" Text="{Binding Path=StudentDto.Street, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Validation.ErrorTemplate="{StaticResource ValidationTemplate}" />
                     <TextBox BorderBrush="Black" BorderThickness="2" Margin="0,0,0,5" Width="200" Height="22" Grid.Column="1" Grid.Row="4" Text="{Binding Path=StudentDto.Number, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Validation.ErrorTemplate="{StaticResource ValidationTemplate}" />
                     <TextBox BorderBrush="Black" BorderThickness="2" Margin="0,0,0,5" Width="200" Height="22" Grid.Column="1" Grid.Row="5" Text="{Binding Path=StudentDto.City, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Validation.ErrorTemplate="{StaticResource ValidationTemplate}" />
@@ -73,18 +73,62 @@
                     <TextBox BorderBrush="Black" BorderThickness="2" Margin="0,0,0,5" Width="200" Height="22" Grid.Column="1" Grid.Row="11" Text="{Binding Path=StudentDto.EnrollmentYear, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Validation.ErrorTemplate="{StaticResource ValidationTemplate}" />
                     <TextBox BorderBrush="Black" BorderThickness="2" Margin="0,0,0,5" Width="200" Height="22" Grid.Column="1" Grid.Row="12" Text="{Binding Path=StudentDto.CurrentYearOfStudy, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Validation.ErrorTemplate="{StaticResource ValidationTemplate}" />
                     <ComboBox Name="statusComboBox" Width="200" Height="22" Grid.Column="1" Grid.Row="13" SelectedItem="{Binding StudentDto.Status, UpdateSourceTrigger=PropertyChanged}"/>
-                    
+
                     <Button Content="Update" BorderThickness="1" Grid.Column="0" Grid.Row="14" Width="60" Height="20" VerticalContentAlignment="Center" HorizontalAlignment="Right" Margin="0,0,50,0" Click="Update_Button_Click" />
                     <Button Content="Cancel" BorderThickness="1" Grid.Column="1" Grid.Row="14" Width="60" Height="20" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="50,0,0,0" Click="Cancel_Button_Click" />
                 </Grid>
             </TabItem>
-            <TabItem Name="Polozeni" Header="Položeni">
-                
+            <TabItem Name="Submitted" Header="Submitted">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                    </Grid.RowDefinitions>
+                    <Button Content="Remove Grade" Click="Ponisti_Click" Grid.Row="0" HorizontalAlignment="Left" Margin="5,10,0,10"/>
+                    <DataGrid Height="350"
+                              Grid.Row="1"
+                          AutoGenerateColumns="False"
+                          x:Name="PolozeniDataGrid"
+                          ItemsSource="{Binding ExamGradeDto, UpdateSourceTrigger=PropertyChanged}"
+                          IsReadOnly="True">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Subject Code"/>
+                            <DataGridTextColumn Header="Subject Name"/>
+                            <DataGridTextColumn Header="ESPB"/>
+                            <DataGridTextColumn Header="Grade"/>
+                            <DataGridTextColumn Header="Date"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
             </TabItem>
-            <TabItem Name="Nepolozeni" Header="Nepoloženi">
-                
+            <TabItem Name="Unsubmitted" Header="Unsubmitted">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                    </Grid.RowDefinitions>
+                    <Button Content="Add" Click="Add_Subject_Click" Grid.Row="0" HorizontalAlignment="Left" Margin="5,10,0,5" Width="35"/>
+                    <Button Content="Clear" Click="Clear_Subject_Click" Grid.Row="0" HorizontalAlignment="Left" Margin="50,10,0,5" Width="35"/>
+                    <Button Content="Pass" Click="Pass_Click" Grid.Row="0" HorizontalAlignment="Left" Margin="95,10,0,5" Width="35"/>
+                    <DataGrid Height="350"
+                              Grid.Row="1"
+                          AutoGenerateColumns="False"
+                          x:Name="NepoolozeniDataGrid"
+                          ItemsSource="{Binding ExamGradeDto, UpdateSourceTrigger=PropertyChanged}"
+                          IsReadOnly="True">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Subject Code"/>
+                            <DataGridTextColumn Header="Subject Name"/>
+                            <DataGridTextColumn Header="ESPB"/>
+                            <DataGridTextColumn Header="Year of study"/>
+                            <DataGridTextColumn Header="Semester"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
             </TabItem>
         </TabControl>
-        
+
     </Grid>
 </Window>

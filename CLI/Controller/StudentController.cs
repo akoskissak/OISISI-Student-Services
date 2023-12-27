@@ -32,9 +32,9 @@ namespace CLI.Controller
         {
             return _studentDao.GetAllStudents();
         }
-        public void RemoveStudent(int studentId)
+        public bool RemoveStudent(int studentId)
         {
-            _studentDao.RemoveStudent(studentId);
+            return _studentDao.RemoveStudent(studentId).Id != -1;
         }
         public void Subscribe(IObserver observer)
         {

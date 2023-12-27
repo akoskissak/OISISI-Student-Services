@@ -1,2 +1,3 @@
 0|Homa|Davor|4/15/2002|064|davorhoma@gmail.com|3|B|8.33|Alekse Santica|10|Novi Sad|Srbija|ra|47|2021
 1|Kiss|Akos|6/20/2002|062|kissak@gmail.com|3|B|0.00|Tolstojeva|2|Novi Sad|Srbija|ra|11|2021
+2|Ime|Prezime|1/1/0001|064--85--585|kok@msm.com|2|B|0.00|1231*//*|/**/8286452*/25lp|4684*/425jojo|4/*2849kooj|8979-*542.|2000|2002

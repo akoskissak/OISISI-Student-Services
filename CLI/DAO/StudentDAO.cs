@@ -42,6 +42,7 @@ public class StudentDAO
         s.SetAverageGrade();
 
         _studentStorage.Save(_students);
+        StudentObservable.NotifyObservers();
     }
 
     public void RemoveExamGradeForStudent(ExamGrade examGrade)
@@ -52,6 +53,8 @@ public class StudentDAO
         s.SetAverageGrade();
 
         _studentStorage.Save(_students);
+        StudentObservable.NotifyObservers();
+
     }
 
     public Student? UpdateStudent(Student student)
@@ -105,7 +108,7 @@ public class StudentDAO
             return null;
         student.UnsubmittedSubjects.Remove(subject);
         _studentStorage.Save(_students);
-
+        StudentObservable.NotifyObservers();
         studentSubjectDao.RemoveStudentSubject(studentId, subjectId);
         return subject;
     }
@@ -114,6 +117,7 @@ public class StudentDAO
     {
         _students.Find(student => student.Id == id)!.UnsubmittedSubjects = subjects;
         _studentStorage.Save(_students);
+        StudentObservable.NotifyObservers();
     }
 
     public void SaveStudents()

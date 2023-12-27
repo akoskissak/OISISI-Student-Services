@@ -1,4 +1,5 @@
 using CLI.Model;
+using CLI.Observer;
 using CLI.Storage;
 
 namespace CLI.DAO;
@@ -11,6 +12,7 @@ public class StudentSubjectDAO
     private StudentDAO _studentDao;
     private SubjectDAO _subjectDao;
 
+    public Observable StudentSubjectObservable;
     public StudentSubjectDAO(StudentDAO studentDao, SubjectDAO subjectDao)
     {
         _studentSubjectStorage = new Storage<StudentSubject>("studentSubject.txt");
@@ -74,6 +76,7 @@ public class StudentSubjectDAO
         studentSubject.Id = GenerateId();
         _studentSubject.Add(studentSubject);
         _studentSubjectStorage.Save(_studentSubject);
+        StudentSubjectObservable.NotifyObservers();
     }
 
     public void RemoveStudentSubject(int studentId, int subjectId)
@@ -81,5 +84,7 @@ public class StudentSubjectDAO
         StudentSubject studentSubject = _studentSubject.Find(ss => ss.StudentId == studentId && ss.SubjectId == subjectId)!;
         _studentSubject.Remove(studentSubject);
         _studentSubjectStorage.Save(_studentSubject);
+        StudentSubjectObservable.NotifyObservers();
+
     }
 }

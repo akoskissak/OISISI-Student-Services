@@ -196,9 +196,16 @@ namespace GUI
                     MessageBoxResult result = MessageBox.Show(messageBoxText, caption, button, MessageBoxImage.Question);
                     if (result == MessageBoxResult.Yes)
                     {
-                        _studentController.RemoveStudent(SelectedStudent.Id);
-                        StudentDtos.Remove(SelectedStudent);
-                        MessageBox.Show("Student deleted successfully.", "Deletion Successful", MessageBoxButton.OK, MessageBoxImage.Information);
+                        if (_studentController.RemoveStudent(SelectedStudent.Id))
+                        {
+
+                            StudentDtos.Remove(SelectedStudent);
+                            MessageBox.Show("Student deleted successfully.", "Deletion Successful", MessageBoxButton.OK, MessageBoxImage.Information);
+                        }
+                        else
+                        {
+                            MessageBox.Show("Student cannot be deleted.", "Deletion failed", MessageBoxButton.OK, MessageBoxImage.Warning);
+                        }
                     }
                 }
 

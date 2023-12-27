@@ -28,9 +28,12 @@ namespace GUI.View
     /// </summary>
     public partial class UpdateStudent : Window
     {
-        
         public StudentDTO StudentDto { get; set; }
+        public ExamGradeDTO ExamGradeDto { get; set; }
+
         private StudentController _studentController;
+
+        private ExamGradeController _examGradeController;
 
         public UpdateStudent(StudentController _studentController, StudentDTO studentDto, double left, double top, double width, double height)
         {
@@ -75,6 +78,26 @@ namespace GUI.View
         private void Window_Closing(object sender, CancelEventArgs e)
         {
             _studentController.NotifyObservers();
+        }
+
+        private void Ponisti_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Add_Subject_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Clear_Subject_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Pass_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

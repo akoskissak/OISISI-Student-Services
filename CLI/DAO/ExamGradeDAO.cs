@@ -1,5 +1,6 @@
 using CLI.Console;
 using CLI.Model;
+using CLI.Observer;
 using CLI.Storage;
 
 namespace CLI.DAO;
@@ -12,10 +13,14 @@ public class ExamGradeDAO
     private StudentDAO _studentDao;
     private SubjectDAO _subjectDao;
 
+    public Observable ExamGradeObservable;
+
     public ExamGradeDAO(StudentDAO studentDao, SubjectDAO subjectDao)
     {
         _examGradeStorage = new Storage<ExamGrade>("examGrades.txt");
         _examGrades = _examGradeStorage.Load();
+
+        ExamGradeObservable = new Observable();
 
         _studentDao = studentDao;
         _subjectDao = subjectDao;
@@ -36,6 +41,7 @@ public class ExamGradeDAO
                         eg.Subject = subject;
                         _studentDao.SaveStudents();
                         _subjectDao.SaveSubjects();
+                        ExamGradeObservable.NotifyObservers();
                         break;
                     }
                 }
@@ -57,6 +63,7 @@ public class ExamGradeDAO
         examGrade.Subject = _subjectDao.GetSubjectById(examGrade.SubjectId)!;
         _examGrades.Add(examGrade);
         _examGradeStorage.Save(_examGrades);
+        ExamGradeObservable.NotifyObservers();
         
         _studentDao.AddExamGradeForStudent(examGrade);
         _subjectDao.AddStudentPassedForSubject(examGrade);
@@ -72,6 +79,7 @@ public class ExamGradeDAO
         oldExamGrade.Date = examGrade.Date;
         
         _examGradeStorage.Save(_examGrades);
+        ExamGradeObservable.NotifyObservers();
         return oldExamGrade;
     }
 
@@ -88,6 +96,7 @@ public class ExamGradeDAO
 
         _examGrades.Remove(examGrade);
         _examGradeStorage.Save(_examGrades);
+        ExamGradeObservable.NotifyObservers();
 
         _studentDao.RemoveExamGradeForStudent(examGrade);
         _subjectDao.RemoveStudentPassedForSubject(examGrade);
