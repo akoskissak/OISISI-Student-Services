@@ -43,10 +43,22 @@
         <Image HorizontalAlignment="Left" Height="auto" Margin="10,300,0,0" VerticalAlignment="Top" Width="120" Source="/View/akos.png" Grid.Column="0" Grid.Row="1" Cursor="Hand"/>
 
         <StackPanel Margin="10" Grid.Column="1" Grid.Row="1">
-            <TextBlock Margin="0,10,0,0" Text="Ime i prezime:"/>
-            <!-- OVDE HOMA -->
+            <TextBlock Margin="0,10,0,0" Text="Ime i prezime: Davor Homa"/>
+            <TextBlock Text="Datum rođenja : 15.04.2002"/>
+            <TextBlock Text="Adresa: Ruski Krstur"/>
+            
+            <TextBlock Margin="0,15,0,0" FontWeight="Bold" Text="Obrazovanje"/>
+            <TextBlock Text="- Osnovna škola: 'Petro Kuzmjak', Ruski Krstur"/>
+            <TextBlock Text="- Srednja škola: Elektrotehnička Škola 'Mihajlo Pupin', Novi Sad, elektrotehničar računara"/>
+            <TextBlock Text="- Fakultet Tehničkih Nauka Novi Sad, računarstvo i automatika, 3. godina"/>
 
+            <TextBlock Margin="0,15,0,0" FontWeight="Bold" Text="Veštine"/>
+            <TextBlock Text="- Programiranje (C, C++, C#, Java, Python, asembler, JavaScript, Matlab, Julia)"/>
 
+            <TextBlock Margin="0,15,0,0" FontWeight="Bold" Text="Jezici"/>
+            <TextBlock Text="- Rusinski (maternji)"/>
+            <TextBlock Text="- Srpski (napredni)"/>
+            <TextBlock Text="- Engleski (napredni)"/>
         </StackPanel>
 
     </Grid>
