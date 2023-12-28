@@ -21,7 +21,7 @@ namespace GUI.DTO
         private int _yearOfStudy;
         private int _professorId;
         private int _espb;
-        public Professor Professor { get; set; }
+        //public Professor Professor { get; set; }
 
         public int Id
         {
@@ -121,14 +121,7 @@ namespace GUI.DTO
             {
                 if (value != _professorId)
                 {
-                    try
-                    {
-                        _professorId = value;
-
-                    } catch(Exception e) 
-                    {
-                        _professorId = 0;
-                    }
+                    _professorId = value;
                     OnPropertyChanged("ProfessorId");
                 }
             }
@@ -153,6 +146,7 @@ namespace GUI.DTO
         public string Error => null;
 
         private Regex _SubjectCodeRegex = new Regex("[0-9]+");
+        private Regex _ProfessorRegex = new Regex("[0-9]+");
 
         public string this[string columnName]
         {
@@ -182,6 +176,9 @@ namespace GUI.DTO
                 {
                     if (string.IsNullOrEmpty(ProfessorId.ToString()))
                         return "ProfessorId is required";
+                    Match match = _ProfessorRegex.Match(ProfessorId.ToString());
+                    if (!match.Success)
+                        return "Format not good. Try again.";
                 }
                 else if (columnName == "Espb")
                 {
@@ -230,7 +227,7 @@ namespace GUI.DTO
             ProfessorId = subject.ProfessorId;
             Espb = subject.Espb;
             Id = subject.Id;
-            Professor = subject.Professor;
+            //Professor = subject.Professor;
             
         }
 

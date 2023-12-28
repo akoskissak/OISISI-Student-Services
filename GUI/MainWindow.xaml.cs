@@ -310,8 +310,8 @@ namespace GUI
         }
         private void About_Click(object sender, RoutedEventArgs e)
         {
-            About about = new About();
-            about.ShowDialog();
+            AboutMain aboutMain = new AboutMain();
+            aboutMain.Show();
         }
 
         private void Department_Click(object sender, RoutedEventArgs e)

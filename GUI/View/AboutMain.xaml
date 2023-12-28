@@ -1,0 +1,44 @@
+﻿<Window x:Class="GUI.View.AboutMain"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:GUI.View"
+        mc:Ignorable="d"
+        Title="AboutMain" Height="450" Width="800" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <TextBlock Text="Studentska Služba v1.0" FontSize="20" FontWeight="Bold" HorizontalAlignment="Center" Grid.Row="0"/>
+
+        <Grid Grid.Row="1">
+            <StackPanel Margin="10,10,10,0">
+                <TextBlock Text="Aplikacija za studentsku službu implementirana je kao informacioni sistem koji olakšava rad referentima"/>
+                <TextBlock Text="studentske službe. Razvijena je korišćenjem C# programskog jezika, WPF radnog okvira za grafičku korisničku interfejs (UI) i pridržavajući"/>
+                <TextBlock Text="se MVC šablona (Model View Controller)."/>
+                
+                <TextBlock Margin="0,10,0,0" FontWeight="Bold" Text="Model Podataka:"/>
+                <TextBlock Margin="10,10,0,0" Text="Aplikacija rukuje ključnim entitetima, uključujući Studenta, Profesora, Predmet, Indeks, Ocenu na Ispitu, Katedru i Adresu"/>
+                <TextBlock Margin="10,0,0,0" Text="Svaki od ovih entiteta ima odgovarajuće atribute koji se koriste za praćenje informacija o studentima, profesorima,"/>
+                <TextBlock Margin="10,0,0,0" Text="predmetima i drugim relevantnim podacima."/>
+                
+                <TextBlock Margin="0,10,0,0" FontWeight="Bold" Text="Funkcionalnosti Sistema:"/>
+                <TextBlock Margin="10,10,0,0" Text="Aplikacija omogućava dodavanje, izmenu i brisanje entiteta, poput studenata, profesora i predmeta."/>
+                <TextBlock Margin="10,0,0,0" Text="Takođe, omogućava pregled svih entiteta sistema putem korisničkog interfejsa, pružajući pregledne informacije o studentima,"/>
+                <TextBlock Margin="10,0,0,0" Text="profesorima, predmetima i drugim relevantnim podacima."/>
+                
+                <TextBlock Margin="0,10,0,0" Text="Aplikacija se pridržava najboljih praksi C# programskog jezika i koristi Path.DirectorySeparatorChar"/>
+                <TextBlock Margin="0,0,0,0" Text="za izgradnju putanja do eksternih datoteka. Takođe, obezbeđuje perzistenciju sistema, čuvajući stanje informacionog sistema na tvrdom"/>
+                <TextBlock Margin="0,0,0,0" Text=" disku prilikom zatvaranja aplikacije i obnavljajući ga pri sledećem pokretanju."/>
+                <TextBlock Margin="0,20,0,0" FontWeight="Medium" Text="Ova aplikacija omogućava efikasan rad referenata studentske službe, omogućavajući im jednostavan pristup i upravljanje podacima"/>
+                <TextBlock Margin="0,0,0,0" FontWeight="Medium" Text="o studentima, predmetima i ispitima, itd"/>
+            </StackPanel>
+        </Grid>
+
+
+        <Button Content="Show CV's" Click="Show_Click" HorizontalAlignment="Center" Margin="0,0,0,20" VerticalAlignment="Bottom" Grid.Row="2" Cursor="Hand"/>
+    </Grid>
+</Window>

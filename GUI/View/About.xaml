@@ -18,7 +18,7 @@
             <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
 
-        <TextBlock HorizontalAlignment="center" VerticalAlignment="Center" FontSize="40" FontWeight="Bold" Text="About" Grid.Row="0" Grid.ColumnSpan="2"/>
+        <TextBlock HorizontalAlignment="center" VerticalAlignment="Center" FontSize="40" FontWeight="Bold" Text="CV" Grid.Row="0" Grid.ColumnSpan="2"/>
         <StackPanel Margin="10" Grid.Row="1" Grid.Column="0">
 
 
