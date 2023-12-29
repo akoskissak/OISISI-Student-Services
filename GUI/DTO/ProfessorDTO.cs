@@ -211,7 +211,7 @@ namespace GUI.DTO
                     }
                     catch (Exception e)
                     {
-                        //_idNumber = 0;
+                        _idNumber = 0;
                     }
                     OnPropertyChanged("IdNumber");
                 }
@@ -263,6 +263,7 @@ namespace GUI.DTO
         private Regex _phoneNumberRegex = new Regex("^\\+?(0-9)+$");
         private Regex _numbersRegex = new Regex("^[1-9]\\d*$");
         private Regex _idNumberRegex = new Regex("^\\d*$");
+        private Regex _yearsOfServiceRegex = new Regex("^\\d*$");
         private Regex _titleRegex = new Regex("^[a-zA-Z][a-zA-Z0-9]*([\\s][a-zA-Z0-9]+)*");
 
         public string this[string columnName]
@@ -364,9 +365,9 @@ namespace GUI.DTO
                     if (string.IsNullOrEmpty(YearsOfService))
                         return "YearsOfService is required.";
 
-                    Match match = _numbersRegex.Match(YearsOfService);
+                    Match match = _yearsOfServiceRegex.Match(YearsOfService);
                     if (!match.Success)
-                        return "YearsOfService must be a natural number. Try again.";
+                        return "YearsOfService must be a number. Try again.";
                 }
                 return null;
             }
