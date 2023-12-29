@@ -330,14 +330,16 @@ namespace GUI.DTO
         }
         public string Error => null;
 
-        private Regex _NameRegex = new Regex("[A-Za-z0-9-]+");
-        private Regex _LastNameRegex = new Regex("[A-Za-z0-9-]+");
-        private Regex _PhoneNumberRegex = new Regex("\\+?[0-9]+[0-9- ]*");
-        private Regex _EmailRegex = new Regex("[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}");
-        private Regex _StudyProgrammeMarkRegex = new Regex("[A-Za-z0-9]+");
-        private Regex _EnrollmentNumberkRegex = new Regex("[0-9]+");
-        private Regex _EnrollmentYearRegex = new Regex("[12]{1}[0-9]{3,3}");
-        private Regex _CurrentYearOfStudyRegex = new Regex("[1-9]{1,2}");
+        private Regex _NameRegex = new Regex("^[A-Za-z0-9-]+$");
+        private Regex _LastNameRegex = new Regex("^[A-Za-z0-9-]+$");
+        private Regex _PhoneNumberRegex = new Regex("^\\+?[0-9]+[0-9- ]*$");
+        private Regex _EmailRegex = new Regex("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$");
+        private Regex _StudyProgrammeMarkRegex = new Regex("^[A-Za-z0-9]+$");
+        private Regex _EnrollmentNumberkRegex = new Regex("^[0-9]+$");
+        private Regex _EnrollmentYearRegex = new Regex("^[12]{1}[0-9]{3,3}$");
+        private Regex _CurrentYearOfStudyRegex = new Regex("^[1-9]{1,2}$");
+        private Regex _StreetRegex = new Regex("^[a-zA-Z0-9.]+$");
+        private Regex _NumberRegex = new Regex("^[a-zA-Z0-9/]+$");
         public string this[string columnName]
         {
             get
@@ -367,11 +369,19 @@ namespace GUI.DTO
                     if (string.IsNullOrEmpty(Street))
                         return "Street is required";
 
+                    Match match = _StreetRegex.Match(Street);
+                    if (!match.Success)
+                        return "Format not good. Try again.";
+
                 }
                 else if (columnName == "Number")
                 {
                     if (string.IsNullOrEmpty(Number))
                         return "Number is required";
+
+                    Match match = _NumberRegex.Match(Number);
+                    if (!match.Success)
+                        return "Format not good. Try again.";
 
                 }
                 else if (columnName == "City")
@@ -379,11 +389,19 @@ namespace GUI.DTO
                     if (string.IsNullOrEmpty(City))
                         return "City is required";
 
+                    Match match = _StreetRegex.Match(City);
+                    if (!match.Success)
+                        return "Format not good. Try again.";
+
                 }
                 else if (columnName == "Country")
                 {
                     if (string.IsNullOrEmpty(Country))
                         return "Country is required";
+
+                    Match match = _StreetRegex.Match(Country);
+                    if (!match.Success)
+                        return "Format not good. Try again.";
 
                 }
                 else if (columnName == "PhoneNumber")

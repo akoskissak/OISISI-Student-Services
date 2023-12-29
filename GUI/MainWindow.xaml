@@ -101,11 +101,11 @@
                               SelectionChanged="StudentsDataGrid_SelectionChanged">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Index" Binding="{Binding Index}"/>
-                        <DataGridTextColumn Header="Ime" Binding="{Binding Name}"/>
-                        <DataGridTextColumn Header="Prezime" Binding="{Binding LastName}"/>
-                        <DataGridTextColumn Header="Godina Studija" Binding="{Binding CurrentYearOfStudy}"/>
+                        <DataGridTextColumn Header="Name" Binding="{Binding Name}"/>
+                        <DataGridTextColumn Header="LastName" Binding="{Binding LastName}"/>
+                        <DataGridTextColumn Header="CurrentYearOfStudy" Binding="{Binding CurrentYearOfStudy}"/>
                         <DataGridTextColumn Header="Status" Binding="{Binding Status}"/>
-                        <DataGridTextColumn Header="Prosek" Binding="{Binding AverageGrade}"/>
+                        <DataGridTextColumn Header="AverageGrade" Binding="{Binding AverageGrade}"/>
                     </DataGrid.Columns>
                 </DataGrid>
             </TabItem>
