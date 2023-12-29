@@ -38,6 +38,30 @@ namespace GUI.View
             this._professorController = professorController;
 
             SetInitialWindowSize(left, top, width, height);
+
+            textBoxLastname.TextChanged += TextBox_TextChanged;
+            textBoxName.TextChanged += TextBox_TextChanged;
+            textBoxStreet.TextChanged += TextBox_TextChanged;
+            textBoxNumber.TextChanged += TextBox_TextChanged;
+            textBoxCity.TextChanged += TextBox_TextChanged;
+            textBoxCountry.TextChanged += TextBox_TextChanged;
+            textBoxPhoneNumber.TextChanged += TextBox_TextChanged;
+            textBoxEmail.TextChanged += TextBox_TextChanged;
+            textBoxIdNumber.TextChanged += TextBox_TextChanged;
+            textBoxTitle.TextChanged += TextBox_TextChanged;
+            textBoxYearsOfService.TextChanged += TextBox_TextChanged;
+
+            ValidateTextBoxes();
+        }
+
+        private void ValidateTextBoxes()
+        {
+            addButton.IsEnabled = ProfessorDto.isValid;
+        }
+
+        private void TextBox_TextChanged(object sender, EventArgs e)
+        {
+            ValidateTextBoxes();
         }
 
         private void SetInitialWindowSize(double left, double top, double width, double height)
