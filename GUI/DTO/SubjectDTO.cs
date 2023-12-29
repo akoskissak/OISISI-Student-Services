@@ -145,8 +145,9 @@ namespace GUI.DTO
 
         public string Error => null;
 
-        private Regex _SubjectCodeRegex = new Regex("[0-9]+");
-        private Regex _ProfessorRegex = new Regex("[0-9]+");
+        private Regex _SubjectCodeRegex = new Regex("^[0-9]+$");
+        private Regex _ProfessorRegex = new Regex("^[0-9]+$");
+        private Regex _NameRegex = new Regex("^[a-zA-Z0-9/]+$");
 
         public string this[string columnName]
         {
@@ -166,6 +167,10 @@ namespace GUI.DTO
                     if (string.IsNullOrEmpty(Name))
                         return "Name is required";
 
+                    Match match = _NameRegex.Match(Name);
+                    if (!match.Success)
+                        return "Format not good. Try again.";
+
                 }
                 else if (columnName == "YearOfStudy")
                 {
@@ -176,6 +181,7 @@ namespace GUI.DTO
                 {
                     if (string.IsNullOrEmpty(ProfessorId.ToString()))
                         return "ProfessorId is required";
+
                     Match match = _ProfessorRegex.Match(ProfessorId.ToString());
                     if (!match.Success)
                         return "Format not good. Try again.";
