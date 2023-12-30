@@ -333,14 +333,35 @@ namespace GUI
 
         private void SearchButton_Click(object sender, RoutedEventArgs e)
         {
-            if (searchTextBox.Text.Length == 0)
-                Update();
-            else
+            TabItem ti = Tabs.SelectedItem as TabItem;
+            if (ti != null && ti.Name != null && ti.Name == "ProfessorsTab")
             {
-                ProfessorDtos.Clear();
-                foreach (Professor professor in _professorController.GetProfessorsByText(searchTextBox.Text))
+                if (searchTextBox.Text.Length == 0)
+                    Update();
+                else
                 {
-                    ProfessorDtos.Add(new ProfessorDTO(professor));
+                    ProfessorDtos.Clear();
+                    List<Professor>? professors = _professorController.GetProfessorsByText(searchTextBox.Text);
+                    if (professors != null)
+                        foreach (Professor professor in professors)
+                            ProfessorDtos.Add(new ProfessorDTO(professor));
+                }
+            }
+            else if (ti != null && ti.Name != null && ti.Name == "StudentsTab")
+            {
+                // Akos
+            }
+            else if (ti != null && ti.Name != null && ti.Name == "SubjectsTab")
+            {
+                if (searchTextBox.Text.Length == 0)
+                    Update();
+                else
+                {
+                    SubjectDtos.Clear();
+                    List<Subject>? subjects = _subjectController.GetSubjectsByText(searchTextBox.Text);
+                    if (subjects != null)
+                        foreach (Subject subject in subjects)
+                            SubjectDtos.Add(new SubjectDTO(subject));
                 }
             }
         }

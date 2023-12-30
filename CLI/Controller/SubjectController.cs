@@ -51,5 +51,10 @@ namespace CLI.Controller
         {
             _subjectDao.SaveSubjects();
         }
+
+        public List<Subject>? GetSubjectsByText(string text)
+        {
+            return _subjectDao.FindSubjectsByText(text);
+        }
     }
 }
