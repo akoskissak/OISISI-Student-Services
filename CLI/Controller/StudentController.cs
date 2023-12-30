@@ -48,5 +48,10 @@ namespace CLI.Controller
         {
             _studentDao.SaveStudents();
         }
+
+        public Student? GetStudentById(int studentId)
+        {
+            return _studentDao.GetStudentById(studentId);
+        }
     }
 }

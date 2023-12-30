@@ -107,9 +107,9 @@ public class StudentDAO
         if (subject == null)
             return null;
         student.UnsubmittedSubjects.Remove(subject);
+        studentSubjectDao.RemoveStudentSubject(studentId, subjectId);
         _studentStorage.Save(_students);
         StudentObservable.NotifyObservers();
-        studentSubjectDao.RemoveStudentSubject(studentId, subjectId);
         return subject;
     }
 
