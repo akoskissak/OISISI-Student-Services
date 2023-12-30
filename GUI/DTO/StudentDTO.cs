@@ -29,6 +29,7 @@ namespace GUI.DTO
         private double _averageGrade;
         private CLI.Model.Index _index;
         public List<ExamGrade> Grades { get; set; }
+        public List<Subject> UnsubmittedSubjects { get; set; }
 
         public string Index
         {
@@ -514,6 +515,7 @@ namespace GUI.DTO
             Index = student.Index.StudyProgrammeMark + "-" + student.Index.EnrollmentNumber + "-" + student.Index.EnrollmentYear;
             _index = new CLI.Model.Index(_studyProgrammeMark, _enrollmentNumber, _enrollmentYear);
             Grades = student.Grades;
+            UnsubmittedSubjects = student.UnsubmittedSubjects;
         }
 
         public event PropertyChangedEventHandler? PropertyChanged;

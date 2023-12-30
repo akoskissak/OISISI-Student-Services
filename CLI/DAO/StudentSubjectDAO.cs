@@ -17,6 +17,7 @@ public class StudentSubjectDAO
     {
         _studentSubjectStorage = new Storage<StudentSubject>("studentSubject.txt");
         _studentSubject = _studentSubjectStorage.Load();
+        StudentSubjectObservable = new Observable();
 
         _studentDao = studentDao;
         _subjectDao = subjectDao;
@@ -85,6 +86,10 @@ public class StudentSubjectDAO
         _studentSubject.Remove(studentSubject);
         _studentSubjectStorage.Save(_studentSubject);
         StudentSubjectObservable.NotifyObservers();
-
+    }
+    
+    public void NotifyObservers()
+    {
+        StudentSubjectObservable.NotifyObservers();
     }
 }
