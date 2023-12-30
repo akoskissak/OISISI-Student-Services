@@ -13,6 +13,7 @@ using System.Windows.Controls;
 using CLI.Controller;
 using System.Linq;
 using System.Windows.Controls.Ribbon;
+using System.Text.RegularExpressions;
 
 namespace GUI
 {
@@ -326,6 +327,22 @@ namespace GUI
             openMenuItem.IsSubmenuOpen = true;
 
             e.Handled = true;
+        }
+
+        private Regex _lettersAndNumbersRegex = new Regex("^[a-zA-Z0-9]+([\\s][a-zA-Z0-9]+)*$");
+
+        private void SearchButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (searchTextBox.Text.Length == 0)
+                Update();
+            else
+            {
+                ProfessorDtos.Clear();
+                foreach (Professor professor in _professorController.GetProfessorsByText(searchTextBox.Text))
+                {
+                    ProfessorDtos.Add(new ProfessorDTO(professor));
+                }
+            }
         }
     }
 }

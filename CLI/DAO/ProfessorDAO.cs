@@ -99,4 +99,22 @@ public class ProfessorDAO
     {
         ProfessorObservable.NotifyObservers();
     }
+
+    public List<Professor>? FindProfessorsByText(string text)
+    {
+        string[] inputs = text.Split(',');
+        if (inputs.Length == 1)
+        {
+            string lastname = inputs[0];
+            return _professors.FindAll(professor => professor.Lastname == lastname);
+        }
+        else if (inputs.Length == 2)
+        {
+            string lastname = inputs[0];
+            string name = inputs[1].Trim();
+            return _professors.FindAll(professor => professor.Lastname == lastname && professor.Name == name);
+        }
+
+        return null;
+    }
 }

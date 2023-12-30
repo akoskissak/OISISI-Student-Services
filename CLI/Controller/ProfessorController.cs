@@ -51,5 +51,10 @@ namespace CLI.Controller
         {
             _professorDao.NotifyObservers();
         }
+
+        public List<Professor>? GetProfessorsByText(string text)
+        {
+            return _professorDao.FindProfessorsByText(text);
+        }
     }
 }
