@@ -126,4 +126,23 @@ public class SubjectDAO
     {
         SubjectObservable.NotifyObservers();
     }
+    
+    public List<Subject>? FindSubjectsByText(string text)
+    {
+        string[] inputs = text.Split(',');
+        if (inputs.Length == 1)
+        {
+            string subjectName = inputs[0];
+            return _subjects.FindAll(subject => subject.Name == subjectName);
+        }
+        else if (inputs.Length == 2)
+        {
+            string subjectName = inputs[0];
+            int subjectCode;
+            if (int.TryParse(inputs[1], out subjectCode))
+                return _subjects.FindAll(subject => subject.Name == subjectName && subject.SubjectCode == subjectCode);
+        }
+
+        return null;
+    }
 }
