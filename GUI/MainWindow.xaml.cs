@@ -13,7 +13,6 @@ using System.Windows.Controls;
 using CLI.Controller;
 using System.Linq;
 using System.Windows.Controls.Ribbon;
-using System.Text.RegularExpressions;
 
 namespace GUI
 {
@@ -329,8 +328,6 @@ namespace GUI
             e.Handled = true;
         }
 
-        private Regex _lettersAndNumbersRegex = new Regex("^[a-zA-Z0-9]+([\\s][a-zA-Z0-9]+)*$");
-
         private void SearchButton_Click(object sender, RoutedEventArgs e)
         {
             TabItem ti = Tabs.SelectedItem as TabItem;
@@ -363,6 +360,36 @@ namespace GUI
                         foreach (Subject subject in subjects)
                             SubjectDtos.Add(new SubjectDTO(subject));
                 }
+            }
+        }
+
+        private void ShowProfessorsForStudent_Click(object sender, RoutedEventArgs e)
+        {
+            TabItem ti = Tabs.SelectedItem as TabItem;
+            if (ti != null && ti.Name != null && ti.Name == "StudentsTab")
+            {
+                if (SelectedStudent == null)
+                    MessageBox.Show("Please choose a student!", "Professors for student", MessageBoxButton.OK, MessageBoxImage.Error);
+                else
+                {
+                    System.Text.StringBuilder stringBuilder = new System.Text.StringBuilder();
+                    List<Professor> professorsForStudent = _professorSubjectController.GetAllProfessorsOnSubjects(SelectedStudent.UnsubmittedSubjects);
+                    if (professorsForStudent != null)
+                    {
+                        foreach (Professor professor in professorsForStudent)
+                            stringBuilder.AppendLine(professor.ToString());
+                        string caption = "Professors for student";
+                        MessageBox.Show(stringBuilder.ToString(), caption, MessageBoxButton.OK, MessageBoxImage.Information);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Student does not have professors", "Professors for student", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please select tab Students", "Professors for student", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
     }

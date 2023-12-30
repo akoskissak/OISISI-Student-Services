@@ -21,5 +21,10 @@ namespace CLI.Controller
             _subjectDao = SubjectController._subjectDao;
             _professorSubjectDao = new ProfessorSubjectDAO(_professorDao, _subjectDao);
         }
+
+        public List<Professor>? GetAllProfessorsOnSubjects(List<Subject> unsubmittedSubjects)
+        {
+            return _professorSubjectDao.FindAllProfessorsForSubjects(unsubmittedSubjects);
+        }
     }
 }

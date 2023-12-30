@@ -117,4 +117,9 @@ public class ProfessorDAO
 
         return null;
     }
+    
+    public Professor? FindProfessorById(int professorId)
+    {
+        return _professors.Find(p => p.Id == professorId);
+    }
 }

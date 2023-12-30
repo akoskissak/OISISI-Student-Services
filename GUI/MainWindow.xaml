@@ -64,6 +64,11 @@
                     </MenuItem.Icon>
                 </MenuItem>
             </MenuItem>
+            <MenuItem Header="Show">
+                <MenuItem Header="ProfessorsForStudent" Click="ShowProfessorsForStudent_Click">
+                    
+                </MenuItem>
+            </MenuItem>
         </Menu>
 
         
