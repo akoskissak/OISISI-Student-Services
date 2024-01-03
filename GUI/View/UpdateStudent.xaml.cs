@@ -35,7 +35,7 @@ namespace GUI.View
         private StudentSubjectController _studentSubjectController;
 
         private ExamGradeController _examGradeController;
-        
+
         public ObservableCollection<SubjectDTO> SubjectDtos { get; set; }
         public ObservableCollection<ExamGradeDTO> ExamGradeDtos { get; set; }
 
@@ -77,6 +77,7 @@ namespace GUI.View
 
             Update();
         }
+
         private void ValidateTextBoxes()
         {
             updateButton.IsEnabled = StudentDto.IsValid;
@@ -177,10 +178,13 @@ namespace GUI.View
             {
                 SubjectDtos.Add(new SubjectDTO(subject));
             }
+
             ExamGradeDtos.Clear();
-            foreach(ExamGrade examGrade in _studentController.GetStudentById(StudentDto.Id).Grades)
+            TotalESPB = 0;
+            foreach (ExamGrade examGrade in _studentController.GetStudentById(StudentDto.Id).Grades)
             {
-                ExamGradeDtos.Add(new ExamGradeDTO(examGrade));
+                ExamGradeDtos.Add(new ExamGradeDTO(examGrade, examGrade.Subject));
+                TotalESPB += examGrade.Subject.Espb;
             }
         }
         public event PropertyChangedEventHandler PropertyChanged;
@@ -188,6 +192,20 @@ namespace GUI.View
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        private double _totalESPB;
+        public double TotalESPB
+        {
+            get { return _totalESPB; }
+            set
+            {
+                if (_totalESPB != value)
+                {
+                    _totalESPB = value;
+                    OnPropertyChanged(nameof(TotalESPB));
+                }
+            }
         }
     }
 }

@@ -13,6 +13,9 @@ namespace GUI.DTO
         private int _id;
         private int _studentId;
         private int _subjectId;
+        private int _subjectCode;
+        private string _subjectName;
+        private int _espb;
         private int _grade;
         private DateOnly _date;
 
@@ -31,7 +34,55 @@ namespace GUI.DTO
                 }
             }
         }
+        
+        public string SubjectName
+        {
+            get { return _subjectName; }
+            set
+            {
+                if( value != _subjectName)
+                {
+                    _subjectName = value;
+                    OnPropertyChanged("SubjectName");
+                }
+            }
+        }
 
+        public string SubjectCode
+        {
+            get
+            {
+                return _subjectCode.ToString();
+            }
+            set
+            {
+                if (value != _subjectCode.ToString())
+                {
+                    try
+                    {
+                        _subjectCode = int.Parse(value);
+                    }
+                    catch (Exception e)
+                    {
+                        _subjectCode = 0;
+                    }
+                    OnPropertyChanged("SubjectCode");
+
+                }
+            }
+        }
+        public int Espb
+        {
+            get { return _espb; }
+            set
+            {
+                if(value != _espb)
+                {
+                    _espb = value;
+                    OnPropertyChanged("Espb");
+                }
+            }
+        }
         public int StudentId
         {
             get
@@ -109,13 +160,16 @@ namespace GUI.DTO
         }
         public ExamGradeDTO() {}
 
-        public ExamGradeDTO(ExamGrade examgrade)
+        public ExamGradeDTO(ExamGrade examgrade, Subject subject)
         {
             Id = examgrade.Id;
             StudentId = examgrade.StudentId;
             SubjectId = examgrade.SubjectId;
             Grade = examgrade.Grade;
             Date = examgrade.Date.ToString();
+            SubjectCode = subject.SubjectCode.ToString();
+            SubjectName = subject.Name;
+            Espb = subject.Espb;
         }
 
         public event PropertyChangedEventHandler? PropertyChanged;

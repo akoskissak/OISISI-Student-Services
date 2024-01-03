@@ -90,19 +90,29 @@
                               Grid.Row="1"
                           AutoGenerateColumns="False"
                           x:Name="SubmittedDataGrid"
-                          ItemsSource="{Binding ExamGradeDto, UpdateSourceTrigger=PropertyChanged}"
+                          ItemsSource="{Binding ExamGradeDtos, UpdateSourceTrigger=PropertyChanged}"
                           SelectedItem="{Binding SelectedExam, UpdateSourceTrigger=PropertyChanged}"
                           SelectionChanged="SubmittedDataGrid_SelectionChanged"
                           SelectionMode="Single"
                           IsReadOnly="True">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Subject Code" Binding="{Binding SubjectCode}"/>
-                            <DataGridTextColumn Header="Subject Name" Binding="{Binding Name}"/>
+                            <DataGridTextColumn Header="Subject Name" Binding="{Binding SubjectName}"/>
                             <DataGridTextColumn Header="ESPB" Binding="{Binding Espb}"/>
                             <DataGridTextColumn Header="Grade" Binding="{Binding Grade}"/>
                             <DataGridTextColumn Header="Date" Binding="{Binding Date}"/>
                         </DataGrid.Columns>
                     </DataGrid>
+                    <StackPanel Grid.Row="2">
+                        <TextBlock HorizontalAlignment="Right" FontSize="15" FontWeight="Bold">
+                            <Run Text="Average grade: "/>
+                            <Run Text="{Binding StudentDto.AverageGrade, StringFormat={}{0:N2}}"/>
+                        </TextBlock>
+                        <TextBlock HorizontalAlignment="Right" FontSize="15" FontWeight="Bold">
+                            <Run Text="Total ESPB: "/>
+                            <Run Text="{Binding TotalESPB}"/>
+                        </TextBlock>
+                    </StackPanel>
                 </Grid>
             </TabItem>
             <TabItem Name="Unsubmitted" Header="Unsubmitted">

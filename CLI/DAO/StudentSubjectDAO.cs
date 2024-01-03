@@ -87,7 +87,7 @@ public class StudentSubjectDAO
         _studentSubjectStorage.Save(_studentSubject);
         StudentSubjectObservable.NotifyObservers();
     }
-    
+
     public void NotifyObservers()
     {
         StudentSubjectObservable.NotifyObservers();

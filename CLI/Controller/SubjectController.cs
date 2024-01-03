@@ -56,5 +56,9 @@ namespace CLI.Controller
         {
             return _subjectDao.FindSubjectsByText(text);
         }
+        public Subject? GetSubjectById(int subjectId)
+        {
+            return _subjectDao.GetSubjectById(subjectId);
+        }
     }
 }

@@ -311,7 +311,7 @@ namespace GUI
         private void About_Click(object sender, RoutedEventArgs e)
         {
             AboutMain aboutMain = new AboutMain();
-            aboutMain.Show();
+            aboutMain.ShowDialog();
         }
 
         private void Department_Click(object sender, RoutedEventArgs e)
@@ -390,6 +390,28 @@ namespace GUI
             else
             {
                 MessageBox.Show("Please select tab Students", "Professors for student", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private void ShowStudentsForProfessor_Click(object sender, RoutedEventArgs e)
+        {
+            TabItem ti = Tabs.SelectedItem as TabItem;
+            if(ti != null && ti.Name != null && ti.Name == "ProfessorsTab")
+            {
+                if(SelectedProfessor == null)
+                {
+                    MessageBox.Show("Please choose a professor!", "Students for professor", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                else
+                {
+                    StudentsForProfessor studentsForProfessor = new StudentsForProfessor();
+                    studentsForProfessor.ShowDialog();
+
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please select tab Professors", "Students for professor", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
     }
