@@ -108,4 +108,9 @@ public class ExamGradeDAO
     {
         return _examGrades;
     }
+
+    public void NotifyObservers()
+    {
+        ExamGradeObservable.NotifyObservers();
+    }
 }

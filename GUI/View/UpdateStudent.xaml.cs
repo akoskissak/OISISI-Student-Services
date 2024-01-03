@@ -37,8 +37,10 @@ namespace GUI.View
         private ExamGradeController _examGradeController;
         
         public ObservableCollection<SubjectDTO> SubjectDtos { get; set; }
+        public ObservableCollection<ExamGradeDTO> ExamGradeDtos { get; set; }
 
         public SubjectDTO SelectedSubjectDto { get; set; }
+        public ExamGradeDTO SelectedExam { get; set; }
 
         public UpdateStudent(StudentController _studentController, StudentDTO studentDto, double left, double top, double width, double height)
         {
@@ -46,6 +48,10 @@ namespace GUI.View
             DataContext = this;
             StudentDto = studentDto;
             this._studentController = _studentController;
+            this._examGradeController = new ExamGradeController();
+
+            ExamGradeDtos = new ObservableCollection<ExamGradeDTO>();
+
             this._studentSubjectController = new StudentSubjectController();
 
             SubjectDtos = new ObservableCollection<SubjectDTO>();
@@ -159,12 +165,22 @@ namespace GUI.View
             SelectedSubjectDto = UnsubmittedDataGrid.SelectedItem as SubjectDTO;
         }
 
+        private void SubmittedDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            SelectedExam = SubmittedDataGrid.SelectedItem as ExamGradeDTO;
+        }
+
         public void Update()
         {
             SubjectDtos.Clear();
             foreach (Subject subject in _studentController.GetStudentById(StudentDto.Id).UnsubmittedSubjects)
             {
                 SubjectDtos.Add(new SubjectDTO(subject));
+            }
+            ExamGradeDtos.Clear();
+            foreach(ExamGrade examGrade in _studentController.GetStudentById(StudentDto.Id).Grades)
+            {
+                ExamGradeDtos.Add(new ExamGradeDTO(examGrade));
             }
         }
         public event PropertyChangedEventHandler PropertyChanged;
