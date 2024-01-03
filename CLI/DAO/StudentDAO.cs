@@ -138,4 +138,34 @@ public class StudentDAO
     {
         StudentObservable.NotifyObservers();
     }
+
+    public List<Student>? FindStudentByText(string text)
+    {
+        string[] inputs = text.Split(',');
+        if(inputs.Length == 1)
+        {
+            string lastname = inputs[0];
+            return _students.FindAll(student => student.Lastname.Equals(lastname, StringComparison.OrdinalIgnoreCase));
+        }
+        else if (inputs.Length == 2)
+        {
+            string lastname = inputs[0];
+            string name = inputs[1].Trim();
+            return _students.FindAll(student => student.Lastname.Equals(lastname, StringComparison.OrdinalIgnoreCase) && student.Name.Equals(name, StringComparison.OrdinalIgnoreCase));
+        }
+        else if (inputs.Length == 3)
+        {
+            string[] indexes = inputs[0].Split("-");
+            string smark = indexes[0];
+            int num;
+            int year;
+
+            string name = inputs[1].Trim();
+            string lastname = inputs[2].Trim();
+
+            if (int.TryParse(indexes[1], out num) && int.TryParse(indexes[2], out year))
+                return _students.FindAll(student => student.Index.EnrollmentYear == year && student.Index.EnrollmentNumber == num && student.Index.StudyProgrammeMark.Equals(smark, StringComparison.OrdinalIgnoreCase) && student.Name.Equals(name, StringComparison.OrdinalIgnoreCase) && student.Lastname.Equals(lastname, StringComparison.OrdinalIgnoreCase));
+        }
+        return null;
+    }
 }

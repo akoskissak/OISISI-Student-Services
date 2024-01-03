@@ -346,7 +346,16 @@ namespace GUI
             }
             else if (ti != null && ti.Name != null && ti.Name == "StudentsTab")
             {
-                // Akos
+                if(searchTextBox.Text.Length == 0)
+                    Update();
+                else
+                {
+                    StudentDtos.Clear();
+                    List<Student>? students = _studentController.GetStudentByText(searchTextBox.Text);
+                    if(students != null)
+                        foreach (Student student in students)
+                            StudentDtos.Add(new StudentDTO(student));
+                }
             }
             else if (ti != null && ti.Name != null && ti.Name == "SubjectsTab")
             {

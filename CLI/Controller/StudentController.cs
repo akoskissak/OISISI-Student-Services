@@ -53,5 +53,10 @@ namespace CLI.Controller
         {
             return _studentDao.GetStudentById(studentId);
         }
+
+        public List<Student>? GetStudentByText(string text)
+        {
+            return _studentDao.FindStudentByText(text);
+        }
     }
 }
