@@ -42,6 +42,21 @@ namespace GUI.View
             semesterComboBox.ItemsSource = Enum.GetValues(typeof(SemesterType));
 
             SetInitialWindowSize(left, top, width, height);
+
+            textBoxSubjectCode.TextChanged += TextBox_Changed;
+            textBoxName.TextChanged += TextBox_Changed;
+            textBoxEspb.TextChanged += TextBox_Changed;
+            textBoxProfessorId.TextChanged += TextBox_Changed;
+            textBoxYearOfStudy.TextChanged += TextBox_Changed;
+        }
+        private void ValidateTextBoxes()
+        {
+            updateButton.IsEnabled = SubjectDto.IsValid;
+        }
+
+        private void TextBox_Changed(object sender, EventArgs e)
+        {
+            ValidateTextBoxes();
         }
         private void SetInitialWindowSize(double left, double top, double width, double height)
         {

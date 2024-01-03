@@ -148,6 +148,7 @@ namespace GUI.DTO
         private Regex _SubjectCodeRegex = new Regex("^[0-9]+$");
         private Regex _ProfessorRegex = new Regex("^[0-9]+$");
         private Regex _NameRegex = new Regex("^[a-zA-Z0-9/ ]+$");
+        private Regex _YearRegex = new Regex("^[1-9][0-9]*$");
 
         public string this[string columnName]
         {
@@ -176,6 +177,10 @@ namespace GUI.DTO
                 {
                     if (YearOfStudy <= 0)
                         return "YearOfStudy is required";
+
+                    Match match = _YearRegex.Match(YearOfStudy.ToString());
+                    if (!match.Success)
+                        return "Format not good. Try again.";
                 }
                 else if (columnName == "ProfessorId")
                 {

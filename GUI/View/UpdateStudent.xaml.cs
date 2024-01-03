@@ -55,7 +55,30 @@ namespace GUI.View
 
             SetInitialWindowSize(left, top, width, height);
 
+            textBoxLastName.TextChanged += TextBox_TextChanged;
+            textBoxName.TextChanged += TextBox_TextChanged;
+            textBoxNumber.TextChanged += TextBox_TextChanged;
+            textBoxPhoneNumber.TextChanged += TextBox_TextChanged;
+            textBoxStreet.TextChanged += TextBox_TextChanged;
+            textBoxStudyProgrammeMark.TextChanged += TextBox_TextChanged;
+            textBoxEnrollmentYear.TextChanged += TextBox_TextChanged;
+            textBoxEnrollmentNumber.TextChanged += TextBox_TextChanged;
+            textBoxEmail.TextChanged += TextBox_TextChanged;
+            textBoxCurrentYearOfStudy.TextChanged += TextBox_TextChanged;
+            textBoxCountry.TextChanged += TextBox_TextChanged;
+            textBoxCity.TextChanged += TextBox_TextChanged;
+
+
             Update();
+        }
+        private void ValidateTextBoxes()
+        {
+            updateButton.IsEnabled = StudentDto.IsValid;
+        }
+
+        private void TextBox_TextChanged(object sender, EventArgs e)
+        {
+            ValidateTextBoxes();
         }
         private void SetInitialWindowSize(double left, double top, double width, double height)
         {
