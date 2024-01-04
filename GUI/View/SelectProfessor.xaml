@@ -1,0 +1,41 @@
+﻿<Window x:Class="GUI.View.SelectProfessor"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:GUI.View"
+        mc:Ignorable="d"
+        Title="Select Professor" Height="450" Width="800">
+    <Grid VerticalAlignment="Center" HorizontalAlignment="Center">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto" />
+            <ColumnDefinition Width="auto" />
+        </Grid.ColumnDefinitions>
+        <DataGrid x:Name="SelectProfessorsDataGrid" Grid.Row="0" Grid.ColumnSpan="2" 
+                Width="600" Height="300" Margin="0,0,0,20" HeadersVisibility="All"
+                AutoGenerateColumns="False"
+                ItemsSource="{Binding ProfessorDtos, UpdateSourceTrigger=PropertyChanged}"
+                SelectedItem="{Binding SelectedProfessor, UpdateSourceTrigger=PropertyChanged}"
+                SelectionChanged="SelectProfessorDataGrid_SelectionChanged"
+                SelectionMode="Single" IsReadOnly="True">
+            <DataGrid.Columns>
+                <DataGridTextColumn>
+                    <DataGridTextColumn.Binding>
+                        <MultiBinding StringFormat="{}{0} {1}">
+                            <Binding Path="Name" UpdateSourceTrigger="PropertyChanged" />
+                            <Binding Path="Lastname" UpdateSourceTrigger="PropertyChanged" />
+                        </MultiBinding>
+                    </DataGridTextColumn.Binding>
+                </DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <Button Content="Confirm" Grid.Row="1" Grid.Column="0" Width="100" Click="Confirm_Button_Click" />
+        <Button Content="Cancel" Grid.Row="1" Grid.Column="1" Width="100" Click="Cancel_Button_Click" />
+    </Grid>
+</Window>

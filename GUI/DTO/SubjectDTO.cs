@@ -21,7 +21,7 @@ namespace GUI.DTO
         private int _yearOfStudy;
         private int _professorId;
         private int _espb;
-        //public Professor Professor { get; set; }
+        public Professor? Professor { get; set; }
 
         public int Id
         {
@@ -238,8 +238,8 @@ namespace GUI.DTO
             ProfessorId = subject.ProfessorId;
             Espb = subject.Espb;
             Id = subject.Id;
-            //Professor = subject.Professor;
-            
+            Professor = subject.Professor;
+
         }
 
         public event PropertyChangedEventHandler? PropertyChanged;

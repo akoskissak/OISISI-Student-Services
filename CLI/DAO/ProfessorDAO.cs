@@ -55,7 +55,7 @@ public class ProfessorDAO
         return oldProfessor;
     }
 
-    private Professor? GetProfessorById(int id)
+    public Professor? GetProfessorById(int id)
     {
         return _professors.Find(p => p.Id == id);
     }

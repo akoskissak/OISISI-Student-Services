@@ -1,9 +1,11 @@
 ﻿using CLI.Controller;
 using CLI.DAO;
 using CLI.Model;
+using CLI.Observer;
 using GUI.DTO;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -23,19 +25,28 @@ namespace GUI.View
     /// <summary>
     /// Interaction logic for UpdateSubject.xaml
     /// </summary>
-    public partial class UpdateSubject : Window
+    public partial class UpdateSubject : Window, INotifyPropertyChanged, IObserver
     {
         public SubjectDTO SubjectDto { get; set; }
         private SubjectController _subjectController;
+        public ProfessorDTO? ProfessorForSubjectDto { get; set; }
+
+        public ObservableCollection<ProfessorDTO> ProfessorDto { get; set; }
+
+        private ProfessorSubjectController _professorSubjectController;
 
         public event PropertyChangedEventHandler? PropertyChanged;
 
-        public UpdateSubject(SubjectController subjectController, SubjectDTO subjectDto, double left, double top, double width, double height)
+
+        public UpdateSubject(SubjectController subjectController, SubjectDTO subjectDto, ProfessorSubjectController professorSubjectController, double left, double top, double width, double height)
         {
             InitializeComponent();
             DataContext = this;
             SubjectDto = subjectDto;
             this._subjectController = subjectController;
+            this._professorSubjectController = professorSubjectController;
+
+            ProfessorDto = new ObservableCollection<ProfessorDTO>();
 
             semesterComboBox.Items.Clear();
             semesterComboBox.SelectedIndex = 0;
@@ -46,18 +57,23 @@ namespace GUI.View
             textBoxSubjectCode.TextChanged += TextBox_Changed;
             textBoxName.TextChanged += TextBox_Changed;
             textBoxEspb.TextChanged += TextBox_Changed;
-            textBoxProfessorId.TextChanged += TextBox_Changed;
             textBoxYearOfStudy.TextChanged += TextBox_Changed;
+
+            Update();
         }
         private void ValidateTextBoxes()
         {
             updateButton.IsEnabled = SubjectDto.IsValid;
+            bool exist = SubjectDto.Professor != null;
+            plusButton.IsEnabled = !exist;
+            minusButton.IsEnabled = exist;
         }
 
         private void TextBox_Changed(object sender, EventArgs e)
         {
             ValidateTextBoxes();
         }
+
         private void SetInitialWindowSize(double left, double top, double width, double height)
         {
             Left = left;
@@ -76,7 +92,14 @@ namespace GUI.View
             {
                 Subject subject = SubjectDto.ToSubject();
                 subject.Id = SubjectDto.Id;
+                subject.Professor = SubjectDto.Professor;
                 _subjectController.UpdateSubject(subject);
+                if (SubjectDto.Professor == null)
+                {
+                    _professorSubjectController.RemoveProfessorFromSubject(SubjectDto.Id);
+                }
+                else
+                    _professorSubjectController.SetProfessorForSubject(subject.Id, subject.Professor);
                 Close();
             }
             else
@@ -93,6 +116,32 @@ namespace GUI.View
         private void Window_Closing(object sender, CancelEventArgs e)
         {
             _subjectController.NotifyObservers();
+        }
+
+        private void Plus_Button_Click(object sender, RoutedEventArgs e)
+        {
+            SelectProfessor selectProfessor = new SelectProfessor(SubjectDto, ProfessorForSubjectDto, _professorSubjectController, Left, Top, Width, Height);
+            selectProfessor.ShowDialog();
+            Update();
+        }
+
+        private void Minus_Button_Click(object sender, RoutedEventArgs e)
+        {
+            SubjectDto.Professor = null;
+            Update();
+        }
+
+        public void Update()
+        {
+            if (SubjectDto.Professor != null)
+            {
+                ProfessorForSubjectDto = new ProfessorDTO(SubjectDto.Professor);
+                textBoxProfessor.Text = ProfessorForSubjectDto.Name + " " + ProfessorForSubjectDto.Lastname;
+            }
+            else
+                textBoxProfessor.Text = "";
+
+            ValidateTextBoxes();
         }
     }
 }

@@ -24,12 +24,10 @@ namespace GUI
         public ObservableCollection<ProfessorDTO> ProfessorDtos { get; set; }
         public ObservableCollection<SubjectDTO> SubjectDtos { get; set; }
         public ObservableCollection<StudentDTO> StudentDtos { get; set; }
-        //public ObservableCollection<ProfessorSubjectDTO> ProfessorSubjectDtos { get; set; }
         
         public ProfessorDTO SelectedProfessor { get; set; }
         public SubjectDTO SelectedSubject { get; set; }
         public StudentDTO SelectedStudent { get; set; }
-        //public ProfessorSubjectDTO ProfessorSubjectDto { get; set; }
 
 
        
@@ -46,7 +44,6 @@ namespace GUI
             ProfessorDtos = new ObservableCollection<ProfessorDTO>();
             StudentDtos = new ObservableCollection<StudentDTO>();
             SubjectDtos = new ObservableCollection<SubjectDTO>();
-            //ProfessorSubjectDtos = new ObservableCollection<ProfessorSubjectDTO>();
             
 
             SetInitialWindowSize();
@@ -133,7 +130,7 @@ namespace GUI
             {
                 if (SelectedSubject != null)
                 {
-                    UpdateSubject updateSubjectWindow = new UpdateSubject(_subjectController, SelectedSubject, Left, Top, Width, Height);
+                    UpdateSubject updateSubjectWindow = new UpdateSubject(_subjectController, SelectedSubject, _professorSubjectController, Left, Top, Width, Height);
                     updateSubjectWindow.ShowDialog();
                 }
                 else

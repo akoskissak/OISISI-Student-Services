@@ -41,7 +41,7 @@ public class ProfessorSubjectDAO
                 professorDao.AddSubjectsForProfessor(subjectsForProfessor.ToList(), professor.Id);
             subjectsForProfessor.Clear();
         }
-        
+
     }
 
     public List<Professor>? FindAllProfessorsForSubjects(List<Subject> unsubmittedSubjects)
@@ -65,5 +65,40 @@ public class ProfessorSubjectDAO
         if (ps != null)
             return _professorDao.FindProfessorById(ps.ProfessorId);
         return null;
+    }
+
+    public void SetProfessorForSubject(int subjectId, Professor professor)
+    {
+        Subject? subject = _subjectDao.GetSubjectById(subjectId);
+        subject.Professor = professor;
+        subject.ProfessorId = professor.Id;
+
+        ProfessorSubject? ps = _professorSubject.Find(ps => ps.SubjectId == subjectId);
+        if (ps != null)
+            ps.ProfessorId = subject.ProfessorId;
+        else
+            _professorSubject.Add(new ProfessorSubject(subject.ProfessorId, subjectId));
+
+        _professorSubjectStorage.Save(_professorSubject);
+    }
+
+    public void RemoveProfessorFromSubject(int subjectId)
+    {
+        Subject? subject = _subjectDao.GetSubjectById(subjectId);
+        Professor? professor = _professorDao.GetProfessorById(subject.ProfessorId);
+        if (professor != null && subject != null)
+        {
+            ProfessorSubject? ps = _professorSubject.Find(ps => ps.SubjectId == subjectId && ps.ProfessorId == subject.ProfessorId);
+
+            subject.Professor = null;
+            subject.ProfessorId = -1;
+
+            professor.Subjects.Remove(subject);
+
+            _professorSubject.Remove(ps);
+
+            _professorSubjectStorage.Save(_professorSubject);
+        }
+
     }
 }

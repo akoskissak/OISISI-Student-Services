@@ -26,5 +26,25 @@ namespace CLI.Controller
         {
             return _professorSubjectDao.FindAllProfessorsForSubjects(unsubmittedSubjects);
         }
+
+        public Professor? GetProfessorForSubject(int subjectId)
+        {
+            return _professorSubjectDao.GetProfessorBySubjectId(subjectId);
+        }
+
+        public void SetProfessorForSubject(int subjectId, Professor professor)
+        {
+            _professorSubjectDao.SetProfessorForSubject(subjectId, professor);
+        }
+
+        public void RemoveProfessorFromSubject(int subjectId)
+        {
+            _professorSubjectDao.RemoveProfessorFromSubject(subjectId);
+        }
+
+        public Professor? GetProfessorBySubject(int subjectId)
+        {
+            return _professorSubjectDao.GetProfessorBySubjectId(subjectId);
+        }
     }
 }

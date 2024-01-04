@@ -75,6 +75,7 @@ public class SubjectDAO
         oldSubject.Semester = subject.Semester;
         oldSubject.YearOfStudy = subject.YearOfStudy;
         oldSubject.Espb = subject.Espb;
+        oldSubject.Professor = subject.Professor;
         
         _subjectStorage.Save(_subjects);
         SubjectObservable.NotifyObservers();
