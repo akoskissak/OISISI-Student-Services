@@ -33,16 +33,19 @@ public class ExamGradeDAO
                 {
                     if (subject.Id == eg.SubjectId && student.Id == eg.StudentId)
                     {
-                        student.UnsubmittedSubjects.Remove(subject);
-                        student.Grades.Add(eg);
-                        student.SetAverageGrade();
-                        subject.StudentsPassed.Add(student);
-                        eg.Student = student;
-                        eg.Subject = subject;
-                        _studentDao.SaveStudents();
-                        _subjectDao.SaveSubjects();
-                        ExamGradeObservable.NotifyObservers();
-                        break;
+                        if (!student.Grades.Contains(eg))
+                        {
+                            student.UnsubmittedSubjects.Remove(subject);
+                            student.Grades.Add(eg);
+                            student.SetAverageGrade();
+                            subject.StudentsPassed.Add(student);
+                            eg.Student = student;
+                            eg.Subject = subject;
+                            _studentDao.SaveStudents();
+                            _subjectDao.SaveSubjects();
+                            ExamGradeObservable.NotifyObservers();
+                            break;
+                        }
                     }
                 }
             }

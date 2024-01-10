@@ -50,4 +50,15 @@ public class ExamGrade : ISerializable
     {
         return $"Id: {Id,5} | StudentId: {StudentId,2} | SubjectId: {SubjectId,2} | Grade: {Grade,2} | Date {Date,5}";
     }
+    public override bool Equals(object obj)
+    {
+        if (obj == null || GetType() != obj.GetType())
+        {
+            return false;
+        }
+
+        ExamGrade other = (ExamGrade)obj;
+        return StudentId == other.StudentId && SubjectId == other.SubjectId;
+    }
+
 }

@@ -183,8 +183,9 @@ namespace GUI.View
             TotalESPB = 0;
             foreach (ExamGrade examGrade in _studentController.GetStudentById(StudentDto.Id).Grades)
             {
-                ExamGradeDtos.Add(new ExamGradeDTO(examGrade, examGrade.Subject));
                 TotalESPB += examGrade.Subject.Espb;
+                ExamGradeDtos.Add(new ExamGradeDTO(examGrade, examGrade.Subject));
+                
             }
         }
         public event PropertyChangedEventHandler PropertyChanged;
