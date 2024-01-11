@@ -101,4 +101,22 @@ public class ProfessorSubjectDAO
         }
 
     }
+
+    public List<Subject> GetAllSubjectsByProfessorId(int professorId)
+    {
+        List<Subject> subjectsForProfessor = new List<Subject>();
+
+        List<ProfessorSubject> allps = _professorSubject.FindAll(ps => ps.ProfessorId == professorId);
+        if (allps.Count > 0)
+        {
+            foreach (ProfessorSubject ps in allps)
+            {
+                Subject? s = _subjectDao.GetSubjectById(ps.SubjectId);
+                subjectsForProfessor.Add(s);
+            }
+        }
+
+        return subjectsForProfessor;
+    }
+
 }

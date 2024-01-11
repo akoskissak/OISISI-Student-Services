@@ -88,6 +88,36 @@ public class StudentSubjectDAO
         StudentSubjectObservable.NotifyObservers();
     }
 
+    public List<Student>? FindAllStudentsForSubjects(List<Subject> subjects)
+    {
+        List<Student> students = new List<Student>();
+        foreach(Subject subject in subjects)
+        {
+            Student? s = GetStudentBySubjectId(subject.Id);
+            if(s != null)
+            {
+                students.Add(s);
+            }
+        }
+        if (students.Count > 0)
+        {
+                return students.Distinct().ToList();
+        }
+        return null;
+
+    }
+
+    public Student? GetStudentBySubjectId(int subjectId)
+    {
+        StudentSubject? studentSubject = _studentSubject.Find(studentSubject => studentSubject.SubjectId == subjectId);
+        if(studentSubject != null)
+        {
+            return _studentDao.GetStudentById(studentSubject.StudentId);
+        }
+        return null;
+    }
+
+
     public void NotifyObservers()
     {
         StudentSubjectObservable.NotifyObservers();

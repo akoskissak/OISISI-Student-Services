@@ -8,11 +8,27 @@
         Title="StudentsForProfessor" Height="auto" Width="auto"
         WindowStartupLocation="CenterScreen">
     <Grid>
-        <DataGrid Height="350"
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <DockPanel DockPanel.Dock="Top">
+            <Button DockPanel.Dock="Right" HorizontalAlignment="Right" Height="30" Width="30" Margin="0,0,5,0" Click="SearchButton_Click">
+                <Image Source="https://icons.veryicon.com/png/o/commerce-shopping/small-icons-with-highlights/search-260.png"/>
+            </Button>
+            <TextBox x:Name="searchTextBox" Width="150" DockPanel.Dock="Right" HorizontalAlignment="Right" Margin="0,0,5,0" />
+        </DockPanel>
+        <DataGrid Grid.Row="1"
+                  Height="350"
                   AutoGenerateColumns="False"
                   x:Name="StudForProfDataGrid"
-                  ItemsSource="{Binding StudentDtos, UpdateSourceTrigger=PropertyChanged}"
+                  ItemsSource="{Binding StudentsForProfessorDtos, UpdateSourceTrigger=PropertyChanged}"
                   IsReadOnly="True">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Index" Binding="{Binding Index}"/>
+                <DataGridTextColumn Header="Name" Binding="{Binding Name}"/>
+                <DataGridTextColumn Header="LastName" Binding="{Binding LastName}"/>
+            </DataGrid.Columns>
             
         </DataGrid>
     </Grid>

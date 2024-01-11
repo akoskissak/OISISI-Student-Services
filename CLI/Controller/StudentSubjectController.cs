@@ -26,5 +26,10 @@ namespace CLI.Controller
         {
             return _studentDao.RemoveSubjectForStudent(studentId, subjectId, _studentSubjectDao).Id != -1;
         }
+
+        public List<Student> GetAllStudentsOnSubjects(List<Subject> subjects)
+        {
+            return _studentSubjectDao.FindAllStudentsForSubjects(subjects);
+        }
     }
 }

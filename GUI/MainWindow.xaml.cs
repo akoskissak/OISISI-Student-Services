@@ -410,7 +410,7 @@ namespace GUI
                 }
                 else
                 {
-                    StudentsForProfessor studentsForProfessor = new StudentsForProfessor();
+                    StudentsForProfessor studentsForProfessor = new StudentsForProfessor(SelectedProfessor.Id);
                     studentsForProfessor.ShowDialog();
 
                 }
