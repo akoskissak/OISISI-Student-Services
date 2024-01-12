@@ -63,5 +63,10 @@ namespace CLI.Controller
         {
             _subjectDao.SetSubjetcProfessor(subjectId, professor);
         }
+
+        public bool RemoveSubjectForProfessor(int subjectId)
+        {
+            return _professorSubjectDao.RemoveProfessorFromSubject(subjectId);
+        }
     }
 }

@@ -85,7 +85,7 @@ public class ProfessorSubjectDAO
         Subject? subject = _subjectDao.GetSubjectById(subjectId);
         subject.Professor = professor;
         subject.ProfessorId = professor.Id;
-
+        professor.Subjects.Add(subject);
         ProfessorSubject? ps = _professorSubject.Find(ps => ps.SubjectId == subjectId);
         if (ps != null)
         {
@@ -102,7 +102,7 @@ public class ProfessorSubjectDAO
         _professorSubjectStorage.Save(_professorSubject);
     }
 
-    public void RemoveProfessorFromSubject(int subjectId)
+    public bool RemoveProfessorFromSubject(int subjectId)
     {
         Subject? subject = _subjectDao.GetSubjectById(subjectId);
         Professor? professor = _professorDao.GetProfessorById(subject.ProfessorId);
@@ -118,7 +118,11 @@ public class ProfessorSubjectDAO
             _professorSubject.Remove(ps);
 
             _professorSubjectStorage.Save(_professorSubject);
+            _subjectDao.UpdateSubject(subject);
+            return true;
         }
+        else
+            return false;
 
     }
 

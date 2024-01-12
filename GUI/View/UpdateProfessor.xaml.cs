@@ -142,7 +142,28 @@ namespace GUI.View
 
         private void RemoveSubject_Click(object sender, RoutedEventArgs e)
         {
-
+            if(SubjectsForProfessorDataGrid.SelectedItem != null)
+            {
+                if(SelectedSubjectDto == null)
+                    MessageBox.Show("Please choose a subject to remove!");
+                else
+                {
+                    string messageBoxText = "Are you sure you want to remove subject?";
+                    string caption = "Remove subject";
+                    MessageBoxButton button = MessageBoxButton.YesNo;
+                    MessageBoxResult result = MessageBox.Show(messageBoxText, caption, button, MessageBoxImage.Question);
+                    if (result == MessageBoxResult.Yes)
+                    {
+                        if(_professorSubjectController.RemoveSubjectForProfessor(SelectedSubjectDto.Id))
+                        {
+                            SubjectDtos.Remove(SelectedSubjectDto);
+                            MessageBox.Show("Subject removed successfully.", "Remove Successful", MessageBoxButton.OK);
+                        }
+                        else
+                            MessageBox.Show("Subject not removed.", "ERROR", MessageBoxButton.OK);
+                    }
+                }
+            }
         }
 
         private void SubjectsForProfessorDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)

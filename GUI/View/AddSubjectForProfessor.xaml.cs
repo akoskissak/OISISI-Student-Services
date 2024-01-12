@@ -32,7 +32,7 @@ namespace GUI.View
         private ProfessorController _professorController;
         private ProfessorSubjectController _professorSubjectController;
         private SubjectController _subjectController;
-        public SubjectDTO SelectedSubjectDto { get; set; }
+        public List<SubjectDTO> SelectedSubjectDto { get; set; }
 
         public AddSubjectForProfessor(ProfessorController professorController, ProfessorDTO selectedProfessor, ObservableCollection<SubjectDTO> sdtos)
         {
@@ -73,16 +73,20 @@ namespace GUI.View
             }
             else
             {
-                Professor professor = _professorController.GetProfessorById(SelectedProfessor.Id);
-                _professorSubjectController.SetProfessorForSubject(SelectedSubjectDto.Id, professor);
-                _professorSubjectController.SetSubjetcProfessor(SelectedSubjectDto.Id, professor);
-                SubjectDtos.Add(SelectedSubjectDto);
+                foreach(SubjectDTO sdto in SelectedSubjectDto)
+                {
+                    Professor professor = _professorController.GetProfessorById(SelectedProfessor.Id);
+                    _professorSubjectController.SetProfessorForSubject(sdto.Id, professor);
+                    _professorSubjectController.SetSubjetcProfessor(sdto.Id, professor);
+                    SubjectDtos.Add(sdto);
+                }
                 Close();
             }
         }
         private void SubjectsToAddForProfessorDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            SelectedSubjectDto = SubjectsToAddForProfessorDataGrid.SelectedItem as SubjectDTO;
+            SelectedSubjectDto = SubjectsToAddForProfessorDataGrid.SelectedItems.Cast<SubjectDTO>().ToList();
         }
+
     }
 }
