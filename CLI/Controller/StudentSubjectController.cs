@@ -31,5 +31,24 @@ namespace CLI.Controller
         {
             return _studentSubjectDao.FindAllStudentsForSubjects(subjects);
         }
+        public List<Subject> GetAllSubjectsNotByStudent(int sutdentId)
+        {
+            return _studentSubjectDao.GetAllSubjectsNotByStudentId(sutdentId);
+        }
+
+        public void AddStudentForSubject(Student student, int subjectId)
+        {
+            _subjectDao.AddStudentForSubject(student, subjectId);
+        }
+
+        public void AddSubjectForStudent(int subjectId, int studentId)
+        {
+            _studentDao.AddSubjectForStudent(subjectId, studentId);
+        }
+
+        public void AddStudentSubject(StudentSubject studentSubject)
+        {
+            _studentSubjectDao.AddStudentSubject(studentSubject);
+        }
     }
 }

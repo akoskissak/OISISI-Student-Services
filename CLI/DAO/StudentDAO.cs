@@ -8,7 +8,10 @@ namespace CLI.DAO;
 public class StudentDAO
 {
     private readonly List<Student> _students;
+    private readonly List<Subject> _subjects;
+
     private readonly Storage<Student> _studentStorage;
+    private readonly Storage<Subject> _subjectStorage;
 
     public Observable StudentObservable;
     public StudentDAO()
@@ -16,6 +19,9 @@ public class StudentDAO
         _studentStorage = new Storage<Student>("students.txt");
         _students = _studentStorage.Load();
         StudentObservable = new Observable();
+
+        _subjectStorage = new Storage<Subject>("subjects.txt");
+        _subjects = _subjectStorage.Load();
     }
 
     private int GenerateStudentId()
@@ -120,6 +126,13 @@ public class StudentDAO
         StudentObservable.NotifyObservers();
     }
 
+    public void AddSubjectForStudent(int subjectId, int studentId)
+    {
+        Subject subject = _subjects.Find(subject => subject.Id == subjectId);
+        _students.Find(student => student.Id == studentId)!.UnsubmittedSubjects.Add(subject);
+        _studentStorage.Save(_students);
+        StudentObservable.NotifyObservers();
+    }
     public void SaveStudents()
     {
         _studentStorage.Save(_students);

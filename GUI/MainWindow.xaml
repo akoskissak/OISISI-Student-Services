@@ -113,7 +113,7 @@
                         <DataGridTextColumn Header="LastName" Binding="{Binding LastName}"/>
                         <DataGridTextColumn Header="CurrentYearOfStudy" Binding="{Binding CurrentYearOfStudy}"/>
                         <DataGridTextColumn Header="Status" Binding="{Binding Status}"/>
-                        <DataGridTextColumn Header="AverageGrade" Binding="{Binding AverageGrade}"/>
+                        <DataGridTextColumn Header="AverageGrade" Binding="{Binding AverageGrade, StringFormat={}{0:N2}}"/>
                     </DataGrid.Columns>
                 </DataGrid>
             </TabItem>

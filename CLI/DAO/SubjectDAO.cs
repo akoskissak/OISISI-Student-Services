@@ -106,6 +106,14 @@ public class SubjectDAO
     {
         _subjects.Find(subject => subject.Id == id)!.StudentsDidNotPass = students;
         _subjectStorage.Save(_subjects);
+        SubjectObservable.NotifyObservers();
+    }
+
+    public void AddStudentForSubject(Student student, int subjectId)
+    {
+        _subjects.Find(subject => subject.Id == subjectId)!.StudentsDidNotPass.Add(student);
+        _subjectStorage.Save(_subjects);
+        SubjectObservable.NotifyObservers();
     }
 
     public void SaveSubjects()

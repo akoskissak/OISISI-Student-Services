@@ -127,7 +127,8 @@ namespace GUI.View
 
         private void Add_Subject_Click(object sender, RoutedEventArgs e)
         {
-
+            AddSubjectForStudent addSubjectForStudent = new AddSubjectForStudent(_studentController, StudentDto, SubjectDtos);
+            addSubjectForStudent.ShowDialog();
         }
 
         private void Clear_Subject_Click(object sender, RoutedEventArgs e)

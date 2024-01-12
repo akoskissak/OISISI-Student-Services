@@ -117,6 +117,33 @@ public class StudentSubjectDAO
         return null;
     }
 
+    public List<Subject> GetAllSubjectsNotByStudentId(int studentId)
+    {
+        List<Subject> subjectsForStudent = new List<Subject>();
+        List<Subject> allsubjects = _subjectDao.GetAllSubjects();
+
+        List<StudentSubject> listss = _studentSubject.FindAll(ss => ss.StudentId == studentId);
+        if (listss.Count > 0)
+        {
+            foreach (Subject subject in allsubjects)
+            {
+                bool inside = false;
+                foreach (StudentSubject studentSubject in listss)
+                {
+                    if (subject.Id == studentSubject.SubjectId && studentId == studentSubject.StudentId)
+                    {
+                        inside = true;
+                    }
+                }
+                if (!inside)
+                {
+                    subjectsForStudent.Add(subject);
+                }
+            }
+        }
+
+        return subjectsForStudent;
+    }
 
     public void NotifyObservers()
     {
