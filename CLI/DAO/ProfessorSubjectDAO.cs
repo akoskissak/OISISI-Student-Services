@@ -1,4 +1,5 @@
 ﻿using CLI.Model;
+using CLI.Observer;
 using CLI.Storage;
 
 namespace CLI.DAO;
@@ -6,15 +7,21 @@ namespace CLI.DAO;
 public class ProfessorSubjectDAO
 {
     private readonly List<ProfessorSubject> _professorSubject;
+    private readonly List<Subject> _subject;
     private readonly Storage<ProfessorSubject> _professorSubjectStorage;
+    private readonly Storage<Subject> _subjectStorage;
 
     private ProfessorDAO _professorDao;
     private SubjectDAO _subjectDao;
 
+    public Observable ProfessorSubjectObservable;
     public ProfessorSubjectDAO(ProfessorDAO professorDao, SubjectDAO subjectDao)
     {
         _professorSubjectStorage = new Storage<ProfessorSubject>("professorSubject.txt");
         _professorSubject = _professorSubjectStorage.Load();
+
+        _subjectStorage = new Storage<Subject>("subjects.txt");
+        _subject = _subjectStorage.Load();
 
         _professorDao = professorDao;
         _subjectDao = subjectDao;
@@ -67,6 +74,12 @@ public class ProfessorSubjectDAO
         return null;
     }
 
+    private int GenerateProfessorSubjectId()
+    {
+        if (_professorSubject.Count == 0)
+            return 0;
+        return _professorSubject[^1].Id + 1;
+    }
     public void SetProfessorForSubject(int subjectId, Professor professor)
     {
         Subject? subject = _subjectDao.GetSubjectById(subjectId);
@@ -75,9 +88,16 @@ public class ProfessorSubjectDAO
 
         ProfessorSubject? ps = _professorSubject.Find(ps => ps.SubjectId == subjectId);
         if (ps != null)
+        {
             ps.ProfessorId = subject.ProfessorId;
+
+        }
         else
-            _professorSubject.Add(new ProfessorSubject(subject.ProfessorId, subjectId));
+        {
+            ProfessorSubject profs = new ProfessorSubject(subject.ProfessorId, subjectId);
+            profs.Id = GenerateProfessorSubjectId();
+            _professorSubject.Add(profs);
+        }
 
         _professorSubjectStorage.Save(_professorSubject);
     }
@@ -117,6 +137,16 @@ public class ProfessorSubjectDAO
         }
 
         return subjectsForProfessor;
+    }
+
+    public List<Subject> GetAllSubjectsNotByProfessorId(int professorId)
+    {
+        List<Subject> subjectsForProfessor = _subject.FindAll(s => s.ProfessorId == -1);
+        return subjectsForProfessor;
+    }
+    public void NotifyObservers()
+    {
+        ProfessorSubjectObservable.NotifyObservers();
     }
 
 }

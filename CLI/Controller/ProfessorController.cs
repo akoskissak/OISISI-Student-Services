@@ -56,5 +56,10 @@ namespace CLI.Controller
         {
             return _professorDao.FindProfessorsByText(text);
         }
+        
+        public Professor GetProfessorById(int professorId)
+        {
+            return _professorDao.GetProfessorById(professorId);
+        }
     }
 }

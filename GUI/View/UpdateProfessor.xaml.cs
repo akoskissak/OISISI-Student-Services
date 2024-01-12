@@ -17,6 +17,7 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Media.Media3D;
 using System.Windows.Shapes;
 
 namespace GUI.View
@@ -36,6 +37,10 @@ namespace GUI.View
 
         public event PropertyChangedEventHandler? PropertyChanged;
 
+        private double _left;
+        private double _top;
+        private double _width;
+        private double _height;
         public UpdateProfessor(ProfessorController professorController, ProfessorDTO professorDto, double left, double top, double width, double height)
         {
             InitializeComponent();
@@ -46,6 +51,10 @@ namespace GUI.View
 
             SubjectDtos = new ObservableCollection<SubjectDTO>();
 
+            _left = left;
+            _top = top;
+            _width = width;
+            _height = height;
             SetInitialWindowSize(left, top, width, height);
 
             textBoxLastname.TextChanged += TextBox_TextChanged;
@@ -73,6 +82,7 @@ namespace GUI.View
                     SubjectDtos.Add(new SubjectDTO(subject));
                 }
             }
+            _professorController.NotifyObservers();
         }
 
         private void ValidateTextBoxes()
@@ -126,7 +136,8 @@ namespace GUI.View
 
         private void AddSubject_Click(object sender, RoutedEventArgs e)
         {
-
+            AddSubjectForProfessor addSubjectForProfessor = new AddSubjectForProfessor(_professorController, ProfessorDto, SubjectDtos);
+            addSubjectForProfessor.ShowDialog();
         }
 
         private void RemoveSubject_Click(object sender, RoutedEventArgs e)
@@ -136,7 +147,7 @@ namespace GUI.View
 
         private void SubjectsForProfessorDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
+            SelectedSubjectDto = SubjectsForProfessorDataGrid.SelectedItem as SubjectDTO;
         }
     }
 }

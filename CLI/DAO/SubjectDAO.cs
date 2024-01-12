@@ -145,4 +145,15 @@ public class SubjectDAO
 
         return null;
     }
+
+    public void SetSubjetcProfessor(int subjectId, Professor professor)
+    {
+        Subject? subject = GetSubjectById(subjectId);
+        subject.Professor = professor;
+        subject.ProfessorId = professor.Id;
+
+        _subjectStorage.Save(_subjects);
+        SubjectObservable.NotifyObservers();
+
+    }
 }

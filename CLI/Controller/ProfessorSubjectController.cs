@@ -32,11 +32,6 @@ namespace CLI.Controller
             return _professorSubjectDao.GetProfessorBySubjectId(subjectId);
         }
 
-        public void SetProfessorForSubject(int subjectId, Professor professor)
-        {
-            _professorSubjectDao.SetProfessorForSubject(subjectId, professor);
-        }
-
         public void RemoveProfessorFromSubject(int subjectId)
         {
             _professorSubjectDao.RemoveProfessorFromSubject(subjectId);
@@ -50,6 +45,23 @@ namespace CLI.Controller
         public List<Subject> GetAllSubjectsByProfessorId(int professorId)
         {
             return _professorSubjectDao.GetAllSubjectsByProfessorId(professorId);
+        }
+        public List<Subject> GetAllSubjectsNotByProfessorId(int professorId)
+        {
+            return _professorSubjectDao.GetAllSubjectsNotByProfessorId(professorId);
+        }
+        
+        public void SetProfessorForSubject(int subjectId, Professor professor)
+        {
+            _professorSubjectDao.SetProfessorForSubject(subjectId, professor);
+        }
+        public void NotifyObservers()
+        {
+            _professorSubjectDao.NotifyObservers();
+        }
+        public void SetSubjetcProfessor(int subjectId, Professor professor)
+        {
+            _subjectDao.SetSubjetcProfessor(subjectId, professor);
         }
     }
 }

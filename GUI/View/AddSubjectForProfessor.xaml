@@ -1,0 +1,32 @@
+﻿<Window x:Class="GUI.View.AddSubjectForProfessor"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:GUI.View"
+        mc:Ignorable="d"
+        Title="AddSubject" Height="400" Width="300" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <TextBlock Text="Subjects:" Grid.Row="0" Margin="10,10,0,10"/>
+        <DataGrid Grid.Row="1"
+                  Height="200"
+                  AutoGenerateColumns="False"
+                  x:Name="SubjectsToAddForProfessorDataGrid"
+                  ItemsSource="{Binding SubjectDtosWithoutProfessor, UpdateSourceTrigger=PropertyChanged}"
+                  SelectedItem="{Binding SelectedSubjectDto, UpdateSourceTrigger=PropertyChanged}"
+                  SelectionChanged="SubjectsToAddForProfessorDataGrid_SelectionChanged"
+                  SelectionMode="Extended"
+                  IsReadOnly="True" >
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Subject" Binding="{Binding SubjectCodeName}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button Grid.Row="2" Content="Confirm" HorizontalAlignment="Right" Margin="0,10,80,0" Width="50" Click="Confirm_Click"/>
+        <Button Grid.Row="2" Content="Cancel" HorizontalAlignment="Right" Margin="0,10,25,0" Width="50" Click="Cancel_Click"/>
+    </Grid>
+</Window>

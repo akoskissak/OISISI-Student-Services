@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Diagnostics.Metrics;
 using System.IO;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -21,6 +22,7 @@ namespace GUI.DTO
         private int _yearOfStudy;
         private int _professorId;
         private int _espb;
+        private string _subjectCodeName;
         public Professor? Professor { get; set; }
 
         public int Id
@@ -39,6 +41,21 @@ namespace GUI.DTO
             }
         }
 
+        public string SubjectCodeName
+        {
+            get
+            {
+                return _subjectCodeName;
+            }
+            set
+            {
+                if (_subjectCode != null && _name != null)
+                {
+                    _subjectCodeName = _subjectCode + " - " + _name;
+                    OnPropertyChanged("SubjectCodeName");
+                }
+            }
+        }
 
         public string SubjectCode
         {
@@ -115,8 +132,14 @@ namespace GUI.DTO
             {
                 if (value != _professorId)
                 {
-                    _professorId = value;
-                    OnPropertyChanged("ProfessorId");
+                    try
+                    {
+                        _professorId = value;
+                        OnPropertyChanged("ProfessorId");
+                    }catch (Exception ex)
+                    {
+                        _professorId = -1;
+                    }
                 }
             }
         }
@@ -140,7 +163,7 @@ namespace GUI.DTO
         public string Error => null;
 
         private Regex _SubjectCodeRegex = new Regex("^[a-zA-Z0-9/ ]+$");
-        private Regex _ProfessorRegex = new Regex("^[0-9]+$");
+        private Regex _ProfessorRegex = new Regex("^-1$|^[0-9]+$");
         private Regex _NameRegex = new Regex("^[a-zA-Z0-9/ ]+$");
         private Regex _YearRegex = new Regex("^[1-9][0-9]*$");
 
@@ -233,6 +256,7 @@ namespace GUI.DTO
             Espb = subject.Espb;
             Id = subject.Id;
             Professor = subject.Professor;
+            _subjectCodeName = subject.SubjectCode + " - " + subject.Name;
 
         }
 
