@@ -19,7 +19,7 @@ public class SubjectConsoleView
     private Subject InputSubject()
     {
         System.Console.WriteLine("SUBJECT\nEnter subject code: ");
-        int code = ConsoleViewUtils.SafeInputInt();
+        string code = ConsoleViewUtils.SafeInputString("code");
         
         System.Console.WriteLine("Enter name: ");
         string name = ConsoleViewUtils.SafeInputString("name");

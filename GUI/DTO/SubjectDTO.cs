@@ -15,7 +15,7 @@ namespace GUI.DTO
     public class SubjectDTO : INotifyPropertyChanged, IDataErrorInfo
     {
         private int _id;
-        private int _subjectCode;
+        private string _subjectCode;
         private string _name;
         private SemesterType _semester;
         private int _yearOfStudy;
@@ -44,19 +44,13 @@ namespace GUI.DTO
         {
             get
             {
-                return _subjectCode.ToString();
+                return _subjectCode;
             }
             set
             {
-                if (value != _subjectCode.ToString())
+                if (value != _subjectCode)
                 {
-                    try
-                    {
-                        _subjectCode = int.Parse(value);
-                    }catch(Exception e)
-                    {
-                        _subjectCode = 0;
-                    }
+                        _subjectCode = value;
                     OnPropertyChanged("SubjectCode");
 
                 }
@@ -145,7 +139,7 @@ namespace GUI.DTO
 
         public string Error => null;
 
-        private Regex _SubjectCodeRegex = new Regex("^[0-9]+$");
+        private Regex _SubjectCodeRegex = new Regex("^[a-zA-Z0-9/ ]+$");
         private Regex _ProfessorRegex = new Regex("^[0-9]+$");
         private Regex _NameRegex = new Regex("^[a-zA-Z0-9/ ]+$");
         private Regex _YearRegex = new Regex("^[1-9][0-9]*$");
@@ -231,7 +225,7 @@ namespace GUI.DTO
         public SubjectDTO() { }
         public SubjectDTO(Subject subject)
         {
-            SubjectCode = subject.SubjectCode.ToString();
+            SubjectCode = subject.SubjectCode;
             Name = subject.Name;
             Semester = subject.Semester;
             YearOfStudy = subject.YearOfStudy;

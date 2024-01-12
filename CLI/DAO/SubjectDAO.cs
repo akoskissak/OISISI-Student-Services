@@ -139,9 +139,8 @@ public class SubjectDAO
         else if (inputs.Length == 2)
         {
             string subjectName = inputs[0];
-            int subjectCode;
-            if (int.TryParse(inputs[1], out subjectCode))
-                return _subjects.FindAll(subject => subject.Name == subjectName && subject.SubjectCode == subjectCode);
+            string subjectCode = inputs[1];
+            return _subjects.FindAll(subject => subject.Name == subjectName && subject.SubjectCode == subjectCode);
         }
 
         return null;

@@ -7,7 +7,7 @@ namespace CLI.Model;
 public enum SemesterType {Letnji, Zimski}
 public class Subject : ISerializable
 {
-    public int SubjectCode { get; set; }
+    public string SubjectCode { get; set; }
     public string Name { get; set; }
     public SemesterType Semester { get; set; }
     public int YearOfStudy { get; set; }
@@ -23,7 +23,7 @@ public class Subject : ISerializable
         StudentsPassed = new List<Student>();
         StudentsDidNotPass = new List<Student>();
     }
-    public Subject(int subjectCode, string name, SemesterType semester, int yearOfStudy,int espb,  int professorId)
+    public Subject(string subjectCode, string name, SemesterType semester, int yearOfStudy,int espb,  int professorId)
     {
         SubjectCode = subjectCode;
         Name = name;
@@ -53,7 +53,7 @@ public class Subject : ISerializable
     public void FromCSV(string[] values)
     {
         Id = int.Parse(values[0]);
-        SubjectCode = int.Parse(values[1]);
+        SubjectCode = values[1];
         Name = values[2];
         Semester = (SemesterType)Enum.Parse(typeof(SemesterType), values[3]);
         YearOfStudy = int.Parse(values[4]);
