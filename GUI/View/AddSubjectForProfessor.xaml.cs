@@ -28,7 +28,6 @@ namespace GUI.View
         private ProfessorDTO SelectedProfessor { get; set; }
         public ObservableCollection<SubjectDTO> SubjectDtosWithoutProfessor { get; set; }
         public ObservableCollection<SubjectDTO> SubjectDtos { get; set; }
-        public ObservableCollection<SubjectCodeNameDTO> SubjectCodeNameDtos { get; set; }
 
         private ProfessorController _professorController;
         private ProfessorSubjectController _professorSubjectController;
@@ -45,7 +44,6 @@ namespace GUI.View
 
             this.SubjectDtos = sdtos;
             SubjectDtosWithoutProfessor = new ObservableCollection<SubjectDTO>();
-            SubjectCodeNameDtos = new ObservableCollection<SubjectCodeNameDTO>();
             SelectedProfessor = selectedProfessor;
 
             Update();
