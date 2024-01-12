@@ -4,6 +4,7 @@ using CLI.Model;
 using GUI.DTO;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -27,7 +28,11 @@ namespace GUI.View
     {
         public ProfessorDTO ProfessorDto { get; set; }
 
+        public ObservableCollection<SubjectDTO> SubjectDtos { get; set; }
+        public SubjectDTO SelectedSubjectDto { get; set; }
+
         private ProfessorController _professorController;
+        private ProfessorSubjectController _professorSubjectController;
 
         public event PropertyChangedEventHandler? PropertyChanged;
 
@@ -37,6 +42,9 @@ namespace GUI.View
             DataContext = this;
             ProfessorDto = professorDto;
             this._professorController = professorController;
+            this._professorSubjectController = new ProfessorSubjectController();
+
+            SubjectDtos = new ObservableCollection<SubjectDTO>();
 
             SetInitialWindowSize(left, top, width, height);
 
@@ -51,6 +59,20 @@ namespace GUI.View
             textBoxIdNumber.TextChanged += TextBox_TextChanged;
             textBoxTitle.TextChanged += TextBox_TextChanged;
             textBoxYearsOfService.TextChanged += TextBox_TextChanged;
+
+            show();
+        }
+        public void show()
+        {
+            SubjectDtos.Clear();
+            List<Subject> subjects = _professorSubjectController.GetAllSubjectsByProfessorId(ProfessorDto.Id);
+            if(subjects.Count > 0)
+            {
+                foreach(Subject subject in subjects )
+                {
+                    SubjectDtos.Add(new SubjectDTO(subject));
+                }
+            }
         }
 
         private void ValidateTextBoxes()
@@ -100,6 +122,21 @@ namespace GUI.View
         private void Window_Closing(object sender, CancelEventArgs e)
         {
             _professorController.NotifyObservers();
+        }
+
+        private void AddSubject_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void RemoveSubject_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void SubjectsForProfessorDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
         }
     }
 }
