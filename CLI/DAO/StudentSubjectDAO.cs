@@ -1,6 +1,7 @@
 using CLI.Model;
 using CLI.Observer;
 using CLI.Storage;
+using System.ComponentModel;
 
 namespace CLI.DAO;
 
@@ -123,23 +124,24 @@ public class StudentSubjectDAO
         List<Subject> allsubjects = _subjectDao.GetAllSubjects();
 
         List<StudentSubject> listss = _studentSubject.FindAll(ss => ss.StudentId == studentId);
-        if (listss.Count > 0)
-        {
             foreach (Subject subject in allsubjects)
             {
                 bool inside = false;
-                foreach (StudentSubject studentSubject in listss)
+                if (listss.Count > 0)
                 {
-                    if (subject.Id == studentSubject.SubjectId && studentId == studentSubject.StudentId)
+
+                    foreach (StudentSubject studentSubject in listss)
                     {
-                        inside = true;
-                    }
+                        if (subject.Id == studentSubject.SubjectId && studentId == studentSubject.StudentId)
+                        {
+                            inside = true;
+                        }
+                }
                 }
                 if (!inside)
                 {
                     subjectsForStudent.Add(subject);
                 }
-            }
         }
 
         return subjectsForStudent;

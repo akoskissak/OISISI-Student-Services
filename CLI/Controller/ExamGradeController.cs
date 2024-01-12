@@ -19,5 +19,17 @@ namespace CLI.Controller
             _subjectDao = SubjectController._subjectDao;
             _examGradeDao = new ExamGradeDAO(_studentDao, _subjectDao);
         }
+
+        public bool RemoveGradeForStudent(int studentId, int subjectId)
+        {
+            if(_examGradeDao.RemoveExamGrade(studentId, subjectId) == null)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
     }
 }

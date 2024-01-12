@@ -85,7 +85,7 @@
                         <RowDefinition Height="auto"/>
                         <RowDefinition Height="auto"/>
                     </Grid.RowDefinitions>
-                    <Button Content="Remove Grade" Click="Ponisti_Click" Grid.Row="0" HorizontalAlignment="Left" Margin="5,10,0,10"/>
+                    <Button Content="Remove Grade" Click="Remove_Click" Grid.Row="0" HorizontalAlignment="Left" Margin="5,10,0,10"/>
                     <DataGrid Height="350"
                               Grid.Row="1"
                           AutoGenerateColumns="False"

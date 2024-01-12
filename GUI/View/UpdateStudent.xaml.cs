@@ -120,9 +120,32 @@ namespace GUI.View
             _studentController.NotifyObservers();
         }
 
-        private void Ponisti_Click(object sender, RoutedEventArgs e)
+        private void Remove_Click(object sender, RoutedEventArgs e)
         {
-
+            if(SubmittedDataGrid.SelectedItem != null)
+            {
+                if(SelectedExam == null)
+                {
+                    MessageBox.Show("Plase choose a grade to remove!");
+                }
+                else
+                {
+                    string messageBoxText = "Are you sure you want to remove grade?";
+                    string caption = "Remove grade";
+                    MessageBoxButton button = MessageBoxButton.YesNo;
+                    MessageBoxResult result = MessageBox.Show(messageBoxText, caption, button, MessageBoxImage.Question);
+                    if(result == MessageBoxResult.Yes)
+                    {
+                        if (_examGradeController.RemoveGradeForStudent(StudentDto.Id, SelectedSubjectDto.Id))
+                        {
+                            ExamGradeDtos.Remove(SelectedExam);
+                            MessageBox.Show("Grade removed successfully.", "Remove Successful", MessageBoxButton.OK);
+                        }
+                        else
+                            MessageBox.Show("Grade not removed.", "ERROR", MessageBoxButton.OK);
+                    }
+                }
+            }
         }
 
         private void Add_Subject_Click(object sender, RoutedEventArgs e)
