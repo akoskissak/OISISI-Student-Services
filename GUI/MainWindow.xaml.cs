@@ -97,7 +97,7 @@ namespace GUI
             }
             else if(ti != null && ti.Name != null && ti.Name == "SubjectsTab")
             {
-                AddSubject addSubject = new AddSubject(_subjectController, Left, Top, Width, Height);
+                AddSubject addSubject = new AddSubject(_subjectController, _professorSubjectController, Left, Top, Width, Height);
                 addSubject.ShowDialog();
             }
             

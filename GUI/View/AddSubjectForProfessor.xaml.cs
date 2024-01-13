@@ -77,7 +77,7 @@ namespace GUI.View
                 {
                     Professor professor = _professorController.GetProfessorById(SelectedProfessor.Id);
                     _professorSubjectController.SetProfessorForSubject(sdto.Id, professor);
-                    _professorSubjectController.SetSubjetcProfessor(sdto.Id, professor);
+                    _professorSubjectController.SetSubjectProfessor(sdto.Id, professor);
                     SubjectDtos.Add(sdto);
                 }
                 Close();

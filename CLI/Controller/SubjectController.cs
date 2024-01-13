@@ -65,6 +65,11 @@ namespace CLI.Controller
             return _subjectDao.GetSubjectById(subjectId);
         }
 
+        public List<Subject>? GetSubjectsByProfessorId(int professorId)
+        {
+            return _subjectDao.FindSubjectsByProfessorId(professorId);
+        }
+
         public void SetProfessorSubject(int professorId, int subjectId)
         {
             _professorSubjectDao.SetProfessorSubject(professorId, subjectId);

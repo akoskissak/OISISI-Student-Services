@@ -31,8 +31,6 @@ namespace GUI.View
         private SubjectController _subjectController;
         public ProfessorDTO? ProfessorForSubjectDto { get; set; }
 
-        public ObservableCollection<ProfessorDTO> ProfessorDto { get; set; }
-
         private ProfessorSubjectController _professorSubjectController;
 
         public event PropertyChangedEventHandler? PropertyChanged;
@@ -45,8 +43,6 @@ namespace GUI.View
             SubjectDto = subjectDto;
             this._subjectController = subjectController;
             this._professorSubjectController = professorSubjectController;
-
-            ProfessorDto = new ObservableCollection<ProfessorDTO>();
 
             semesterComboBox.Items.Clear();
             semesterComboBox.SelectedIndex = 0;
@@ -93,6 +89,7 @@ namespace GUI.View
                 Subject subject = SubjectDto.ToSubject();
                 subject.Id = SubjectDto.Id;
                 subject.Professor = SubjectDto.Professor;
+                subject.ProfessorId = SubjectDto.ProfessorId;
                 _subjectController.UpdateSubject(subject);
                 if (SubjectDto.Professor == null)
                 {

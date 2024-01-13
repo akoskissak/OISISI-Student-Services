@@ -1,5 +1,4 @@
 0|7777|oisisi|Zimski|3|6|0
 1|4|564564|Letnji|5|456484|0
 2|7|miss|Zimski|1|12|2
-4|0|prea|Zimski|82|8|0
 5|5|Optimalno upravljanje|Zimski|3|8|2

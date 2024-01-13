@@ -74,5 +74,20 @@ namespace GUI.View
         {
             SelectedDepartment = DepartmentDataGrid.SelectedItem as DepartmentDTO;
         }
+
+        private void ShowSubjects_Click(object sender, RoutedEventArgs e)
+        {
+            if (SelectedDepartment != null)
+            {
+                SubjectsForDepartment subjectsForDepartment = new SubjectsForDepartment(SelectedDepartment, _departmentController);
+                subjectsForDepartment.ShowDialog();
+            }
+            else
+            {
+                string messageBoxText = "Please select a department!";
+                string caption = "Select department";
+                MessageBox.Show(messageBoxText, caption, MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+        }
     }
 }

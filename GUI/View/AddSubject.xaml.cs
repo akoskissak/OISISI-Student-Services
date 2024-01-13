@@ -28,13 +28,15 @@ namespace GUI.View
         public SubjectDTO SubjectDto { get; set; }
 
         private SubjectController _subjectController;
+        private ProfessorSubjectController _professorSubjectController;
 
-        public AddSubject(SubjectController subjectController, double left, double top, double width, double height)
+        public AddSubject(SubjectController subjectController, ProfessorSubjectController professorSubjectController, double left, double top, double width, double height)
         {
             InitializeComponent();
             DataContext = this;
             SubjectDto = new SubjectDTO();
             this._subjectController = subjectController;
+            this._professorSubjectController = professorSubjectController;
 
             SetInitialWindowSize(left, top, width, height);
 
@@ -71,7 +73,9 @@ namespace GUI.View
         {
             if (SubjectDto.IsValid)
             {
-                Subject subject = _subjectController.AddSubject(SubjectDto.ToSubject());
+                Subject subject = SubjectDto.ToSubject();
+                subject.Professor = _professorSubjectController.GetProfessorById(subject.ProfessorId);
+                subject = _subjectController.AddSubject(subject);
                 _subjectController.SetProfessorSubject(SubjectDto.ProfessorId, subject.Id);
                 Close();
             }

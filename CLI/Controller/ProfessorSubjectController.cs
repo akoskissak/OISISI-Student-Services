@@ -59,14 +59,19 @@ namespace CLI.Controller
         {
             _professorSubjectDao.NotifyObservers();
         }
-        public void SetSubjetcProfessor(int subjectId, Professor professor)
+        public void SetSubjectProfessor(int subjectId, Professor professor)
         {
-            _subjectDao.SetSubjetcProfessor(subjectId, professor);
+            _subjectDao.SetSubjectProfessor(subjectId, professor);
         }
 
         public bool RemoveSubjectForProfessor(int subjectId)
         {
             return _professorSubjectDao.RemoveProfessorFromSubject(subjectId);
+        }
+
+        public Professor? GetProfessorById(int professorId)
+        {
+            return _professorDao.GetProfessorById(professorId);
         }
     }
 }

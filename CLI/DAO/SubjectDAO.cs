@@ -88,7 +88,7 @@ public class SubjectDAO
         if (subject == null)
             return null;
 
-        if (subject.StudentsDidNotPass.Count != 0 || subject.StudentsPassed.Count != 0)
+        if (subject.StudentsDidNotPass.Count != 0 || subject.StudentsPassed.Count != 0 || subject.ProfessorId != -1)
         {
             System.Console.WriteLine("Cannot remove subject that has students!\nRemove them first and then you can remove subject.");
             Subject subj = new Subject();
@@ -154,7 +154,7 @@ public class SubjectDAO
         return null;
     }
 
-    public void SetSubjetcProfessor(int subjectId, Professor professor)
+    public void SetSubjectProfessor(int subjectId, Professor professor)
     {
         Subject? subject = GetSubjectById(subjectId);
         subject.Professor = professor;
@@ -163,5 +163,10 @@ public class SubjectDAO
         _subjectStorage.Save(_subjects);
         SubjectObservable.NotifyObservers();
 
+    }
+
+    public List<Subject>? FindSubjectsByProfessorId(int professorId)
+    {
+        return _subjects.FindAll(subject => subject.ProfessorId == professorId);
     }
 }

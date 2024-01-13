@@ -48,7 +48,6 @@ public class ProfessorSubjectDAO
                 professorDao.AddSubjectsForProfessor(subjectsForProfessor.ToList(), professor.Id);
             subjectsForProfessor.Clear();
         }
-
     }
 
     public List<Professor>? FindAllProfessorsForSubjects(List<Subject> unsubmittedSubjects)
