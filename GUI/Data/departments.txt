@@ -1,5 +1,5 @@
-0|0000|Racunarstvo i automatika|0
-1|7777|Telekomunikacije|1
+0|0000|Racunarstvo i automatika|-1
+1|7777|Telekomunikacije|-1
 2|8787|Istorija|-1
 3|7423|Fizika|2
 4|88|Perica|8

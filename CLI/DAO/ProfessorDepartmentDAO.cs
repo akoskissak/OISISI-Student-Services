@@ -46,4 +46,21 @@ public class ProfessorDepartmentDAO
             profsForDep.Clear();
         }
     }
+    public List<Professor> GetAllProfessorsByDepartmentId(int departmentId)
+    {
+        List<Professor> professorList = new List<Professor>();
+        Department dep = _departmentDao.GetDepartmentById(departmentId);
+        List<ProfessorDepartment> pd = _profDep.FindAll(p => p.DepartmentId == dep.Id);
+        if(pd.Count > 0)
+        {
+            foreach (ProfessorDepartment pdepartment in pd)
+            {
+                Professor prof = _professorDao.GetProfessorById(pdepartment.ProfessorId);
+                professorList.Add(prof);
+            }
+        }
+
+        return professorList;
+    }
+
 }

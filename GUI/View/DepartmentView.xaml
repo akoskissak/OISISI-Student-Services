@@ -6,17 +6,27 @@
         xmlns:local="clr-namespace:GUI.View"
         mc:Ignorable="d"
         Title="DepartmentView" Height="auto" Width="auto" WindowStartupLocation="CenterScreen">
-    <DockPanel>
-        <DataGrid Height="350"
-                      AutoGenerateColumns="False"
-                      x:Name="DepartmentDataGrid"
-                      ItemsSource="{Binding DepartmentDtos, UpdateSourceTrigger=PropertyChanged}"
-                      IsReadOnly="True">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <Button Content="Show Professors" Click="ShowProfessors_Click" Margin="5,10,0,10" Grid.Row="0" HorizontalAlignment="Left" Height="20"/>
+        <DataGrid
+                    Grid.Row="1"
+                    AutoGenerateColumns="False"
+                    x:Name="DepartmentDataGrid"
+                    ItemsSource="{Binding DepartmentDtos, UpdateSourceTrigger=PropertyChanged}"
+                    SelectedItem="{Binding SelectedDepartment, UpdateSourceTrigger=PropertyChanged}"
+                    SelectionChanged="DepartmentDataGrid_SelectionChanged"
+                    SelectionMode="Single"
+                    IsReadOnly="True"
+                    VerticalAlignment="Top">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="DepartmentCode" Binding="{Binding DepCode}"/>
                 <DataGridTextColumn Header="Name" Binding="{Binding Name}"/>
                 <DataGridTextColumn Header="ChiefId" Binding="{Binding ChiefId}"/>
             </DataGrid.Columns>
         </DataGrid>
-    </DockPanel>
+    </Grid>
 </Window>

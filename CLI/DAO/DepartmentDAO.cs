@@ -7,13 +7,18 @@ namespace CLI.DAO;
 public class DepartmentDAO
 {
     private readonly List<Department> _departments;
+    private readonly List<Professor> _professors;
     private readonly Storage<Department> _departmentStorage;
+    private readonly Storage<Professor> _professorStorage;
 
     public Observable DepartmentObservable;
     public DepartmentDAO()
     {
         _departmentStorage = new Storage<Department>("departments.txt");
         _departments = _departmentStorage.Load();
+        _professorStorage = new Storage<Professor>("professors.txt");
+        _professors = _professorStorage.Load();
+
         DepartmentObservable = new Observable();
     }
 
@@ -82,5 +87,30 @@ public class DepartmentDAO
     public List<Department> GetAllDepartments()
     {
         return _departments;
+    }
+
+    public bool HasDepartmentChief(int departmentId)
+    {
+        Department dep = GetDepartmentById(departmentId);
+        if(dep.ChiefId != -1)
+        {
+            return true;
+        }
+
+        return false;
+    }
+    public void SetProfessorAsChief(int professorId, int departmentId)
+    {
+        Professor professor = _professors.Find(p => p.Id == professorId);
+        Department department = GetDepartmentById(departmentId);
+        department.Chief = professor;
+        department.ChiefId = professor.Id;
+        
+        UpdateDepartment(department);
+    }
+
+    public void NotifyObservers()
+    {
+        DepartmentObservable.NotifyObservers();
     }
 }

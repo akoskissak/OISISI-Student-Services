@@ -122,4 +122,21 @@ public class ProfessorDAO
     {
         return _professors.Find(p => p.Id == professorId);
     }
+
+    public bool CanProfessorBeAChief(int professorId)
+    {
+        Professor professor = GetProfessorById(professorId);
+        if(string.Equals(professor.Title, "vanredni profesor", StringComparison.OrdinalIgnoreCase) || string.Equals(professor.Title, "profesor", StringComparison.OrdinalIgnoreCase))
+        {
+            if(professor.YearsOfService >= 5)
+            {
+                return true;
+            }
+            return false;
+        }
+        else
+        {
+            return false;
+        }
+    }
 }

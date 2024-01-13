@@ -25,6 +25,8 @@ namespace GUI.View
         private DepartmentController _departmentController {  get; set; }
         public ObservableCollection<DepartmentDTO> DepartmentDtos { get; set; }
 
+        private DepartmentDTO SelectedDepartment { get; set; }
+
         public DepartmentView(double left, double top, double width, double height)
         {
             InitializeComponent();
@@ -48,6 +50,29 @@ namespace GUI.View
             DepartmentDtos.Clear();
             foreach (CLI.Model.Department department in _departmentController.getAllDepartments())
                 DepartmentDtos.Add(new DepartmentDTO(department));
+        }
+
+        private void ShowProfessors_Click(object sender, RoutedEventArgs e)
+        {
+            if(SelectedDepartment != null)
+            {
+                ProfessorsForDepartment professorsForDepartment = new ProfessorsForDepartment(SelectedDepartment, _departmentController);
+                professorsForDepartment.ShowDialog();
+                Update();
+                _departmentController.NotifyObservers();
+            }
+            else
+            {
+                string messageBoxText = "Please select a department!";
+                string caption = "Select department";
+                MessageBox.Show(messageBoxText, caption, MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+
+        }
+
+        private void DepartmentDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            SelectedDepartment = DepartmentDataGrid.SelectedItem as DepartmentDTO;
         }
     }
 }

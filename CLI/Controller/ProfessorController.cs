@@ -61,5 +61,10 @@ namespace CLI.Controller
         {
             return _professorDao.GetProfessorById(professorId);
         }
+
+        public bool CanProfessorBeAChief(int professorId)
+        {
+            return _professorDao.CanProfessorBeAChief(professorId);
+        }
     }
 }
