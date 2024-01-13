@@ -13,15 +13,19 @@ namespace CLI.Controller
     public class SubjectController
     {
         public static readonly SubjectDAO _subjectDao = new SubjectDAO();
+        public readonly ProfessorSubjectDAO _professorSubjectDao;
+        public readonly ProfessorDAO _professorDao;
         
         public SubjectController()
         {
            //_subjectDao = new SubjectDAO();
+           _professorDao = new ProfessorDAO();
+            _professorSubjectDao = new ProfessorSubjectDAO(_professorDao, _subjectDao);
         }
 
-        public void AddSubject(Subject subject)
+        public Subject AddSubject(Subject subject)
         {
-            _subjectDao.AddSubject(subject);
+            return _subjectDao.AddSubject(subject);
         }
 
         public void UpdateSubject(Subject subject)
@@ -59,6 +63,11 @@ namespace CLI.Controller
         public Subject? GetSubjectById(int subjectId)
         {
             return _subjectDao.GetSubjectById(subjectId);
+        }
+
+        public void SetProfessorSubject(int professorId, int subjectId)
+        {
+            _professorSubjectDao.SetProfessorSubject(professorId, subjectId);
         }
     }
 }

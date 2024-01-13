@@ -71,7 +71,8 @@ namespace GUI.View
         {
             if (SubjectDto.IsValid)
             {
-                _subjectController.AddSubject(SubjectDto.ToSubject());
+                Subject subject = _subjectController.AddSubject(SubjectDto.ToSubject());
+                _subjectController.SetProfessorSubject(SubjectDto.ProfessorId, subject.Id);
                 Close();
             }
             else

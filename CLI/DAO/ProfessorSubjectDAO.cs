@@ -80,6 +80,16 @@ public class ProfessorSubjectDAO
             return 0;
         return _professorSubject[^1].Id + 1;
     }
+
+    public void SetProfessorSubject(int professorId, int subjectId)
+    {
+        if(professorId != -1){
+            ProfessorSubject ps = new ProfessorSubject(professorId, subjectId);
+            ps.Id = GenerateProfessorSubjectId();
+            _professorSubject.Add(ps);
+            _professorSubjectStorage.Save(_professorSubject);
+        }
+    }
     public void SetProfessorForSubject(int subjectId, Professor professor)
     {
         Subject? subject = _subjectDao.GetSubjectById(subjectId);
