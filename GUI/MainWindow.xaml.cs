@@ -127,7 +127,7 @@ namespace GUI
             {
                 if (SelectedStudent != null)
                 {
-                    UpdateStudent updateStudentWindow = new UpdateStudent(_studentController, _examGradeController, SelectedStudent, Left, Top, Width, Height);
+                    UpdateStudent updateStudentWindow = new UpdateStudent(_studentController, _examGradeController, SelectedStudent, _subjectController ,Left, Top, Width, Height);
                     updateStudentWindow.ShowDialog();
                 }
                 else

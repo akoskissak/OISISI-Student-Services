@@ -301,30 +301,23 @@ namespace GUI.DTO
             }
         }
 
-        public string AverageGrade
+        public double AverageGrade
         {
             get
             {
-                return _averageGrade.ToString();
+                return _averageGrade;
             }
             set
             {
-                if(value != _averageGrade.ToString())
+                if(value != _averageGrade)
                 {
-                    if (value == "")
-                    {
-                        _averageGrade = 0;
-                    }
-                    else
-                    {
                         try
                         {
-                            _averageGrade = double.Parse(value);
+                            _averageGrade = value;
                         }catch(Exception e)
                         {
                             _averageGrade = 0;
                         }
-                    }
                     OnPropertyChanged("AverageGrade");
                 }
             }
@@ -507,7 +500,7 @@ namespace GUI.DTO
             PhoneNumber = student.PhoneNumber;
             Email = student.Email;
             Status = student.Status;
-            AverageGrade = student.AverageGrade.ToString();
+            AverageGrade = student.AverageGrade;
             CurrentYearOfStudy = student.CurrentYearOfStudy;
             EnrollmentNumber = student.Index.EnrollmentNumber.ToString();
             EnrollmentYear = student.Index.EnrollmentYear.ToString();
