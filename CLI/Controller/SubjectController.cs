@@ -74,5 +74,15 @@ namespace CLI.Controller
         {
             _professorSubjectDao.SetProfessorSubject(professorId, subjectId);
         }
+
+        public void SortSubjects(string columnName, int sortDirection)
+        {
+            _subjectDao.SortSubjects(columnName, sortDirection);
+        }
+
+        public List<Subject> GetSortedSearchedSubjects(List<int> ids)
+        {
+            return _subjectDao.GetSortedSearchedSubjects(ids);
+        }
     }
 }

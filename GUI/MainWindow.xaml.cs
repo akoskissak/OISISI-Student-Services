@@ -13,6 +13,8 @@ using System.Windows.Controls;
 using CLI.Controller;
 using System.Linq;
 using System.Windows.Controls.Ribbon;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 
 namespace GUI
 {
@@ -29,14 +31,15 @@ namespace GUI
         public SubjectDTO SelectedSubject { get; set; }
         public StudentDTO SelectedStudent { get; set; }
 
-
-       
         private ProfessorSubjectController _professorSubjectController { get; set; }
         private StudentSubjectController _studentSubjectController { get; set; }
         private ProfessorController _professorController {  get; set; }
         private StudentController _studentController { get; set; }    
         private SubjectController _subjectController { get; set; }
         private ExamGradeController _examGradeController;
+
+        public PagingCollectionView ProfessorPagingCollectionView {  get; set; }
+        public PagingCollectionView SubjectPagingCollectionView {  get; set; }
 
         public MainWindow()
         {
@@ -45,10 +48,11 @@ namespace GUI
             ProfessorDtos = new ObservableCollection<ProfessorDTO>();
             StudentDtos = new ObservableCollection<StudentDTO>();
             SubjectDtos = new ObservableCollection<SubjectDTO>();
-            
 
             SetInitialWindowSize();
 
+            ProfessorPagingCollectionView = new PagingCollectionView(ProfessorDtos, 2);
+            SubjectPagingCollectionView = new PagingCollectionView(SubjectDtos, 2);
             
             _professorSubjectController = new ProfessorSubjectController();
             _studentSubjectController = new StudentSubjectController();
@@ -64,7 +68,6 @@ namespace GUI
             _subjectController.Subscribe(this);
             _examGradeController.Subscribe(this);
             //_studentSubjectController.Subscribe(this);
-            
 
             DispatcherTimer timer = new DispatcherTimer();
             timer.Tick += new EventHandler(UpdateTimer_Tick);
@@ -155,6 +158,9 @@ namespace GUI
             SubjectDtos.Clear();
             foreach (Subject subject in _subjectController.GetAllSubjects())
                 SubjectDtos.Add(new SubjectDTO(subject));
+
+            ProfessorPagingCollectionView.InnerList = ProfessorDtos;
+            SubjectPagingCollectionView.InnerList = SubjectDtos;
         }
 
         private void Delete_Click(object sender, RoutedEventArgs e)
@@ -335,6 +341,12 @@ namespace GUI
             TabItem ti = Tabs.SelectedItem as TabItem;
             if (ti != null && ti.Name != null && ti.Name == "ProfessorsTab")
             {
+                if (ProfessorPagingCollectionView.CurrentPage != 1)
+                {
+                    ProfessorPagingCollectionView.MoveToFirstPage();
+                    currentPageLabel.Content = 1;
+                }
+
                 if (searchTextBox.Text.Length == 0)
                     Update();
                 else
@@ -348,7 +360,7 @@ namespace GUI
             }
             else if (ti != null && ti.Name != null && ti.Name == "StudentsTab")
             {
-                if(searchTextBox.Text.Length == 0)
+                if (searchTextBox.Text.Length == 0)
                     Update();
                 else
                 {
@@ -361,6 +373,12 @@ namespace GUI
             }
             else if (ti != null && ti.Name != null && ti.Name == "SubjectsTab")
             {
+                if (SubjectPagingCollectionView.CurrentPage != 1)
+                {
+                    SubjectPagingCollectionView.MoveToFirstPage();
+                    currentPageLabel.Content = 1;
+                }
+
                 if (searchTextBox.Text.Length == 0)
                     Update();
                 else
@@ -423,6 +441,197 @@ namespace GUI
             else
             {
                 MessageBox.Show("Please select tab Professors", "Students for professor", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        // sortDirection: 0 -> ascending, 1 -> descending
+        private void ArrowUp_Button_Click(object sender, RoutedEventArgs e)
+        {
+            Button button = sender as Button;
+            if (button != null)
+            {
+                TabItem ti = Tabs.SelectedItem as TabItem;
+                string columnName = (button.DataContext as string)!.Trim();
+
+                if (ti != null && ti.Name == "ProfessorsTab")
+                {
+                    if (ProfessorPagingCollectionView.CurrentPage != 1)
+                    {
+                        ProfessorPagingCollectionView.MoveToFirstPage();
+                        currentPageLabel.Content = 1;
+                    }
+
+
+                    if (ProfessorDtos.Count != _professorController.GetAllProfessors().Count)
+                        SortSearchedProfessors(columnName, 0);
+                    else
+                        _professorController.SortProfessors(columnName, 0);
+
+                }
+                else if (ti != null && ti.Name == "StudentsTab")
+                {
+                    // Akos RADI OVO
+                }
+                else if (ti != null && ti.Name == "SubjectsTab")
+                {
+                    if (SubjectPagingCollectionView.CurrentPage != 1)
+                    {
+                        SubjectPagingCollectionView.MoveToFirstPage();
+                        currentPageLabel.Content = 1;
+                    }
+
+                    if (SubjectDtos.Count != _subjectController.GetAllSubjects().Count)
+                        SortSearchedSubjects(columnName, 0);
+                    else
+                        _subjectController.SortSubjects(columnName, 0);
+                }
+            }
+        }
+
+        private void ArrowDown_Button_Click(object sender, RoutedEventArgs e)
+        {
+            Button button = sender as Button;
+            if (button != null)
+            {
+                TabItem ti = Tabs.SelectedItem as TabItem;
+                string columnName = (button.DataContext as string)!.Trim();
+
+                if (ti != null && ti.Name == "ProfessorsTab")
+                {
+                    if (ProfessorPagingCollectionView.CurrentPage != 1)
+                    {
+                        ProfessorPagingCollectionView.MoveToFirstPage();
+                        currentPageLabel.Content = 1;
+                    }
+
+                    if (ProfessorDtos.Count != _professorController.GetAllProfessors().Count)
+                        SortSearchedProfessors(columnName, 1);
+                    else
+                        _professorController.SortProfessors(columnName, 1);
+                }
+                else if (ti != null && ti.Name == "StudentsTab")
+                {
+                    // Akos RADI OVO
+                }
+                else if (ti != null && ti.Name == "SubjectsTab")
+                {
+                    if (SubjectPagingCollectionView.CurrentPage != 1)
+                    {
+                        SubjectPagingCollectionView.MoveToFirstPage();
+                        currentPageLabel.Content = 1;
+                    }
+
+                    if (SubjectDtos.Count != _subjectController.GetAllSubjects().Count)
+                        SortSearchedSubjects(columnName, 1);
+                    else
+                        _subjectController.SortSubjects(columnName, 1);
+                }
+            }
+
+        }
+
+        public void SortSearchedProfessors(string columnName, int sortDirection)
+        {
+            List<int> ids = new List<int>();
+            foreach (ProfessorDTO profDto in ProfessorDtos)
+            {
+                ids.Add(profDto.Id);
+            }
+            _professorController.SortProfessors(columnName, sortDirection);
+            ProfessorDtos.Clear();
+            List<Professor>? professors = _professorController.GetSortedSearchedProfessors(ids);
+            if (professors != null)
+                foreach (Professor professor in professors)
+                    ProfessorDtos.Add(new ProfessorDTO(professor));
+        }
+
+        public void SortSearchedSubjects(string columnName, int sortDirection)
+        {
+            List<int> ids = new List<int>();
+            foreach (SubjectDTO subjDto in SubjectDtos)
+            {
+                ids.Add(subjDto.Id);
+            }
+            _subjectController.SortSubjects(columnName, 0);
+            SubjectDtos.Clear();
+            List<Subject>? subjects = _subjectController.GetSortedSearchedSubjects(ids);
+            if (subjects != null)
+                foreach (Subject subject in subjects)
+                    SubjectDtos.Add(new SubjectDTO(subject));
+        }
+
+        private void NextPage_Button_Click(object sender, RoutedEventArgs e)
+        {
+            TabItem ti = Tabs.SelectedItem as TabItem;
+            if (ti != null && ti.Name != null && ti.Name == "ProfessorsTab")
+            {
+                this.ProfessorPagingCollectionView.MoveToNextPage();
+                currentPageLabel.Content = this.ProfessorPagingCollectionView.CurrentPage;
+                //this.CurrentPage = ProfessorPagingCollectionView.CurrentPage;
+            }
+            else if (ti != null && ti.Name != null && ti.Name == "StudentsTab")
+            {
+                // Akos RADI OVO
+            }
+            else if (ti != null && ti.Name != null && ti.Name == "SubjectsTab")
+            {
+                this.SubjectPagingCollectionView.MoveToNextPage();
+                currentPageLabel.Content = this.SubjectPagingCollectionView.CurrentPage;
+            }
+        }
+
+        private void PreviousPage_Button_Click(object sender, RoutedEventArgs e)
+        {
+            TabItem ti = Tabs.SelectedItem as TabItem;
+            if (ti != null && ti.Name != null && ti.Name == "ProfessorsTab")
+            {
+                this.ProfessorPagingCollectionView.MoveToPreviousPage();
+                currentPageLabel.Content = this.ProfessorPagingCollectionView.CurrentPage;
+            }
+            else if (ti != null && ti.Name != null && ti.Name == "StudentsTab")
+            {
+                // Akos RADI OVO
+            }
+            else if (ti != null && ti.Name != null && ti.Name == "SubjectsTab")
+            {
+                this.SubjectPagingCollectionView.MoveToPreviousPage();
+                currentPageLabel.Content = this.SubjectPagingCollectionView.CurrentPage;
+            }
+        }
+
+        private void FirstPage_Button_Click(object sender, RoutedEventArgs e)
+        {
+            TabItem ti = Tabs.SelectedItem as TabItem;
+            if (ti != null && ti.Name != null && ti.Name == "ProfessorsTab")
+            {
+                this.ProfessorPagingCollectionView.MoveToFirstPage();
+                currentPageLabel.Content = this.ProfessorPagingCollectionView.CurrentPage;
+            }
+            else if (ti != null && ti.Name != null && ti.Name == "StudentsTab")
+            {
+                // Akos RADI OVO
+            }
+            else if (ti != null && ti.Name != null && ti.Name == "SubjectsTab")
+            {
+                this.SubjectPagingCollectionView.MoveToFirstPage();
+                currentPageLabel.Content = this.SubjectPagingCollectionView.CurrentPage;
+            }
+        }
+
+        private void TabControl_Changed(object sender, SelectionChangedEventArgs e)
+        {
+            TabItem ti = Tabs.SelectedItem as TabItem;
+            if (ti != null && ti.Name != null && ti.Name == "ProfessorsTab")
+            {
+                currentPageLabel.Content = this.ProfessorPagingCollectionView.CurrentPage;
+            }
+            else if (ti != null && ti.Name != null && ti.Name == "StudentsTab")
+            {
+
+            }
+            else if (ti != null && ti.Name != null && ti.Name == "SubjectsTab")
+            {
+                currentPageLabel.Content = this.SubjectPagingCollectionView.CurrentPage;
             }
         }
     }

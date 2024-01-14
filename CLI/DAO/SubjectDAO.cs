@@ -6,7 +6,7 @@ namespace CLI.DAO;
 
 public class SubjectDAO
 {
-    private readonly List<Subject> _subjects;
+    private List<Subject> _subjects;
     private readonly Storage<Subject> _subjectStorage;
 
     public Observable SubjectObservable;
@@ -21,7 +21,7 @@ public class SubjectDAO
     {
         if (_subjects.Count == 0) 
             return 0;
-        return _subjects[^1].Id + 1;
+        return _subjects.Max(s => s.Id) + 1;
     }
     public Subject AddSubject(Subject subject)
     {
@@ -172,5 +172,50 @@ public class SubjectDAO
     public List<Subject>? FindSubjectsByProfessorId(int professorId)
     {
         return _subjects.FindAll(subject => subject.ProfessorId == professorId);
+    }
+
+    public void SortSubjects(string columnName, int sortDirection)
+    {
+        switch (columnName)
+        {
+            case "SubjectCode":
+                _subjects = _subjects.OrderBy(s => s.SubjectCode).ToList();
+                break;
+            case "Name":
+                _subjects = _subjects.OrderBy(s => s.Name).ToList();
+                break;
+            case "Espb":
+                _subjects = _subjects.OrderBy(s => s.Espb).ThenBy(s => s.Name).ToList();
+                break;
+            case "YearOfStudy":
+                _subjects = _subjects.OrderBy(s => s.YearOfStudy).ThenBy(s => s.Name).ToList();
+                break;
+            case "Semester":
+                _subjects = _subjects.OrderBy(s => s.Semester).ThenBy(s => s.Name).ToList();
+                break;
+        }
+
+        if (sortDirection == 1)
+        {
+            _subjects.Reverse();
+        }
+
+        _subjectStorage.Save(_subjects);
+        SubjectObservable.NotifyObservers();
+    }
+
+    public List<Subject> GetSortedSearchedSubjects(List<int> ids)
+    {
+        List<Subject> retVal = new List<Subject>();
+        foreach (int id in ids)
+        {
+            Subject? subject = _subjects.Find(s => s.Id == id);
+            if (subject != null)
+            {
+                retVal.Add(subject);
+            }
+        }
+
+        return retVal;
     }
 }

@@ -66,5 +66,15 @@ namespace CLI.Controller
         {
             return _professorDao.CanProfessorBeAChief(professorId);
         }
+
+        public void SortProfessors(string columnName, int sortDirection)
+        {
+            _professorDao.SortProfessors(columnName, sortDirection);
+        }
+
+        public List<Professor> GetSortedSearchedProfessors(List<int> ids)
+        {
+            return _professorDao.GetSortedSearchedProfessors(ids);
+        }
     }
 }

@@ -6,7 +6,7 @@ namespace CLI.DAO;
 
 public class ProfessorDAO
 {
-    private readonly List<Professor> _professors;
+    private List<Professor> _professors;
     private readonly Storage<Professor> _professorStorage;
 
     public Observable ProfessorObservable;
@@ -22,7 +22,7 @@ public class ProfessorDAO
     {
         if (_professors.Count == 0)
             return 0;
-        return _professors[^1].Id + 1;
+        return _professors.Max(p => p.Id) + 1;
     }
     public Professor AddProfessor(Professor professor)
     {
@@ -139,5 +139,47 @@ public class ProfessorDAO
         {
             return false;
         }
+    }
+
+    public void SortProfessors(string columnName, int sortDirection)
+    {
+        switch (columnName)
+        {
+            case "Name":
+                _professors = _professors.OrderBy(p => p.Name).ThenBy(p=>p.Lastname).ToList();
+                break;
+            case "Lastname":
+                _professors = _professors.OrderBy(p => p.Lastname).ThenBy(p => p.Name).ToList();
+                break;
+            case "Title":
+                _professors = _professors.OrderBy(p => p.Title).ThenBy(p => p.Name).ToList();
+                break;
+            case "E-mail":
+                _professors = _professors.OrderBy(p => p.Email).ToList();
+                break;
+        }
+        
+        if (sortDirection == 1)
+        {
+            _professors.Reverse();
+        }
+
+        _professorStorage.Save(_professors);
+        ProfessorObservable.NotifyObservers();
+    }
+
+    public List<Professor> GetSortedSearchedProfessors(List<int> ids)
+    {
+        List<Professor> retVal = new List<Professor>();
+        foreach (int id in ids)
+        {
+            Professor? professor = _professors.Find(p => p.Id == id);
+            if (professor != null)
+            {
+                retVal.Add(professor);
+            }
+        }
+
+        return retVal;
     }
 }
