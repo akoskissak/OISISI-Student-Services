@@ -28,7 +28,7 @@ public class StudentDAO
     {
         if (_students.Count == 0)
             return 0;
-        return _students[^1].Id + 1;
+        return _students.Max(s => s.Id) + 1;
     }
 
     public Student AddStudent(Student student)
