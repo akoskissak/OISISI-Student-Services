@@ -67,7 +67,7 @@ public class ExamGradeDAO
         _examGrades.Add(examGrade);
         _examGradeStorage.Save(_examGrades);
         ExamGradeObservable.NotifyObservers();
-        
+
         _studentDao.AddExamGradeForStudent(examGrade);
         _subjectDao.AddStudentPassedForSubject(examGrade);
         ExamGradeObservable.NotifyObservers();
@@ -104,6 +104,7 @@ public class ExamGradeDAO
 
         _studentDao.RemoveExamGradeForStudent(examGrade);
         _subjectDao.RemoveStudentPassedForSubject(examGrade);
+        _examGradeStorage.Save(_examGrades);
         ExamGradeObservable.NotifyObservers();
         return examGrade;
     }

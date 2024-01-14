@@ -36,6 +36,7 @@ namespace GUI
         private ProfessorController _professorController {  get; set; }
         private StudentController _studentController { get; set; }    
         private SubjectController _subjectController { get; set; }
+        private ExamGradeController _examGradeController;
 
         public MainWindow()
         {
@@ -51,6 +52,7 @@ namespace GUI
             
             _professorSubjectController = new ProfessorSubjectController();
             _studentSubjectController = new StudentSubjectController();
+            _examGradeController = new ExamGradeController();
 
             _studentController = new StudentController();
             _professorController = new ProfessorController();
@@ -60,6 +62,8 @@ namespace GUI
             _studentController.Subscribe(this);
             _professorController.Subscribe(this);
             _subjectController.Subscribe(this);
+            _examGradeController.Subscribe(this);
+            //_studentSubjectController.Subscribe(this);
             
 
             DispatcherTimer timer = new DispatcherTimer();
@@ -120,7 +124,7 @@ namespace GUI
             {
                 if (SelectedStudent != null)
                 {
-                    UpdateStudent updateStudentWindow = new UpdateStudent(_studentController, SelectedStudent, Left, Top, Width, Height);
+                    UpdateStudent updateStudentWindow = new UpdateStudent(_studentController, _examGradeController, SelectedStudent, Left, Top, Width, Height);
                     updateStudentWindow.ShowDialog();
                 }
                 else

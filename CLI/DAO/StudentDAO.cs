@@ -109,7 +109,7 @@ public class StudentDAO
         Student? student = GetStudentById(studentId);
         if (student == null)
             return null;
-        Subject? subject = student.UnsubmittedSubjects.Find(subject => subject.Id == subjectId);
+        Subject? subject = student.UnsubmittedSubjects.Find(s => s.Id == subjectId);
         if (subject == null)
             return null;
         student.UnsubmittedSubjects.Remove(subject);
@@ -181,4 +181,5 @@ public class StudentDAO
         }
         return null;
     }
+
 }
