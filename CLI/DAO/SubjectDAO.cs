@@ -39,6 +39,7 @@ public class SubjectDAO
         subject.StudentsPassed.Add(examGrade.Student);
         subject.StudentsDidNotPass.Remove(examGrade.Student);
         _subjectStorage.Save(_subjects);
+        SubjectObservable.NotifyObservers();
     }
 
     public void RemoveStudentPassedForSubject(ExamGrade examGrade)
@@ -47,6 +48,7 @@ public class SubjectDAO
         subject.StudentsPassed.Remove(examGrade.Student);
         subject.StudentsDidNotPass.Add(examGrade.Student);
         _subjectStorage.Save(_subjects);
+        SubjectObservable.NotifyObservers();
     }
 
     public void RemoveStudentDidNotPass(Student student, int subjectId)
@@ -54,6 +56,7 @@ public class SubjectDAO
         Subject subject = _subjects.Find(s => s.Id == subjectId)!;
         subject.StudentsDidNotPass.Remove(student);
         _subjectStorage.Save(_subjects);
+        SubjectObservable.NotifyObservers();
     }
 
     public Subject GetSubjectAddStudent(Student student)
@@ -61,6 +64,7 @@ public class SubjectDAO
         Subject subject = _subjects.First();
         subject.StudentsDidNotPass.Add(student);
         _subjectStorage.Save(_subjects);
+        SubjectObservable.NotifyObservers();
         return subject;
     }
 

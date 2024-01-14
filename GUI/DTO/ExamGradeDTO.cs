@@ -146,6 +146,22 @@ namespace GUI.DTO
             }
         }
 
+        public DateOnly DateProbni
+        {
+            get
+            {
+                return _date;
+            }
+            set
+            {
+                if (value != _date)
+                {
+                    _date = value;
+                    OnPropertyChanged("DateProbni");
+                }
+            }
+        }
+
         private void OnPropertyChanged(string v)
         {
             if (PropertyChanged != null)
@@ -158,7 +174,10 @@ namespace GUI.DTO
         {
             return new ExamGrade(_studentId, _subjectId, _grade, _date);
         }
-        public ExamGradeDTO() {}
+        public ExamGradeDTO()
+        {
+            //Grade = -1;
+        }
 
         public ExamGradeDTO(ExamGrade examgrade, Subject subject)
         {

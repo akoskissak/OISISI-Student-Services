@@ -58,5 +58,10 @@ namespace CLI.Controller
         {
             return _studentDao.FindStudentByText(text);
         }
+
+        //public bool SetStudentGrade(ExamGrade examGrade, int studentId)
+        //{
+        //    return _studentDao.SetStudentGrade(examGrade, studentId);
+        //}
     }
 }

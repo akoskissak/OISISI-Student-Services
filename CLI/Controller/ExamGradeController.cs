@@ -1,4 +1,6 @@
 ﻿using CLI.DAO;
+using CLI.Model;
+using CLI.Observer;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,6 +32,21 @@ namespace CLI.Controller
             {
                 return true;
             }
+        }
+
+        public void SetStudentGrade(ExamGrade examGrade, int studentId)
+        {
+            _examGradeDao.AddExamGrade(examGrade);
+        }
+
+        public void Subscribe(IObserver observer)
+        {
+            _examGradeDao.ExamGradeObservable.Subscribe(observer);
+        }
+
+        public void NotifyObservers()
+        {
+            _examGradeDao.NotifyObservers();
         }
     }
 }

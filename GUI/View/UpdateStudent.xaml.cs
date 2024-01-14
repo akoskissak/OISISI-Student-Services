@@ -42,13 +42,14 @@ namespace GUI.View
         public SubjectDTO SelectedSubjectDto { get; set; }
         public ExamGradeDTO SelectedExam { get; set; }
 
-        public UpdateStudent(StudentController _studentController, StudentDTO studentDto, double left, double top, double width, double height)
+        public UpdateStudent(StudentController _studentController, ExamGradeController examGradeController, StudentDTO studentDto, double left, double top, double width, double height)
         {
             InitializeComponent();
             DataContext = this;
             StudentDto = studentDto;
             this._studentController = _studentController;
-            this._examGradeController = new ExamGradeController();
+            this._examGradeController = examGradeController;
+            this._examGradeController.Subscribe(this);
 
             ExamGradeDtos = new ObservableCollection<ExamGradeDTO>();
 
@@ -118,6 +119,8 @@ namespace GUI.View
         private void Window_Closing(object sender, CancelEventArgs e)
         {
             _studentController.NotifyObservers();
+            _studentSubjectController.NotifyObservers();
+            _examGradeController.NotifyObservers();
         }
 
         private void Remove_Click(object sender, RoutedEventArgs e)
@@ -136,8 +139,10 @@ namespace GUI.View
                     MessageBoxResult result = MessageBox.Show(messageBoxText, caption, button, MessageBoxImage.Question);
                     if(result == MessageBoxResult.Yes)
                     {
-                        if (_examGradeController.RemoveGradeForStudent(StudentDto.Id, SelectedSubjectDto.Id))
+                        int subjectId = SelectedExam.SubjectId;
+                        if (_examGradeController.RemoveGradeForStudent(StudentDto.Id, SelectedExam.SubjectId))
                         {
+                            _studentSubjectController.AddStudentSubject(new StudentSubject(StudentDto.Id, subjectId));
                             ExamGradeDtos.Remove(SelectedExam);
                             MessageBox.Show("Grade removed successfully.", "Remove Successful", MessageBoxButton.OK);
                         }
@@ -156,33 +161,47 @@ namespace GUI.View
 
         private void Clear_Subject_Click(object sender, RoutedEventArgs e)
         {
-            if (UnsubmittedDataGrid.SelectedItem != null)
+            if (SelectedSubjectDto != null)
             {
-                if (SelectedSubjectDto == null)
-                    MessageBox.Show("Please choose a subject to remove!");
-                else
+                string messageBoxText = "Are you sure you want to remove subject?";
+                string caption = "Remove subject";
+                MessageBoxButton button = MessageBoxButton.YesNo;
+                MessageBoxResult result = MessageBox.Show(messageBoxText, caption, button, MessageBoxImage.Question);
+                if (result == MessageBoxResult.Yes)
                 {
-                    string messageBoxText = "Are you sure you want to remove subject?";
-                    string caption = "Remove subject";
-                    MessageBoxButton button = MessageBoxButton.YesNo;
-                    MessageBoxResult result = MessageBox.Show(messageBoxText, caption, button, MessageBoxImage.Question);
-                    if (result == MessageBoxResult.Yes)
+                    if (_studentSubjectController.RemoveSubjectForStudent(StudentDto.Id, SelectedSubjectDto.Id))
                     {
-                        if (_studentSubjectController.RemoveSubjectForStudent(StudentDto.Id, SelectedSubjectDto.Id))
-                        {
-                            SubjectDtos.Remove(SelectedSubjectDto);
-                            MessageBox.Show("Subject removed successfully.", "Remove Successful", MessageBoxButton.OK);
-                        }
-                        else
-                            MessageBox.Show("Subject not removed.", "ERROR", MessageBoxButton.OK);
+                        SubjectDtos.Remove(SelectedSubjectDto);
+                        MessageBox.Show("Subject removed successfully.", "Remove Successful", MessageBoxButton.OK);
                     }
+                    else
+                        MessageBox.Show("Subject not removed.", "ERROR", MessageBoxButton.OK);
                 }
+            }
+            else
+            {
+                string messageBoxText = "Please choose a subject to remove!";
+                string caption = "Remove subject";
+                MessageBoxButton button = MessageBoxButton.OK;
+                MessageBox.Show(messageBoxText, caption, button, MessageBoxImage.Error);
             }
         }
 
         private void Pass_Click(object sender, RoutedEventArgs e)
         {
-
+            if (SelectedSubjectDto != null)
+            {
+                PassSubject passSubject = new PassSubject(ExamGradeDtos, _studentController, _examGradeController, StudentDto, _studentSubjectController, SelectedSubjectDto, Left, Top, Width, Height);
+                passSubject.ShowDialog();
+                Update();
+            }
+            else
+            {
+                string messageBoxText = "Please choose a subject to pass!";
+                string caption = "Pass subject";
+                MessageBoxButton button = MessageBoxButton.OK;
+                MessageBox.Show(messageBoxText, caption, button, MessageBoxImage.Error);
+            }
         }
 
         private void UnsubmittedDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)

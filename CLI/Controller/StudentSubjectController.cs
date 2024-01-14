@@ -1,5 +1,6 @@
 ﻿using CLI.DAO;
 using CLI.Model;
+using CLI.Observer;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -49,6 +50,23 @@ namespace CLI.Controller
         public void AddStudentSubject(StudentSubject studentSubject)
         {
             _studentSubjectDao.AddStudentSubject(studentSubject);
+        }
+
+        //public void Subscribe(IObserver observer)
+        //{
+        //    _studentSubjectDao.ExamGradeObservable.Subscribe(observer);
+        //}
+
+        public void NotifyObservers()
+        {
+            _studentDao.NotifyObservers();
+            _subjectDao.NotifyObservers();
+            _studentSubjectDao.NotifyObservers();
+        }
+
+        public void RemoveStudentSubject(int studentId, int subjectId)
+        {
+            _studentSubjectDao.RemoveStudentSubject(studentId, subjectId);
         }
     }
 }
