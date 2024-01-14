@@ -169,6 +169,7 @@ public class StudentDAO
         else if (inputs.Length == 3)
         {
             string[] indexes = inputs[0].Split("-");
+            if (indexes.Length != 3) return null;
             string smark = indexes[0];
             int num;
             int year;
