@@ -401,14 +401,11 @@ namespace GUI
                     MessageBox.Show("Please choose a student!", "Professors for student", MessageBoxButton.OK, MessageBoxImage.Error);
                 else
                 {
-                    System.Text.StringBuilder stringBuilder = new System.Text.StringBuilder();
-                    List<Professor> professorsForStudent = _professorSubjectController.GetAllProfessorsOnSubjects(SelectedStudent.UnsubmittedSubjects);
-                    if (professorsForStudent != null)
+                    List<Professor> professors = _professorSubjectController.GetAllProfessorsOnSubjects(SelectedStudent.UnsubmittedSubjects);
+                    if (professors != null)
                     {
-                        foreach (Professor professor in professorsForStudent)
-                            stringBuilder.AppendLine(professor.ToString());
-                        string caption = "Professors for student";
-                        MessageBox.Show(stringBuilder.ToString(), caption, MessageBoxButton.OK, MessageBoxImage.Information);
+                        ProfessorsForStudent professorsForStudent = new ProfessorsForStudent(professors);
+                        professorsForStudent.ShowDialog();
                     }
                     else
                     {
