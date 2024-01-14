@@ -9,12 +9,18 @@ public class ProfessorDAO
     private readonly List<Professor> _professors;
     private readonly Storage<Professor> _professorStorage;
 
+    private readonly List<ProfessorDepartment> _professorDepartments;
+    private readonly Storage<ProfessorDepartment> _professorDepartmentStorage;
+
     public Observable ProfessorObservable;
 
     public ProfessorDAO()
     {
         _professorStorage = new Storage<Professor>("professors.txt");
         _professors = _professorStorage.Load();
+
+        _professorDepartmentStorage = new Storage<ProfessorDepartment>("professorDepartment.txt");
+        _professorDepartments = _professorDepartmentStorage.Load();
         ProfessorObservable = new Observable();
     }
 
@@ -72,6 +78,16 @@ public class ProfessorDAO
             Professor prof = new Professor();
             prof.Id = -1;
             return prof;
+        }
+
+        List<ProfessorDepartment> listpd = _professorDepartments.FindAll(p => p.ProfessorId == id);
+        if (listpd.Count > 0)
+        {
+            foreach (ProfessorDepartment pd in listpd)
+            {
+                _professorDepartments.Remove(pd);
+            }
+            _professorDepartmentStorage.Save(_professorDepartments);
         }
 
         _professors.Remove(professor);
