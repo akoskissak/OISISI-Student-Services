@@ -1,3 +1,3 @@
-0|Radojcic|Milan|11/11/1987|061|radojcic@uns.ac.rs|777|Profesor|9|Futoska|15|Novi Sad|Srbija
-1|Popov|Nemanja|12/15/1988|087|popov@gmail.com|7|Pomocni Profesor|7|Bulevar Oslobodjenja|7|Novi Sad|Srbija
-2|Juric|Jura|6/6/1998|067|juric.jura@gmail.com|76|Profesor|3|Savska|66|Beograd|Srbija
+0|Radojcic|Milan|11/11/1987|061|radojcic@uns.ac.rs|777|Profesor|9|Futoska|15|Novi Sad|Srbija|-1
+1|Popov|Nemanja|12/15/1988|087|popov@gmail.com|7|Pomocni Profesor|7|Bulevar Oslobodjenja|7|Novi Sad|Srbija|-1
+2|Juric|Jura|6/6/1998|067|juric.jura@gmail.com|76|Profesor|3|Savska|66|Beograd|Srbija|-1

@@ -49,7 +49,8 @@ public class ProfessorDAO
         oldProfessor.Idnumber = professor.Idnumber;
         oldProfessor.Title = professor.Title;
         oldProfessor.YearsOfService = professor.YearsOfService;
-        
+        oldProfessor.IdOfChiefDepartment = professor.IdOfChiefDepartment;
+
         _professorStorage.Save(_professors);
         ProfessorObservable.NotifyObservers();
         return oldProfessor;

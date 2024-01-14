@@ -59,7 +59,8 @@ public class Professor : ISerializable
             Address.Street,
             Address.Number,
             Address.City,
-            Address.Country
+            Address.Country,
+            IdOfChiefDepartment.ToString()
         };
         return csvValues;
     }
@@ -79,10 +80,11 @@ public class Professor : ISerializable
         Address.Number = values[10];
         Address.City = values[11];
         Address.Country = values[12];
+        IdOfChiefDepartment = int.Parse(values[13]);
     }
 
     public override string ToString()
     {
-        return $"Id: {Id,5} | LastName: {Lastname, 2} | Name: {Name, 2} | DateOfBirth: {DateOfBirth, 2} | PhoneNumber: {PhoneNumber, 2} | Email: {Email, 2} | IdNumber: {Idnumber, 2} | Title: {Title, 2} | YearsOfService: {YearsOfService, 2} | {Address}";
+        return $"Id: {Id,5} | LastName: {Lastname, 2} | Name: {Name, 2} | DateOfBirth: {DateOfBirth, 2} | PhoneNumber: {PhoneNumber, 2} | Email: {Email, 2} | IdNumber: {Idnumber, 2} | Title: {Title, 2} | YearsOfService: {YearsOfService, 2} | {Address} | IdOfChiefDepartment: {IdOfChiefDepartment, 2}";
     }
 }

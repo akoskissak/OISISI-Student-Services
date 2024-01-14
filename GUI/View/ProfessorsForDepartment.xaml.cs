@@ -24,20 +24,20 @@ namespace GUI.View
     /// </summary>
     public partial class ProfessorsForDepartment : Window
     {
-        private DepartmentController _departmentController;
-        private ProfessorController _professorController;
+        private DepartmentController _departmentController {  get; set; }
+        private ProfessorController _professorController { get; set; }
 
         public ObservableCollection<ProfessorDTO> ProfessorDtos { get; set; }
         private ProfessorDTO SelectedProfessor { get; set; }
         private DepartmentDTO SelectedDepartment { get; set; }
 
-        public ProfessorsForDepartment(DepartmentDTO selectedDepartment, DepartmentController departmentController)
+        public ProfessorsForDepartment(DepartmentDTO selectedDepartment, DepartmentController departmentController, ProfessorController professorController)
         {
             InitializeComponent();
             DataContext = this;
             SelectedDepartment = selectedDepartment;
             this._departmentController = departmentController;
-            this._professorController = new ProfessorController();
+            this._professorController = professorController;
 
             ProfessorDtos = new ObservableCollection<ProfessorDTO>();
             Update();
@@ -78,6 +78,9 @@ namespace GUI.View
                 else
                 {
                     _departmentController.SetProfessorAsAChief(SelectedProfessor.Id, SelectedDepartment.Id);
+                    Professor professor = _professorController.GetProfessorById(SelectedProfessor.Id);
+                    professor.IdOfChiefDepartment = SelectedDepartment.Id;
+                    _professorController.NotifyObservers();
                     MessageBox.Show("Professor successfully set as a chief!", "Chief successfully set", MessageBoxButton.OK, MessageBoxImage.Information);
                     Close();
                 }

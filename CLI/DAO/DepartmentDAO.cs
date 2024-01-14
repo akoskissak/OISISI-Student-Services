@@ -8,6 +8,7 @@ public class DepartmentDAO
 {
     private readonly List<Department> _departments;
     private readonly List<Professor> _professors;
+    private ProfessorDAO _professorDao;
     private readonly Storage<Department> _departmentStorage;
     private readonly Storage<Professor> _professorStorage;
 
@@ -19,6 +20,7 @@ public class DepartmentDAO
         _professorStorage = new Storage<Professor>("professors.txt");
         _professors = _professorStorage.Load();
 
+        _professorDao = new ProfessorDAO();
         DepartmentObservable = new Observable();
     }
 
@@ -105,8 +107,12 @@ public class DepartmentDAO
         Department department = GetDepartmentById(departmentId);
         department.Chief = professor;
         department.ChiefId = professor.Id;
-        
+        professor.IdOfChiefDepartment = departmentId;
         UpdateDepartment(department);
+
+        Professor? oldProfessor = _professorDao.FindProfessorById(professor.Id);
+        oldProfessor.IdOfChiefDepartment = professor.IdOfChiefDepartment;
+        _professorDao.SaveProfessors();
     }
 
     public void NotifyObservers()

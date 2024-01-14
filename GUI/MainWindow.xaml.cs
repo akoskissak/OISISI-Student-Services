@@ -313,8 +313,9 @@ namespace GUI
 
         private void Department_Click(object sender, RoutedEventArgs e)
         {
-            DepartmentView department = new DepartmentView(Left, Top, Width, Height);
+            DepartmentView department = new DepartmentView(_professorController, Left, Top, Width, Height);
             department.ShowDialog();
+            Update();
         }
 
         private void Open_Click(object sender, RoutedEventArgs e)

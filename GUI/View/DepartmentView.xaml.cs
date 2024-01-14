@@ -24,15 +24,16 @@ namespace GUI.View
     {
         private DepartmentController _departmentController {  get; set; }
         public ObservableCollection<DepartmentDTO> DepartmentDtos { get; set; }
-
+        public ProfessorController _professorController { get; set; }
         private DepartmentDTO SelectedDepartment { get; set; }
 
-        public DepartmentView(double left, double top, double width, double height)
+        public DepartmentView(ProfessorController professorController, double left, double top, double width, double height)
         {
             InitializeComponent();
             DataContext = this;
             DepartmentDtos = new ObservableCollection<DepartmentDTO>();
-            _departmentController = new DepartmentController();
+            this._departmentController = new DepartmentController();
+            this._professorController = professorController;
             SetInitialWindowSize(left, top, width, height);
 
             Update();
@@ -56,7 +57,7 @@ namespace GUI.View
         {
             if(SelectedDepartment != null)
             {
-                ProfessorsForDepartment professorsForDepartment = new ProfessorsForDepartment(SelectedDepartment, _departmentController);
+                ProfessorsForDepartment professorsForDepartment = new ProfessorsForDepartment(SelectedDepartment, _departmentController, _professorController);
                 professorsForDepartment.ShowDialog();
                 Update();
                 _departmentController.NotifyObservers();
