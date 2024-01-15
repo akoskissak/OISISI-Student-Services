@@ -1,0 +1,33 @@
+﻿<Window x:Class="GUI.View.StudentConditionSubject"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:GUI.View"
+        mc:Ignorable="d"
+        Title="StudentConditionSubject" Height="450" Width="800" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <TextBlock HorizontalAlignment="Left" Text="who are enrolled in both the primary and secondary selected subjects" Grid.Row="0" Margin="94,10,0,10"/>
+        <Button HorizontalAlignment="Left" Content="Show students" Grid.Row="0" Margin="5,10,0,10" Click="ShowStudents1_Click"/>
+        <DataGrid Grid.Row="1"
+                  Height="350"
+                  AutoGenerateColumns="False"
+                  x:Name="StudentConditionSubjectDataGrid"
+                  ItemsSource="{Binding SubjectDtos, UpdateSourceTrigger=PropertyChanged}"
+                  SelectedItem="{Binding SelectedSubjectNow, UpdateSourceTrigger=PropertyChanged}"
+                  SelectionMode="Single"
+                  IsReadOnly="True">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="SubjectCode" Binding="{Binding SubjectCode}"/>
+                <DataGridTextColumn Header="Name" Binding="{Binding Name}"/>
+                <DataGridTextColumn Header="Espb" Binding="{Binding Espb}"/>
+                <DataGridTextColumn Header="YearOfStudy" Binding="{Binding YearOfStudy}"/>
+                <DataGridTextColumn Header="Semester" Binding="{Binding Semester}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Window>

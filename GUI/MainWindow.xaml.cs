@@ -676,5 +676,28 @@ namespace GUI
                 currentPageLabel.Content = this.SubjectPagingCollectionView.CurrentPage;
             }
         }
+
+        private void StudentConditionSubject_Click(object sender, RoutedEventArgs e)
+        {
+            TabItem ti = Tabs.SelectedItem as TabItem;
+            if (ti != null && ti.Name != null && ti.Name == "SubjectsTab")
+            {
+                if (SelectedSubject != null)
+                {
+                    StudentConditionSubject studentConditionSubject = new StudentConditionSubject(_studentController, _subjectController, SelectedSubject);
+                    studentConditionSubject.ShowDialog();
+
+                }
+                else
+                {
+                    MessageBox.Show("Please choose a subject to make a condition", "Student condition subject", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please choose subjects tab to choose a subject!", "Student condition subject", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+        }
+
     }
 }

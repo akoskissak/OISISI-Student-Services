@@ -187,6 +187,7 @@
                 <Button Height="40" Width="50" Margin="10,0,0,0" Click="NextPage_Button_Click">
                     <TextBlock TextAlignment="Center" Text="Next page" TextWrapping="Wrap" />
                 </Button>
+                <Button Height="20" Width="auto" Content="Student Condition Subject" Click="StudentConditionSubject_Click" Margin="50,0,0,0"/>
             </StackPanel>
         </DockPanel>
 
