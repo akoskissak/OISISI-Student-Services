@@ -135,17 +135,17 @@
                     <DataGrid Height="450"
                                   AutoGenerateColumns="False"
                                   x:Name="StudentsDataGrid"
-                                  ItemsSource="{Binding StudentDtos, UpdateSourceTrigger=PropertyChanged}"
+                                  ItemsSource="{Binding StudentPagingCollectionView, UpdateSourceTrigger=PropertyChanged}"
                                   SelectedItem="{Binding SelectedStudent, UpdateSourceTrigger=PropertyChanged}"
                                   SelectionMode="Single" IsReadOnly="True"
                                   SelectionChanged="StudentsDataGrid_SelectionChanged">
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="{ns:Loc Index}" Binding="{Binding Index}"/>
-                            <DataGridTextColumn Header="{ns:Loc Name}" Binding="{Binding Name}"/>
-                            <DataGridTextColumn Header="{ns:Loc Lastname}" Binding="{Binding LastName}"/>
-                            <DataGridTextColumn Header="{ns:Loc CurrentYearOfStudy}" Binding="{Binding CurrentYearOfStudy}"/>
-                            <DataGridTextColumn Header="{ns:Loc Status}" Binding="{Binding Status}"/>
-                            <DataGridTextColumn Header="{ns:Loc AverageGrade}" Binding="{Binding AverageGrade, StringFormat={}{0:N2}}"/>
+                            <DataGridTextColumn Header="{ns:Loc Index}" Binding="{Binding Index}" HeaderStyle="{StaticResource DataGridColumnHeaderStyle}" CanUserSort="False" />
+                            <DataGridTextColumn Header="{ns:Loc Name}" Binding="{Binding Name}" HeaderStyle="{StaticResource DataGridColumnHeaderStyle}" CanUserSort="False" />
+                            <DataGridTextColumn Header="{ns:Loc Lastname}" Binding="{Binding LastName}" HeaderStyle="{StaticResource DataGridColumnHeaderStyle}" CanUserSort="False" />
+                            <DataGridTextColumn Header="{ns:Loc CurrentYearOfStudy}" Binding="{Binding CurrentYearOfStudy}" HeaderStyle="{StaticResource DataGridColumnHeaderStyle}" CanUserSort="False" />
+                            <DataGridTextColumn Header="{ns:Loc Status}" Binding="{Binding Status}" HeaderStyle="{StaticResource DataGridColumnHeaderStyle}" CanUserSort="False" />
+                            <DataGridTextColumn Header="{ns:Loc AverageGrade}" Binding="{Binding AverageGrade, StringFormat={}{0:N2}}" HeaderStyle="{StaticResource DataGridColumnHeaderStyle}" CanUserSort="False" />
                         </DataGrid.Columns>
                     </DataGrid>
                 </TabItem>
@@ -192,6 +192,7 @@
                 <Button Height="40" Width="50" Margin="10,0,0,0" Click="NextPage_Button_Click">
                     <TextBlock TextAlignment="Center" Text="{ns:Loc NextPage}" TextWrapping="Wrap" />
                 </Button>
+                <Button Height="20" Width="auto" Content="Student Condition Subject" Click="StudentConditionSubject_Click" Margin="50,0,0,0"/>
             </StackPanel>
         </DockPanel>
 

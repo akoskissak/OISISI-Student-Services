@@ -87,7 +87,7 @@ public class ExamGradeDAO
         return oldExamGrade;
     }
 
-    private ExamGrade? GetExamByIds(int studId, int subjId)
+    public ExamGrade? GetExamByIds(int studId, int subjId)
     {
         return _examGrades.Find(exam => exam.StudentId == studId
                                          && exam.SubjectId == subjId);

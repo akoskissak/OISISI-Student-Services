@@ -14,8 +14,23 @@ namespace GUI.DTO
         private string _depCode;
         private string _name;
         private int _chiefId;
-        private ProfessorDTO _chief;
+        private Professor _chief;
 
+        public Professor Chief
+        {
+            get
+            {
+                return _chief;
+            }
+            set
+            {
+                if(value != _chief)
+                {
+                    _chief = value;
+                    OnPropertyChanged(nameof(Chief));
+                }
+            }
+        }
         public int Id
         {
             get
@@ -99,6 +114,7 @@ namespace GUI.DTO
             Name = department.Name;
             ChiefId = department.ChiefId;
             Id = department.Id;
+            Chief = department.Chief;
         }
 
         public event PropertyChangedEventHandler? PropertyChanged;

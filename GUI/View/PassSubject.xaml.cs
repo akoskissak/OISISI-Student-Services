@@ -29,9 +29,11 @@ namespace GUI.View
         private StudentController _studentController;
         private ExamGradeController _examGradeController;
         private StudentSubjectController _studentSubjectController;
+        private SubjectController _subjectController;
+        private int _totalEspb {  get; set; }
         private ObservableCollection<ExamGradeDTO> ExamGradeDtos { get; set; }
         public PassSubject(ObservableCollection<ExamGradeDTO> examGradeDtos, StudentController studentController, ExamGradeController examGradeController, StudentDTO studentDto,
-            StudentSubjectController studentSubjectController, SubjectDTO subjectDto, double left, double top, double width, double height)
+            StudentSubjectController studentSubjectController, SubjectDTO subjectDto, SubjectController subjectController, int totalespb, double left, double top, double width, double height)
         {
             InitializeComponent();
             DataContext = this;
@@ -43,7 +45,10 @@ namespace GUI.View
             _studentController = studentController;
             _examGradeController = examGradeController;
             _studentSubjectController = studentSubjectController;
+            _subjectController = subjectController;
             ExamGradeDtos = examGradeDtos;
+
+            _totalEspb = totalespb;
 
             SetInitialWindowSize(left, top, width, height);
             ValidateTextBoxes();
@@ -80,6 +85,8 @@ namespace GUI.View
 
                 //ExamGradeDTO examGradeDto = new ExamGradeDTO(examGrade, SubjectDto.ToSubject());
                 //_studentController.SetStudentGrade(examGrade, StudentDto.Id);
+                Subject s = _subjectController.GetSubjectById(SubjectDto.Id);
+                _totalEspb -= s.Espb;
                 _examGradeController.SetStudentGrade(examGrade, StudentDto.Id);
                 ExamGradeDtos.Add(ExamGradeDto);
                 _studentSubjectController.RemoveStudentSubject(StudentDto.Id, SubjectDto.Id);

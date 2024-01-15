@@ -9,6 +9,8 @@ public class StudentSubjectDAO
 {
     private readonly List<StudentSubject> _studentSubject;
     private readonly Storage<StudentSubject> _studentSubjectStorage;
+    private readonly Storage<ExamGrade> _examGradeStorage;
+    private readonly List<ExamGrade> _examGrade;
 
     private StudentDAO _studentDao;
     private SubjectDAO _subjectDao;
@@ -18,6 +20,8 @@ public class StudentSubjectDAO
     {
         _studentSubjectStorage = new Storage<StudentSubject>("studentSubject.txt");
         _studentSubject = _studentSubjectStorage.Load();
+        _examGradeStorage = new Storage<ExamGrade>("examGrades.txt");
+        _examGrade = _examGradeStorage.Load();
         StudentSubjectObservable = new Observable();
 
         _studentDao = studentDao;
@@ -127,27 +131,38 @@ public class StudentSubjectDAO
     {
         List<Subject> subjectsForStudent = new List<Subject>();
         List<Subject> allsubjects = _subjectDao.GetAllSubjects();
-
+        List<ExamGrade> allexamgrade = _examGrade.FindAll(eg => eg.StudentId == studentId);
         List<StudentSubject> listss = _studentSubject.FindAll(ss => ss.StudentId == studentId);
-            foreach (Subject subject in allsubjects)
+        foreach (Subject subject in allsubjects)
+        {
+            bool inside = false;
+            if (listss.Count > 0)
             {
-                bool inside = false;
-                if (listss.Count > 0)
-                {
 
-                    foreach (StudentSubject studentSubject in listss)
-                    {
-                        if (subject.Id == studentSubject.SubjectId && studentId == studentSubject.StudentId)
-                        {
-                            inside = true;
-                        }
-                }
-                }
-                if (!inside)
+                foreach (StudentSubject studentSubject in listss)
                 {
-                    subjectsForStudent.Add(subject);
+                    if (subject.Id == studentSubject.SubjectId && studentId == studentSubject.StudentId)
+                    {
+                        inside = true;
+                        break;
+                    }
+
                 }
+            }
+            foreach (ExamGrade examgrade in allexamgrade)
+            {
+                if (subject.Id == examgrade.SubjectId && studentId == examgrade.StudentId)
+                {
+                    inside = true;
+                    break;
+                }
+            }
+            if (!inside)
+            {
+                subjectsForStudent.Add(subject);
+            }
         }
+
 
         return subjectsForStudent;
     }

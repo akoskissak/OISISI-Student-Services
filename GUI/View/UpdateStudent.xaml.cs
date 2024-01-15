@@ -26,13 +26,14 @@ namespace GUI.View
     /// <summary>
     /// Interaction logic for UpdateStudent.xaml
     /// </summary>
-    public partial class UpdateStudent : Window, IObserver
+    public partial class UpdateStudent : Window, IObserver, INotifyPropertyChanged
     {
         public StudentDTO StudentDto { get; set; }
         public ExamGradeDTO ExamGradeDto { get; set; }
 
         private StudentController _studentController;
         private StudentSubjectController _studentSubjectController;
+        private SubjectController _subjectController;
 
         private ExamGradeController _examGradeController;
 
@@ -42,13 +43,14 @@ namespace GUI.View
         public SubjectDTO SelectedSubjectDto { get; set; }
         public ExamGradeDTO SelectedExam { get; set; }
 
-        public UpdateStudent(StudentController _studentController, ExamGradeController examGradeController, StudentDTO studentDto, double left, double top, double width, double height)
+        public UpdateStudent(StudentController _studentController, ExamGradeController examGradeController, StudentDTO studentDto, SubjectController subjectController , double left, double top, double width, double height)
         {
             InitializeComponent();
             DataContext = this;
             StudentDto = studentDto;
             this._studentController = _studentController;
             this._examGradeController = examGradeController;
+            this._subjectController = subjectController;
             this._examGradeController.Subscribe(this);
 
             ExamGradeDtos = new ObservableCollection<ExamGradeDTO>();
@@ -142,8 +144,13 @@ namespace GUI.View
                         int subjectId = SelectedExam.SubjectId;
                         if (_examGradeController.RemoveGradeForStudent(StudentDto.Id, SelectedExam.SubjectId))
                         {
+                            Subject s = _subjectController.GetSubjectById(subjectId);
+                            TotalESPB -= s.Espb;
                             _studentSubjectController.AddStudentSubject(new StudentSubject(StudentDto.Id, subjectId));
+
+
                             ExamGradeDtos.Remove(SelectedExam);
+                            Update();
                             MessageBox.Show("Grade removed successfully.", "Remove Successful", MessageBoxButton.OK);
                         }
                         else
@@ -191,7 +198,7 @@ namespace GUI.View
         {
             if (SelectedSubjectDto != null)
             {
-                PassSubject passSubject = new PassSubject(ExamGradeDtos, _studentController, _examGradeController, StudentDto, _studentSubjectController, SelectedSubjectDto, Left, Top, Width, Height);
+                PassSubject passSubject = new PassSubject(ExamGradeDtos, _studentController, _examGradeController, StudentDto, _studentSubjectController, SelectedSubjectDto, _subjectController, TotalESPB, Left, Top, Width, Height);
                 passSubject.ShowDialog();
                 Update();
             }
@@ -228,8 +235,8 @@ namespace GUI.View
             {
                 TotalESPB += examGrade.Subject.Espb;
                 ExamGradeDtos.Add(new ExamGradeDTO(examGrade, examGrade.Subject));
-                
             }
+            StudentDto.AverageGrade = _studentController.GetStudentById(StudentDto.Id).AverageGrade;
         }
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -238,8 +245,8 @@ namespace GUI.View
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        private double _totalESPB;
-        public double TotalESPB
+        private int _totalESPB;
+        public int TotalESPB
         {
             get { return _totalESPB; }
             set

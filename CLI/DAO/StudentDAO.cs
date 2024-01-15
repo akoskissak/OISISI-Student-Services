@@ -7,7 +7,7 @@ namespace CLI.DAO;
 
 public class StudentDAO
 {
-    private readonly List<Student> _students;
+    private List<Student> _students;
     private readonly List<Subject> _subjects;
 
     private readonly Storage<Student> _studentStorage;
@@ -181,6 +181,54 @@ public class StudentDAO
                 return _students.FindAll(student => student.Index.EnrollmentYear == year && student.Index.EnrollmentNumber == num && student.Index.StudyProgrammeMark.Equals(smark, StringComparison.OrdinalIgnoreCase) && student.Name.Equals(name, StringComparison.OrdinalIgnoreCase) && student.Lastname.Equals(lastname, StringComparison.OrdinalIgnoreCase));
         }
         return null;
+    }
+
+    public void SortStudents(string columnName, int sortDirection)
+    {
+        switch (columnName)
+        {
+            case "Index":
+                _students = _students.OrderBy(s => s.Index.StudyProgrammeMark).ThenBy(s => s.Index.EnrollmentYear).ThenBy(s => s.Index.EnrollmentNumber).ToList();
+                break;
+            case "Name":
+                _students = _students.OrderBy(s => s.Name).ToList();
+                break;
+            case "LastName":
+                _students = _students.OrderBy(s => s.Lastname).ToList();
+                break;
+            case "CurrentYearOfStudy":
+                _students = _students.OrderBy(s => s.CurrentYearOfStudy).ThenBy(s => s.Name).ToList();
+                break;
+            case "Status":
+                _students = _students.OrderBy(s => s.Status).ThenBy(s => s.Name).ToList();
+                break;
+            case "AverageGrade":
+                _students = _students.OrderBy(s => s.AverageGrade).ThenBy(s => s.Name).ToList();
+                break;
+        }
+
+        if(sortDirection == 1)
+        {
+            _students.Reverse();
+        }
+
+        _studentStorage.Save(_students);
+        StudentObservable.NotifyObservers();
+    }
+
+    public List<Student> GetSortedSearchedSubjects(List<int> ids)
+    {
+        List<Student> retVal = new List<Student>();
+        foreach(int id in ids)
+        {
+            Student? student = _students.Find(s => s.Id == id);
+            if(student != null)
+            {
+                retVal.Add(student);
+            }
+        }
+
+        return retVal;
     }
 
 }

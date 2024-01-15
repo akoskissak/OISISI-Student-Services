@@ -27,6 +27,10 @@
                 <DataGridTextColumn Header="DepartmentCode" Binding="{Binding DepCode}"/>
                 <DataGridTextColumn Header="Name" Binding="{Binding Name}"/>
                 <DataGridTextColumn Header="ChiefId" Binding="{Binding ChiefId}"/>
+                <DataGridTextColumn Header="Chief's Name" Binding="{Binding Chief.Name}"/>
+                <DataGridTextColumn Header="Chief' LastName" Binding="{Binding Chief.Lastname}"/>
+                <DataGridTextColumn Header="Chief' Title" Binding="{Binding Chief.Title}"/>
+                <DataGridTextColumn Header="Chief' YearsOfService" Binding="{Binding Chief.YearsOfService}"/>
             </DataGrid.Columns>
         </DataGrid>
     </Grid>

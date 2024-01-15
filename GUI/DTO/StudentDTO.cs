@@ -229,7 +229,7 @@ namespace GUI.DTO
                         try
                         {
                             _enrollmentNumber = int.Parse(value);
-                        }catch(Exception e)
+                        }catch
                         {
                             _enrollmentNumber = 0;
                         }
@@ -259,7 +259,7 @@ namespace GUI.DTO
                         try
                         {
                             _enrollmentYear = int.Parse(value);
-                        }catch(Exception e)
+                        }catch
                         {
                             _enrollmentYear = 0;
                         }
@@ -269,17 +269,32 @@ namespace GUI.DTO
             }
         }
 
-        public int CurrentYearOfStudy
+        public string CurrentYearOfStudy
         {
             get
             {
-                return _currentYearOfStudy;
+                return _currentYearOfStudy.ToString();
             }
             set
             {
-                if(value != _currentYearOfStudy)
+                if(value != _currentYearOfStudy.ToString())
                 {
-                    _currentYearOfStudy = value;
+                    if(value == "")
+                    {
+                        _currentYearOfStudy = 0;
+                    }
+                    else
+                    {
+                        try
+                        {
+                            _currentYearOfStudy = int.Parse(value);
+                        }
+                        catch
+                        {
+                            _currentYearOfStudy = 0;
+                        }
+
+                    }
                     OnPropertyChanged("CurrentYearOfStudy");
                 }
             }
@@ -301,30 +316,23 @@ namespace GUI.DTO
             }
         }
 
-        public string AverageGrade
+        public double AverageGrade
         {
             get
             {
-                return _averageGrade.ToString();
+                return _averageGrade;
             }
             set
             {
-                if(value != _averageGrade.ToString())
+                if(value != _averageGrade)
                 {
-                    if (value == "")
-                    {
-                        _averageGrade = 0;
-                    }
-                    else
-                    {
                         try
                         {
-                            _averageGrade = double.Parse(value);
-                        }catch(Exception e)
+                            _averageGrade = value;
+                        }catch
                         {
                             _averageGrade = 0;
                         }
-                    }
                     OnPropertyChanged("AverageGrade");
                 }
             }
@@ -338,7 +346,7 @@ namespace GUI.DTO
         private Regex _StudyProgrammeMarkRegex = new Regex("^[A-Za-z0-9]+$");
         private Regex _EnrollmentNumberkRegex = new Regex("^[1-9][0-9]*$");
         private Regex _EnrollmentYearRegex = new Regex("^[12]{1}[0-9]{3,3}$");
-        private Regex _CurrentYearOfStudyRegex = new Regex("^[1-9]{1,2}$");
+        private Regex _CurrentYearOfStudyRegex = new Regex("^[1-9][0-9]$");
         private Regex _StreetRegex = new Regex("^[a-zA-Z0-9. ]+$");
         private Regex _NumberRegex = new Regex("^[a-zA-Z0-9/ ]+$");
         public string this[string columnName]
@@ -452,10 +460,10 @@ namespace GUI.DTO
                 }
                 else if (columnName == "CurrentYearOfStudy")
                 {
-                    if (CurrentYearOfStudy <= 0)
+                    if (string.IsNullOrEmpty(CurrentYearOfStudy))
                         return "CurrentYearOfStudy is required";
 
-                    Match match = _CurrentYearOfStudyRegex.Match(CurrentYearOfStudy.ToString());
+                    Match match = _CurrentYearOfStudyRegex.Match(CurrentYearOfStudy);
                     if (!match.Success)
                         return "Format not good. Try again.";
                 }
@@ -507,8 +515,8 @@ namespace GUI.DTO
             PhoneNumber = student.PhoneNumber;
             Email = student.Email;
             Status = student.Status;
-            AverageGrade = student.AverageGrade.ToString();
-            CurrentYearOfStudy = student.CurrentYearOfStudy;
+            AverageGrade = student.AverageGrade;
+            CurrentYearOfStudy = student.CurrentYearOfStudy.ToString();
             EnrollmentNumber = student.Index.EnrollmentNumber.ToString();
             EnrollmentYear = student.Index.EnrollmentYear.ToString();
             StudyProgrammeMark = student.Index.StudyProgrammeMark;
