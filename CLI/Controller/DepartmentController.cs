@@ -38,6 +38,12 @@ namespace CLI.Controller
         {
             _departmentDao.SetProfessorAsChief(professorId, departmentId);
         }
+
+        public void Save()
+        {
+            _departmentDao.Save();
+            _professorDepartmentDao.Save();
+        }
         public void NotifyObservers()
         {
             _departmentDao.NotifyObservers();

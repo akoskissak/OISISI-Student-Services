@@ -68,5 +68,10 @@ namespace CLI.Controller
         {
             _studentSubjectDao.RemoveStudentSubject(studentId, subjectId);
         }
+
+        public void Save()
+        {
+            _studentSubjectDao.Save();
+        }
     }
 }

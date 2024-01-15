@@ -167,6 +167,12 @@ public class StudentSubjectDAO
         return subjectsForStudent;
     }
 
+    public void Save()
+    {
+        _studentSubjectStorage.Save(_studentSubject);
+        StudentSubjectObservable.NotifyObservers();
+    }
+
     public void NotifyObservers()
     {
         StudentSubjectObservable.NotifyObservers();

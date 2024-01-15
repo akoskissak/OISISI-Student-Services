@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GUI"
+        xmlns:ns="clr-namespace:GUI.Localization"
         xmlns:ToolBar="http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit"
         Icon="https://static.vecteezy.com/system/resources/thumbnails/000/511/962/small/57_Student.jpg"
         mc:Ignorable="d"
@@ -45,58 +46,62 @@
 
     <DockPanel>
         <Menu DockPanel.Dock ="Top">
-            <MenuItem Header="_File" Name="filemenu" >
-                <MenuItem Header="_New" Click="Add_Click" InputGestureText="Ctrl + N" >
+            <MenuItem Header="{ns:Loc File}" Name="filemenu" >
+                <MenuItem Header="{ns:Loc New}" Click="Add_Click" InputGestureText="Ctrl + N" >
                     <MenuItem.Icon>
                         <Image Source="https://cdn2.iconfinder.com/data/icons/ios-7-icons/50/plus-512.png"/>
                     </MenuItem.Icon>
                 </MenuItem>
-                <MenuItem Header="_Save" Click="Save_Click" InputGestureText="Ctrl + S">
+                <MenuItem Header="{ns:Loc Save}" Click="Save_Click" InputGestureText="Ctrl + S">
                     <MenuItem.Icon>
                         <Image Source="https://static.vecteezy.com/system/resources/previews/020/936/457/original/save-icon-for-your-website-design-logo-app-ui-free-vector.jpg"/>
                     </MenuItem.Icon>
                 </MenuItem>
-                <MenuItem Header="_Open" Name="openMenuItem" Click="Open_Click" InputGestureText="Ctrl + O">
+                <MenuItem Header="{ns:Loc Open}" Name="openMenuItem" Click="Open_Click" InputGestureText="Ctrl + O">
                     <MenuItem.Icon>
                         <Image Source="https://icons.veryicon.com/png/o/object/material-design-icons-1/open-in-app.png"/>
                     </MenuItem.Icon>
-                    <MenuItem Header="_Students" Click="NavigateToStudents"/>
-                    <MenuItem Header="_Professors" Click="NavigateToProfessors"/>
-                    <MenuItem Header="_Subjects" Click="NavigateToSubjects"/>
-                    <MenuItem Header="_Departments" Click="Department_Click"/>
+                    <MenuItem Header="{ns:Loc Students}" Click="NavigateToStudents"/>
+                    <MenuItem Header="{ns:Loc Professors}" Click="NavigateToProfessors"/>
+                    <MenuItem Header="{ns:Loc Subjects}" Click="NavigateToSubjects"/>
+                    <MenuItem Header="{ns:Loc Departments}" Click="Department_Click"/>
                 </MenuItem>
-                <MenuItem Header="_Close" Click="CLose_Click" InputGestureText="Ctrl + X">
+                <MenuItem Header="{ns:Loc Close}" Click="CLose_Click" InputGestureText="Ctrl + X">
                     <MenuItem.Icon>
                         <Image Source="https://static.thenounproject.com/png/53235-200.png"/>
                     </MenuItem.Icon>
                 </MenuItem>
             </MenuItem>
-            <MenuItem Header="_Edit">
-                <MenuItem Header="_Edit" Click="Update_Click" InputGestureText="Ctrl + E">
+            <MenuItem Header="{ns:Loc Edit}">
+                <MenuItem Header="{ns:Loc Edit}" Click="Update_Click" InputGestureText="Ctrl + E">
                     <MenuItem.Icon>
                         <Image Source="https://cdn-icons-png.flaticon.com/512/7398/7398464.png"/>
                     </MenuItem.Icon>
                 </MenuItem>
-                <MenuItem Header="_Delete" Click="Delete_Click" InputGestureText="Ctrl + D">
+                <MenuItem Header="{ns:Loc Delete}" Click="Delete_Click" InputGestureText="Ctrl + D">
                     <MenuItem.Icon>
                         <Image Source="https://cdn.iconscout.com/icon/free/png-256/free-delete-736-470378.png"/>
                     </MenuItem.Icon>
                 </MenuItem>
             </MenuItem>
-            <MenuItem Header="_Help" InputGestureText="Ctrl + H">
-                <MenuItem Header="_About" Click="About_Click" InputGestureText="Ctrl + B">
+            <MenuItem Header="{ns:Loc Help}">
+                <MenuItem Header="{ns:Loc About}" Click="About_Click" InputGestureText="Ctrl + B">
                     <MenuItem.Icon>
                         <Image Source="https://icons.veryicon.com/png/o/miscellaneous/administration/account-25.png"/>
                     </MenuItem.Icon>
                 </MenuItem>
             </MenuItem>
-            <MenuItem Header="Show">
-                <MenuItem Header="ProfessorsForStudent" Click="ShowProfessorsForStudent_Click">
+            <MenuItem Header="{ns:Loc Show}">
+                <MenuItem Header="ProfessorsForStudent" Click="ShowProfessorsForStudent_Click" InputGestureText="Shift + P">
                     
                 </MenuItem>
-                <MenuItem Header="StudentsForProfessor" Click="ShowStudentsForProfessor_Click">
+                <MenuItem Header="StudentsForProfessor" Click="ShowStudentsForProfessor_Click" InputGestureText="Shift + S">
 
                 </MenuItem>
+            </MenuItem>
+            <MenuItem Header="{ns:Loc Localization}">
+                <MenuItem Header="{ns:Loc English}" Click="MenuItem_Click_English" InputGestureText="Shift + E" />
+                <MenuItem Header="{ns:Loc Serbian}" Click="MenuItem_Click_Serbian" InputGestureText="Shift + R" />
             </MenuItem>
         </Menu>
 
@@ -120,13 +125,13 @@
         
 
         <DockPanel DockPanel.Dock="Bottom">
-                <TextBlock Text="Studentska služba"></TextBlock>
+                <TextBlock Text="{ns:Loc StatusBarString}"></TextBlock>
                 <TextBlock x:Name="DisplayDateTextBlock" Text="" HorizontalAlignment="Right"></TextBlock>
         </DockPanel>
 
         <DockPanel>
             <TabControl Name="Tabs" DockPanel.Dock="Top" SelectionChanged="TabControl_Changed">
-                <TabItem Name="StudentsTab" Header="Students">
+                <TabItem Name="StudentsTab" Header="{ns:Loc Students}">
                     <DataGrid Height="450"
                                   AutoGenerateColumns="False"
                                   x:Name="StudentsDataGrid"
@@ -135,16 +140,16 @@
                                   SelectionMode="Single" IsReadOnly="True"
                                   SelectionChanged="StudentsDataGrid_SelectionChanged">
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="Index" Binding="{Binding Index}" HeaderStyle="{StaticResource DataGridColumnHeaderStyle}" CanUserSort="False" />
-                            <DataGridTextColumn Header="Name" Binding="{Binding Name}" HeaderStyle="{StaticResource DataGridColumnHeaderStyle}" CanUserSort="False" />
-                            <DataGridTextColumn Header="LastName" Binding="{Binding LastName}" HeaderStyle="{StaticResource DataGridColumnHeaderStyle}" CanUserSort="False" />
-                            <DataGridTextColumn Header="CurrentYearOfStudy" Binding="{Binding CurrentYearOfStudy}" HeaderStyle="{StaticResource DataGridColumnHeaderStyle}" CanUserSort="False" />
-                            <DataGridTextColumn Header="Status" Binding="{Binding Status}" HeaderStyle="{StaticResource DataGridColumnHeaderStyle}" CanUserSort="False" />
-                            <DataGridTextColumn Header="AverageGrade" Binding="{Binding AverageGrade, StringFormat={}{0:N2}}" HeaderStyle="{StaticResource DataGridColumnHeaderStyle}" CanUserSort="False" />
+                            <DataGridTextColumn Header="{ns:Loc Index}" Binding="{Binding Index}" HeaderStyle="{StaticResource DataGridColumnHeaderStyle}" CanUserSort="False" />
+                            <DataGridTextColumn Header="{ns:Loc Name}" Binding="{Binding Name}" HeaderStyle="{StaticResource DataGridColumnHeaderStyle}" CanUserSort="False" />
+                            <DataGridTextColumn Header="{ns:Loc Lastname}" Binding="{Binding LastName}" HeaderStyle="{StaticResource DataGridColumnHeaderStyle}" CanUserSort="False" />
+                            <DataGridTextColumn Header="{ns:Loc CurrentYearOfStudy}" Binding="{Binding CurrentYearOfStudy}" HeaderStyle="{StaticResource DataGridColumnHeaderStyle}" CanUserSort="False" />
+                            <DataGridTextColumn Header="{ns:Loc Status}" Binding="{Binding Status}" HeaderStyle="{StaticResource DataGridColumnHeaderStyle}" CanUserSort="False" />
+                            <DataGridTextColumn Header="{ns:Loc AverageGrade}" Binding="{Binding AverageGrade, StringFormat={}{0:N2}}" HeaderStyle="{StaticResource DataGridColumnHeaderStyle}" CanUserSort="False" />
                         </DataGrid.Columns>
                     </DataGrid>
                 </TabItem>
-                <TabItem Name="ProfessorsTab" Header="Professors">
+                <TabItem Name="ProfessorsTab" Header="{ns:Loc Professors}">
                     <DataGrid Height="450"
                                   AutoGenerateColumns="False"
                                   x:Name="ProfessorsDataGrid"
@@ -153,14 +158,14 @@
                                   SelectionMode="Single" IsReadOnly="True"
                                   SelectionChanged="ProfessorsDataGrid_SelectionChanged">
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="Name" Binding="{Binding Name}" HeaderStyle="{StaticResource DataGridColumnHeaderStyle}" CanUserSort="False" />
-                            <DataGridTextColumn Header="Lastname" Binding="{Binding Lastname}" HeaderStyle="{StaticResource DataGridColumnHeaderStyle}" CanUserSort="False" />
-                            <DataGridTextColumn Header="Title" Binding="{Binding Title}" HeaderStyle="{StaticResource DataGridColumnHeaderStyle}" CanUserSort="False" />
-                            <DataGridTextColumn Header="E-mail" Binding="{Binding Email}" HeaderStyle="{StaticResource DataGridColumnHeaderStyle}" CanUserSort="False" />
+                            <DataGridTextColumn Header="{ns:Loc Name}" Binding="{Binding Name}" HeaderStyle="{StaticResource DataGridColumnHeaderStyle}" CanUserSort="False" />
+                            <DataGridTextColumn Header="{ns:Loc Lastname}" Binding="{Binding Lastname}" HeaderStyle="{StaticResource DataGridColumnHeaderStyle}" CanUserSort="False" />
+                            <DataGridTextColumn Header="{ns:Loc Title}" Binding="{Binding Title}" HeaderStyle="{StaticResource DataGridColumnHeaderStyle}" CanUserSort="False" />
+                            <DataGridTextColumn Header="{ns:Loc E-mail}" Binding="{Binding Email}" HeaderStyle="{StaticResource DataGridColumnHeaderStyle}" CanUserSort="False" />
                         </DataGrid.Columns>
                     </DataGrid>
                 </TabItem>
-                <TabItem Name="SubjectsTab" Header="Subjects">
+                <TabItem Name="SubjectsTab" Header="{ns:Loc Subjects}">
                     <DataGrid Height="450"
                                   AutoGenerateColumns="False"
                                   x:Name="SubjectsDataGrid"
@@ -169,11 +174,11 @@
                                   SelectionMode="Single" IsReadOnly="True"
                                   SelectionChanged="SubjectDataGrid_SelectionChanged">
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="SubjectCode" Binding="{Binding SubjectCode}" HeaderStyle="{StaticResource DataGridColumnHeaderStyle}" CanUserSort="False" />
-                            <DataGridTextColumn Header="Name" Binding="{Binding Name}" HeaderStyle="{StaticResource DataGridColumnHeaderStyle}" CanUserSort="False" />
-                            <DataGridTextColumn Header="Espb" Binding="{Binding Espb}" HeaderStyle="{StaticResource DataGridColumnHeaderStyle}" CanUserSort="False" />
-                            <DataGridTextColumn Header="YearOfStudy" Binding="{Binding YearOfStudy}" HeaderStyle="{StaticResource DataGridColumnHeaderStyle}" CanUserSort="False" />
-                            <DataGridTextColumn Header="Semester" Binding="{Binding Semester}" HeaderStyle="{StaticResource DataGridColumnHeaderStyle}" CanUserSort="False" />
+                            <DataGridTextColumn Header="{ns:Loc SubjectCode}" Binding="{Binding SubjectCode}" HeaderStyle="{StaticResource DataGridColumnHeaderStyle}" CanUserSort="False" />
+                            <DataGridTextColumn Header="{ns:Loc Name}" Binding="{Binding Name}" HeaderStyle="{StaticResource DataGridColumnHeaderStyle}" CanUserSort="False" />
+                            <DataGridTextColumn Header="{ns:Loc Espb}" Binding="{Binding Espb}" HeaderStyle="{StaticResource DataGridColumnHeaderStyle}" CanUserSort="False" />
+                            <DataGridTextColumn Header="{ns:Loc YearOfStudy}" Binding="{Binding YearOfStudy}" HeaderStyle="{StaticResource DataGridColumnHeaderStyle}" CanUserSort="False" />
+                            <DataGridTextColumn Header="{ns:Loc Semester}" Binding="{Binding Semester}" HeaderStyle="{StaticResource DataGridColumnHeaderStyle}" CanUserSort="False" />
                         </DataGrid.Columns>
                     </DataGrid>
                 </TabItem>
@@ -182,10 +187,10 @@
                 <Label x:Name="currentPageLabel" Content="{Binding CurrentPage, UpdateSourceTrigger=PropertyChanged}" ContentStringFormat="Current Page: {0}"
                        Height="40" Width="100" Margin="0,0,20,0" />
                 <Button Height="40" Width="50" Margin="0,0,10,0" Click="PreviousPage_Button_Click" >
-                    <TextBlock TextAlignment="Center" Text="Previous page" TextWrapping="Wrap" />
+                    <TextBlock TextAlignment="Center" Text="{ns:Loc PreviousPage}" TextWrapping="Wrap" />
                 </Button>
                 <Button Height="40" Width="50" Margin="10,0,0,0" Click="NextPage_Button_Click">
-                    <TextBlock TextAlignment="Center" Text="Next page" TextWrapping="Wrap" />
+                    <TextBlock TextAlignment="Center" Text="{ns:Loc NextPage}" TextWrapping="Wrap" />
                 </Button>
                 <Button Height="20" Width="auto" Content="Student Condition Subject" Click="StudentConditionSubject_Click" Margin="50,0,0,0"/>
             </StackPanel>
