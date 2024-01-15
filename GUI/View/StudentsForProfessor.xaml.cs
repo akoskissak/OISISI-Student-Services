@@ -52,10 +52,15 @@ namespace GUI.View
             List<Subject> subjects = _professorSubjectController.GetAllSubjectsByProfessorId(profId);
             if (subjects.Count > 0)
             {
-                foreach (Student s in _studentSubjectController.GetAllStudentsOnSubjects(subjects))
+                List<Student>? studentslist = _studentSubjectController.GetAllStudentsOnSubjects(subjects);
+                if (studentslist != null)
                 {
-                    StudentsForProfessorDtos.Add(new StudentsForProfessorDTO(s));
+                    foreach (Student s in studentslist)
+                    {
+                        StudentsForProfessorDtos.Add(new StudentsForProfessorDTO(s));
+                    }
                 }
+
             }
         }
 

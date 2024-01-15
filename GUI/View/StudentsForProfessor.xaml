@@ -27,7 +27,7 @@
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Index" Binding="{Binding Index}"/>
                 <DataGridTextColumn Header="Name" Binding="{Binding Name}"/>
-                <DataGridTextColumn Header="LastName" Binding="{Binding LastName}"/>
+                <DataGridTextColumn Header="LastName" Binding="{Binding Lastname}"/>
             </DataGrid.Columns>
             
         </DataGrid>
