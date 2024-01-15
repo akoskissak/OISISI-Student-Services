@@ -115,6 +115,12 @@ public class DepartmentDAO
         _professorDao.SaveProfessors();
     }
 
+    public void Save()
+    {
+        _departmentStorage.Save(_departments);
+        DepartmentObservable.NotifyObservers();
+    }
+
     public void NotifyObservers()
     {
         DepartmentObservable.NotifyObservers();

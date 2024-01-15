@@ -49,6 +49,11 @@ namespace CLI.Controller
             _examGradeDao.NotifyObservers();
         }
 
+        public void Save()
+        {
+            _examGradeDao.Save();
+        }
+
         public ExamGrade? GetExamByIds(int studentId, int subjectId)
         {
             return _examGradeDao.GetExamByIds(studentId, subjectId);

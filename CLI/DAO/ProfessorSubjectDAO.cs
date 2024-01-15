@@ -23,6 +23,8 @@ public class ProfessorSubjectDAO
         _subjectStorage = new Storage<Subject>("subjects.txt");
         _subject = _subjectStorage.Load();
 
+        ProfessorSubjectObservable = new Observable();
+
         _professorDao = professorDao;
         _subjectDao = subjectDao;
 
@@ -157,6 +159,13 @@ public class ProfessorSubjectDAO
         List<Subject> subjectsForProfessor = _subject.FindAll(s => s.ProfessorId == -1);
         return subjectsForProfessor;
     }
+
+    public void Save()
+    {
+        _professorSubjectStorage.Save(_professorSubject);
+        ProfessorSubjectObservable.NotifyObservers();
+    }
+
     public void NotifyObservers()
     {
         ProfessorSubjectObservable.NotifyObservers();

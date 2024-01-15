@@ -114,6 +114,12 @@ public class ExamGradeDAO
         return _examGrades;
     }
 
+    public void Save()
+    {
+        _examGradeStorage.Save(_examGrades);
+        ExamGradeObservable.NotifyObservers();
+    }
+
     public void NotifyObservers()
     {
         ExamGradeObservable.NotifyObservers();
