@@ -110,7 +110,7 @@ namespace GUI.DTO
                 }
             }
         }
-        public string LastName
+        public string Lastname
         {
             get
             {
@@ -121,7 +121,7 @@ namespace GUI.DTO
                 if (value != _lastName)
                 {
                     _lastName = value;
-                    OnPropertyChanged("LastName");
+                    OnPropertyChanged("Lastname");
                 }
             }
         }
@@ -154,7 +154,7 @@ namespace GUI.DTO
         public StudentsForProfessorDTO(Student student)
         {
             Id = student.Id;
-            LastName = student.Lastname;
+            Lastname = student.Lastname;
             Name = student.Name;
             EnrollmentNumber = student.Index.EnrollmentNumber.ToString();
             EnrollmentYear = student.Index.EnrollmentYear.ToString();

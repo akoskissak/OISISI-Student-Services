@@ -107,11 +107,11 @@
                     </DataGrid>
                     <StackPanel Grid.Row="2">
                         <TextBlock HorizontalAlignment="Right" FontSize="15" FontWeight="Bold">
-                            <Run Text="Average grade: "/>
+                            <Run Text="{ns:Loc AverageGrade:}"/>
                             <Run x:Name="averageGradeTextBox" Text="{Binding StudentDto.AverageGrade, StringFormat={}{0:N2}, UpdateSourceTrigger=PropertyChanged}"/>
                         </TextBlock>
                         <TextBlock HorizontalAlignment="Right" FontSize="15" FontWeight="Bold">
-                            <Run Text="Total ESPB: "/>
+                            <Run Text="{ns:Loc Total ESPB:}"/>
                             <Run Text="{Binding TotalESPB}"/>
                         </TextBlock>
                     </StackPanel>

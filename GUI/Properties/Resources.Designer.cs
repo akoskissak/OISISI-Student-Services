@@ -97,11 +97,65 @@ namespace GUI.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Prosecna Ocena:.
+        /// </summary>
+        public static string AverageGrade_ {
+            get {
+                return ResourceManager.GetString("AverageGrade:", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Ponisti.
         /// </summary>
         public static string Cancel {
             get {
                 return ResourceManager.GetString("Cancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Id sefa.
+        /// </summary>
+        public static string Chiefs_Id {
+            get {
+                return ResourceManager.GetString("Chiefs Id", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Prezime sefa.
+        /// </summary>
+        public static string Chiefs_Lastname {
+            get {
+                return ResourceManager.GetString("Chiefs Lastname", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ime sefa.
+        /// </summary>
+        public static string Chiefs_Name {
+            get {
+                return ResourceManager.GetString("Chiefs Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Zvanje sefa.
+        /// </summary>
+        public static string Chiefs_Title {
+            get {
+                return ResourceManager.GetString("Chiefs Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Godine staza sefa.
+        /// </summary>
+        public static string Chiefs_YearsOfService {
+            get {
+                return ResourceManager.GetString("Chiefs YearsOfService", resourceCulture);
             }
         }
         
@@ -129,6 +183,15 @@ namespace GUI.Properties {
         public static string Close {
             get {
                 return ResourceManager.GetString("Close", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Potvrdi.
+        /// </summary>
+        public static string Confirm {
+            get {
+                return ResourceManager.GetString("Confirm", resourceCulture);
             }
         }
         
@@ -183,6 +246,15 @@ namespace GUI.Properties {
         public static string Delete {
             get {
                 return ResourceManager.GetString("Delete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sifra Katedre.
+        /// </summary>
+        public static string DepartmentCode {
+            get {
+                return ResourceManager.GetString("DepartmentCode", resourceCulture);
             }
         }
         
@@ -484,11 +556,47 @@ namespace GUI.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Postavi sefa katedre.
+        /// </summary>
+        public static string Set_department_chief {
+            get {
+                return ResourceManager.GetString("Set department chief", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Pri_kaz.
         /// </summary>
         public static string Show {
             get {
                 return ResourceManager.GetString("Show", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Prikazi Profesore.
+        /// </summary>
+        public static string Show_Professors {
+            get {
+                return ResourceManager.GetString("Show Professors", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Prikazi Studente.
+        /// </summary>
+        public static string Show_Students {
+            get {
+                return ResourceManager.GetString("Show Students", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Prikazi Predmete.
+        /// </summary>
+        public static string Show_Subjects {
+            get {
+                return ResourceManager.GetString("Show Subjects", resourceCulture);
             }
         }
         
@@ -601,6 +709,15 @@ namespace GUI.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Ukupno ESPB:.
+        /// </summary>
+        public static string Total_ESPB_ {
+            get {
+                return ResourceManager.GetString("Total ESPB:", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Nepolozeni.
         /// </summary>
         public static string Unsubmitted {
@@ -615,6 +732,24 @@ namespace GUI.Properties {
         public static string Update {
             get {
                 return ResourceManager.GetString("Update", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to koji slusaju oba oznacena predmeta.
+        /// </summary>
+        public static string Who_are_enrolled {
+            get {
+                return ResourceManager.GetString("Who are enrolled", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to koji su polozili jedan oznaceni predmet a drugi nisu.
+        /// </summary>
+        public static string Who_have_passed {
+            get {
+                return ResourceManager.GetString("Who have passed", resourceCulture);
             }
         }
         

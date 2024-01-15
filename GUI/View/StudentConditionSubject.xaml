@@ -13,10 +13,10 @@
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
-        <TextBlock HorizontalAlignment="Left" Text="{ns:Loc Who are enrolled}" Grid.Row="0" Margin="94,10,0,10"/>
+        <TextBlock HorizontalAlignment="Left" Text="{ns:Loc Who are enrolled}" Grid.Row="0" Margin="102,10,0,10"/>
         <Button HorizontalAlignment="Left" Content="{ns:Loc Show Students}" Grid.Row="0" Margin="5,10,0,10" Click="ShowStudents1_Click"/>
         <Button HorizontalAlignment="Left" Content="{ns:Loc Show Students}" Grid.Row="1" Margin="5,10,0,10" Click="ShowStudents2_Click"/>
-        <TextBlock HorizontalAlignment="Left" Text="{ns:Loc Who have passed}" Grid.Row="1" Margin="94,10,0,10"/>
+        <TextBlock HorizontalAlignment="Left" Text="{ns:Loc Who have passed}" Grid.Row="1" Margin="102,10,0,10"/>
         <DataGrid Grid.Row="2"
                   Height="350"
                   AutoGenerateColumns="False"
