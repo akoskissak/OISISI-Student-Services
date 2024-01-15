@@ -193,7 +193,7 @@ public class StudentDAO
             case "Name":
                 _students = _students.OrderBy(s => s.Name).ToList();
                 break;
-            case "LastName":
+            case "Lastname":
                 _students = _students.OrderBy(s => s.Lastname).ToList();
                 break;
             case "CurrentYearOfStudy":
