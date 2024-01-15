@@ -48,5 +48,10 @@ namespace CLI.Controller
         {
             _examGradeDao.NotifyObservers();
         }
+
+        public void Save()
+        {
+            _examGradeDao.Save();
+        }
     }
 }

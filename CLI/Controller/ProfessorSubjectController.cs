@@ -73,5 +73,10 @@ namespace CLI.Controller
         {
             return _professorDao.GetProfessorById(professorId);
         }
+
+        public void Save()
+        {
+            _professorSubjectDao.Save();
+        }
     }
 }

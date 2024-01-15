@@ -1,4 +1,5 @@
 ﻿using CLI.Model;
+using CLI.Observer;
 using CLI.Storage;
 
 namespace CLI.DAO;
@@ -11,6 +12,8 @@ public class ProfessorDepartmentDAO
     private ProfessorDAO _professorDao;
     private DepartmentDAO _departmentDao;
 
+    public Observable ProfessorDepartmentObservable;
+
     public ProfessorDepartmentDAO(ProfessorDAO professorDao, DepartmentDAO departmentDao)
     {
         _profDepStorage = new Storage<ProfessorDepartment>("professorDepartment.txt");
@@ -18,6 +21,8 @@ public class ProfessorDepartmentDAO
 
         _professorDao = professorDao;
         _departmentDao = departmentDao;
+
+        ProfessorDepartmentObservable = new Observable();
 
         HashSet<Professor> profsForDep = new HashSet<Professor>();
 
@@ -61,6 +66,12 @@ public class ProfessorDepartmentDAO
         }
 
         return professorList;
+    }
+    
+    public void Save()
+    {
+        _profDepStorage.Save(_profDep);
+        ProfessorDepartmentObservable.NotifyObservers();
     }
 
 }

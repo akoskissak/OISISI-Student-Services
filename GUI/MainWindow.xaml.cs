@@ -15,6 +15,7 @@ using System.Linq;
 using System.Windows.Controls.Ribbon;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using GUI.Localization;
 
 namespace GUI
 {
@@ -23,6 +24,10 @@ namespace GUI
     /// </summary>
     public partial class MainWindow : Window, IObserver
     {
+        private App app;
+        private const string SRB = "sr-RS";
+        private const string ENG = "en-US";
+        public string StatusBarString;
         public ObservableCollection<ProfessorDTO> ProfessorDtos { get; set; }
         public ObservableCollection<SubjectDTO> SubjectDtos { get; set; }
         public ObservableCollection<StudentDTO> StudentDtos { get; set; }
@@ -37,6 +42,7 @@ namespace GUI
         private StudentController _studentController { get; set; }    
         private SubjectController _subjectController { get; set; }
         private ExamGradeController _examGradeController;
+        private DepartmentController _departmentController;
 
         public PagingCollectionView ProfessorPagingCollectionView {  get; set; }
         public PagingCollectionView SubjectPagingCollectionView {  get; set; }
@@ -45,6 +51,9 @@ namespace GUI
         {
             InitializeComponent();
             DataContext = this;
+            app = (App)Application.Current;
+            app.ChangeLanguage(ENG);
+
             ProfessorDtos = new ObservableCollection<ProfessorDTO>();
             StudentDtos = new ObservableCollection<StudentDTO>();
             SubjectDtos = new ObservableCollection<SubjectDTO>();
@@ -57,6 +66,7 @@ namespace GUI
             _professorSubjectController = new ProfessorSubjectController();
             _studentSubjectController = new StudentSubjectController();
             _examGradeController = new ExamGradeController();
+            _departmentController = new DepartmentController();
 
             _studentController = new StudentController();
             _professorController = new ProfessorController();
@@ -306,6 +316,14 @@ namespace GUI
                 Open_Click(sender, e);
             else if (Keyboard.IsKeyDown(Key.LeftCtrl) && Keyboard.IsKeyDown(Key.S))
                 Save_Click(sender, e);
+            else if (Keyboard.IsKeyDown(Key.LeftShift) && Keyboard.IsKeyDown(Key.P))
+                ShowProfessorsForStudent_Click(sender, e);
+            else if (Keyboard.IsKeyDown(Key.LeftShift) && Keyboard.IsKeyDown(Key.S))
+                ShowStudentsForProfessor_Click(sender, e);
+            else if (Keyboard.IsKeyDown(Key.LeftShift) && Keyboard.IsKeyDown(Key.E))
+                MenuItem_Click_English(sender, e);
+            else if (Keyboard.IsKeyDown(Key.LeftShift) && Keyboard.IsKeyDown(Key.R))
+                MenuItem_Click_Serbian(sender, e);
         }
 
         private void Save_Click(object sender, RoutedEventArgs e)
@@ -313,6 +331,10 @@ namespace GUI
             _subjectController.Save();
             _professorController.Save();
             _studentController.Save();
+            _examGradeController.Save();
+            _studentSubjectController.Save();
+            _professorSubjectController.Save();
+            _departmentController.Save();
             MessageBox.Show("Successfully saved.", "Saving Successful", MessageBoxButton.OK, MessageBoxImage.Information);
         }
         private void About_Click(object sender, RoutedEventArgs e)
@@ -631,5 +653,17 @@ namespace GUI
                 currentPageLabel.Content = this.SubjectPagingCollectionView.CurrentPage;
             }
         }
+        private void MenuItem_Click_English(object sender, RoutedEventArgs e)
+        {
+            app.ChangeLanguage(ENG);
+            MessageBox.Show("engleski");
+        }
+
+        private void MenuItem_Click_Serbian(object sender, RoutedEventArgs e)
+        {
+            app.ChangeLanguage(SRB);
+            MessageBox.Show("serbian");
+        }
+
     }
 }
