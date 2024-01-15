@@ -36,7 +36,6 @@ namespace GUI.View
             this.SelectedSubjectBefore = selectedSubject;
             this._studentController = studentController;
             this._subjectController = subjectController;
-            this.SelectedSubjectNow = new SubjectDTO();
 
             SubjectDtos = new ObservableCollection<SubjectDTO>();
 
@@ -54,8 +53,29 @@ namespace GUI.View
 
         private void ShowStudents1_Click(object sender, RoutedEventArgs e)
         {
-            ShowStudentsWhoEnrolled showStudentsWhoEnrolled = new ShowStudentsWhoEnrolled(_studentController, _subjectController, SelectedSubjectBefore, SelectedSubjectNow);
-            showStudentsWhoEnrolled.ShowDialog();
+            if(SelectedSubjectNow != null)
+            {
+                ShowStudentsWhoEnrolled showStudentsWhoEnrolled = new ShowStudentsWhoEnrolled(_studentController, _subjectController, SelectedSubjectBefore, SelectedSubjectNow);
+                showStudentsWhoEnrolled.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("Please choose a secondary subject to make a condition", "Student condition subject", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+
+        }
+        private void ShowStudents2_Click(object sender, RoutedEventArgs e)
+        {
+            if (SelectedSubjectNow != null)
+            {
+                ShowStudentsWhoPassedOne showStudentsWhoPassedOne = new ShowStudentsWhoPassedOne(_studentController, _subjectController, SelectedSubjectBefore, SelectedSubjectNow);
+                showStudentsWhoPassedOne.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("Please choose a secondary subject to make a condition", "Student condition subject", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+
         }
     }
 }

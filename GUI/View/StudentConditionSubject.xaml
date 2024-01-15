@@ -10,10 +10,13 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
         <TextBlock HorizontalAlignment="Left" Text="who are enrolled in both the primary and secondary selected subjects" Grid.Row="0" Margin="94,10,0,10"/>
         <Button HorizontalAlignment="Left" Content="Show students" Grid.Row="0" Margin="5,10,0,10" Click="ShowStudents1_Click"/>
-        <DataGrid Grid.Row="1"
+        <Button HorizontalAlignment="Left" Content="Show students" Grid.Row="1" Margin="5,10,0,10" Click="ShowStudents2_Click"/>
+        <TextBlock HorizontalAlignment="Left" Text="who have passed one selected subject but have not passed the other" Grid.Row="1" Margin="94,10,0,10"/>
+        <DataGrid Grid.Row="2"
                   Height="350"
                   AutoGenerateColumns="False"
                   x:Name="StudentConditionSubjectDataGrid"

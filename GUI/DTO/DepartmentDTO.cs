@@ -14,7 +14,6 @@ namespace GUI.DTO
         private string _depCode;
         private string _name;
         private int _chiefId;
-        private ProfessorDTO _chief;
 
         public int Id
         {
