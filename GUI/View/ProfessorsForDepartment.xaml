@@ -4,14 +4,15 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GUI.View"
+        xmlns:ns="clr-namespace:GUI.Localization"
         mc:Ignorable="d"
-        Title="ProfessorsForDepartment" Height="450" Width="800" WindowStartupLocation="CenterScreen">
+        Title="ProfessorsForDepartment" Height="450" Width="800" WindowStartupLocation="CenterScreen" KeyDown="Window_KeyDown">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
-        <Button Content="Set department chief" Click="SetChief_Click" Grid.Row="0" HorizontalAlignment="Left" Margin="5,10,0,10"/>
+        <Button Content="{ns:Loc Set department chief}" Click="SetChief_Click" Grid.Row="0" HorizontalAlignment="Left" Margin="5,10,0,10"/>
         <DataGrid x:Name="ProfessorsForDepartmentDataGrid" Grid.Row="1"
                   AutoGenerateColumns="False"
                   ItemsSource="{Binding ProfessorDtos, UpdateSourceTrigger=PropertyChanged}"
@@ -19,10 +20,10 @@
                   SelectionChanged="ProfessorsForDepartmentDataGrid_SelectionChanged"
                   SelectionMode="Single" IsReadOnly="True">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Name" Binding="{Binding Name}"/>
-                <DataGridTextColumn Header="LastName" Binding="{Binding Lastname}"/>
-                <DataGridTextColumn Header="Title" Binding="{Binding Title}"/>
-                <DataGridTextColumn Header="YearsOfService" Binding="{Binding YearsOfService}"/>
+                <DataGridTextColumn Header="{ns:Loc Name}" Binding="{Binding Name}"/>
+                <DataGridTextColumn Header="{ns:Loc Lastname}" Binding="{Binding Lastname}"/>
+                <DataGridTextColumn Header="{ns:Loc Title}" Binding="{Binding Title}"/>
+                <DataGridTextColumn Header="{ns:Loc YearsOfService}" Binding="{Binding YearsOfService}"/>
             </DataGrid.Columns>
         </DataGrid>
     </Grid>

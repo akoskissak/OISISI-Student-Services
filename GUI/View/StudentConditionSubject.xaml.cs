@@ -23,6 +23,9 @@ namespace GUI.View
     /// </summary>
     public partial class StudentConditionSubject : Window
     {
+        private App app;
+        private const string SRB = "sr-RS";
+        private const string ENG = "en-US";
         private StudentController _studentController;
         private SubjectController _subjectController;
         public SubjectDTO SelectedSubjectBefore { get; set; }
@@ -33,6 +36,7 @@ namespace GUI.View
         {
             InitializeComponent();
             DataContext = this;
+            app = (App)Application.Current;
             this.SelectedSubjectBefore = selectedSubject;
             this._studentController = studentController;
             this._subjectController = subjectController;
@@ -76,6 +80,23 @@ namespace GUI.View
                 MessageBox.Show("Please choose a secondary subject to make a condition", "Student condition subject", MessageBoxButton.OK, MessageBoxImage.Error);
             }
 
+        }
+        private void Window_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (Keyboard.IsKeyDown(Key.LeftShift) && Keyboard.IsKeyDown(Key.E))
+                MenuItem_Click_English(sender, e);
+            else if (Keyboard.IsKeyDown(Key.LeftShift) && Keyboard.IsKeyDown(Key.R))
+                MenuItem_Click_Serbian(sender, e);
+        }
+
+        private void MenuItem_Click_English(object sender, RoutedEventArgs e)
+        {
+            app.ChangeLanguage(ENG);
+        }
+
+        private void MenuItem_Click_Serbian(object sender, RoutedEventArgs e)
+        {
+            app.ChangeLanguage(SRB);
         }
     }
 }

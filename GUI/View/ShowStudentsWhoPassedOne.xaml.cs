@@ -23,6 +23,9 @@ namespace GUI.View
     /// </summary>
     public partial class ShowStudentsWhoPassedOne : Window
     {
+        private App app;
+        private const string SRB = "sr-RS";
+        private const string ENG = "en-US";
         private StudentController _studentController;
         private SubjectController _subjectController;
         private ExamGradeController _examGradeController;
@@ -36,6 +39,7 @@ namespace GUI.View
         {
             InitializeComponent();
             DataContext = this;
+            app = (App)Application.Current;
             SelectedSubject1 = selectedSubject1;
             SelectedSubject2 = selectedSubject2;
             StudentDtos = new ObservableCollection<StudentDTO>();
@@ -68,6 +72,23 @@ namespace GUI.View
                 }
 
             }
+        }
+        private void Window_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (Keyboard.IsKeyDown(Key.LeftShift) && Keyboard.IsKeyDown(Key.E))
+                MenuItem_Click_English(sender, e);
+            else if (Keyboard.IsKeyDown(Key.LeftShift) && Keyboard.IsKeyDown(Key.R))
+                MenuItem_Click_Serbian(sender, e);
+        }
+
+        private void MenuItem_Click_English(object sender, RoutedEventArgs e)
+        {
+            app.ChangeLanguage(ENG);
+        }
+
+        private void MenuItem_Click_Serbian(object sender, RoutedEventArgs e)
+        {
+            app.ChangeLanguage(SRB);
         }
     }
 }

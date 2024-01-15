@@ -126,21 +126,43 @@
   <data name="AddSubject" xml:space="preserve">
     <value>Add Subject</value>
   </data>
+
   <data name="AverageGrade" xml:space="preserve">
     <value>AverageGrade</value>
   </data>
   <data name="Cancel" xml:space="preserve">
     <value>Cancel</value>
   </data>
-  <data name="City" xml:space="preserve">
-    <value>City</value>
-  </data>
+
   <data name="Clear" xml:space="preserve">
     <value>Clear</value>
+  </data>
+
+  <data name="Chiefs Id" xml:space="preserve">
+    <value>Chiefs Id</value>
+  </data>
+  <data name="Chiefs Lastname" xml:space="preserve">
+    <value>Chiefs Lastname</value>
+  </data>
+  <data name="Chiefs Name" xml:space="preserve">
+    <value>Chiefs Name</value>
+  </data>
+  <data name="Chiefs Title" xml:space="preserve">
+    <value>Chiefs Title</value>
+  </data>
+  <data name="Chiefs YearsOfService" xml:space="preserve">
+    <value>Chiefs YearsOfService</value>
+  </data>
+  <data name="City" xml:space="preserve">
+    <value>City</value>
   </data>
   <data name="Close" xml:space="preserve">
     <value>_Close</value>
   </data>
+  <data name="Confirm" xml:space="preserve">
+    <value>Confirm</value>
+  </data>
+
   <data name="Country" xml:space="preserve">
     <value>Country</value>
   </data>
@@ -158,6 +180,9 @@
   </data>
   <data name="Delete" xml:space="preserve">
     <value>_Delete</value>
+  </data>
+  <data name="DepartmentCode" xml:space="preserve">
+    <value>DepartmentCode</value>
   </data>
   <data name="Departments" xml:space="preserve">
     <value>Departments</value>
@@ -219,9 +244,11 @@
   <data name="Open" xml:space="preserve">
     <value>_Open</value>
   </data>
+
   <data name="Pass" xml:space="preserve">
     <value>Pass</value>
   </data>
+
   <data name="PhoneNumber" xml:space="preserve">
     <value>PhoneNumber</value>
   </data>
@@ -230,6 +257,9 @@
   </data>
   <data name="Professor" xml:space="preserve">
     <value>Professor</value>
+  </data>
+  <data name="ProfessorId" xml:space="preserve">
+    <value>ProfessorId</value>
   </data>
   <data name="Professors" xml:space="preserve">
     <value>Professors</value>
@@ -252,8 +282,20 @@
   <data name="Serbian" xml:space="preserve">
     <value>Se_rbian</value>
   </data>
+  <data name="Set department chief" xml:space="preserve">
+    <value>Set department chief</value>
+  </data>
   <data name="Show" xml:space="preserve">
     <value>_Show</value>
+  </data>
+  <data name="Show Professors" xml:space="preserve">
+    <value>Show Professors</value>
+  </data>
+  <data name="Show Students" xml:space="preserve">
+    <value>Show Students</value>
+  </data>
+  <data name="Show Subjects" xml:space="preserve">
+    <value>Show Subjects</value>
   </data>
   <data name="Status" xml:space="preserve">
     <value>Status</value>
@@ -264,9 +306,11 @@
   <data name="Street" xml:space="preserve">
     <value>Street</value>
   </data>
+
   <data name="StudentConditionSubject" xml:space="preserve">
     <value>Student Condition Subject</value>
   </data>
+
   <data name="Students" xml:space="preserve">
     <value>Students</value>
   </data>
@@ -275,6 +319,12 @@
   </data>
   <data name="StudyProgrammeMark" xml:space="preserve">
     <value>StudyProgrammeMark</value>
+  </data>
+  <data name="StudyProgrammeMark" xml:space="preserve">
+    <value>StudyProgrammeMark</value>
+  </data>
+  <data name="Subject" xml:space="preserve">
+    <value>Subject</value>
   </data>
   <data name="SubjectCode" xml:space="preserve">
     <value>SubjectCode</value>
@@ -296,6 +346,12 @@
   </data>
   <data name="Update" xml:space="preserve">
     <value>Update</value>
+  </data>
+  <data name="Who are enrolled" xml:space="preserve">
+    <value>who are enrolled in both the primary and secondary selected subjects</value>
+  </data>
+  <data name="Who have passed" xml:space="preserve">
+    <value>who have passed one selected subject but have not passed the other</value>
   </data>
   <data name="YearOfStudy" xml:space="preserve">
     <value>YearOfStudy</value>

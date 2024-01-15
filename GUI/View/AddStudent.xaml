@@ -4,9 +4,10 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GUI.View"
+        xmlns:ns="clr-namespace:GUI.Localization"
         xmlns:VisualBasic="clr-namespace:Microsoft.VisualBasic;assembly=Microsoft.VisualBasic.Core" x:Class="GUI.View.AddStudent"
         mc:Ignorable="d"
-        Title="AddStudent" Height="auto" Width="auto" WindowStartupLocation="CenterScreen">
+        Title="AddStudent" Height="auto" Width="auto" WindowStartupLocation="CenterScreen" KeyDown="Window_KeyDown">
     <Window.Resources>
         <ControlTemplate x:Key="ValidationTemplate">
             <StackPanel>
@@ -47,57 +48,57 @@
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
 
-            <Label HorizontalAlignment="Center" VerticalAlignment="Center" Content="Lastname" Grid.Column="0" Grid.Row="0" Margin="5"/>
+            <Label HorizontalAlignment="Center" VerticalAlignment="Center" Content="{ns:Loc Lastname}" Grid.Column="0" Grid.Row="0" Margin="5"/>
             <TextBox x:Name="textBoxLastName" BorderBrush="Black" BorderThickness="1" Margin="0,0,0,5" Width="200" Height="22" Grid.Column="1" Grid.Row="0" Text="{Binding StudentDto.LastName, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Validation.ErrorTemplate="{StaticResource ValidationTemplate}"/>
 
-            <Label HorizontalAlignment="Center" VerticalAlignment="Center" Content="Name" Grid.Column="0" Grid.Row="1" Margin="5"/>
+            <Label HorizontalAlignment="Center" VerticalAlignment="Center" Content="{ns:Loc Name}" Grid.Column="0" Grid.Row="1" Margin="5"/>
             <TextBox x:Name="textBoxName" BorderBrush="Black" BorderThickness="1" Margin="0,0,0,5" Width="200" Height="22" Grid.Column="1" Grid.Row="1" Text="{Binding StudentDto.Name, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Validation.ErrorTemplate="{StaticResource ValidationTemplate}" />
 
-            <Label HorizontalAlignment="Center" VerticalAlignment="Center" Content="DateOfBirth" Grid.Column="0" Grid.Row="2" Margin="5"/>
+            <Label HorizontalAlignment="Center" VerticalAlignment="Center" Content="{ns:Loc DateOfBirth}" Grid.Column="0" Grid.Row="2" Margin="5"/>
 
             <DatePicker x:Name="DatePicker" Grid.Column="1" HorizontalAlignment="Center" Grid.Row="2" VerticalAlignment="Center" Width="200" SelectedDate="{Binding StudentDto.DateOfBirth, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, ValidatesOnDataErrors=True}" Validation.ErrorTemplate="{StaticResource ValidationTemplate}"/>
 
 
-            <Label HorizontalAlignment="Center" VerticalAlignment="Center" Content="PhoneNumber" Grid.Column="0" Grid.Row="3" Margin="5"/>
+            <Label HorizontalAlignment="Center" VerticalAlignment="Center" Content="{ns:Loc PhoneNumber}" Grid.Column="0" Grid.Row="3" Margin="5"/>
             <TextBox x:Name="textBoxPhoneNumber" BorderBrush="Black" BorderThickness="1" Margin="0,0,0,5" Width="200" Height="22" Grid.Column="1" Grid.Row="3" Text="{Binding StudentDto.PhoneNumber, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Validation.ErrorTemplate="{StaticResource ValidationTemplate}"/>
 
-            <Label HorizontalAlignment="Center" VerticalAlignment="Center" Content="Email" Grid.Column="0" Grid.Row="4" Margin="5"/>
+            <Label HorizontalAlignment="Center" VerticalAlignment="Center" Content="{ns:Loc E-mail}" Grid.Column="0" Grid.Row="4" Margin="5"/>
             <TextBox x:Name="textBoxEmail" BorderBrush="Black" BorderThickness="1" Margin="0,0,0,5" Width="200" Height="22" Grid.Column="1" Grid.Row="4" Text="{Binding StudentDto.Email, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Validation.ErrorTemplate="{StaticResource ValidationTemplate}"/>
 
-            <Label HorizontalAlignment="Center" VerticalAlignment="Center" Content="Index" Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="2" FontWeight="Bold" Margin="5"/>
+            <Label HorizontalAlignment="Center" VerticalAlignment="Center" Content="{ns:Loc Index}" Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="2" FontWeight="Bold" Margin="5"/>
 
-            <Label HorizontalAlignment="Center" VerticalAlignment="Center" Content="StudyProgrammeMark" Grid.Column="0" Grid.Row="6" Margin="5"/>
+            <Label HorizontalAlignment="Center" VerticalAlignment="Center" Content="{ns:Loc StudyProgrammeMark}" Grid.Column="0" Grid.Row="6" Margin="5"/>
             <TextBox x:Name="textBoxStudyProgrammeMark" BorderBrush="Black" BorderThickness="1" Margin="0,0,0,5" Width="200" Height="22" Grid.Column="1" Grid.Row="6" Text="{Binding StudentDto.StudyProgrammeMark, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Validation.ErrorTemplate="{StaticResource ValidationTemplate}"/>
 
-            <Label HorizontalAlignment="Center" VerticalAlignment="Center" Content="EnrollmentNumber" Grid.Column="0" Grid.Row="7" Margin="5"/>
+            <Label HorizontalAlignment="Center" VerticalAlignment="Center" Content="{ns:Loc EnrollmentNumber}" Grid.Column="0" Grid.Row="7" Margin="5"/>
             <TextBox x:Name="textBoxEnrollmentNumber" BorderBrush="Black" BorderThickness="1" Margin="0,0,0,5" Width="200" Height="22" Grid.Column="1" Grid.Row="7" Text="{Binding StudentDto.EnrollmentNumber, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Validation.ErrorTemplate="{StaticResource ValidationTemplate}"/>
 
-            <Label HorizontalAlignment="Center" VerticalAlignment="Center" Content="EnrollmentYear" Grid.Column="0" Grid.Row="8" Margin="5"/>
+            <Label HorizontalAlignment="Center" VerticalAlignment="Center" Content="{ns:Loc EnrollmentYear}" Grid.Column="0" Grid.Row="8" Margin="5"/>
             <TextBox x:Name="textBoxEnrollmentYear" BorderBrush="Black" BorderThickness="1" Margin="0,0,0,5" Width="200" Height="22" Grid.Column="1" Grid.Row="8" Text="{Binding StudentDto.EnrollmentYear, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Validation.ErrorTemplate="{StaticResource ValidationTemplate}"/>
 
             <Label HorizontalAlignment="Center" VerticalAlignment="Center" Content="Address" Grid.Column="0" Grid.Row="9" Grid.ColumnSpan="2" FontWeight="Bold" Margin="5"/>
 
-            <Label HorizontalAlignment="Center" VerticalAlignment="Center" Content="Street" Grid.Column="0" Grid.Row="10" Margin="5"/>
+            <Label HorizontalAlignment="Center" VerticalAlignment="Center" Content="{ns:Loc Street}" Grid.Column="0" Grid.Row="10" Margin="5"/>
             <TextBox x:Name="textBoxStreet" BorderBrush="Black" BorderThickness="1" Margin="0,0,0,5" Width="200" Height="22" Grid.Column="1" Grid.Row="10" Text="{Binding StudentDto.Street, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Validation.ErrorTemplate="{StaticResource ValidationTemplate}"/>
 
-            <Label HorizontalAlignment="Center" VerticalAlignment="Center" Content="Number" Grid.Column="0" Grid.Row="11" Margin="5"/>
+            <Label HorizontalAlignment="Center" VerticalAlignment="Center" Content="{ns:Loc Number}" Grid.Column="0" Grid.Row="11" Margin="5"/>
             <TextBox x:Name="textBoxNumber" BorderBrush="Black" BorderThickness="1" Margin="0,0,0,5" Width="200" Height="22" Grid.Column="1" Grid.Row="11" Text="{Binding StudentDto.Number, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Validation.ErrorTemplate="{StaticResource ValidationTemplate}"/>
 
-            <Label HorizontalAlignment="Center" VerticalAlignment="Center" Content="City" Grid.Column="0" Grid.Row="12" Margin="5"/>
+            <Label HorizontalAlignment="Center" VerticalAlignment="Center" Content="{ns:Loc City}" Grid.Column="0" Grid.Row="12" Margin="5"/>
             <TextBox x:Name="textBoxCity" BorderBrush="Black" BorderThickness="1" Margin="0,0,0,5" Width="200" Height="22" Grid.Column="1" Grid.Row="12" Text="{Binding StudentDto.City, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Validation.ErrorTemplate="{StaticResource ValidationTemplate}"/>
 
-            <Label HorizontalAlignment="Center" VerticalAlignment="Center" Content="Country" Grid.Column="0" Grid.Row="13" Margin="5"/>
+            <Label HorizontalAlignment="Center" VerticalAlignment="Center" Content="{ns:Loc Country}" Grid.Column="0" Grid.Row="13" Margin="5"/>
             <TextBox x:Name="textBoxCountry" BorderBrush="Black" BorderThickness="1" Margin="0,0,0,5" Width="200" Height="22" Grid.Column="1" Grid.Row="13" Text="{Binding StudentDto.Country, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Validation.ErrorTemplate="{StaticResource ValidationTemplate}"/>
 
-            <Label HorizontalAlignment="Center" VerticalAlignment="Center" Content="CurrentYearOfStudy" Grid.Column="0" Grid.Row="14" Margin="5"/>
+            <Label HorizontalAlignment="Center" VerticalAlignment="Center" Content="{ns:Loc CurrentYearOfStudy}" Grid.Column="0" Grid.Row="14" Margin="5"/>
             <TextBox x:Name="textBoxCurrentYearOfStudy" BorderBrush="Black" BorderThickness="1" Margin="0,0,0,5" Width="200" Height="22" Grid.Column="1" Grid.Row="14" Text="{Binding StudentDto.CurrentYearOfStudy, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Validation.ErrorTemplate="{StaticResource ValidationTemplate}"/>
 
-            <Label HorizontalAlignment="Center" VerticalAlignment="Center" Content="Status" Grid.Column="0" Grid.Row="15" Margin="5"/>
+            <Label HorizontalAlignment="Center" VerticalAlignment="Center" Content="{ns:Loc Status}" Grid.Column="0" Grid.Row="15" Margin="5"/>
 
             <ComboBox x:Name="statusComboBox" Width="200" Height="22" Grid.Column="1" Grid.Row="15" SelectedItem="{Binding StudentDto.Status, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,5"/>
 
-            <Button x:Name="addButton" Content="Add" BorderThickness="1" Grid.Column="0" Grid.Row="17" Width="60" Height="20" VerticalContentAlignment="Center" HorizontalAlignment="Right" Margin="0,0,50,0" Click="Add_Button_Click" />
-            <Button Content="Cancel" BorderThickness="1" Grid.Column="1" Grid.Row="17" Width="60" Height="20" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="50,0,0,0" Click="Cancel_Button_Click" />
+            <Button x:Name="addButton" Content="{ns:Loc Add}" BorderThickness="1" Grid.Column="0" Grid.Row="17" Width="60" Height="20" VerticalContentAlignment="Center" HorizontalAlignment="Right" Margin="0,0,50,0" Click="Add_Button_Click" />
+            <Button Content="{ns:Loc Cancel}" BorderThickness="1" Grid.Column="1" Grid.Row="17" Width="60" Height="20" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="50,0,0,0" Click="Cancel_Button_Click" />
 
         </Grid>
 

@@ -4,15 +4,16 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GUI.View"
+        xmlns:ns="clr-namespace:GUI.Localization"
         mc:Ignorable="d"
-        Title="DepartmentView" Height="auto" Width="auto" WindowStartupLocation="CenterScreen">
+        Title="DepartmentView" Height="auto" Width="auto" WindowStartupLocation="CenterScreen" KeyDown="Window_KeyDown">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
-        <Button Content="Show Professors" Click="ShowProfessors_Click" Margin="5,10,0,10" Grid.Row="0" HorizontalAlignment="Left" Height="20"/>
-        <Button Content="Show Subjects" Click="ShowSubjects_Click" Grid.Row="0" Height="20" HorizontalAlignment="Left" Margin="110,10,0,10" />
+        <Button Content="{ns:Loc Show Professors}" Click="ShowProfessors_Click" Margin="5,10,0,10" Grid.Row="0" HorizontalAlignment="Left" Height="20"/>
+        <Button Content="{ns:Loc Show Subjects}" Click="ShowSubjects_Click" Grid.Row="0" Height="20" HorizontalAlignment="Left" Margin="110,10,0,10" />
         <DataGrid
                     Grid.Row="1"
                     AutoGenerateColumns="False"
@@ -24,13 +25,13 @@
                     IsReadOnly="True"
                     VerticalAlignment="Top">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="DepartmentCode" Binding="{Binding DepCode}"/>
-                <DataGridTextColumn Header="Name" Binding="{Binding Name}"/>
-                <DataGridTextColumn Header="ChiefId" Binding="{Binding ChiefId}"/>
-                <DataGridTextColumn Header="Chief's Name" Binding="{Binding Chief.Name}"/>
-                <DataGridTextColumn Header="Chief' LastName" Binding="{Binding Chief.Lastname}"/>
-                <DataGridTextColumn Header="Chief' Title" Binding="{Binding Chief.Title}"/>
-                <DataGridTextColumn Header="Chief' YearsOfService" Binding="{Binding Chief.YearsOfService}"/>
+                <DataGridTextColumn Header="{ns:Loc DepartmentCode}" Binding="{Binding DepCode}"/>
+                <DataGridTextColumn Header="{ns:Loc Name}" Binding="{Binding Name}"/>
+                <DataGridTextColumn Header="{ns:Loc Chiefs Id}" Binding="{Binding ChiefId}"/>
+                <DataGridTextColumn Header="{ns:Loc Chiefs Name}" Binding="{Binding Chief.Name}"/>
+                <DataGridTextColumn Header="{ns:Loc Chiefs Lastname}" Binding="{Binding Chief.Lastname}"/>
+                <DataGridTextColumn Header="{ns:Loc Chiefs Title}" Binding="{Binding Chief.Title}"/>
+                <DataGridTextColumn Header="{ns:Loc Chiefs YearsOfService}"  Binding="{Binding Chief.YearsOfService}"/>
             </DataGrid.Columns>
         </DataGrid>
     </Grid>

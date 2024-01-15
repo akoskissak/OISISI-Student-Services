@@ -23,6 +23,9 @@ namespace GUI.View
     /// </summary>
     public partial class AddSubjectForStudent : Window
     {
+        private App app;
+        private const string SRB = "sr-RS";
+        private const string ENG = "en-US";
         private StudentDTO SelectedStudent { get; set; }
         public ObservableCollection<SubjectDTO> SubjectDtosWithoutStudent { get; set; }
         public ObservableCollection<SubjectDTO> SubjectDTOs { get; set; }
@@ -37,6 +40,7 @@ namespace GUI.View
         {
             InitializeComponent();
             DataContext = this;
+            app = (App)Application.Current;
             this._studentController = studentController;
             this._studentSubjectController = new StudentSubjectController();
             this._subjectController = new SubjectController();
@@ -87,6 +91,23 @@ namespace GUI.View
         private void SubjectsToAddForProfessorDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             SelectedSubjectDto = SubjectsToAddForProfessorDataGrid.SelectedItems.Cast<SubjectDTO>().ToList();
+        }
+        private void Window_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (Keyboard.IsKeyDown(Key.LeftShift) && Keyboard.IsKeyDown(Key.E))
+                MenuItem_Click_English(sender, e);
+            else if (Keyboard.IsKeyDown(Key.LeftShift) && Keyboard.IsKeyDown(Key.R))
+                MenuItem_Click_Serbian(sender, e);
+        }
+
+        private void MenuItem_Click_English(object sender, RoutedEventArgs e)
+        {
+            app.ChangeLanguage(ENG);
+        }
+
+        private void MenuItem_Click_Serbian(object sender, RoutedEventArgs e)
+        {
+            app.ChangeLanguage(SRB);
         }
     }
 }
