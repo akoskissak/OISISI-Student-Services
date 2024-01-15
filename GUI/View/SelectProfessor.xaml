@@ -4,8 +4,9 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GUI.View"
+        xmlns:ns="clr-namespace:GUI.Localization"
         mc:Ignorable="d"
-        Title="Select Professor" Height="450" Width="800">
+        Title="Select Professor" Height="450" Width="800" KeyDown="Window_KeyDown">
     <Grid VerticalAlignment="Center" HorizontalAlignment="Center">
         <Grid.RowDefinitions>
             <RowDefinition Height="auto" />
@@ -35,7 +36,7 @@
             </DataGrid.Columns>
         </DataGrid>
 
-        <Button Content="Confirm" Grid.Row="1" Grid.Column="0" Width="100" Click="Confirm_Button_Click" />
-        <Button Content="Cancel" Grid.Row="1" Grid.Column="1" Width="100" Click="Cancel_Button_Click" />
+        <Button Content="{ns:Loc Confirm}" Grid.Row="1" Grid.Column="0" Width="100" Click="Confirm_Button_Click" />
+        <Button Content="{ns:Loc Cancel}" Grid.Row="1" Grid.Column="1" Width="100" Click="Cancel_Button_Click" />
     </Grid>
 </Window>

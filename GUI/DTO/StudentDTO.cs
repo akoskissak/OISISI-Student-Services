@@ -346,7 +346,7 @@ namespace GUI.DTO
         private Regex _StudyProgrammeMarkRegex = new Regex("^[A-Za-z0-9]+$");
         private Regex _EnrollmentNumberkRegex = new Regex("^[1-9][0-9]*$");
         private Regex _EnrollmentYearRegex = new Regex("^[12]{1}[0-9]{3,3}$");
-        private Regex _CurrentYearOfStudyRegex = new Regex("^[1-9][0-9]$");
+        private Regex _CurrentYearOfStudyRegex = new Regex("^[1-9][0-9]?$");
         private Regex _StreetRegex = new Regex("^[a-zA-Z0-9. ]+$");
         private Regex _NumberRegex = new Regex("^[a-zA-Z0-9/ ]+$");
         public string this[string columnName]

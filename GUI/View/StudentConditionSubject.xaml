@@ -4,18 +4,19 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GUI.View"
+        xmlns:ns="clr-namespace:GUI.Localization"
         mc:Ignorable="d"
-        Title="StudentConditionSubject" Height="450" Width="800" WindowStartupLocation="CenterScreen">
+        Title="StudentConditionSubject" Height="450" Width="800" WindowStartupLocation="CenterScreen" KeyDown="Window_KeyDown">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
-        <TextBlock HorizontalAlignment="Left" Text="who are enrolled in both the primary and secondary selected subjects" Grid.Row="0" Margin="94,10,0,10"/>
-        <Button HorizontalAlignment="Left" Content="Show students" Grid.Row="0" Margin="5,10,0,10" Click="ShowStudents1_Click"/>
-        <Button HorizontalAlignment="Left" Content="Show students" Grid.Row="1" Margin="5,10,0,10" Click="ShowStudents2_Click"/>
-        <TextBlock HorizontalAlignment="Left" Text="who have passed one selected subject but have not passed the other" Grid.Row="1" Margin="94,10,0,10"/>
+        <TextBlock HorizontalAlignment="Left" Text="{ns:Loc Who are enrolled}" Grid.Row="0" Margin="94,10,0,10"/>
+        <Button HorizontalAlignment="Left" Content="{ns:Loc Show Students}" Grid.Row="0" Margin="5,10,0,10" Click="ShowStudents1_Click"/>
+        <Button HorizontalAlignment="Left" Content="{ns:Loc Show Students}" Grid.Row="1" Margin="5,10,0,10" Click="ShowStudents2_Click"/>
+        <TextBlock HorizontalAlignment="Left" Text="{ns:Loc Who have passed}" Grid.Row="1" Margin="94,10,0,10"/>
         <DataGrid Grid.Row="2"
                   Height="350"
                   AutoGenerateColumns="False"
@@ -25,11 +26,11 @@
                   SelectionMode="Single"
                   IsReadOnly="True">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="SubjectCode" Binding="{Binding SubjectCode}"/>
-                <DataGridTextColumn Header="Name" Binding="{Binding Name}"/>
-                <DataGridTextColumn Header="Espb" Binding="{Binding Espb}"/>
-                <DataGridTextColumn Header="YearOfStudy" Binding="{Binding YearOfStudy}"/>
-                <DataGridTextColumn Header="Semester" Binding="{Binding Semester}"/>
+                <DataGridTextColumn Header="{ns:Loc SubjectCode}" Binding="{Binding SubjectCode}"/>
+                <DataGridTextColumn Header="{ns:Loc Name}" Binding="{Binding Name}"/>
+                <DataGridTextColumn Header="{ns:Loc Espb}" Binding="{Binding Espb}"/>
+                <DataGridTextColumn Header="{ns:Loc YearOfStudy}" Binding="{Binding YearOfStudy}"/>
+                <DataGridTextColumn Header="{ns:Loc Semester}" Binding="{Binding Semester}"/>
             </DataGrid.Columns>
         </DataGrid>
     </Grid>

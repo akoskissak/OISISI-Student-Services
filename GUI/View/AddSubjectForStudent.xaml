@@ -4,15 +4,15 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GUI.View"
+        xmlns:ns="clr-namespace:GUI.Localization"
         mc:Ignorable="d"
-        Title="AddSubjectForStudent" Height="400" Width="300" WindowStartupLocation="CenterScreen">
+        Title="AddSubjectForStudent" Height="400" Width="300" WindowStartupLocation="CenterScreen" KeyDown="Window_KeyDown">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
-        <TextBlock Text="Subjects:" Grid.Row="0" Margin="10,10,0,10"/>
         <DataGrid Grid.Row="1"
                   Height="200"
                   AutoGenerateColumns="False"
@@ -23,11 +23,11 @@
                   SelectionMode="Extended"
                   IsReadOnly="True" >
             <DataGrid.Columns>
-                <DataGridTextColumn Binding="{Binding SubjectCodeName}"/>
+                <DataGridTextColumn Header="{ns:Loc Subject}" Binding="{Binding SubjectCodeName}"/>
             </DataGrid.Columns>
         </DataGrid>
-        <Button Grid.Row="2" Content="Confirm" HorizontalAlignment="Right" Margin="0,10,80,0" Width="50" Click="Confirm_Click"/>
-        <Button Grid.Row="2" Content="Cancel" HorizontalAlignment="Right" Margin="0,10,25,0" Width="50" Click="Cancel_Click"/>
+        <Button Grid.Row="2" Content="{ns:Loc Confirm}" HorizontalAlignment="Right" Margin="0,10,80,0" Width="50" Click="Confirm_Click"/>
+        <Button Grid.Row="2" Content="{ns:Loc Cancel}" HorizontalAlignment="Right" Margin="0,10,25,0" Width="50" Click="Cancel_Click"/>
 
     </Grid>
 </Window>

@@ -4,9 +4,10 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GUI.View"
+        xmlns:ns="clr-namespace:GUI.Localization"
         mc:Ignorable="d"
         Title="PassSubject" Height="450" Width="800"
-        Closing="Window_Closing">
+        Closing="Window_Closing" KeyDown="Window_KeyDown">
     <Grid Margin="20,20,20,20">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
@@ -21,10 +22,10 @@
             <RowDefinition Height="auto" />
         </Grid.RowDefinitions>
 
-        <Label VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Width="200" Content="Subject Code" Grid.Column="0" Grid.Row="0" />
-        <Label VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Width="200" Content="Subject Name" Grid.Column="0" Grid.Row="1" />
-        <Label VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Width="200" Content="Grade" Grid.Column="0" Grid.Row="2" />
-        <Label VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Width="200"  Content="Date" Grid.Column="0" Grid.Row="3" />
+        <Label VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Width="200" Content="{ns:Loc SubjectCode}" Grid.Column="0" Grid.Row="0" />
+        <Label VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Width="200" Content="{ns:Loc SubjectName}" Grid.Column="0" Grid.Row="1" />
+        <Label VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Width="200" Content="{ns:Loc Grade}" Grid.Column="0" Grid.Row="2" />
+        <Label VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Width="200"  Content="{ns:Loc Date}" Grid.Column="0" Grid.Row="3" />
 
         <TextBox VerticalContentAlignment="Center" Width="200" Grid.Column="1" Grid.Row="0" Text="{Binding Path=SubjectDto.SubjectCode}" IsReadOnly="True" />
         <TextBox VerticalContentAlignment="Center" Width="200" Grid.Column="1" Grid.Row="1" Text="{Binding Path=SubjectDto.Name}" IsReadOnly="True" />
@@ -37,7 +38,7 @@
         </ComboBox>
         <DatePicker x:Name="DatePicker" HorizontalAlignment="Center" VerticalAlignment="Center" Width="200" Grid.Column="1" Grid.Row="3"
                     SelectedDate="{Binding Path=ExamGradeDto.DateProbni, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" SelectedDateChanged="DatePicker_SelectedDateChanged" Focusable="False" />
-        <Button x:Name="ConfirmButton" Content="Confirm" HorizontalAlignment="Right" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Width="60" Grid.Column="0" Grid.Row="4" Margin="0,20,40,0" Click="Confirm_Button_Click" />
-        <Button Content="Cancel" HorizontalAlignment="Left" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Width="60" Grid.Column="1" Grid.Row="4" Margin="40,20,0,0" Click="Cancel_Button_Click" />
+        <Button x:Name="ConfirmButton" Content="{ns:Loc Confirm}" HorizontalAlignment="Right" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Width="60" Grid.Column="0" Grid.Row="4" Margin="0,20,40,0" Click="Confirm_Button_Click" />
+        <Button Content="{ns:Loc Cancel}" HorizontalAlignment="Left" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Width="60" Grid.Column="1" Grid.Row="4" Margin="40,20,0,0" Click="Cancel_Button_Click" />
     </Grid>
 </Window>

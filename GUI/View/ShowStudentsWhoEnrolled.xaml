@@ -4,8 +4,9 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GUI.View"
+        xmlns:ns="clr-namespace:GUI.Localization"
         mc:Ignorable="d"
-        Title="ShowStudentsWhoEnrolled" Height="450" Width="800" WindowStartupLocation="CenterScreen">
+        Title="ShowStudentsWhoEnrolled" Height="450" Width="800" WindowStartupLocation="CenterScreen" KeyDown="Window_KeyDown">
     <Grid>
         <DataGrid Height="350"
                   AutoGenerateColumns="False"
@@ -13,12 +14,12 @@
                   ItemsSource="{Binding StudentDtos, UpdateSourceTrigger=PropertyChanged}"
                   IsReadOnly="True">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Index" Binding="{Binding Index}"/>
-                <DataGridTextColumn Header="Name" Binding="{Binding Name}"/>
-                <DataGridTextColumn Header="LastName" Binding="{Binding Lastname}"/>
-                <DataGridTextColumn Header="CurrentYearOfStudy" Binding="{Binding CurrentYearOfStudy}"/>
-                <DataGridTextColumn Header="Status" Binding="{Binding Status}"/>
-                <DataGridTextColumn Header="AverageGrade" Binding="{Binding AverageGrade, StringFormat={}{0:N2}}"/>
+                <DataGridTextColumn Header="{ns:Loc Index}" Binding="{Binding Index}"/>
+                <DataGridTextColumn Header="{ns:Loc Name}" Binding="{Binding Name}"/>
+                <DataGridTextColumn Header="{ns:Loc Lastname}" Binding="{Binding Lastname}"/>
+                <DataGridTextColumn Header="{ns:Loc CurrentYearOfStudy}" Binding="{Binding CurrentYearOfStudy}"/>
+                <DataGridTextColumn Header="{ns:Loc Status}" Binding="{Binding Status}"/>
+                <DataGridTextColumn Header="{ns:Loc AverageGrade}" Binding="{Binding AverageGrade, StringFormat={}{0:N2}}"/>
             </DataGrid.Columns>
 
         </DataGrid>

@@ -22,6 +22,9 @@ namespace GUI.View
     /// </summary>
     public partial class DepartmentView : Window
     {
+        private App app;
+        private const string SRB = "sr-RS";
+        private const string ENG = "en-US";
         private DepartmentController _departmentController {  get; set; }
         public ObservableCollection<DepartmentDTO> DepartmentDtos { get; set; }
         public ProfessorController _professorController { get; set; }
@@ -31,6 +34,7 @@ namespace GUI.View
         {
             InitializeComponent();
             DataContext = this;
+            app = (App)Application.Current;
             DepartmentDtos = new ObservableCollection<DepartmentDTO>();
             this._departmentController = new DepartmentController();
             this._professorController = professorController;
@@ -89,6 +93,23 @@ namespace GUI.View
                 string caption = "Select department";
                 MessageBox.Show(messageBoxText, caption, MessageBoxButton.OK, MessageBoxImage.Warning);
             }
+        }
+        private void Window_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (Keyboard.IsKeyDown(Key.LeftShift) && Keyboard.IsKeyDown(Key.E))
+                MenuItem_Click_English(sender, e);
+            else if (Keyboard.IsKeyDown(Key.LeftShift) && Keyboard.IsKeyDown(Key.R))
+                MenuItem_Click_Serbian(sender, e);
+        }
+
+        private void MenuItem_Click_English(object sender, RoutedEventArgs e)
+        {
+            app.ChangeLanguage(ENG);
+        }
+
+        private void MenuItem_Click_Serbian(object sender, RoutedEventArgs e)
+        {
+            app.ChangeLanguage(SRB);
         }
     }
 }

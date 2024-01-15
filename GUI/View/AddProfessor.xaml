@@ -4,9 +4,11 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GUI.View"
+        xmlns:ns="clr-namespace:GUI.Localization"
         mc:Ignorable="d"
         Title="AddProfessor" Height="auto" Width="auto"
-        WindowStartupLocation="CenterScreen">
+        WindowStartupLocation="CenterScreen"
+        KeyDown="Window_KeyDown">
     <Window.Resources>
         <ControlTemplate x:Key="ValidationTemplate">
             <StackPanel>
@@ -39,19 +41,19 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
-            
-            <Label HorizontalAlignment="Center" Content="Lastname" Grid.Column="0" Grid.Row="0"/>
-            <Label HorizontalAlignment="Center" Content="Name" Grid.Column="0" Grid.Row="1"/>
-            <Label HorizontalAlignment="Center" Content="DateOfBirth" Grid.Column="0" Grid.Row="2"/>
-            <Label HorizontalAlignment="Center" Content="Street" Grid.Column="0" Grid.Row="3"/>
-            <Label HorizontalAlignment="Center" Content="Number" Grid.Column="0" Grid.Row="4"/>
-            <Label HorizontalAlignment="Center" Content="City" Grid.Column="0" Grid.Row="5"/>
-            <Label HorizontalAlignment="Center" Content="Country" Grid.Column="0" Grid.Row="6"/>
-            <Label HorizontalAlignment="Center" Content="PhoneNumber" Grid.Column="0" Grid.Row="7"/>
-            <Label HorizontalAlignment="Center" Content="Email" Grid.Column="0" Grid.Row="8"/>
-            <Label HorizontalAlignment="Center" Content="IdNumber" Grid.Column="0" Grid.Row="9"/>
-            <Label HorizontalAlignment="Center" Content="Title" Grid.Column="0" Grid.Row="10"/>
-            <Label HorizontalAlignment="Center" Content="YearsOfService" Grid.Column="0" Grid.Row="11"/>
+
+            <Label HorizontalAlignment="Center" Content="{ns:Loc Lastname}" Grid.Column="0" Grid.Row="0"/>
+            <Label HorizontalAlignment="Center" Content="{ns:Loc Name}" Grid.Column="0" Grid.Row="1"/>
+            <Label HorizontalAlignment="Center" Content="{ns:Loc DateOfBirth}" Grid.Column="0" Grid.Row="2"/>
+            <Label HorizontalAlignment="Center" Content="{ns:Loc Street}" Grid.Column="0" Grid.Row="3"/>
+            <Label HorizontalAlignment="Center" Content="{ns:Loc Number}" Grid.Column="0" Grid.Row="4"/>
+            <Label HorizontalAlignment="Center" Content="{ns:Loc City}" Grid.Column="0" Grid.Row="5"/>
+            <Label HorizontalAlignment="Center" Content="{ns:Loc Country}" Grid.Column="0" Grid.Row="6"/>
+            <Label HorizontalAlignment="Center" Content="{ns:Loc PhoneNumber}" Grid.Column="0" Grid.Row="7"/>
+            <Label HorizontalAlignment="Center" Content="{ns:Loc E-mail}" Grid.Column="0" Grid.Row="8"/>
+            <Label HorizontalAlignment="Center" Content="{ns:Loc IdNumber}" Grid.Column="0" Grid.Row="9"/>
+            <Label HorizontalAlignment="Center" Content="{ns:Loc Title}" Grid.Column="0" Grid.Row="10"/>
+            <Label HorizontalAlignment="Center" Content="{ns:Loc YearsOfService}" Grid.Column="0" Grid.Row="11"/>
 
             <TextBox x:Name="textBoxLastname" BorderBrush="Black" BorderThickness="2" Margin="0,0,0,20" Width="200" Height="22" Grid.Column="1" Grid.Row="0" Text="{Binding Path=ProfessorDto.Lastname, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
                      Validation.ErrorTemplate="{StaticResource ValidationTemplate}" />
@@ -77,8 +79,8 @@
                      Validation.ErrorTemplate="{StaticResource ValidationTemplate}" />
             <TextBox x:Name="textBoxYearsOfService" BorderBrush="Black" BorderThickness="2" Margin="0,0,0,20" Width="200" Height="22" Grid.Column="1" Grid.Row="11" Text="{Binding Path=ProfessorDto.YearsOfService, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
                      Validation.ErrorTemplate="{StaticResource ValidationTemplate}" />
-            <Button x:Name="addButton" Content="Add" BorderThickness="1" Grid.Column="0" Grid.Row="12" Width="60" Height="20" VerticalContentAlignment="Center" HorizontalAlignment="Right" Margin="0,0,50,0" Click="Add_Button_Click" />
-            <Button Content="Cancel" BorderThickness="1" Grid.Column="1" Grid.Row="12" Width="60" Height="20" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="50,0,0,0" Click="Cancel_Button_Click" />
+            <Button x:Name="addButton" Content="{ns:Loc Add}" BorderThickness="1" Grid.Column="0" Grid.Row="12" Width="60" Height="20" VerticalContentAlignment="Center" HorizontalAlignment="Right" Margin="0,0,50,0" Click="Add_Button_Click" />
+            <Button Content="{ns:Loc Cancel}" BorderThickness="1" Grid.Column="1" Grid.Row="12" Width="60" Height="20" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="50,0,0,0" Click="Cancel_Button_Click" />
         </Grid>
     </Grid>
 

@@ -23,12 +23,16 @@ namespace GUI.View
     /// </summary>
     public partial class ProfessorsForStudent : Window
     {
+        private App app;
+        private const string SRB = "sr-RS";
+        private const string ENG = "en-US";
         public ObservableCollection<ProfessorDTO> ProfessorsForStudentDtos { get; set; }
 
         public ProfessorsForStudent(List<Professor> professors)
         {
             InitializeComponent();
             DataContext = this;
+            app = (App)Application.Current;
 
             ProfessorsForStudentDtos = new ObservableCollection<ProfessorDTO>();
             foreach (Professor p in professors)
@@ -42,6 +46,23 @@ namespace GUI.View
             ProfessorsForStudentDtos.Clear();
             foreach (Professor professor in professors)
                 ProfessorsForStudentDtos.Add(new ProfessorDTO(professor));
+        }
+        private void Window_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (Keyboard.IsKeyDown(Key.LeftShift) && Keyboard.IsKeyDown(Key.E))
+                MenuItem_Click_English(sender, e);
+            else if (Keyboard.IsKeyDown(Key.LeftShift) && Keyboard.IsKeyDown(Key.R))
+                MenuItem_Click_Serbian(sender, e);
+        }
+
+        private void MenuItem_Click_English(object sender, RoutedEventArgs e)
+        {
+            app.ChangeLanguage(ENG);
+        }
+
+        private void MenuItem_Click_Serbian(object sender, RoutedEventArgs e)
+        {
+            app.ChangeLanguage(SRB);
         }
     }
 }
