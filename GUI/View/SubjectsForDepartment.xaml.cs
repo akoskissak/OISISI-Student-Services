@@ -23,6 +23,10 @@ namespace GUI.View
     /// </summary>
     public partial class SubjectsForDepartment : Window
     {
+        private App app;
+        private const string SRB = "sr-RS";
+        private const string ENG = "en-US";
+
         private DepartmentController _departmentController;
         private SubjectController _subjectController;
         public ObservableCollection<SubjectDTO> SubjectForDepartmentDtos { get; set; }
@@ -32,6 +36,8 @@ namespace GUI.View
         {
             InitializeComponent();
             DataContext = this;
+            app = (App)Application.Current;
+
             this._departmentController = departmentController;
             this._subjectController = new SubjectController();
             this.SelectedDepartment = selectedDepartment;
@@ -51,6 +57,24 @@ namespace GUI.View
                     SubjectForDepartmentDtos.Add(new SubjectDTO(subject));
                 }
             }
+        }
+
+        private void Window_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (Keyboard.IsKeyDown(Key.LeftShift) && Keyboard.IsKeyDown(Key.E))
+                MenuItem_Click_English(sender, e);
+            else if (Keyboard.IsKeyDown(Key.LeftShift) && Keyboard.IsKeyDown(Key.R))
+                MenuItem_Click_Serbian(sender, e);
+        }
+
+        private void MenuItem_Click_English(object sender, RoutedEventArgs e)
+        {
+            app.ChangeLanguage(ENG);
+        }
+
+        private void MenuItem_Click_Serbian(object sender, RoutedEventArgs e)
+        {
+            app.ChangeLanguage(SRB);
         }
     }
 }

@@ -4,9 +4,11 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GUI.View"
+        xmlns:ns="clr-namespace:GUI.Localization"
         mc:Ignorable="d"
         Title="UpdateStudent" Height="auto" Width="auto" WindowStartupLocation="CenterScreen"
-        Closing="Window_Closing">
+        Closing="Window_Closing"
+        KeyDown="Window_KeyDown">
     <Window.Resources>
         <ControlTemplate x:Key="ValidationTemplate">
             <StackPanel>
@@ -18,7 +20,7 @@
     </Window.Resources>
     <Grid>
         <TabControl Name="StudentTabs">
-            <TabItem Name="Informations" Header="Informations">
+            <TabItem Name="Informations" Header="{ns:Loc Informations}">
                 <Grid Margin="20, 20, 20, 20">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
@@ -43,20 +45,20 @@
                         <RowDefinition Height="auto"/>
                     </Grid.RowDefinitions>
 
-                    <Label HorizontalAlignment="Center" Content="Lastname" Grid.Column="0" Grid.Row="0"/>
-                    <Label HorizontalAlignment="Center" Content="Name" Grid.Column="0" Grid.Row="1"/>
-                    <Label HorizontalAlignment="Center" Content="DateOfBirth" Grid.Column="0" Grid.Row="2"/>
-                    <Label HorizontalAlignment="Center" Content="Street" Grid.Column="0" Grid.Row="3"/>
-                    <Label HorizontalAlignment="Center" Content="Number" Grid.Column="0" Grid.Row="4"/>
-                    <Label HorizontalAlignment="Center" Content="City" Grid.Column="0" Grid.Row="5"/>
-                    <Label HorizontalAlignment="Center" Content="Country" Grid.Column="0" Grid.Row="6"/>
-                    <Label HorizontalAlignment="Center" Content="PhoneNumber" Grid.Column="0" Grid.Row="7"/>
-                    <Label HorizontalAlignment="Center" Content="Email" Grid.Column="0" Grid.Row="8"/>
-                    <Label HorizontalAlignment="Center" Content="StudyProgrammeMark" Grid.Column="0" Grid.Row="9"/>
-                    <Label HorizontalAlignment="Center" Content="EnrollmentNumber" Grid.Column="0" Grid.Row="10"/>
-                    <Label HorizontalAlignment="Center" Content="EnrollmentYear" Grid.Column="0" Grid.Row="11"/>
-                    <Label HorizontalAlignment="Center" Content="CurrentYearOfStudy" Grid.Column="0" Grid.Row="12"/>
-                    <Label HorizontalAlignment="Center" Content="Status" Grid.Column="0" Grid.Row="13"/>
+                    <Label HorizontalAlignment="Center" Content="{ns:Loc Lastname}" Grid.Column="0" Grid.Row="0"/>
+                    <Label HorizontalAlignment="Center" Content="{ns:Loc Name}" Grid.Column="0" Grid.Row="1"/>
+                    <Label HorizontalAlignment="Center" Content="{ns:Loc DateOfBirth}" Grid.Column="0" Grid.Row="2"/>
+                    <Label HorizontalAlignment="Center" Content="{ns:Loc Street}" Grid.Column="0" Grid.Row="3"/>
+                    <Label HorizontalAlignment="Center" Content="{ns:Loc Number}" Grid.Column="0" Grid.Row="4"/>
+                    <Label HorizontalAlignment="Center" Content="{ns:Loc City}" Grid.Column="0" Grid.Row="5"/>
+                    <Label HorizontalAlignment="Center" Content="{ns:Loc Country}" Grid.Column="0" Grid.Row="6"/>
+                    <Label HorizontalAlignment="Center" Content="{ns:Loc PhoneNumber}" Grid.Column="0" Grid.Row="7"/>
+                    <Label HorizontalAlignment="Center" Content="{ns:Loc E-mail}" Grid.Column="0" Grid.Row="8"/>
+                    <Label HorizontalAlignment="Center" Content="{ns:Loc StudyProgrammeMark}" Grid.Column="0" Grid.Row="9"/>
+                    <Label HorizontalAlignment="Center" Content="{ns:Loc EnrollmentNumber}" Grid.Column="0" Grid.Row="10"/>
+                    <Label HorizontalAlignment="Center" Content="{ns:Loc EnrollmentYear}" Grid.Column="0" Grid.Row="11"/>
+                    <Label HorizontalAlignment="Center" Content="{ns:Loc CurrentYearOfStudy}" Grid.Column="0" Grid.Row="12"/>
+                    <Label HorizontalAlignment="Center" Content="{ns:Loc Status}" Grid.Column="0" Grid.Row="13"/>
 
                     <TextBox x:Name="textBoxLastName" BorderBrush="Black" BorderThickness="2" Margin="0,0,0,5" Width="200" Height="22" Grid.Column="1" Grid.Row="0" Text="{Binding Path=StudentDto.Lastname, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Validation.ErrorTemplate="{StaticResource ValidationTemplate}" />
                     <TextBox x:Name="textBoxName" BorderBrush="Black" BorderThickness="2" Margin="0,0,0,5" Width="200" Height="22" Grid.Column="1" Grid.Row="1" Text="{Binding Path=StudentDto.Name, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Validation.ErrorTemplate="{StaticResource ValidationTemplate}" />
@@ -74,18 +76,18 @@
                     <TextBox x:Name="textBoxCurrentYearOfStudy" BorderBrush="Black" BorderThickness="2" Margin="0,0,0,5" Width="200" Height="22" Grid.Column="1" Grid.Row="12" Text="{Binding Path=StudentDto.CurrentYearOfStudy, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Validation.ErrorTemplate="{StaticResource ValidationTemplate}" />
                     <ComboBox x:Name="statusComboBox" Width="200" Height="22" Grid.Column="1" Grid.Row="13" SelectedItem="{Binding StudentDto.Status, UpdateSourceTrigger=PropertyChanged}"/>
 
-                    <Button x:Name="updateButton" Content="Update" BorderThickness="1" Grid.Column="0" Grid.Row="14" Width="60" Height="20" VerticalContentAlignment="Center" HorizontalAlignment="Right" Margin="0,0,50,0" Click="Update_Button_Click" />
-                    <Button Content="Cancel" BorderThickness="1" Grid.Column="1" Grid.Row="14" Width="60" Height="20" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="50,0,0,0" Click="Cancel_Button_Click" />
+                    <Button x:Name="updateButton" Content="{ns:Loc Update}" BorderThickness="1" Grid.Column="0" Grid.Row="14" Width="60" Height="20" VerticalContentAlignment="Center" HorizontalAlignment="Right" Margin="0,0,50,0" Click="Update_Button_Click" />
+                    <Button Content="{ns:Loc Cancel}" BorderThickness="1" Grid.Column="1" Grid.Row="14" Width="60" Height="20" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="50,0,0,0" Click="Cancel_Button_Click" />
                 </Grid>
             </TabItem>
-            <TabItem Name="Submitted" Header="Submitted">
+            <TabItem Name="Submitted" Header="{ns:Loc Submitted}">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="auto"/>
                         <RowDefinition Height="auto"/>
                         <RowDefinition Height="auto"/>
                     </Grid.RowDefinitions>
-                    <Button Content="Remove Grade" Click="Remove_Click" Grid.Row="0" HorizontalAlignment="Left" Margin="5,10,0,10"/>
+                    <Button Content="{ns:Loc RemoveGrade}" Click="Remove_Click" Grid.Row="0" HorizontalAlignment="Left" Margin="5,10,0,10"/>
                     <DataGrid Height="350"
                               Grid.Row="1"
                           AutoGenerateColumns="False"
@@ -96,11 +98,11 @@
                           SelectionMode="Single"
                           IsReadOnly="True">
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="Subject Code" Binding="{Binding SubjectCode}"/>
-                            <DataGridTextColumn Header="Subject Name" Binding="{Binding SubjectName}"/>
-                            <DataGridTextColumn Header="ESPB" Binding="{Binding Espb}"/>
-                            <DataGridTextColumn Header="Grade" Binding="{Binding Grade}"/>
-                            <DataGridTextColumn Header="Date" Binding="{Binding Date}"/>
+                            <DataGridTextColumn Header="{ns:Loc SubjectCode}" Binding="{Binding SubjectCode}"/>
+                            <DataGridTextColumn Header="{ns:Loc SubjectName}" Binding="{Binding SubjectName}"/>
+                            <DataGridTextColumn Header="{ns:Loc Espb}" Binding="{Binding Espb}"/>
+                            <DataGridTextColumn Header="{ns:Loc Grade}" Binding="{Binding Grade}"/>
+                            <DataGridTextColumn Header="{ns:Loc Date}" Binding="{Binding Date}"/>
                         </DataGrid.Columns>
                     </DataGrid>
                     <StackPanel Grid.Row="2">
@@ -115,16 +117,16 @@
                     </StackPanel>
                 </Grid>
             </TabItem>
-            <TabItem Name="Unsubmitted" Header="Unsubmitted">
+            <TabItem Name="Unsubmitted" Header="{ns:Loc Unsubmitted}">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="auto"/>
                         <RowDefinition Height="auto"/>
                         <RowDefinition Height="auto"/>
                     </Grid.RowDefinitions>
-                    <Button Content="Add" Click="Add_Subject_Click" Grid.Row="0" HorizontalAlignment="Left" Margin="5,10,0,5" Width="35"/>
-                    <Button Content="Clear" Click="Clear_Subject_Click" Grid.Row="0" HorizontalAlignment="Left" Margin="50,10,0,5" Width="35"/>
-                    <Button Content="Pass" Click="Pass_Click" Grid.Row="0" HorizontalAlignment="Left" Margin="95,10,0,5" Width="35"/>
+                    <Button Content="{ns:Loc Add}" Click="Add_Subject_Click" Grid.Row="0" HorizontalAlignment="Left" Margin="5,10,0,5" Width="35"/>
+                    <Button Content="{ns:Loc Clear}" Click="Clear_Subject_Click" Grid.Row="0" HorizontalAlignment="Left" Margin="50,10,0,5" Width="35"/>
+                    <Button Content="{ns:Loc Pass}" Click="Pass_Click" Grid.Row="0" HorizontalAlignment="Left" Margin="95,10,0,5" Width="35"/>
                     <DataGrid Height="350"
                               Grid.Row="1"
                           AutoGenerateColumns="False"
@@ -134,11 +136,11 @@
                           SelectionChanged="UnsubmittedDataGrid_SelectionChanged"
                           SelectionMode="Single" IsReadOnly="True">
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="Subject Code" Binding="{Binding SubjectCode}"/>
-                            <DataGridTextColumn Header="Subject Name" Binding="{Binding Name}"/>
-                            <DataGridTextColumn Header="ESPB" Binding="{Binding Espb}"/>
-                            <DataGridTextColumn Header="Year of study" Binding="{Binding YearOfStudy}"/>
-                            <DataGridTextColumn Header="Semester" Binding="{Binding Semester}"/>
+                            <DataGridTextColumn Header="{ns:Loc SubjectCode}" Binding="{Binding SubjectCode}"/>
+                            <DataGridTextColumn Header="{ns:Loc SubjectName}" Binding="{Binding Name}"/>
+                            <DataGridTextColumn Header="{ns:Loc Espb}" Binding="{Binding Espb}"/>
+                            <DataGridTextColumn Header="{ns:Loc YearOfStudy}" Binding="{Binding YearOfStudy}"/>
+                            <DataGridTextColumn Header="{ns:Loc Semester}" Binding="{Binding Semester}"/>
                         </DataGrid.Columns>
                     </DataGrid>
                 </Grid>

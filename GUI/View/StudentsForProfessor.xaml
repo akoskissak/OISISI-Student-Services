@@ -4,9 +4,11 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GUI.View"
+        xmlns:ns="clr-namespace:GUI.Localization"
         mc:Ignorable="d"
         Title="StudentsForProfessor" Height="auto" Width="auto"
-        WindowStartupLocation="CenterScreen">
+        WindowStartupLocation="CenterScreen"
+        KeyDown="Window_KeyDown">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
@@ -25,9 +27,9 @@
                   ItemsSource="{Binding StudentsForProfessorDtos, UpdateSourceTrigger=PropertyChanged}"
                   IsReadOnly="True">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Index" Binding="{Binding Index}"/>
-                <DataGridTextColumn Header="Name" Binding="{Binding Name}"/>
-                <DataGridTextColumn Header="LastName" Binding="{Binding Lastname}"/>
+                <DataGridTextColumn Header="{ns:Loc Index}" Binding="{Binding Index}"/>
+                <DataGridTextColumn Header="{ns:Loc Name}" Binding="{Binding Name}"/>
+                <DataGridTextColumn Header="{ns:Loc Lastname}" Binding="{Binding Lastname}"/>
             </DataGrid.Columns>
             
         </DataGrid>

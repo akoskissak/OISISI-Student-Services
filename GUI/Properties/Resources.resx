@@ -117,49 +117,196 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="About" xml:space="preserve">
+    <value>Op_is</value>
+  </data>
+  <data name="Add" xml:space="preserve">
+    <value>Dodaj</value>
+  </data>
+  <data name="AddSubject" xml:space="preserve">
+    <value>Dodaj predmet</value>
+  </data>
+  <data name="AverageGrade" xml:space="preserve">
+    <value>Prosecna Ocena</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Ponisti</value>
+  </data>
+  <data name="City" xml:space="preserve">
+    <value>Grad</value>
+  </data>
+  <data name="Clear" xml:space="preserve">
+    <value>Ponisti</value>
+  </data>
   <data name="Close" xml:space="preserve">
-    <value>Zatvori</value>
+    <value>_Zatvori</value>
+  </data>
+  <data name="Country" xml:space="preserve">
+    <value>Drzava</value>
+  </data>
+  <data name="CurrentPage" xml:space="preserve">
+    <value>Trenutna Strana</value>
+  </data>
+  <data name="CurrentYearOfStudy" xml:space="preserve">
+    <value>Trenutna Godina Studiranja</value>
+  </data>
+  <data name="Date" xml:space="preserve">
+    <value>Datum</value>
+  </data>
+  <data name="DateOfBirth" xml:space="preserve">
+    <value>Datum Rodjenja</value>
   </data>
   <data name="Delete" xml:space="preserve">
-    <value>Obrisi</value>
+    <value>_Obrisi</value>
+  </data>
+  <data name="Departments" xml:space="preserve">
+    <value>Katedre</value>
+  </data>
+  <data name="E-mail" xml:space="preserve">
+    <value>Imejl</value>
   </data>
   <data name="Edit" xml:space="preserve">
-    <value>Uredi</value>
+    <value>_Uredi</value>
   </data>
   <data name="English" xml:space="preserve">
-    <value>Engleski</value>
+    <value>_Engleski</value>
+  </data>
+  <data name="EnrollmentNumber" xml:space="preserve">
+    <value>Broj Upisa</value>
+  </data>
+  <data name="EnrollmentYear" xml:space="preserve">
+    <value>Godina Upisa</value>
+  </data>
+  <data name="Espb" xml:space="preserve">
+    <value>Espb</value>
   </data>
   <data name="File" xml:space="preserve">
-    <value>Fajl</value>
+    <value>_Fajl</value>
   </data>
   <data name="FirstName" xml:space="preserve">
     <value>Ime</value>
   </data>
+  <data name="Grade" xml:space="preserve">
+    <value>Ocena</value>
+  </data>
+  <data name="Help" xml:space="preserve">
+    <value>_Pomoc</value>
+  </data>
   <data name="IdCard" xml:space="preserve">
     <value>Broj licne karte</value>
+  </data>
+  <data name="IdNumber" xml:space="preserve">
+    <value>Broj Licne Karte</value>
   </data>
   <data name="Index" xml:space="preserve">
     <value>Indeks</value>
   </data>
-  <data name="LastName" xml:space="preserve">
+  <data name="Informations" xml:space="preserve">
+    <value>Informacije</value>
+  </data>
+  <data name="Lastname" xml:space="preserve">
     <value>Prezime</value>
   </data>
   <data name="Localization" xml:space="preserve">
-    <value>Lokalizacija</value>
+    <value>_Lokalizacija</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Ime</value>
   </data>
   <data name="New" xml:space="preserve">
-    <value>Novi</value>
+    <value>_Novi</value>
+  </data>
+  <data name="NextPage" xml:space="preserve">
+    <value>Naredna Strana</value>
+  </data>
+  <data name="Number" xml:space="preserve">
+    <value>Broj</value>
+  </data>
+  <data name="Open" xml:space="preserve">
+    <value>_Otvori</value>
+  </data>
+  <data name="Pass" xml:space="preserve">
+    <value>Polozi</value>
+  </data>
+  <data name="PhoneNumber" xml:space="preserve">
+    <value>Broj Telefona</value>
+  </data>
+  <data name="PreviousPage" xml:space="preserve">
+    <value>Prethodna Strana</value>
+  </data>
+  <data name="Professor" xml:space="preserve">
+    <value>Profesor</value>
   </data>
   <data name="Professors" xml:space="preserve">
     <value>Profesori</value>
   </data>
+  <data name="ProfessorsForStudent" xml:space="preserve">
+    <value>_StudentProfesori</value>
+  </data>
+  <data name="RemoveGrade" xml:space="preserve">
+    <value>Ukloni Ocenu</value>
+  </data>
+  <data name="RemoveSubject" xml:space="preserve">
+    <value>Ukloni predmet</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>_Sacuvaj</value>
+  </data>
+  <data name="Semester" xml:space="preserve">
+    <value>Semestar</value>
+  </data>
   <data name="Serbian" xml:space="preserve">
-    <value>Srpski</value>
+    <value>S_rpski</value>
+  </data>
+  <data name="Show" xml:space="preserve">
+    <value>Pri_kaz</value>
+  </data>
+  <data name="Status" xml:space="preserve">
+    <value>Status</value>
   </data>
   <data name="StatusBarString" xml:space="preserve">
     <value>Studentska služba</value>
   </data>
+  <data name="Street" xml:space="preserve">
+    <value>Ulica</value>
+  </data>
+  <data name="StudentConditionSubject" xml:space="preserve">
+    <value>Student uslov predmet</value>
+  </data>
   <data name="Students" xml:space="preserve">
     <value>Studenti</value>
+  </data>
+  <data name="StudentsForProfessor" xml:space="preserve">
+    <value>_ProfesorStudenti</value>
+  </data>
+  <data name="StudyProgrammeMark" xml:space="preserve">
+    <value>Oznaka Smera</value>
+  </data>
+  <data name="SubjectCode" xml:space="preserve">
+    <value>Sifra Predmeta</value>
+  </data>
+  <data name="SubjectName" xml:space="preserve">
+    <value>Naziv</value>
+  </data>
+  <data name="Subjects" xml:space="preserve">
+    <value>Predmeti</value>
+  </data>
+  <data name="Submitted" xml:space="preserve">
+    <value>Polozeni</value>
+  </data>
+  <data name="Title" xml:space="preserve">
+    <value>Zvanje</value>
+  </data>
+  <data name="Unsubmitted" xml:space="preserve">
+    <value>Nepolozeni</value>
+  </data>
+  <data name="Update" xml:space="preserve">
+    <value>_Azuriraj</value>
+  </data>
+  <data name="YearOfStudy" xml:space="preserve">
+    <value>Godina Studiranja</value>
+  </data>
+  <data name="YearsOfService" xml:space="preserve">
+    <value>Godine staza</value>
   </data>
 </root>

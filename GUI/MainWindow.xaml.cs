@@ -480,6 +480,7 @@ namespace GUI
             {
                 TabItem ti = Tabs.SelectedItem as TabItem;
                 string columnName = (button.DataContext as string)!.Trim();
+                columnName = columnNameToEnglish(columnName);
 
                 if (ti != null && ti.Name == "ProfessorsTab")
                 {
@@ -532,6 +533,7 @@ namespace GUI
             {
                 TabItem ti = Tabs.SelectedItem as TabItem;
                 string columnName = (button.DataContext as string)!.Trim();
+                columnName = columnNameToEnglish(columnName);
 
                 if (ti != null && ti.Name == "ProfessorsTab")
                 {
@@ -573,7 +575,34 @@ namespace GUI
                         _subjectController.SortSubjects(columnName, 1);
                 }
             }
+        }
 
+        private string columnNameToEnglish(string columnName)
+        {
+            switch (columnName)
+            {
+                case "Indeks":
+                    return "Index";
+                case "Ime":
+                    return "Name";
+                case "Prezime":
+                    return "Lastname";
+                case "Trenutna Godina Studiranja":
+                    return "CurrentYearOfStudy";
+                case "Prosecna Ocena":
+                    return "AverageGrade";
+                case "Zvanje":
+                    return "Title";
+                case "Imejl":
+                    return "E-mail";
+                case "Sifra Predmeta":
+                    return "SubjectCode";
+                case "Godina Studiranja":
+                    return "YearOfStudy";
+                case "Semestar":
+                    return "Semester";
+            }
+            return columnName;
         }
 
         public void SortSearchedProfessors(string columnName, int sortDirection)

@@ -120,20 +120,41 @@
   <data name="About" xml:space="preserve">
     <value>_About</value>
   </data>
+  <data name="Add" xml:space="preserve">
+    <value>Add</value>
+  </data>
+  <data name="AddSubject" xml:space="preserve">
+    <value>Add Subject</value>
+  </data>
   <data name="AverageGrade" xml:space="preserve">
     <value>AverageGrade</value>
   </data>
   <data name="Cancel" xml:space="preserve">
     <value>Cancel</value>
   </data>
+  <data name="City" xml:space="preserve">
+    <value>City</value>
+  </data>
+  <data name="Clear" xml:space="preserve">
+    <value>Clear</value>
+  </data>
   <data name="Close" xml:space="preserve">
     <value>_Close</value>
+  </data>
+  <data name="Country" xml:space="preserve">
+    <value>Country</value>
   </data>
   <data name="CurrentPage" xml:space="preserve">
     <value>CurrentPage</value>
   </data>
   <data name="CurrentYearOfStudy" xml:space="preserve">
     <value>CurrentYearOfStudy</value>
+  </data>
+  <data name="Date" xml:space="preserve">
+    <value>Date</value>
+  </data>
+  <data name="DateOfBirth" xml:space="preserve">
+    <value>DateOfBirth</value>
   </data>
   <data name="Delete" xml:space="preserve">
     <value>_Delete</value>
@@ -150,17 +171,32 @@
   <data name="English" xml:space="preserve">
     <value>_English</value>
   </data>
+  <data name="EnrollmentNumber" xml:space="preserve">
+    <value>EnrollmentNumber</value>
+  </data>
+  <data name="EnrollmentYear" xml:space="preserve">
+    <value>EnrollmentYear</value>
+  </data>
   <data name="Espb" xml:space="preserve">
     <value>Espb</value>
   </data>
   <data name="File" xml:space="preserve">
     <value>_File</value>
   </data>
+  <data name="Grade" xml:space="preserve">
+    <value>Grade</value>
+  </data>
   <data name="Help" xml:space="preserve">
     <value>_Help</value>
   </data>
+  <data name="IdNumber" xml:space="preserve">
+    <value>IdNumber</value>
+  </data>
   <data name="Index" xml:space="preserve">
     <value>Index</value>
+  </data>
+  <data name="Informations" xml:space="preserve">
+    <value>Informations</value>
   </data>
   <data name="Lastname" xml:space="preserve">
     <value>Lastname</value>
@@ -177,8 +213,17 @@
   <data name="NextPage" xml:space="preserve">
     <value>Next Page</value>
   </data>
+  <data name="Number" xml:space="preserve">
+    <value>Number</value>
+  </data>
   <data name="Open" xml:space="preserve">
     <value>_Open</value>
+  </data>
+  <data name="Pass" xml:space="preserve">
+    <value>Pass</value>
+  </data>
+  <data name="PhoneNumber" xml:space="preserve">
+    <value>PhoneNumber</value>
   </data>
   <data name="PreviousPage" xml:space="preserve">
     <value>Previous Page</value>
@@ -190,7 +235,13 @@
     <value>Professors</value>
   </data>
   <data name="ProfessorsForStudent" xml:space="preserve">
-    <value>ProfessorsForStudent</value>
+    <value>_ProfessorsForStudent</value>
+  </data>
+  <data name="RemoveGrade" xml:space="preserve">
+    <value>Remove Grade</value>
+  </data>
+  <data name="RemoveSubject" xml:space="preserve">
+    <value>Remove Subject</value>
   </data>
   <data name="Save" xml:space="preserve">
     <value>_Save</value>
@@ -210,25 +261,46 @@
   <data name="StatusBarString" xml:space="preserve">
     <value>Student service</value>
   </data>
+  <data name="Street" xml:space="preserve">
+    <value>Street</value>
+  </data>
+  <data name="StudentConditionSubject" xml:space="preserve">
+    <value>Student Condition Subject</value>
+  </data>
   <data name="Students" xml:space="preserve">
     <value>Students</value>
   </data>
   <data name="StudentsForProfessor" xml:space="preserve">
-    <value>StudentsForProfessor</value>
+    <value>_StudentsForProfessor</value>
+  </data>
+  <data name="StudyProgrammeMark" xml:space="preserve">
+    <value>StudyProgrammeMark</value>
   </data>
   <data name="SubjectCode" xml:space="preserve">
     <value>SubjectCode</value>
   </data>
+  <data name="SubjectName" xml:space="preserve">
+    <value>SubjectName</value>
+  </data>
   <data name="Subjects" xml:space="preserve">
     <value>Subjects</value>
   </data>
+  <data name="Submitted" xml:space="preserve">
+    <value>Submitted</value>
+  </data>
   <data name="Title" xml:space="preserve">
     <value>Title</value>
+  </data>
+  <data name="Unsubmitted" xml:space="preserve">
+    <value>Unsubmitted</value>
   </data>
   <data name="Update" xml:space="preserve">
     <value>Update</value>
   </data>
   <data name="YearOfStudy" xml:space="preserve">
     <value>YearOfStudy</value>
+  </data>
+  <data name="YearsOfService" xml:space="preserve">
+    <value>YearsOfService</value>
   </data>
 </root>

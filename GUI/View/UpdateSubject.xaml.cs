@@ -44,7 +44,6 @@ namespace GUI.View
             InitializeComponent();
             DataContext = this;
             app = (App)Application.Current;
-            app.ChangeLanguage(ENG);
 
             SubjectDto = subjectDto;
             this._subjectController = subjectController;

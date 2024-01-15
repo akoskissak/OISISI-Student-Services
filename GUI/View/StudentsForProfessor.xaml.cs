@@ -23,6 +23,10 @@ namespace GUI.View
     /// </summary>
     public partial class StudentsForProfessor : Window
     {
+        private App app;
+        private const string SRB = "sr-RS";
+        private const string ENG = "en-US";
+
         private StudentSubjectController _studentSubjectController;
         private ProfessorSubjectController _professorSubjectController;
         private StudentController _studentController;
@@ -36,6 +40,8 @@ namespace GUI.View
         {
             InitializeComponent();
             DataContext = this;
+            app = (App)Application.Current;
+
             this._studentSubjectController = new StudentSubjectController();
             this._professorSubjectController = new ProfessorSubjectController();
             this._studentController = new StudentController();
@@ -82,6 +88,24 @@ namespace GUI.View
             {
                 show();
             }
+        }
+
+        private void Window_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (Keyboard.IsKeyDown(Key.LeftShift) && Keyboard.IsKeyDown(Key.E))
+                MenuItem_Click_English(sender, e);
+            else if (Keyboard.IsKeyDown(Key.LeftShift) && Keyboard.IsKeyDown(Key.R))
+                MenuItem_Click_Serbian(sender, e);
+        }
+
+        private void MenuItem_Click_English(object sender, RoutedEventArgs e)
+        {
+            app.ChangeLanguage(ENG);
+        }
+
+        private void MenuItem_Click_Serbian(object sender, RoutedEventArgs e)
+        {
+            app.ChangeLanguage(SRB);
         }
     }
 }
