@@ -46,7 +46,7 @@ namespace GUI.DTO
                 }
             }
         }
-        public string LastName
+        public string Lastname
         {
             get
             {
@@ -57,7 +57,7 @@ namespace GUI.DTO
                 if (value != _lastName)
                 {
                     _lastName = value;
-                    OnPropertyChanged("LastName");
+                    OnPropertyChanged("Lastname");
                 }
             }
         }
@@ -353,12 +353,12 @@ namespace GUI.DTO
         {
             get
             {
-                if (columnName == "LastName")
+                if (columnName == "Lastname")
                 {
-                    if (string.IsNullOrEmpty(LastName))
+                    if (string.IsNullOrEmpty(Lastname))
                         return "LastName is required";
 
-                    Match match = _LastNameRegex.Match(LastName);
+                    Match match = _LastNameRegex.Match(Lastname);
                     if (!match.Success)
                         return "Format not good. Try again.";
 
@@ -505,7 +505,7 @@ namespace GUI.DTO
         public StudentDTO(Student student)
         {
             Id = student.Id;
-            LastName = student.Lastname;
+            Lastname = student.Lastname;
             Name = student.Name;
             DateOfBirth = student.DateOfBirth.ToDateTime(TimeOnly.MinValue);
             Street = student.Address.Street;
