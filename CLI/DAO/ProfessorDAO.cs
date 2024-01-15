@@ -143,7 +143,7 @@ public class ProfessorDAO
     public bool CanProfessorBeAChief(int professorId)
     {
         Professor professor = GetProfessorById(professorId);
-        if(string.Equals(professor.Title, "vanredni profesor", StringComparison.OrdinalIgnoreCase) || string.Equals(professor.Title, "profesor", StringComparison.OrdinalIgnoreCase))
+        if(string.Equals(professor.Title, "vanredni profesor", StringComparison.OrdinalIgnoreCase) || string.Equals(professor.Title, "redovni profesor", StringComparison.OrdinalIgnoreCase))
         {
             if(professor.YearsOfService >= 5)
             {
