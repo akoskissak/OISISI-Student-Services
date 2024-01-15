@@ -121,16 +121,16 @@
     <value>_About</value>
   </data>
   <data name="AverageGrade" xml:space="preserve">
-    <value>Average grade</value>
+    <value>AverageGrade</value>
   </data>
   <data name="Close" xml:space="preserve">
     <value>_Close</value>
   </data>
   <data name="CurrentPage" xml:space="preserve">
-    <value>Current Page</value>
+    <value>CurrentPage</value>
   </data>
   <data name="CurrentYearOfStudy" xml:space="preserve">
-    <value>Current year of study</value>
+    <value>CurrentYearOfStudy</value>
   </data>
   <data name="Delete" xml:space="preserve">
     <value>_Delete</value>
@@ -160,7 +160,7 @@
     <value>Index</value>
   </data>
   <data name="Lastname" xml:space="preserve">
-    <value>Last name</value>
+    <value>Lastname</value>
   </data>
   <data name="Localization" xml:space="preserve">
     <value>_Localization</value>
@@ -172,19 +172,19 @@
     <value>_New</value>
   </data>
   <data name="NextPage" xml:space="preserve">
-    <value>Next page</value>
+    <value>Next Page</value>
   </data>
   <data name="Open" xml:space="preserve">
     <value>_Open</value>
   </data>
   <data name="PreviousPage" xml:space="preserve">
-    <value>Previous page</value>
+    <value>Previous Page</value>
   </data>
   <data name="Professors" xml:space="preserve">
     <value>Professors</value>
   </data>
   <data name="ProfessorsForStudent" xml:space="preserve">
-    <value>Professors for student</value>
+    <value>ProfessorsForStudent</value>
   </data>
   <data name="Save" xml:space="preserve">
     <value>_Save</value>
@@ -208,10 +208,10 @@
     <value>Students</value>
   </data>
   <data name="StudentsForProfessor" xml:space="preserve">
-    <value>Students for professor</value>
+    <value>StudentsForProfessor</value>
   </data>
   <data name="SubjectCode" xml:space="preserve">
-    <value>Subject code</value>
+    <value>SubjectCode</value>
   </data>
   <data name="Subjects" xml:space="preserve">
     <value>Subjects</value>
@@ -220,6 +220,6 @@
     <value>Title</value>
   </data>
   <data name="YearOfStudy" xml:space="preserve">
-    <value>Year of study</value>
+    <value>YearOfStudy</value>
   </data>
 </root>
