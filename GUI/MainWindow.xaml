@@ -130,17 +130,17 @@
                     <DataGrid Height="450"
                                   AutoGenerateColumns="False"
                                   x:Name="StudentsDataGrid"
-                                  ItemsSource="{Binding StudentDtos, UpdateSourceTrigger=PropertyChanged}"
+                                  ItemsSource="{Binding StudentPagingCollectionView, UpdateSourceTrigger=PropertyChanged}"
                                   SelectedItem="{Binding SelectedStudent, UpdateSourceTrigger=PropertyChanged}"
                                   SelectionMode="Single" IsReadOnly="True"
                                   SelectionChanged="StudentsDataGrid_SelectionChanged">
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="Index" Binding="{Binding Index}"/>
-                            <DataGridTextColumn Header="Name" Binding="{Binding Name}"/>
-                            <DataGridTextColumn Header="LastName" Binding="{Binding LastName}"/>
-                            <DataGridTextColumn Header="CurrentYearOfStudy" Binding="{Binding CurrentYearOfStudy}"/>
-                            <DataGridTextColumn Header="Status" Binding="{Binding Status}"/>
-                            <DataGridTextColumn Header="AverageGrade" Binding="{Binding AverageGrade, StringFormat={}{0:N2}}"/>
+                            <DataGridTextColumn Header="Index" Binding="{Binding Index}" HeaderStyle="{StaticResource DataGridColumnHeaderStyle}" CanUserSort="False" />
+                            <DataGridTextColumn Header="Name" Binding="{Binding Name}" HeaderStyle="{StaticResource DataGridColumnHeaderStyle}" CanUserSort="False" />
+                            <DataGridTextColumn Header="LastName" Binding="{Binding LastName}" HeaderStyle="{StaticResource DataGridColumnHeaderStyle}" CanUserSort="False" />
+                            <DataGridTextColumn Header="CurrentYearOfStudy" Binding="{Binding CurrentYearOfStudy}" HeaderStyle="{StaticResource DataGridColumnHeaderStyle}" CanUserSort="False" />
+                            <DataGridTextColumn Header="Status" Binding="{Binding Status}" HeaderStyle="{StaticResource DataGridColumnHeaderStyle}" CanUserSort="False" />
+                            <DataGridTextColumn Header="AverageGrade" Binding="{Binding AverageGrade, StringFormat={}{0:N2}}" HeaderStyle="{StaticResource DataGridColumnHeaderStyle}" CanUserSort="False" />
                         </DataGrid.Columns>
                     </DataGrid>
                 </TabItem>

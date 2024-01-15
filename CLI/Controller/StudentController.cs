@@ -59,6 +59,15 @@ namespace CLI.Controller
             return _studentDao.FindStudentByText(text);
         }
 
+        public void SortStudents(string columnName, int sortDirection)
+        {
+            _studentDao.SortStudents(columnName, sortDirection);
+        }
+
+        public List<Student> GetSortedSearchedStudents(List<int> ids)
+        {
+            return _studentDao.GetSortedSearchedSubjects(ids);
+        }
         //public bool SetStudentGrade(ExamGrade examGrade, int studentId)
         //{
         //    return _studentDao.SetStudentGrade(examGrade, studentId);
