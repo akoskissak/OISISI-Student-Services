@@ -92,16 +92,16 @@
                 </MenuItem>
             </MenuItem>
             <MenuItem Header="{ns:Loc Show}">
-                <MenuItem Header="{ns:Loc ProfessorsForStudent}" Click="ShowProfessorsForStudent_Click" InputGestureText="Shift + P">
+                <MenuItem Header="{ns:Loc ProfessorsForStudent}" Click="ShowProfessorsForStudent_Click" InputGestureText="Ctrl + P">
                     
                 </MenuItem>
-                <MenuItem Header="{ns:Loc StudentsForProfessor}" Click="ShowStudentsForProfessor_Click" InputGestureText="Shift + S">
+                <MenuItem Header="{ns:Loc StudentsForProfessor}" Click="ShowStudentsForProfessor_Click" InputGestureText="Ctrl + T">
 
                 </MenuItem>
             </MenuItem>
             <MenuItem Header="{ns:Loc Localization}">
-                <MenuItem Header="{ns:Loc English}" Click="MenuItem_Click_English" InputGestureText="Shift + E" />
-                <MenuItem Header="{ns:Loc Serbian}" Click="MenuItem_Click_Serbian" InputGestureText="Shift + R" />
+                <MenuItem Header="{ns:Loc English}" Click="MenuItem_Click_English" InputGestureText="Ctrl + G" />
+                <MenuItem Header="{ns:Loc Serbian}" Click="MenuItem_Click_Serbian" InputGestureText="Ctrl + R" />
             </MenuItem>
         </Menu>
 
@@ -184,7 +184,8 @@
                 </TabItem>
             </TabControl>
             <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
-                <Label x:Name="currentPageLabel" Content="{Binding CurrentPage, UpdateSourceTrigger=PropertyChanged}" ContentStringFormat="Current Page: {0}"
+                <Label Content="{ns:Loc CurrentPage}" Height="40" Width="100" Margin="0,0,-10,0" />
+                <Label x:Name="currentPageLabel" ContentStringFormat=" {0}"
                        Height="40" Width="100" Margin="0,0,20,0" />
                 <Button Height="40" Width="60" Margin="0,0,10,0" Click="PreviousPage_Button_Click" >
                     <TextBlock TextAlignment="Center" Text="{ns:Loc PreviousPage}" TextWrapping="Wrap" />

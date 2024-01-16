@@ -166,7 +166,7 @@
     <value>Drzava</value>
   </data>
   <data name="CurrentPage" xml:space="preserve">
-    <value>Trenutna Strana</value>
+    <value>Trenutna Strana:</value>
   </data>
   <data name="CurrentYearOfStudy" xml:space="preserve">
     <value>Trenutna Godina Studiranja</value>
@@ -193,7 +193,7 @@
     <value>_Uredi</value>
   </data>
   <data name="English" xml:space="preserve">
-    <value>_Engleski</value>
+    <value>En_gleski</value>
   </data>
   <data name="EnrollmentNumber" xml:space="preserve">
     <value>Broj Upisa</value>
@@ -265,7 +265,7 @@
     <value>Profesori</value>
   </data>
   <data name="ProfessorsForStudent" xml:space="preserve">
-    <value>_StudentProfesori</value>
+    <value>S_tudentProfesori</value>
   </data>
   <data name="RemoveGrade" xml:space="preserve">
     <value>Ukloni Ocenu</value>

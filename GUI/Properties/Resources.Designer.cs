@@ -205,7 +205,7 @@ namespace GUI.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Trenutna Strana.
+        ///   Looks up a localized string similar to Trenutna Strana:.
         /// </summary>
         public static string CurrentPage {
             get {
@@ -286,7 +286,7 @@ namespace GUI.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to _Engleski.
+        ///   Looks up a localized string similar to En_gleski.
         /// </summary>
         public static string English {
             get {
@@ -502,7 +502,7 @@ namespace GUI.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to _StudentProfesori.
+        ///   Looks up a localized string similar to S_tudentProfesori.
         /// </summary>
         public static string ProfessorsForStudent {
             get {

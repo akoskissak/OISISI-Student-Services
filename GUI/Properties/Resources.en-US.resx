@@ -163,7 +163,7 @@
     <value>Country</value>
   </data>
   <data name="CurrentPage" xml:space="preserve">
-    <value>CurrentPage</value>
+    <value>Current Page:</value>
   </data>
   <data name="CurrentYearOfStudy" xml:space="preserve">
     <value>CurrentYearOfStudy</value>
@@ -190,7 +190,7 @@
     <value>_Edit</value>
   </data>
   <data name="English" xml:space="preserve">
-    <value>_English</value>
+    <value>En_glish</value>
   </data>
   <data name="EnrollmentNumber" xml:space="preserve">
     <value>EnrollmentNumber</value>
@@ -307,7 +307,7 @@
     <value>Students</value>
   </data>
   <data name="StudentsForProfessor" xml:space="preserve">
-    <value>_StudentsForProfessor</value>
+    <value>S_tudentsForProfessor</value>
   </data>
   <data name="StudyProgrammeMark" xml:space="preserve">
     <value>StudyProgrammeMark</value>
