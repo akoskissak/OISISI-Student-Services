@@ -339,15 +339,15 @@ namespace GUI.DTO
         }
         public string Error => null;
 
-        private Regex _NameRegex = new Regex("^[A-Za-z0-9- ]+$");
-        private Regex _LastNameRegex = new Regex("^[A-Za-z0-9- ]+$");
+        private Regex _NameRegex = new Regex("^[A-Za-z0-9- ČčĆćĐđŠšŽž]+$");
+        private Regex _LastNameRegex = new Regex("^[A-Za-z0-9- ČčĆćĐđŠšŽž]+$");
         private Regex _PhoneNumberRegex = new Regex("^\\+?[0-9]+[0-9- ]*$");
         private Regex _EmailRegex = new Regex("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$");
         private Regex _StudyProgrammeMarkRegex = new Regex("^[A-Za-z0-9]+$");
-        private Regex _EnrollmentNumberkRegex = new Regex("^[1-9][0-9]*$");
+        private Regex _EnrollmentNumberkRegex = new Regex("^[0-9]+$");
         private Regex _EnrollmentYearRegex = new Regex("^[12]{1}[0-9]{3,3}$");
         private Regex _CurrentYearOfStudyRegex = new Regex("^[1-9][0-9]?$");
-        private Regex _StreetRegex = new Regex("^[a-zA-Z0-9. ]+$");
+        private Regex _StreetRegex = new Regex("^[A-Za-z0-9- ČčĆćĐđŠšŽž.]+$");
         private Regex _NumberRegex = new Regex("^[a-zA-Z0-9/ ]+$");
         public string this[string columnName]
         {

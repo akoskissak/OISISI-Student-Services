@@ -1,3 +1,20 @@
-0|Homa|Davor|4/15/2002|064|davorhoma@gmail.com|3|B|8.33|Alekse Santica|10|Novi Sad|Srbija|ra|47|2021
-1|Kiss|Akos|6/20/2002|062|kissak@gmail.com|3|B|0.00|Tolstojeva|2|Novi Sad|Srbija|ra|11|2021
-2|Ime|Prezime|1/1/0001|064--85--585|kok@msm.com|2|B|0.00|1231*//*|/**/8286452*/25lp|4684*/425jojo|4/*2849kooj|8979-*542.|2000|2002
+0|Škrobović|Pantelija|1/12/2001|+38161706971|skrobovic.ra.0.2021@uns.ac.rs|2|S|0.00|1. MAJ|22|BABUŠNICA|Crna Gora|RA|0|2021
+1|Veselić|Caka|1/24/2001|+38165391091|veselic.ra.1.2021@uns.ac.rs|1|B|10.00|MIRE ALEČKOVIĆ|67|VELIKA REMETA|Srbija|RA|1|2021
+2|Kovrlija|Katarina|5/1/1998|+3816749564|kovrlija.ra.2.2021@uns.ac.rs|4|B|8.50|DARINKE BOROVIĆ|40|LjUBINIĆ|Bosna i Hercegovina|RA|2|2021
+3|Zarubica|Đura|7/21/1994|+38169584327|zarubica.ra.3.2021@uns.ac.rs|1|S|0.00|MIJE ALEKSIĆA|30|DONjA VREŽINA|Srbija|RA|3|2021
+4|Vilenica|Elena|10/6/2003|+38165343994|vilenica.ra.4.2021@uns.ac.rs|4|S|7.50|SVESTOMIRA MARIĆA|59|DONjI LjUBEŠ|Srbija|RA|4|2021
+5|Jelesijević|Fotije|2/27/1994|+38165121848|jelesijevic.ra.5.2021@uns.ac.rs|4|S|0.00|STAROVLAŠKA|88|ČAJETINA|Srbija|RA|5|2021
+6|Otržan|Strahinja|3/29/2004|+38165826247|otrzan.ra.6.2021@uns.ac.rs|4|B|0.00|BOJANSKA|39|SKORICA|Bosna i Hercegovina|RA|6|2021
+7|Putica|Ekatarina|12/20/1998|+38169233526|putica.ra.7.2021@uns.ac.rs|1|B|0.00|NjEGOŠEVA|20|LEBANE|Srbija|RA|7|2021
+8|Viduljević|Želimirka|7/19/2001|+38162535541|viduljevic.ra.8.2021@uns.ac.rs|3|B|0.00|JORDANA STOJANOVIĆA|5|ČAPLjINAC|Bosna i Hercegovina|RA|8|2021
+9|Roljević|Violeta|6/24/2004|+38161267718|roljevic.ra.9.2021@uns.ac.rs|2|S|0.00|KARAĐORĐEVA|1|RAKINAC|Srbija|RA|9|2021
+10|Jocin|Đura|3/9/1994|+38161156705|jocin.ra.10.2021@uns.ac.rs|3|S|0.00|ČUČUŠKA|2|KLOKA|Bosna i Hercegovina|RA|10|2021
+11|Milenović|Srpko|9/24/2000|+38161553412|milenovic.ra.11.2021@uns.ac.rs|4|S|0.00|IVE ANDRIĆA|25|BUNUŠKI ČIFLUK|Bosna i Hercegovina|RA|11|2021
+12|Grnčarski|Adam|7/25/2000|+38168476604|grncarski.ra.12.2021@uns.ac.rs|1|B|0.00|GORANA RAIČEVIĆA|97|KOVIOCI|Crna Gora|RA|12|2021
+13|Dobraš|Tanasije|12/4/1995|+38169865396|dobras.ra.13.2021@uns.ac.rs|3|S|0.00|VASE STAJIĆA|8|ADA|Bosna i Hercegovina|RA|13|2021
+14|Milišić|Kosara|12/5/2004|+38163078887|milisic.ra.14.2021@uns.ac.rs|4|B|0.00|PARTIZANSKA|40|PIROT|Bosna i Hercegovina|RA|14|2021
+15|Zavišin|Mirko|7/23/1999|+38164396128|zavisin.ra.15.2021@uns.ac.rs|4|S|0.00|FUTOŠKA|49|KOVAČEVAC|Crna Gora|RA|15|2021
+16|Popmihajlov|Glorija|2/17/1996|+38168674154|popmihajlov.ra.16.2021@uns.ac.rs|1|B|0.00|BANjALUČKA|57|TEMERIN|Srbija|RA|16|2021
+17|Kekić|Cviko|5/23/2004|+38169653668|kekic.ra.17.2021@uns.ac.rs|2|S|0.00|ČESTELINSKA|87|VRANjE|Srbija|RA|17|2021
+18|Sečanski|Dobrašin|9/8/1998|+38169698207|secanski.ra.18.2021@uns.ac.rs|2|B|0.00|MILENTIJA POPOVIĆA|98|VRBAS|Srbija|RA|18|2021
+19|Čičovački|Pajka|3/13/2004|+38164159397|cicovacki.ra.19.2021@uns.ac.rs|1|S|0.00|VODNIKA IVANA VASOJEVIĆA|57|HUM|Srbija|RA|19|2021

@@ -1,4 +1,20 @@
-1|4|564564|Letnji|1|3|0
-0|7777|oisisi|Zimski|3|6|0
-5|5|Optimalno upravljanje|Zimski|4|7|2
-2|7|miss|Zimski|2|9|2
+0|E43|Tehnologije i alati u mašinskom učenju|Letnji|4|8|0
+1|E79|Napredni algoritmi i strukture podataka|Zimski|4|6|0
+2|E76|Testiranje softvera|Letnji|1|9|2
+3|E94|Specifikacija i modeliranje softvera|Letnji|3|4|3
+4|E12|Uvod u informacione tehnologije u geomatici|Letnji|3|8|0
+5|E23|Tehnologije i sistemi eUprave|Zimski|1|4|2
+6|E60|Klijentske web tehnologije|Zimski|3|5|5
+7|E75|Internet mreže|Letnji|1|7|6
+8|E67|XML i veb servisi|Letnji|2|10|1
+9|E51|Metodologije razvoja softvera|Zimski|3|4|9
+10|E74|Uvod u informacione tehnologije u geomatici|Zimski|3|8|3
+11|E17|Poslovna informatika|Letnji|3|10|4
+12|E8|Mašinsko učenje|Zimski|3|10|8
+13|E19|Soft kompjuting|Letnji|1|10|2
+14|E24|Specifikacija i modeliranje softvera|Zimski|2|6|9
+15|E38|Informaciona bezbednost|Zimski|3|7|4
+16|E9|Serverske web tehnologije|Zimski|4|4|3
+17|E37|Objektno orijentisano programiranje 1|Zimski|2|7|8
+18|E5|Servisno orijentisane arhitekture|Letnji|2|7|6
+19|E62|Sistemi bazirani na znanju|Letnji|3|4|6

@@ -164,7 +164,7 @@ namespace GUI.DTO
 
         private Regex _SubjectCodeRegex = new Regex("^[a-zA-Z0-9/ ]+$");
         private Regex _ProfessorRegex = new Regex("^-1$|^[0-9]+$");
-        private Regex _NameRegex = new Regex("^[a-zA-Z0-9/ ]+$");
+        private Regex _NameRegex = new Regex("^[A-Za-z0-9- ČčĆćĐđŠšŽž/]+$");
         private Regex _YearRegex = new Regex("^[1-9][0-9]*$");
 
         public string this[string columnName]
