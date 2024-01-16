@@ -91,7 +91,15 @@ namespace GUI.View
         public override object GetItemAt(int index)
         {
             int offset = index % (this._itemsPerPage);
-            return this._innerList[this.StartIndex + offset];
+            int itemIndex = this.StartIndex + offset;
+            if (itemIndex >= 0 && itemIndex < this._innerList.Count)
+            {
+                return this._innerList[itemIndex];
+            }
+            else
+            {
+                return null;
+            }
         }
 
         public void MoveToNextPage()
