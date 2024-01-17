@@ -17,7 +17,9 @@
         <KeyBinding Key="U" Modifiers="Control" />
         <KeyBinding Key="D" Modifiers="Control" />
     </Window.InputBindings>
-
+    <Window.Background>
+        <ImageBrush ImageSource="https://neamil.de/wp-content/webp-express/webp-images/uploads/2022/12/chuttersnap-9AqIdzEc9pY-unsplash-1-2048x1367.jpg.webp" Stretch="UniformToFill" Opacity="0.9"/>
+    </Window.Background>
     <Window.Resources>
         <Style x:Key="DataGridColumnHeaderStyle" TargetType="DataGridColumnHeader">
             <Setter Property="ContentTemplate">
@@ -125,8 +127,8 @@
         
 
         <DockPanel DockPanel.Dock="Bottom">
-                <TextBlock Text="{ns:Loc StatusBarString}"></TextBlock>
-                <TextBlock x:Name="DisplayDateTextBlock" Text="" HorizontalAlignment="Right"></TextBlock>
+                <TextBlock Text="{ns:Loc StatusBarString}" FontSize="15"></TextBlock>
+                <TextBlock x:Name="DisplayDateTextBlock" Text="" FontSize="15" HorizontalAlignment="Right"></TextBlock>
         </DockPanel>
 
         <DockPanel>
