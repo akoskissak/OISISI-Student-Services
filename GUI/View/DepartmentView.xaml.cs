@@ -41,6 +41,8 @@ namespace GUI.View
             SetInitialWindowSize(left, top, width, height);
 
             Update();
+            showProfessorsB.IsEnabled = false;
+            showSubjectsB.IsEnabled = false;
         }
 
         private void SetInitialWindowSize(double left, double top, double width, double height)
@@ -72,12 +74,15 @@ namespace GUI.View
                 string caption = "Select department";
                 MessageBox.Show(messageBoxText, caption, MessageBoxButton.OK, MessageBoxImage.Warning);
             }
-
+            showProfessorsB.IsEnabled = false;
+            showSubjectsB.IsEnabled = false;
         }
 
         private void DepartmentDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             SelectedDepartment = DepartmentDataGrid.SelectedItem as DepartmentDTO;
+            showProfessorsB.IsEnabled = true;
+            showSubjectsB.IsEnabled = true;
         }
 
         private void ShowSubjects_Click(object sender, RoutedEventArgs e)
@@ -93,6 +98,8 @@ namespace GUI.View
                 string caption = "Select department";
                 MessageBox.Show(messageBoxText, caption, MessageBoxButton.OK, MessageBoxImage.Warning);
             }
+            showProfessorsB.IsEnabled = false;
+            showSubjectsB.IsEnabled = false;
         }
         private void Window_KeyDown(object sender, KeyEventArgs e)
         {

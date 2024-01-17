@@ -14,8 +14,8 @@
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
         <TextBlock HorizontalAlignment="Left" Text="{ns:Loc Who are enrolled}" Grid.Row="0" Margin="102,10,0,10"/>
-        <Button HorizontalAlignment="Left" Content="{ns:Loc Show Students}" Grid.Row="0" Margin="5,10,0,10" Click="ShowStudents1_Click"/>
-        <Button HorizontalAlignment="Left" Content="{ns:Loc Show Students}" Grid.Row="1" Margin="5,10,0,10" Click="ShowStudents2_Click"/>
+        <Button x:Name="ShowStudentsB1" HorizontalAlignment="Left" Content="{ns:Loc Show Students}" Grid.Row="0" Margin="5,10,0,10" Click="ShowStudents1_Click"/>
+        <Button x:Name="ShowStudentsB2" HorizontalAlignment="Left" Content="{ns:Loc Show Students}" Grid.Row="1" Margin="5,10,0,10" Click="ShowStudents2_Click"/>
         <TextBlock HorizontalAlignment="Left" Text="{ns:Loc Who have passed}" Grid.Row="1" Margin="102,10,0,10"/>
         <DataGrid Grid.Row="2"
                   Height="350"
@@ -23,6 +23,7 @@
                   x:Name="StudentConditionSubjectDataGrid"
                   ItemsSource="{Binding SubjectDtos, UpdateSourceTrigger=PropertyChanged}"
                   SelectedItem="{Binding SelectedSubjectNow, UpdateSourceTrigger=PropertyChanged}"
+                  SelectionChanged="StudentConditionSubjectDataGrid_SelectionChanged"
                   SelectionMode="Single"
                   IsReadOnly="True">
             <DataGrid.Columns>

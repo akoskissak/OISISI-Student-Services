@@ -87,6 +87,7 @@ namespace GUI
             timer.Start();
 
             Update();
+            StudentConditionSubjectB.IsEnabled = false;
         }
 
         private void SetInitialWindowSize()
@@ -118,6 +119,7 @@ namespace GUI
             {
                 AddSubject addSubject = new AddSubject(_subjectController, _professorSubjectController, Left, Top, Width, Height);
                 addSubject.ShowDialog();
+                StudentConditionSubjectB.IsEnabled = false;
             }
             
         }
@@ -151,6 +153,7 @@ namespace GUI
                 {
                     UpdateSubject updateSubjectWindow = new UpdateSubject(_subjectController, SelectedSubject, _professorSubjectController, Left, Top, Width, Height);
                     updateSubjectWindow.ShowDialog();
+                    StudentConditionSubjectB.IsEnabled = false;
                 }
                 else
                     MessageBox.Show("Please choose a subject to update!");
@@ -254,6 +257,7 @@ namespace GUI
                             MessageBox.Show("Subject cannot be deleted.", "Deletion failed", MessageBoxButton.OK, MessageBoxImage.Error);
                         }
                     }
+                    StudentConditionSubjectB.IsEnabled = false;
                 }
             }
         }
@@ -266,6 +270,7 @@ namespace GUI
         private void SubjectDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             SelectedSubject = SubjectsDataGrid.SelectedItem as SubjectDTO;
+            StudentConditionSubjectB.IsEnabled = true;
         }
         private void StudentsDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -747,7 +752,7 @@ namespace GUI
                 {
                     StudentConditionSubject studentConditionSubject = new StudentConditionSubject(_studentController, _subjectController, SelectedSubject);
                     studentConditionSubject.ShowDialog();
-
+                    StudentConditionSubjectB.IsEnabled = false;
                 }
                 else
                 {

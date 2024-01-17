@@ -12,7 +12,7 @@
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
-        <Button Content="{ns:Loc Set department chief}" Click="SetChief_Click" Grid.Row="0" HorizontalAlignment="Left" Margin="5,10,0,10"/>
+        <Button x:Name="SetDepChief" Content="{ns:Loc Set department chief}" Click="SetChief_Click" Grid.Row="0" HorizontalAlignment="Left" Margin="5,10,0,10"/>
         <DataGrid x:Name="ProfessorsForDepartmentDataGrid" Grid.Row="1"
                   AutoGenerateColumns="False"
                   ItemsSource="{Binding ProfessorDtos, UpdateSourceTrigger=PropertyChanged}"

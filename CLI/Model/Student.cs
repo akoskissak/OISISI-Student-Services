@@ -52,12 +52,15 @@ public class Student : ISerializable
     public void SetAverageGrade()
     {
         AverageGrade = 0;
-        foreach (ExamGrade examGrade in Grades)
+        if(Grades.Count != 0)
         {
-            AverageGrade += examGrade.Grade;
-        }
+            foreach (ExamGrade examGrade in Grades)
+            {
+                AverageGrade += examGrade.Grade;
+            }
 
-        AverageGrade /= Grades.Count;
+            AverageGrade /= Grades.Count;
+        }
     }
 
     public override string ToString()

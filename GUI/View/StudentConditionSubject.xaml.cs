@@ -44,6 +44,8 @@ namespace GUI.View
             SubjectDtos = new ObservableCollection<SubjectDTO>();
 
             Update();
+            ShowStudentsB1.IsEnabled = false;
+            ShowStudentsB2.IsEnabled = false;
         }
         public void Update()
         {
@@ -61,6 +63,8 @@ namespace GUI.View
             {
                 ShowStudentsWhoEnrolled showStudentsWhoEnrolled = new ShowStudentsWhoEnrolled(_studentController, _subjectController, SelectedSubjectBefore, SelectedSubjectNow);
                 showStudentsWhoEnrolled.ShowDialog();
+                ShowStudentsB1.IsEnabled = false;
+                ShowStudentsB2.IsEnabled = false;
             }
             else
             {
@@ -74,6 +78,8 @@ namespace GUI.View
             {
                 ShowStudentsWhoPassedOne showStudentsWhoPassedOne = new ShowStudentsWhoPassedOne(_studentController, _subjectController, SelectedSubjectBefore, SelectedSubjectNow);
                 showStudentsWhoPassedOne.ShowDialog();
+                ShowStudentsB1.IsEnabled = false;
+                ShowStudentsB2.IsEnabled = false;
             }
             else
             {
@@ -97,6 +103,13 @@ namespace GUI.View
         private void MenuItem_Click_Serbian(object sender, RoutedEventArgs e)
         {
             app.ChangeLanguage(SRB);
+        }
+
+        private void StudentConditionSubjectDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            SelectedSubjectNow = StudentConditionSubjectDataGrid.SelectedItem as SubjectDTO;
+            ShowStudentsB1.IsEnabled = true;
+            ShowStudentsB2.IsEnabled = true;
         }
     }
 }

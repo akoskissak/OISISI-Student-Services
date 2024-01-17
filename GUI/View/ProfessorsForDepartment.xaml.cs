@@ -45,6 +45,7 @@ namespace GUI.View
 
             ProfessorDtos = new ObservableCollection<ProfessorDTO>();
             Update();
+            SetDepChief.IsEnabled = false;
         }
 
         private void Update()
@@ -60,6 +61,7 @@ namespace GUI.View
         private void ProfessorsForDepartmentDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             SelectedProfessor = ProfessorsForDepartmentDataGrid.SelectedItem as ProfessorDTO;
+            SetDepChief.IsEnabled = true;
         }
 
         private void SetChief_Click(object sender, RoutedEventArgs e)

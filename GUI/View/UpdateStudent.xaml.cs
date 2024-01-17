@@ -84,6 +84,7 @@ namespace GUI.View
 
 
             Update();
+            removeGrade.IsEnabled = false;
         }
 
         private void ValidateTextBoxes()
@@ -132,19 +133,17 @@ namespace GUI.View
 
         private void Remove_Click(object sender, RoutedEventArgs e)
         {
-            if(SubmittedDataGrid.SelectedItem != null)
+            if (SubmittedDataGrid.SelectedItem != null)
             {
                 if(SelectedExam == null)
-                {
                     MessageBox.Show("Plase choose a grade to remove!");
-                }
                 else
                 {
                     string messageBoxText = "Are you sure you want to remove grade?";
                     string caption = "Remove grade";
                     MessageBoxButton button = MessageBoxButton.YesNo;
                     MessageBoxResult result = MessageBox.Show(messageBoxText, caption, button, MessageBoxImage.Question);
-                    if(result == MessageBoxResult.Yes)
+                    if (result == MessageBoxResult.Yes)
                     {
                         int subjectId = SelectedExam.SubjectId;
                         if (_examGradeController.RemoveGradeForStudent(StudentDto.Id, SelectedExam.SubjectId))
@@ -153,14 +152,18 @@ namespace GUI.View
                             TotalESPB -= s.Espb;
                             _studentSubjectController.AddStudentSubject(new StudentSubject(StudentDto.Id, subjectId));
 
-
                             ExamGradeDtos.Remove(SelectedExam);
+                            if(StudentDto.AverageGrade.ToString() == "NaN")
+                            {
+                                StudentDto.AverageGrade = 0;
+                            }
                             Update();
                             MessageBox.Show("Grade removed successfully.", "Remove Successful", MessageBoxButton.OK);
                         }
                         else
                             MessageBox.Show("Grade not removed.", "ERROR", MessageBoxButton.OK);
                     }
+                    removeGrade.IsEnabled = false;
                 }
             }
         }
@@ -224,6 +227,7 @@ namespace GUI.View
         private void SubmittedDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             SelectedExam = SubmittedDataGrid.SelectedItem as ExamGradeDTO;
+            removeGrade.IsEnabled = true;
         }
 
         public void Update()

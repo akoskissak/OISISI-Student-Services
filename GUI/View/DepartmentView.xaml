@@ -12,8 +12,8 @@
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
-        <Button Content="{ns:Loc Show Professors}" Click="ShowProfessors_Click" Margin="5,10,0,10" Grid.Row="0" HorizontalAlignment="Left" Height="20"/>
-        <Button Content="{ns:Loc Show Subjects}" Click="ShowSubjects_Click" Grid.Row="0" Height="20" HorizontalAlignment="Left" Margin="110,10,0,10" />
+        <Button x:Name="showProfessorsB" Content="{ns:Loc Show Professors}" Click="ShowProfessors_Click" Margin="5,10,0,10" Grid.Row="0" HorizontalAlignment="Left" Height="20"/>
+        <Button x:Name="showSubjectsB" Content="{ns:Loc Show Subjects}" Click="ShowSubjects_Click" Grid.Row="0" Height="20" HorizontalAlignment="Left" Margin="110,10,0,10" />
         <DataGrid
                     Grid.Row="1"
                     AutoGenerateColumns="False"

@@ -7,7 +7,7 @@
         xmlns:ns="clr-namespace:GUI.Localization"
         mc:Ignorable="d"
         Title="SubjectsForDepartment" Height="450" Width="800"
-        KeyDown="Window_KeyDown">
+        KeyDown="Window_KeyDown" WindowStartupLocation="CenterScreen">
     <Grid>
         <DataGrid x:Name="SubjectsForDepartmentDataGrid"
                   AutoGenerateColumns="False"

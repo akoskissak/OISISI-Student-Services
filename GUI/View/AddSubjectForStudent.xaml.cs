@@ -50,6 +50,7 @@ namespace GUI.View
             SelectedStudent = selectedStudent;
 
             Update();
+            ConfirmButton.IsEnabled = false;
         }
 
         public void Update()
@@ -91,6 +92,7 @@ namespace GUI.View
         private void SubjectsToAddForProfessorDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             SelectedSubjectDto = SubjectsToAddForProfessorDataGrid.SelectedItems.Cast<SubjectDTO>().ToList();
+            ConfirmButton.IsEnabled = true;
         }
         private void Window_KeyDown(object sender, KeyEventArgs e)
         {
