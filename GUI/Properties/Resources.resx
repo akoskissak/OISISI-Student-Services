@@ -288,6 +288,9 @@
   <data name="Show" xml:space="preserve">
     <value>Pri_kaz</value>
   </data>
+  <data name="Show CVs" xml:space="preserve">
+    <value>Prikaz CV-a</value>
+  </data>
   <data name="Show Professors" xml:space="preserve">
     <value>Prikazi Profesore</value>
   </data>

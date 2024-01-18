@@ -574,6 +574,15 @@ namespace GUI.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Prikaz CV-a.
+        /// </summary>
+        public static string Show_CVs {
+            get {
+                return ResourceManager.GetString("Show CVs", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Prikazi Profesore.
         /// </summary>
         public static string Show_Professors {

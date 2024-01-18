@@ -4,8 +4,10 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GUI.View"
+        xmlns:ns="clr-namespace:GUI.Localization"
         mc:Ignorable="d"
-        Title="AboutMain" Height="450" Width="800" WindowStartupLocation="CenterScreen">
+        Title="AboutMain" Height="450" Width="800" WindowStartupLocation="CenterScreen"
+        KeyDown="Window_KeyDown">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -39,6 +41,6 @@
         </Grid>
 
 
-        <Button Content="Show CV's" Click="Show_Click" HorizontalAlignment="Center" Margin="0,0,0,20" VerticalAlignment="Bottom" Grid.Row="2" Cursor="Hand"/>
+        <Button Content="{ns:Loc Show CVs}" Click="Show_Click" HorizontalAlignment="Center" Margin="0,0,0,20" VerticalAlignment="Bottom" Grid.Row="2" Cursor="Hand"/>
     </Grid>
 </Window>

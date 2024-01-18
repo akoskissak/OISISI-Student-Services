@@ -357,4 +357,7 @@
   <data name="Total ESPB:" xml:space="preserve">
     <value>Total ESPB:</value>
   </data>
+  <data name="Show CVs" xml:space="preserve">
+    <value>Show CV's</value>
+  </data>
 </root>
