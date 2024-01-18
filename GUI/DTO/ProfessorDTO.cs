@@ -257,14 +257,13 @@ namespace GUI.DTO
         }
 
         public string Error => null;
-        private Regex _lettersAndNumbersRegex = new Regex("^[a-zA-Z0-9]+([\\s][a-zA-Z0-9]+)*$");
-        private Regex _letters = new Regex("^[A-Za-z]+$");
-        private Regex _cityCountryRegex = new Regex("^[a-zA-Z0-9]+([\\s][a-zA-Z0-9]+)*$");
-        private Regex _phoneNumberRegex = new Regex("^\\+?(0-9)+$");
-        private Regex _numbersRegex = new Regex("^[1-9]\\d*$");
+        private Regex _lettersAndNumbersRegex = new Regex("^[a-zA-Z0-9ČčĆćĐđŠšŽž]+([\\s][a-zA-Z0-9ČčĆćĐđŠšŽž]+)*$");
+        private Regex _streetRegex = new Regex("^[a-zA-Z0-9ČčĆćĐđŠšŽž\\.]+([\\s][a-zA-Z0-9ČčĆćĐđŠšŽž\\.]+)*$");
+        private Regex _cityCountryRegex = new Regex("^[a-zA-Z0-9ČčĆćĐđŠšŽž()]+([\\s][a-zA-Z0-9ČčĆćĐđŠšŽž()]+)*$");
+        private Regex _phoneNumberRegex = new Regex("^\\+?[0-9]+$");
         private Regex _idNumberRegex = new Regex("^\\d*$");
         private Regex _yearsOfServiceRegex = new Regex("^\\d*$");
-        private Regex _titleRegex = new Regex("^[a-zA-Z][a-zA-Z0-9]*([\\s][a-zA-Z0-9]+)*");
+        private Regex _titleRegex = new Regex("^[a-zA-ZČčĆćĐđŠšŽž][a-zA-Z0-9ČčĆćĐđŠšŽž]*([\\s][a-zA-Z0-9ČčĆćĐđŠšŽž]+)*");
 
         public string this[string columnName]
         {
@@ -288,16 +287,12 @@ namespace GUI.DTO
                     if (!match.Success)
                         return "Format not good. Try again.";
                 }
-                //else if (columnName == "DateOfBirth")
-                //{
-                //    return "";
-                //}
                 else if (columnName == "Street")
                 {
                     if (string.IsNullOrEmpty(Street))
                         return "Street is required";
 
-                    Match match = _lettersAndNumbersRegex.Match(Street);
+                    Match match = _streetRegex.Match(Street);
                     if (!match.Success)
                         return "Format not good. Try again.";
                 }
@@ -333,7 +328,7 @@ namespace GUI.DTO
                     if (string.IsNullOrEmpty(PhoneNumber))
                         return "PhoneNumber is required.";
 
-                    Match match = _lettersAndNumbersRegex.Match(PhoneNumber);
+                    Match match = _phoneNumberRegex.Match(PhoneNumber);
                     if (!match.Success)
                         return "Format not good. Try again.";
                 }
