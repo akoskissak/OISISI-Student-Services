@@ -9,6 +9,8 @@ using System.Windows.Data;
 
 namespace GUI.View
 {
+    // Ova klasa je kopirana sa vebsajta: https://stackoverflow.com/questions/784726/how-can-i-paginate-a-wpf-datagrid
+    // i prilagodjena nasoj aplikaciji.
     public class PagingCollectionView : CollectionView
     {
         private IList _innerList;

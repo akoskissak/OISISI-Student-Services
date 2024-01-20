@@ -174,10 +174,7 @@ namespace GUI.DTO
         {
             return new ExamGrade(_studentId, _subjectId, _grade, _date);
         }
-        public ExamGradeDTO()
-        {
-            //Grade = -1;
-        }
+        public ExamGradeDTO() {}
 
         public ExamGradeDTO(ExamGrade examgrade, Subject subject)
         {

@@ -662,7 +662,6 @@ namespace GUI
             {
                 this.ProfessorPagingCollectionView.MoveToNextPage();
                 currentPageLabel.Content = this.ProfessorPagingCollectionView.CurrentPage;
-                //this.CurrentPage = ProfessorPagingCollectionView.CurrentPage;
             }
             else if (ti != null && ti.Name != null && ti.Name == "StudentsTab")
             {

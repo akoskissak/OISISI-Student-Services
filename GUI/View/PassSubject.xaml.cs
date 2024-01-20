@@ -59,7 +59,6 @@ namespace GUI.View
 
         private void ValidateTextBoxes()
         {
-            //ConfirmButton.IsEnabled = ExamGradeDto.Date.ToString() != "" && ExamGradeDto.Grade != -1;
             ConfirmButton.IsEnabled = gradeComboBox.SelectedItem != null && DatePicker.SelectedDate != null;
         }
 
@@ -86,8 +85,6 @@ namespace GUI.View
 
                 ExamGrade examGrade = new ExamGrade(StudentDto.Id, SubjectDto.Id, ExamGradeDto.Grade, selectedDate);
 
-                //ExamGradeDTO examGradeDto = new ExamGradeDTO(examGrade, SubjectDto.ToSubject());
-                //_studentController.SetStudentGrade(examGrade, StudentDto.Id);
                 Subject s = _subjectController.GetSubjectById(SubjectDto.Id);
                 _totalEspb -= s.Espb;
                 _examGradeController.SetStudentGrade(examGrade, StudentDto.Id);

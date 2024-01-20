@@ -52,11 +52,6 @@ namespace CLI.Controller
             _studentSubjectDao.AddStudentSubject(studentSubject);
         }
 
-        //public void Subscribe(IObserver observer)
-        //{
-        //    _studentSubjectDao.ExamGradeObservable.Subscribe(observer);
-        //}
-
         public void NotifyObservers()
         {
             _studentDao.NotifyObservers();

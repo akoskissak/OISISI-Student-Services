@@ -18,7 +18,6 @@ namespace CLI.Controller
         
         public SubjectController()
         {
-           //_subjectDao = new SubjectDAO();
            _professorDao = new ProfessorDAO();
             _professorSubjectDao = new ProfessorSubjectDAO(_professorDao, _subjectDao);
         }

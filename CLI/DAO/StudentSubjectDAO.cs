@@ -92,9 +92,6 @@ public class StudentSubjectDAO
         StudentSubject studentSubject = _studentSubject.Find(ss => ss.StudentId == studentId && ss.SubjectId == subjectId)!;
         _studentSubject.Remove(studentSubject);
         _studentSubjectStorage.Save(_studentSubject);
-        //Student s = _studentDao.GetStudentById(studentId);
-        //if (s != null)
-        //    _subjectDao.RemoveStudentDidNotPass(s, subjectId);
         StudentSubjectObservable.NotifyObservers();
     }
 

@@ -13,10 +13,7 @@ namespace CLI.Controller
     {
         public static readonly StudentDAO _studentDao = new StudentDAO();
 
-        public StudentController()
-        {
-            //_studentDao = new StudentDAO();
-        }
+        public StudentController() {}
 
         public void Add(Student student)
         {
@@ -68,9 +65,5 @@ namespace CLI.Controller
         {
             return _studentDao.GetSortedSearchedSubjects(ids);
         }
-        //public bool SetStudentGrade(ExamGrade examGrade, int studentId)
-        //{
-        //    return _studentDao.SetStudentGrade(examGrade, studentId);
-        //}
     }
 }

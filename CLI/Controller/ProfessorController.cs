@@ -13,10 +13,7 @@ namespace CLI.Controller
     {
         public static readonly ProfessorDAO _professorDao = new ProfessorDAO();
 
-        public ProfessorController()
-        {
-            //_professorDao = new ProfessorDAO();
-        }
+        public ProfessorController() {}
 
         public void AddProfessor(Professor professor)
         {
